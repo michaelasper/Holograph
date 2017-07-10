@@ -1,7 +1,6 @@
 
 # Holograph
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 Holograph is a cybersecurity tool for defenders to help:
 
