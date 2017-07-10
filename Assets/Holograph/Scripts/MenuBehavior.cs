@@ -19,6 +19,7 @@ public class MenuBehavior : MonoBehaviour
     public Animator MenuAnimator;
     private int stageCount = 0;
     private MapManager mapManager;
+    public GameObject InfoPanel;
 
 
     // Use this for initialization
@@ -93,13 +94,16 @@ public class MenuBehavior : MonoBehaviour
             Node.EnableLines(StartNode, i, SlideLocation);
 
         }
-        Debug.Log("Nodes Connected");
 
     }
 
     public void ListInfo()
     {
-        Debug.Log("Hack");
+
+        InfoPanelBehavior infopanelbehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
+        InfoPanel.SetActive(true);
+
+        infopanelbehavior.UpdateInfo("Node Info\n\nName: " + this.transform.parent.name + "\nsdfjklsjfklsjdflksj\nsdfssdfsdfsdfsdf\ndfsdfsdfsfsfdsdf");
     }
 
     public void Hack1()

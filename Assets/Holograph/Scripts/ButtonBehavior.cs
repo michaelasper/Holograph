@@ -29,11 +29,9 @@ public class ButtonBehavior : MonoBehaviour, IInputClickHandler, IFocusable
 
     public void OnFocusEnter()
     {
-        Debug.Log("entered");
     }
 
     public void OnFocusExit()
     {
-        Debug.Log("left");
     }
 }
