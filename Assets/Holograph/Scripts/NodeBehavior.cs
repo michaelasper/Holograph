@@ -12,7 +12,7 @@ public class NodeBehavior : MonoBehaviour {
     public const int SEED = 1234;
     private NodeInfo nodeInfo;
 
-
+    private Renderer renderer;
     private Material color;
     public TextMesh textMesh;
 
@@ -58,8 +58,10 @@ public class NodeBehavior : MonoBehaviour {
 	}
     public void ChangeColor(Material color)
     {
-        this.color = color;
-       // this.gameObject.mate
+        //this.color = color;
+        // this.gameObject.mate
+        //Debug.Log(renderer);
+        GetComponent<Renderer>().material = color;
     }
     public void ChangeName(string text)
     {
