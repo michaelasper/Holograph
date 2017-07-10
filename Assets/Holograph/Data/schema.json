@@ -1,0 +1,116 @@
+{
+  "slides" : [
+    {
+      "name": "slide1",
+      "count": 1,
+      "nodes": [
+        {
+          "name": "malware",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "slide2",
+      "count": 7,
+      "nodes": [
+        {
+          "name": "node1",
+          "color": "blue"
+        },
+        {
+          "name": "node2",
+          "color": "blue"
+        },
+        {
+          "name": "node3",
+          "color": "blue"
+        },
+        {
+          "name": "node4",
+          "color": "blue"
+        },
+        {
+          "name": "node5",
+          "color": "blue"
+        },
+        {
+          "name": "node6",
+          "color": "blue"
+        },
+        {
+          "name": "node7",
+          "color": "blue"
+        }
+      ]
+    },
+    {
+      "name": "slide3",
+      "count": 7,
+      "nodes": [
+        {
+          "name": "node1",
+          "color": "green"
+        },
+        {
+          "name": "node2",
+          "color": "green"
+        },
+        {
+          "name": "node3",
+          "color": "green"
+        },
+        {
+          "name": "node4",
+          "color": "green"
+        },
+        {
+          "name": "node5",
+          "color": "green"
+        },
+        {
+          "name": "node6",
+          "color": "green"
+        },
+        {
+          "name": "node7",
+          "color": "green"
+        }
+      ]
+    },
+    {
+      "name": "slide4",
+      "count": 7,
+      "nodes": [
+        {
+          "name": "node1",
+          "color": "orange"
+        },
+        {
+          "name": "node2",
+          "color": "orange"
+        },
+        {
+          "name": "node3",
+          "color": "orange"
+        },
+        {
+          "name": "node4",
+          "color": "orange"
+        },
+        {
+          "name": "node5",
+          "color": "orange"
+        },
+        {
+          "name": "node6",
+          "color": "orange"
+        },
+        {
+          "name": "node7",
+          "color": "orange"
+        }
+      ]
+    }
+  ]
+}
