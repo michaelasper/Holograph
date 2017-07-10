@@ -98,16 +98,19 @@ namespace Holograph
             Ray ray = new Ray(cam.position, cam.forward);
             if (Physics.Raycast(ray, out hit) && hit.transform.name == "Globe")
             {
-                node.transform.position = hit.point;
                 //Vector3 camDirection = cam.forward;
                 //camDirection.y = 0;
                 //camDirection = camDirection.normalized * 1.5f;
                 //Vector3 target = cam.position + camDirection;
                 Vector3 target = this.transform.position;
                 float d = (hit.point - target).magnitude;
-                NodeMovement nodeMovementScript = node.GetComponent<NodeMovement>();
-                nodeMovementScript.maxSpeed = d;
-                nodeMovementScript.moveTarget = target;
+                if (node != null)
+                {
+                    node.transform.position = hit.point;
+                    NodeMovement nodeMovementScript = node.GetComponent<NodeMovement>();
+                    nodeMovementScript.maxSpeed = d;
+                    nodeMovementScript.moveTarget = target;
+                }
             }
             GetComponent<Collider>().enabled = false;
             if (globeAnimator != null && globeAnimator.isInitialized)

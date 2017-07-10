@@ -6,21 +6,25 @@ namespace Holograph
 {
     public class NodeMovement : MonoBehaviour
     {
-
+        public GameObject globe;
         public float speedPercentage;
         public float maxSpeed;
         public Vector3 moveTarget;
-
-        // Use this for initialization
+        public float bounceOutAmt;
+        
         void Start()
         {
-
+            speedPercentage = 0f;
+            bounceOutAmt = 0f;
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
-            if (speedPercentage > 0.01f)
+            if (bounceOutAmt > 0.001f)
+            {
+                transform.position = (transform.position - globe.transform.position).normalized * (.25f + bounceOutAmt) + globe.transform.position;
+            }
+            if (speedPercentage > 0.001f)
             {
                 float speed = maxSpeed * speedPercentage;
                 transform.position = Vector3.MoveTowards(transform.position, moveTarget,

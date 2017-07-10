@@ -45,7 +45,7 @@ public class GlobeCircleWave : MonoBehaviour
     {
         if (circleCenter != Vector3.zero)
         {
-            Debug.Log("Drawing circle");
+            //Debug.Log("Drawing circle");
             CreateLineMaterial();
             GL.PushMatrix();
             GL.MultMatrix(transform.localToWorldMatrix);
@@ -73,7 +73,7 @@ public class GlobeCircleWave : MonoBehaviour
     public void initCircleLines(Vector3 clickPosition)
     {
         List<Vector2> circleLinesList = new List<Vector2>();
-        Debug.Log(transform.InverseTransformPoint(clickPosition).magnitude);
+        //Debug.Log(transform.InverseTransformPoint(clickPosition).magnitude);
         Vector3 circleNormal = transform.InverseTransformPoint(clickPosition);
         circleCenter = circleNormal;
         circleBaseX = Vector3.Cross(new Vector3(0f, 1f, 0f), circleNormal).normalized;
