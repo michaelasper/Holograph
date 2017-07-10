@@ -29,6 +29,16 @@ public class MapManager : MonoBehaviour {
 
         InitializeMap();
 	}
+
+    private Material MatchMaterial(string color)
+    {
+        for(int i = 0; i < materials.Length; i++)
+        {
+            if (materials[i].name == color) return materials[i];
+        }
+
+        throw new System.Exception("Invalid Material name: " + color);
+    }
 	
 
     void InitializeMap()
@@ -40,6 +50,7 @@ public class MapManager : MonoBehaviour {
         for (int i = 0; i < Slides.Length; i++)
         {
             int nodeCount = script.slides[i].count;
+            Debug.Log(nodeCount);
             for(int j = 0; j < nodeCount; j++)
             {
                 GameObject node = Instantiate(NodeFab, Slides[i].transform);
@@ -48,7 +59,8 @@ public class MapManager : MonoBehaviour {
                 node.GetComponent<SpawnMenu>().RadialMenu = this.RadialMenu;
                 node.name = script.slides[i].nodes[j].name;
                 nodebehvaior.ChangeName(node.name);
-                //nodebehvaior.ChangeColor(script.slides[i].nodes[j].color);
+                Material material = MatchMaterial(script.slides[i].nodes[j].color);
+                nodebehvaior.ChangeColor(material);
             }
         }
     }
