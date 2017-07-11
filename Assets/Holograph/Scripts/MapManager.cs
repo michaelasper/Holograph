@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
@@ -55,23 +53,12 @@ public class MapManager : MonoBehaviour
 
             for (int j = 0; j < nodeCount; j++)
             {
-                NodeInfo nodeInfo;
-
-                string name = script.slides[i].nodes[j].name;
+                
                 GameObject node = Instantiate(NodeFab, Slides[i].transform);
                 NodeBehavior nodeBehavior = node.GetComponent<NodeBehavior>();
                 node.GetComponent<SpawnMenu>().RadialMenu = this.RadialMenu;
 
-                // If the node already has a dictionary from DB, use that instead
-                if (script.slides[i].nodes[j].nodeDictionary == null)
-                {
-                    nodeInfo = new NodeInfo(name, "default");
-                }
-                else
-                {
-                    nodeInfo = new NodeInfo(name, "default", script.slides[i].nodes[j].nodeDictionary);
-                }
-
+                NodeInfo nodeInfo = new NodeInfo(script.slides[i].nodes[j].name, "default", script.slides[i].nodes[j].keyList, script.slides[i].nodes[j].valueList);
 
                 nodeBehavior.SetNodeInfo(nodeInfo);
                 //TODO: merge this into NodeInfo
@@ -93,12 +80,7 @@ public class MapManager : MonoBehaviour
         return Slides;
     }
 
-    private void GenerateLine(Vector3 start, Vector3 end)
-    {
-
-
-        return;
-    }
+    
 
     [System.Serializable]
     public struct jGraph
@@ -117,7 +99,8 @@ public class MapManager : MonoBehaviour
             {
                 public string name;
                 public string color;
-                public Dictionary<string, string> nodeDictionary;
+                public string[] keyList;
+                public string[] valueList;
             }
         }
 

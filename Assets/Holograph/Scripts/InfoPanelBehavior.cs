@@ -5,7 +5,7 @@ using UnityEngine;
 public class InfoPanelBehavior : MonoBehaviour {
 
 
-    public TextMesh infoTextMesh;
+    public TextMesh[] infoTextMeshes;
     public NodeInfo info;
 	// Use this for initialization
 	void Start () {
@@ -25,6 +25,12 @@ public class InfoPanelBehavior : MonoBehaviour {
 
     private void UpdateText()
     {
+        int textMeshIndex = 0;
+        foreach(var dictItem in info.nodeDictionary)
+        {
+            infoTextMeshes[textMeshIndex].text = dictItem.Key + ":\t" + dictItem.Value;
+            textMeshIndex++;
 
+        }
     }
 }

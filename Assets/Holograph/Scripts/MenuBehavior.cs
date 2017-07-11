@@ -100,10 +100,12 @@ public class MenuBehavior : MonoBehaviour
     public void ListInfo()
     {
 
-        InfoPanelBehavior infopanelbehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
+        InfoPanelBehavior infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
         InfoPanel.SetActive(true);
 
-        //infopanelbehavior.UpdateInfo("Node Info\n\nName: " + this.transform.parent.name + "\nsdfjklsjfklsjdflksj\nsdfssdfsdfsdfsdf\ndfsdfsdfsfsfdsdf");
+        NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
+        infoPanelBehavior.UpdateInfo(nodeInfo);
+        
     }
 
     public void Hack1()

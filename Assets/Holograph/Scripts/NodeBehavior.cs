@@ -10,7 +10,7 @@ public class NodeBehavior : MonoBehaviour {
     private bool CanRenderLines = false;
     private static Material lineMaterial;
     public const int SEED = 1234;
-    private NodeInfo nodeInfo;
+    public NodeInfo nodeInfo;
 
     private Renderer renderer;
     private Material color;

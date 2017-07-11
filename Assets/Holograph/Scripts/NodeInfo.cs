@@ -3,21 +3,24 @@
 public class NodeInfo {
 
 
-    private Dictionary<string, string> nodeDictionary;
+    public Dictionary<string, string> nodeDictionary;
 
-    public NodeInfo(string nodeName, string nodeType)
+    public NodeInfo(string nodeName, string nodeType, string[] keyList, string[] valueList)
     {
+        if (keyList.Length != valueList.Length) throw new System.Exception("Invalid key-value list");
+
+
         nodeDictionary = new Dictionary<string, string>();
         nodeDictionary.Add("name", nodeName);
         nodeDictionary.Add("type", nodeType);
+
+        for(int i = 0; i < keyList.Length; i++)
+        {
+            nodeDictionary.Add(keyList[i], valueList[i]);
+        }
     }
 
-    public NodeInfo(string nodeName, string nodeType, Dictionary<string,string> nodeDictionary)
-    {
-        this.nodeDictionary = nodeDictionary;
-        this.nodeDictionary.Add("name", nodeName);
-        this.nodeDictionary.Add("type", nodeType);
-    }
+   
 
     public void AddProperty(string propertyName, string propertyValue)
     {
@@ -28,5 +31,10 @@ public class NodeInfo {
     {
         return nodeDictionary[propertyName];
     }
-  
+
+    public override string ToString()
+    {
+        return nodeDictionary.ToString();
+    }
+
 }
