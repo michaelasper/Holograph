@@ -103,7 +103,7 @@ public class MenuBehavior : MonoBehaviour
         InfoPanelBehavior infopanelbehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
         InfoPanel.SetActive(true);
 
-        infopanelbehavior.UpdateInfo("Node Info\n\nName: " + this.transform.parent.name + "\nsdfjklsjfklsjdflksj\nsdfssdfsdfsdfsdf\ndfsdfsdfsfsfdsdf");
+        //infopanelbehavior.UpdateInfo("Node Info\n\nName: " + this.transform.parent.name + "\nsdfjklsjfklsjdflksj\nsdfssdfsdfsdfsdf\ndfsdfsdfsfsfdsdf");
     }
 
     public void Hack1()

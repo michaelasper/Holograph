@@ -6,7 +6,13 @@
       "nodes": [
         {
           "name": "malware",
-          "color": "red"
+          "color": "red",
+
+          "nodeDictionary": {
+            "prop1": "something",
+            "prop2": "something else"
+          }
+
         }
       ]
     },

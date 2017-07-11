@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour {
+public class MapManager : MonoBehaviour
+{
 
 
     public TextAsset jsonfile;
 
-    public GameObject RadialMenu; 
+    public GameObject RadialMenu;
 
     public GameObject NodeFab;
 
@@ -16,30 +17,31 @@ public class MapManager : MonoBehaviour {
     public Material[] materials;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         Slides = new GameObject[this.transform.childCount];
         //Generates list of slides in the map
-        for(int i = 0; i < Slides.Length; i++)
+        for (int i = 0; i < Slides.Length; i++)
         {
             Slides[i] = this.transform.GetChild(i).gameObject;
             Debug.Log(Slides[i].name);
         }
 
         InitializeMap();
-	}
+    }
 
     private Material MatchMaterial(string color)
     {
-        for(int i = 0; i < materials.Length; i++)
+        for (int i = 0; i < materials.Length; i++)
         {
             if (materials[i].name == color) return materials[i];
         }
 
         throw new System.Exception("Invalid Material name: " + color);
     }
-	
+
 
     void InitializeMap()
     {
@@ -50,24 +52,40 @@ public class MapManager : MonoBehaviour {
         for (int i = 0; i < Slides.Length; i++)
         {
             int nodeCount = script.slides[i].count;
-            Debug.Log(nodeCount);
-            for(int j = 0; j < nodeCount; j++)
+
+            for (int j = 0; j < nodeCount; j++)
             {
+                NodeInfo nodeInfo;
+
+                string name = script.slides[i].nodes[j].name;
                 GameObject node = Instantiate(NodeFab, Slides[i].transform);
-                NodeBehavior nodebehvaior = node.GetComponent<NodeBehavior>();
-                
+                NodeBehavior nodeBehavior = node.GetComponent<NodeBehavior>();
                 node.GetComponent<SpawnMenu>().RadialMenu = this.RadialMenu;
-                node.name = script.slides[i].nodes[j].name;
-                nodebehvaior.ChangeName(node.name);
+
+                // If the node already has a dictionary from DB, use that instead
+                if (script.slides[i].nodes[j].nodeDictionary == null)
+                {
+                    nodeInfo = new NodeInfo(name, "default");
+                }
+                else
+                {
+                    nodeInfo = new NodeInfo(name, "default", script.slides[i].nodes[j].nodeDictionary);
+                }
+
+
+                nodeBehavior.SetNodeInfo(nodeInfo);
+                //TODO: merge this into NodeInfo
                 Material material = MatchMaterial(script.slides[i].nodes[j].color);
-                nodebehvaior.ChangeColor(material);
+
+                nodeBehavior.ChangeColor(material);
             }
         }
     }
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public GameObject[] GetSlides()
     {
@@ -89,7 +107,7 @@ public class MapManager : MonoBehaviour {
         [System.Serializable]
         public struct Slide
         {
-            public string  name;
+            public string name;
             public int count;
 
             public Node[] nodes;
@@ -99,8 +117,9 @@ public class MapManager : MonoBehaviour {
             {
                 public string name;
                 public string color;
+                public Dictionary<string, string> nodeDictionary;
             }
         }
-        
+
     }
 }

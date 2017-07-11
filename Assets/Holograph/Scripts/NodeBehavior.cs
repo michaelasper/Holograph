@@ -16,6 +16,7 @@ public class NodeBehavior : MonoBehaviour {
     private Material color;
     public TextMesh textMesh;
 
+
     static void CreateLineMaterial()
     {
         if (!lineMaterial)
@@ -35,6 +36,7 @@ public class NodeBehavior : MonoBehaviour {
         }
     }
 
+    //Deprecated
     public void EnableLines(GameObject StartNode, int index, int SlideLocation)
     {
         this.StartNode = StartNode;
@@ -47,23 +49,29 @@ public class NodeBehavior : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        nodeInfo = new NodeInfo();
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        
-		
+       
 	}
+
+    public void SetNodeInfo(NodeInfo info)
+    {
+        this.nodeInfo = info;
+        ChangeName(info.GetProperty("name"));
+
+    }
+
     public void ChangeColor(Material color)
     {
-        //this.color = color;
-        // this.gameObject.mate
-        //Debug.Log(renderer);
         GetComponent<Renderer>().material = color;
     }
-    public void ChangeName(string text)
+
+
+    private void ChangeName(string text)
     {
         textMesh.text = text;
     }
@@ -87,22 +95,5 @@ public class NodeBehavior : MonoBehaviour {
         GL.PopMatrix();
     }
 
-    private class NodeInfo
-    {
-        public Dictionary<string, string> info;
-
-        public string type;
-
-        public NodeInfo()
-        {
-            this.info = new Dictionary<string, string>();
-            this.type = "device";
-        }
-
-        public void AddInfo(string category, string information)
-        {
-            info.Add(category, information);
-        }
-
-    }
+   
 }
