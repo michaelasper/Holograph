@@ -1,315 +1,222 @@
 {
-  "slides" : [
+  "nodes": [
     {
-      "name": "slide1",
-      "count": 1,
-      "nodes": [
-        {
-          "name": "malware",
-          "color": "red",
+      "name": "malware",
+      "color": "red",
 
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
 
-        }
+      "valueList": [
+        "something",
+        "something else"
       ]
     },
     {
-      "name": "slide2",
-      "count": 7,
-      "nodes": [
-        {
-          "name": "node1",
-          "color": "blue",
+      "name": "1",
+      "color": "red",
 
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node2",
-          "color": "blue",
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
 
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node3",
-          "color": "blue",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node4",
-          "color": "blue",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node5",
-          "color": "blue",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node6",
-          "color": "blue",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node7",
-          "color": "blue",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        }
+      "valueList": [
+        "something",
+        "something else"
       ]
     },
     {
-      "name": "slide3",
-      "count": 7,
-      "nodes": [
-        {
-          "name": "node1",
-          "color": "green",
+      "name": "2",
+      "color": "red",
 
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node2",
-          "color": "green",
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
 
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node3",
-          "color": "green",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node4",
-          "color": "green",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node5",
-          "color": "green",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node6",
-          "color": "green",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node7",
-          "color": "green",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        }
+      "valueList": [
+        "something",
+        "something else"
       ]
     },
     {
-      "name": "slide4",
-      "count": 7,
-      "nodes": [
-        {
-          "name": "node1",
-          "color": "orange",
+      "name": "3",
+      "color": "red",
 
-         "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node2",
-          "color": "orange",
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
 
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node3",
-          "color": "orange",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node4",
-          "color": "orange",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node5",
-          "color": "orange",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node6",
-          "color": "orange",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        },
-        {
-          "name": "node7",
-          "color": "orange",
-
-          "keyList": [
-            "prop1",
-            "prop2"
-          ],
-          "valueList": [
-            "something",
-            "something else"
-          ]
-        }
+      "valueList": [
+        "something",
+        "something else"
       ]
+    },
+    {
+      "name": "4",
+      "color": "red",
+
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
+
+      "valueList": [
+        "something",
+        "something else"
+      ]
+    },
+    {
+      "name": "5",
+      "color": "red",
+
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
+
+      "valueList": [
+        "something",
+        "something else"
+      ]
+    },
+    {
+      "name": "6",
+      "color": "red",
+
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
+
+      "valueList": [
+        "something",
+        "something else"
+      ]
+    },
+    {
+      "name": "7",
+      "color": "red",
+
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
+
+      "valueList": [
+        "something",
+        "something else"
+      ]
+    },
+    {
+      "name": "8",
+      "color": "red",
+
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
+
+      "valueList": [
+        "something",
+        "something else"
+      ]
+    },
+    {
+      "name": "9",
+      "color": "red",
+
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
+
+      "valueList": [
+        "something",
+        "something else"
+      ]
+    },
+    {
+      "name": "10",
+      "color": "red",
+
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
+
+      "valueList": [
+        "something",
+        "something else"
+      ]
+    },
+    {
+      "name": "11",
+      "color": "red",
+
+      "keyList": [
+        "prop1",
+        "prop2"
+      ],
+
+      "valueList": [
+        "something",
+        "something else"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "malware",
+      "target": "1"
+    },
+    {
+      "source": "malware",
+      "target": "2"
+    },
+    {
+      "source": "malware",
+      "target": "3"
+    },
+    {
+      "source": "malware",
+      "target": "4"
+    },
+    {
+      "source": "malware",
+      "target": "5"
+    },
+    {
+      "source": "2",
+      "target": "6"
+    },
+    {
+      "source": "2",
+      "target": "7"
+    },
+    {
+      "source": "2",
+      "target": "8"
+    },
+    {
+      "source": "3",
+      "target": "4"
+    },
+    {
+      "source": "4",
+      "target": "11"
+    },
+    {
+      "source": "3",
+      "target": "9"
+    },
+    {
+      "source": "7",
+      "target": "11"
     }
   ]
 }

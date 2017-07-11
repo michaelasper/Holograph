@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Holograph/Scenes/Testing.unity
-    guid: 875e016965a04fe45ad687ef7344d7ed
   - enabled: 1
-    path: Assets/Holograph/Scenes/asper-workspace.unity
-    guid: 5667ed6c333bc7d4cba9f34f401489a8
+    path: Assets/Holograph/Scenes/ming-story.unity
+    guid: 8b7110c8daffacf43a60710bf0915776

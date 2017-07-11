@@ -1,98 +1,185 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class MapManager : MonoBehaviour
+
+
+namespace Holograph
 {
-
-
-    public TextAsset jsonfile;
-
-    public GameObject RadialMenu;
-
-    public GameObject NodeFab;
-
-    private GameObject[] Slides;
-
-    public Material[] materials;
-
-
-    // Use this for initialization
-    void Start()
+    public class MapManager : MonoBehaviour
     {
+        public TextAsset jsonfile;
 
-        Slides = new GameObject[this.transform.childCount];
-        //Generates list of slides in the map
-        for (int i = 0; i < Slides.Length; i++)
+        public GameObject RadialMenu;
+
+        public GameObject NodeFab;
+
+        public GameObject globe;
+
+
+        //public GameObject globeObject;
+        //public Animation nodeMovementAnimation;
+
+        public Material[] materials;
+        
+        public bool[] visible;
+
+        //nodes and their indices in the adj-matrix
+        private Dictionary<string, int> nodeId = new Dictionary<string, int>();
+
+        private GameObject[] nodeObject;
+
+
+
+        private int[,] adjMatrix;
+
+        // Use this for initialization
+        void Start()
+
         {
-            Slides[i] = this.transform.GetChild(i).gameObject;
-            Debug.Log(Slides[i].name);
+            //nodeId;
+            //InitializeMap();
+            //positionNodes();
+            //for (int i = 0; i < adjMatrix.GetLength(0); ++i)
+            //{
+            //    for (int j = 0; j < adjMatrix.GetLength(1); ++j)
+            //    {
+            //        Debug.Log(adjMatrix[i, j]);
+            //    }
+            //}
         }
 
-        InitializeMap();
-    }
+        private Material MatchMaterial(string color)
 
-    private Material MatchMaterial(string color)
-    {
-        for (int i = 0; i < materials.Length; i++)
         {
-            if (materials[i].name == color) return materials[i];
-        }
-
-        throw new System.Exception("Invalid Material name: " + color);
-    }
-
-
-    void InitializeMap()
-    {
-        if (jsonfile == null) throw new System.Exception("JSON File not found");
-
-        string json = jsonfile.text;
-        var script = JsonUtility.FromJson<jGraph>(json);
-        for (int i = 0; i < Slides.Length; i++)
-        {
-            int nodeCount = script.slides[i].count;
-
-            for (int j = 0; j < nodeCount; j++)
+            for (int i = 0; i < materials.Length; i++)
             {
-                
-                GameObject node = Instantiate(NodeFab, Slides[i].transform);
-                NodeBehavior nodeBehavior = node.GetComponent<NodeBehavior>();
+                if (materials[i].name == color) return materials[i];
+            }
+
+            throw new System.Exception("Invalid Material name: " + color);
+        }
+
+
+        public void initMap()
+        {
+            if (jsonfile == null) throw new System.Exception("JSON File not found");
+
+            string json = jsonfile.text;
+            var jGraph = JsonUtility.FromJson<JGraph>(json);
+            int numNodes = jGraph.nodes.Length;
+            adjMatrix = new int[numNodes, numNodes];
+            nodeObject = new GameObject[numNodes];
+            visible = new bool[numNodes];
+            for (int i = 0; i < numNodes; ++i)
+            {
+                NodeInfo nodeInfo = new NodeInfo(jGraph.nodes[i].name, "default", jGraph.nodes[i].keyList, jGraph.nodes[i].valueList);
+                GameObject node = Instantiate(NodeFab, this.transform);
+                NodeBehavior nodebehvaior = node.GetComponent<NodeBehavior>();
+                //node.GetComponent<NodeMovement>().globe = globeObject;
                 node.GetComponent<SpawnMenu>().RadialMenu = this.RadialMenu;
+                node.name = jGraph.nodes[i].name;
+                nodebehvaior.SetNodeInfo(nodeInfo);
+                Material material = MatchMaterial(jGraph.nodes[i].color);
+                nodebehvaior.ChangeColor(material);
+                nodebehvaior.id = i;
+                nodeId.Add(jGraph.nodes[i].name, i);
+                nodeObject[i] = node;
+                node.SetActive(false);
 
-                NodeInfo nodeInfo = new NodeInfo(script.slides[i].nodes[j].name, "default", script.slides[i].nodes[j].keyList, script.slides[i].nodes[j].valueList);
+            }
+            for (int i = 0; i < jGraph.edges.Length; ++i)
+            {
+                int sourceId = nodeId[jGraph.edges[i].source];
+                int targetId = nodeId[jGraph.edges[i].target];
+                adjMatrix[sourceId, targetId] = 1;
+                adjMatrix[targetId, sourceId] = 1;
+                GameObject source = nodeObject[sourceId];
+                GameObject target = nodeObject[targetId];
+                LinkedList<GameObject> sourceNeighborhood = source.GetComponent<NodeBehavior>().neighborhood;
+                LinkedList<GameObject> targetNeighborhood = target.GetComponent<NodeBehavior>().neighborhood;
+                sourceNeighborhood.AddLast(target);
+                targetNeighborhood.AddLast(source);
+            }
+            visible[0] = true;
+            nodeObject[0].SetActive(true);
+            globe.GetComponent<GlobeBehavior>().firstNode = nodeObject[0];
+        }
 
-                nodeBehavior.SetNodeInfo(nodeInfo);
-                //TODO: merge this into NodeInfo
-                Material material = MatchMaterial(script.slides[i].nodes[j].color);
 
-                nodeBehavior.ChangeColor(material);
+        public void positionNodes()
+        {
+            Vector3[] positions = sparseFruchtermanReingold(0);
+            if (positions == null)
+            {
+                throw new System.NullReferenceException("Fruchterman-Reingold algorithm returns null");
+            }
+            for (int i = 0; i < positions.Length; ++i)
+            {
+                //nodeObject[i].transform.position = positions[i];
+                nodeObject[i].GetComponent<NodeMovement>().moveTo(positions[i]);
             }
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
-    public GameObject[] GetSlides()
-    {
-        Debug.Log("Reached");
-        return Slides;
-    }
-
-    
-
-    [System.Serializable]
-    public struct jGraph
-    {
-        public Slide[] slides;
-        [System.Serializable]
-        public struct Slide
+        private Vector3[] sparseFruchtermanReingold(int originNode)
         {
-            public string name;
-            public int count;
+            int numNodes = adjMatrix.GetLength(0);
+            float k = Mathf.Sqrt(1f / numNodes);
+            float t = .1f;
+            int iterations = 50;
+            float dt = t / iterations;
+            Vector3[] pos = new Vector3[numNodes];
+            pos[0] = Vector3.zero;
+            Random.InitState(123);
+            for (int i = 1; i < numNodes; ++i)
+            {
+                pos[i] = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            
+            for (int iteration = 0; iteration < iterations; ++iteration)
+            {
+                Vector3[] displacement = new Vector3[numNodes];
+                for (int i = 0; i < numNodes; ++i)
+                {
+                    if (!visible[i] || i == originNode)
+                    {
+                        continue;
+                    }
+                    for (int j = 0; j < numNodes; ++j)
+                    {
+                        if (!visible[j])
+                        {
+                            continue;
+                        }
+                        Vector3 delta = pos[i] - pos[j];
+                        float dist = Vector3.Distance(pos[i], pos[j]);
+                        dist = dist > 0.01f ? dist : 0.01f;
+                        Vector3 force = delta * ((k * k) / (dist * dist) - adjMatrix[i, j] * dist / k);
+                        displacement[i] += force;
+                    }
+                }
+                for (int i = 0; i < numNodes; ++i)
+                {
+                    pos[i] += displacement[i].normalized * t;
+                }
+                t -= dt;
+            }
+
+            return pos;
+        }
+
+        void Update()
+        {
+
+        }
+
+
+        [System.Serializable]
+        public struct JGraph
+        {
 
             public Node[] nodes;
+            public Edge[] edges;
 
             [System.Serializable]
             public struct Node
@@ -101,6 +188,12 @@ public class MapManager : MonoBehaviour
                 public string color;
                 public string[] keyList;
                 public string[] valueList;
+            }
+            [System.Serializable]
+            public struct Edge
+            {
+                public string source;
+                public string target;
             }
         }
 

@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114454247529037314}
   - component: {fileID: 114196873967831434}
   - component: {fileID: 114510124050008404}
+  - component: {fileID: 114595965051944148}
+  - component: {fileID: 95531339653720368}
   m_Layer: 0
   m_Name: Node
   m_TagString: Untagged
@@ -147,6 +149,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1058676183348706}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &95531339653720368
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058676183348706}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ecf7f1e94df3104185b8c01f5fcaa37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!102 &102755142526724446
 TextMesh:
   serializedVersion: 3
@@ -206,6 +225,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PivotAxis: 0
   TargetTransform: {fileID: 0}
+--- !u!114 &114595965051944148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058676183348706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4257cdf599ab7e04bbfd164ba24a7095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedPercentage: 0
 --- !u!135 &135713631376162062
 SphereCollider:
   m_ObjectHideFlags: 1

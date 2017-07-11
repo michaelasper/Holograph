@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MovingOut
+  m_Name: Moving
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -44,28 +44,6 @@ AnimationClip:
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 4257cdf599ab7e04bbfd164ba24a7095, type: 3}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      - serializedVersion: 2
-        time: 2
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: bounceOutAmt
-    path: 
-    classID: 114
-    script: {fileID: 11500000, guid: 4257cdf599ab7e04bbfd164ba24a7095, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -77,13 +55,6 @@ AnimationClip:
     - serializedVersion: 2
       path: 0
       attribute: 1449245696
-      script: {fileID: 11500000, guid: 4257cdf599ab7e04bbfd164ba24a7095, type: 3}
-      typeID: 114
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 0
-      attribute: 2730041603
       script: {fileID: 11500000, guid: 4257cdf599ab7e04bbfd164ba24a7095, type: 3}
       typeID: 114
       customType: 0
@@ -135,28 +106,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: speedPercentage
-    path: 
-    classID: 114
-    script: {fileID: 11500000, guid: 4257cdf599ab7e04bbfd164ba24a7095, type: 3}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      - serializedVersion: 2
-        time: 2
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: bounceOutAmt
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 4257cdf599ab7e04bbfd164ba24a7095, type: 3}
