@@ -1,116 +1,78 @@
 {
-  "slides" : [
+  "nodes": [
     {
-      "name": "slide1",
-      "count": 1,
-      "nodes": [
-        {
-          "name": "malware",
-          "color": "red"
-        }
-      ]
+      "name": "1",
+      "color": "green"
     },
     {
-      "name": "slide2",
-      "count": 7,
-      "nodes": [
-        {
-          "name": "node1",
-          "color": "blue"
-        },
-        {
-          "name": "node2",
-          "color": "blue"
-        },
-        {
-          "name": "node3",
-          "color": "blue"
-        },
-        {
-          "name": "node4",
-          "color": "blue"
-        },
-        {
-          "name": "node5",
-          "color": "blue"
-        },
-        {
-          "name": "node6",
-          "color": "blue"
-        },
-        {
-          "name": "node7",
-          "color": "blue"
-        }
-      ]
+      "name": "2",
+      "color": "red"
     },
     {
-      "name": "slide3",
-      "count": 7,
-      "nodes": [
-        {
-          "name": "node1",
-          "color": "green"
-        },
-        {
-          "name": "node2",
-          "color": "green"
-        },
-        {
-          "name": "node3",
-          "color": "green"
-        },
-        {
-          "name": "node4",
-          "color": "green"
-        },
-        {
-          "name": "node5",
-          "color": "green"
-        },
-        {
-          "name": "node6",
-          "color": "green"
-        },
-        {
-          "name": "node7",
-          "color": "green"
-        }
-      ]
+      "name": "3",
+      "color": "blue"
     },
     {
-      "name": "slide4",
-      "count": 7,
-      "nodes": [
-        {
-          "name": "node1",
-          "color": "orange"
-        },
-        {
-          "name": "node2",
-          "color": "orange"
-        },
-        {
-          "name": "node3",
-          "color": "orange"
-        },
-        {
-          "name": "node4",
-          "color": "orange"
-        },
-        {
-          "name": "node5",
-          "color": "orange"
-        },
-        {
-          "name": "node6",
-          "color": "orange"
-        },
-        {
-          "name": "node7",
-          "color": "orange"
-        }
-      ]
+      "name": "4",
+      "color": "red"
+    },
+    {
+      "name": "5",
+      "color": "pink"
+    },
+    {
+      "name": "6",
+      "color": "orange"
+    },
+    {
+      "name": "7",
+      "color": "orange"
+    },
+    {
+      "name": "8",
+      "color": "orange"
+    },
+    {
+      "name": "9",
+      "color": "orange"
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2"
+    },
+    {
+      "source": "1",
+      "target": "3"
+    },
+    {
+      "source": "1",
+      "target": "4"
+    },
+    {
+      "source": "1",
+      "target": "5"
+    },
+    {
+      "source": "2",
+      "target": "6"
+    },
+    {
+      "source": "2",
+      "target": "7"
+    },
+    {
+      "source": "2",
+      "target": "8"
+    },
+    {
+      "source": "2",
+      "target": "9"
+    },
+    {
+      "source": "3",
+      "target": "7"
     }
   ]
 }

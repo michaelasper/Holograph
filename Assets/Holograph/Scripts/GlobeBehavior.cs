@@ -9,12 +9,13 @@ namespace Holograph
     {
 
         public GameObject globe;
-        public GameObject node;
+        public GameObject firstNode;
 
         public float rotSpeed = 20f;
-        
+
         public Animator globeAnimator;
-        public Animator nodeAnimator;
+        //public Animator nodeAnimator;
+        public MapManager mapManager;
         private int sceneNum;
         public bool pushPinMode;
         public Transform pushPin;
@@ -62,7 +63,7 @@ namespace Holograph
         {
             if (rotating)
             {
-                globe.transform.Rotate(0, rotSpeed * Time.deltaTime, 0, Space.World);
+                this.transform.Rotate(0, rotSpeed * Time.deltaTime, 0, Space.World);
             }
             if (globeAnimator != null && globeAnimator.isInitialized)
             {
@@ -93,6 +94,10 @@ namespace Holograph
         {
             //stop rotating
             rotating = false;
+
+            mapManager.initMap();
+            mapManager.positionNodes();
+
             //get hit position
             RaycastHit hit;
             Ray ray = new Ray(cam.position, cam.forward);
@@ -103,13 +108,14 @@ namespace Holograph
                 //camDirection = camDirection.normalized * 1.5f;
                 //Vector3 target = cam.position + camDirection;
                 Vector3 target = this.transform.position;
-                float d = (hit.point - target).magnitude;
-                if (node != null)
+                //float d = (hit.point - target).magnitude;
+                if (firstNode != null)
                 {
-                    node.transform.position = hit.point;
-                    NodeMovement nodeMovementScript = node.GetComponent<NodeMovement>();
-                    nodeMovementScript.maxSpeed = d;
-                    nodeMovementScript.moveTarget = target;
+                    firstNode.transform.position = hit.point;
+                    NodeMovement nodeMovementScript = firstNode.GetComponent<NodeMovement>();
+                    //nodeMovementScript.maxSpeed = d;
+                    //nodeMovementScript.moveTarget = target;
+                    nodeMovementScript.moveTo(target);
                 }
             }
             GetComponent<Collider>().enabled = false;
@@ -118,11 +124,11 @@ namespace Holograph
                 globeAnimator.SetTrigger(fadesOutHash);
                 NetworkMessages.Instance.SendAnimationHash(fadesOutHash, NetworkMessages.AnimationTypes.Trigger);
             }
-            if (nodeAnimator != null && nodeAnimator.isInitialized)
-            {
-                nodeAnimator.SetTrigger(appearsHash);
-                NetworkMessages.Instance.SendAnimationHash(appearsHash, NetworkMessages.AnimationTypes.Trigger);
-            }
+            //if (nodeAnimator != null && nodeAnimator.isInitialized)
+            //{
+            //    nodeAnimator.SetTrigger(appearsHash);
+            //    NetworkMessages.Instance.SendAnimationHash(appearsHash, NetworkMessages.AnimationTypes.Trigger);
+            //}
             if (pushPinMode)
             {
                 string outVectors = "";
@@ -133,7 +139,5 @@ namespace Holograph
                 Debug.Log(outVectors);
             }
         }
-        
-        
     }
 }
