@@ -24,6 +24,7 @@ namespace Holograph
             PresenterId,
             AnimationHash,
             ObjectRotation,
+            RadialMenu,
             Max
         }
 
@@ -185,11 +186,29 @@ namespace Holograph
 
         public void SendObjectRotation(int objectId, float angle)
         {
-            if(serverConnection != null && serverConnection.IsConnected())
+            if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.ObjectRotation);
                 msg.Write(objectId);
                 msg.Write(angle);
+
+                serverConnection.Broadcast(
+                    msg,
+                    MessagePriority.Immediate,
+                    MessageReliability.Unreliable,
+                    MessageChannel.Default);
+            }
+        }
+
+        public void SendRadialMenu(Transform transform, bool isActiveSelf, bool isParentTransform)
+        {
+            if (serverConnection != null && serverConnection.IsConnected())
+            {
+                NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenu);
+                AppendTransform(msg, transform.position, transform.rotation);
+                msg.Write(Convert.ToByte(isActiveSelf));
+                msg.Write(Convert.ToByte(isParentTransform));
+
 
                 serverConnection.Broadcast(
                     msg,

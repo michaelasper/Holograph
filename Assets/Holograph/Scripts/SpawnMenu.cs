@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine;
+using HoloToolkit.Sharing;
+using System;
 
 namespace Holograph
 {
@@ -10,11 +12,15 @@ namespace Holograph
 
         public GameObject RadialMenu;
 
+        private void Awake()
+        {
+            this.name = GetInstanceID().ToString();
+        }
+
         // Use this for initialization
         void Start()
         {
-
-
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = UpdateRadialMenu;
         }
 
         public void OnInputClicked(InputClickedEventData data)
@@ -25,10 +31,12 @@ namespace Holograph
             {
                 if (RadialMenu.transform.parent == this.transform)
                 {
+                    NetworkMessages.Instance.SendRadialMenu(this.transform, true, true);
                     RadialMenu.SetActive(false);
                 }
                 else
                 {
+                    NetworkMessages.Instance.SendRadialMenu(this.transform, true, false);
                     RadialMenu.transform.parent = this.transform;
                 }
             }
@@ -36,7 +44,7 @@ namespace Holograph
             {
                 if (RadialMenu.transform.parent != this.transform)
                 {
-
+                    NetworkMessages.Instance.SendRadialMenu(this.transform, false, false);
                     RadialMenu.transform.parent = this.transform;
                 }
                 RadialMenu.SetActive(true);
@@ -48,10 +56,37 @@ namespace Holograph
 
         }
 
-        // Update is called once per frame
-        void Update()
+        private void UpdateRadialMenu(NetworkInMessage msg)
         {
+            long userId = msg.ReadInt64();
+            Vector3 position = NetworkMessages.Instance.ReadVector3(msg);
+            Quaternion rotation = NetworkMessages.Instance.ReadQuaternion(msg);
+            bool isActiveSelf = Convert.ToBoolean(msg.ReadByte());
+            bool isParentTransform = Convert.ToBoolean(msg.ReadByte());
 
+
+            if (isActiveSelf)
+            {
+                if (isParentTransform)
+                {
+                    RadialMenu.SetActive(false);
+                }
+                else
+                {
+                    RadialMenu.transform.parent.position = position;
+                    RadialMenu.transform.parent.rotation = rotation;
+                }
+            }
+            else
+            {
+                if (!isParentTransform)
+                {
+                    RadialMenu.transform.parent.position = position;
+                    RadialMenu.transform.parent.rotation = rotation;
+                }
+                RadialMenu.SetActive(true);
+            }
+            RadialMenu.transform.localPosition = Vector3.zero;
         }
     }
 }
