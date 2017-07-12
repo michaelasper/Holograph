@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 124000011504821460}
   - component: {fileID: 81000013783107718}
   - component: {fileID: 114000013543835744}
+  - component: {fileID: 114139932407321724}
   m_Layer: 0
   m_Name: HoloLensCamera
   m_TagString: MainCamera
@@ -262,7 +263,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011021619270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010510211078}
@@ -389,7 +390,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.85
+  near clip plane: 0.33
   far clip plane: 1000
   field of view: 16
   orthographic: 0
@@ -405,7 +406,7 @@ Camera:
   m_HDR: 0
   m_AllowMSAA: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
@@ -647,6 +648,24 @@ MonoBehaviour:
   Axis0Destination: 5
   Axis1Destination: 4
   Axis2Destination: 6
+--- !u!114 &114139932407321724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011021619270}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bcb99e80ae7098428323ca81ee55917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridColor: {r: 0, g: 0, b: 0, a: 0}
+  fadeAmt: 0
+  lineMaterial: {fileID: 2100000, guid: d92137c2641dc8e4db89068998bb5eb7, type: 2}
+  latitudeCirclesNum: 9
+  longitudeCirclesNum: 9
+  gridPoints: []
+  numLinesInCircle: 54
 --- !u!124 &124000011504821460
 Behaviour:
   m_ObjectHideFlags: 1
