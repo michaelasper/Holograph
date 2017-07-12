@@ -3,7 +3,7 @@ using HoloToolkit.Unity.InputModule;
 
 namespace Holograph
 {
-    public class Icon : MonoBehaviour, IInputClickHandler
+    public class Icon : MonoBehaviour, IInputHandler
     {
 
         public string TextureName { get; set; }
@@ -25,8 +25,12 @@ namespace Holograph
         {
 
         }
+        public void OnInputDown(InputEventData eventData)
+        {
 
-        public void OnInputClicked(InputClickedEventData eventData)
+        }
+
+        public void OnInputUp(InputEventData eventData)
         {
             menubehvaior.Invoke(this.Message, 0);
         }
