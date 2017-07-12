@@ -77,7 +77,7 @@ namespace Holograph
             MenuAnimator.SetBool("Button_1", false);
             CloseMenu();
             infoPanelBehavior.ClosePanel();
-            infoPanelBehavior.UpdatePinTo(true);
+            
             
         }
         

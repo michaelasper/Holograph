@@ -11,6 +11,7 @@ namespace Holograph {
 
         public TextMesh[] infoTextMeshes;
         public NodeInfo info;
+        public bool isTaggedToUser = true;
         // Use this for initialization
         void Start() {
             gameObject.SetActive(false);
@@ -38,20 +39,25 @@ namespace Holograph {
             }
         }
 
-        public void ClosePanel()
+        /// <summary>
+        /// Will close the panel if the panel is not pinned
+        /// 
+        /// Returns: state of panel
+        /// </summary>
+        public bool ClosePanel()
         {
-            gameObject.SetActive(false);
+            if(isTaggedToUser) gameObject.SetActive(false);
+
+            return gameObject.activeSelf;
 
         }
 
         public void PinPanel()
         {
-            this.GetComponentInChildren<Tagalong>().enabled = !this.GetComponentInChildren<Tagalong>().enabled;
+            isTaggedToUser = !isTaggedToUser;
+            this.GetComponentInChildren<Tagalong>().enabled = isTaggedToUser;
         }
-        public void UpdatePinTo(bool set)
-        {
-            this.GetComponentInChildren<Tagalong>().enabled = set;
-        }
+        
 
     }
 }
