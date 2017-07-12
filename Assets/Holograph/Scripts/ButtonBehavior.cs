@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Holograph
 {
-    public class ButtonBehavior : MonoBehaviour, IInputClickHandler, IFocusable
+    public class ButtonBehavior : MonoBehaviour, IInputHandler, IFocusable
     {
         public bool ButtonPressed;
         public Animator IconAnimator;
@@ -19,7 +19,12 @@ namespace Holograph
 
         }
 
-        public void OnInputClicked(InputClickedEventData eventData)
+        public void OnInputDown(InputEventData eventData)
+        {
+
+        }
+
+        public void OnInputUp(InputEventData eventData)
         {
             //    Transform child = transform.GetChild(0);
             //    child.gameObject.SetActive(!child.gameObject.activeSelf);

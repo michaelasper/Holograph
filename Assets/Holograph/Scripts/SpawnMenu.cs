@@ -1,13 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine;
 using HoloToolkit.Sharing;
-using System;
 
 namespace Holograph
 {
-    public class SpawnMenu : MonoBehaviour, IInputClickHandler
+    public class SpawnMenu : MonoBehaviour, IInputHandler
     {
 
         public GameObject RadialMenu;
@@ -23,10 +23,13 @@ namespace Holograph
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = UpdateRadialMenu;
         }
 
-        public void OnInputClicked(InputClickedEventData data)
+        public void OnInputDown(InputEventData eventData)
         {
 
+        }
 
+        public void OnInputUp(InputEventData data)
+        {
             if (RadialMenu.activeSelf)
             {
                 if (RadialMenu.transform.parent == this.transform)
