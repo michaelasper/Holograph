@@ -6,28 +6,31 @@ namespace Holograph
 {
     public class MenuBehavior : MonoBehaviour
     {
+
+        // List of how Icons should look and what they should do
         private string[] TextureList = { "First Icon", "Second Icon", "Third Icon", "Fourth Icon" };
         private string[] ActionList = { "Expand", "ListInfo", "Hack1", "Hack2" };
 
-
+        
         private GameObject[] ObjectList = new GameObject[4];
         public GameObject IconFab;
         public GameObject Map;
         private GameObject[] Slides;
 
+        private InfoPanelBehavior infoPanelBehavior;
+        public Animator GraphAnimator;
+        public Animator MenuAnimator;
 
-    public Animator GraphAnimator;
-    public Animator MenuAnimator;
-
-    private MapManager mapManager;
-    public GameObject InfoPanel;
+        private MapManager mapManager;
+        public GameObject InfoPanel;
 
 
 
         // Use this for initialization
         void Start()
         {
-            this.gameObject.SetActive(false);
+            // Starts with Menu open to run Start() Script
+            CloseMenu();
             MenuAnimator = this.GetComponent<Animator>();
             for (int i = 0; i < TextureList.Length; i++)
             {
@@ -41,7 +44,7 @@ namespace Holograph
 
             mapManager = Map.GetComponent<MapManager>();
             //Slides =  mapManager.GetSlides();
-
+            infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
 
         }
 
@@ -72,24 +75,24 @@ namespace Holograph
                 mapManager.positionNodes();
             }
             MenuAnimator.SetBool("Button_1", false);
-            this.gameObject.SetActive(false);
-
-
+            CloseMenu();
+            infoPanelBehavior.ClosePanel();
+            
         }
 
-        
 
 
-    public void ListInfo()
-    {
 
-        InfoPanelBehavior infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
-        InfoPanel.SetActive(true);
+        public void ListInfo()
+        {
 
-        NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
-        infoPanelBehavior.UpdateInfo(nodeInfo);
-        
-    }
+           
+            InfoPanel.SetActive(true);
+
+            NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
+            infoPanelBehavior.UpdateInfo(nodeInfo);
+
+        }
 
 
 
@@ -107,6 +110,11 @@ namespace Holograph
         void Update()
         {
 
+        }
+
+        public void CloseMenu()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

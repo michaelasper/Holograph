@@ -28,9 +28,14 @@ public class InfoPanelBehavior : MonoBehaviour {
         int textMeshIndex = 0;
         foreach(var dictItem in info.nodeDictionary)
         {
-            infoTextMeshes[textMeshIndex].text = dictItem.Key + ":\t" + dictItem.Value;
+            infoTextMeshes[textMeshIndex].text = dictItem.Key + ":  " + dictItem.Value;
             textMeshIndex++;
 
         }
+    }
+
+    public void ClosePanel()
+    {
+        gameObject.SetActive(false);
     }
 }
