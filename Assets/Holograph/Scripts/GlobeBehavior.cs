@@ -14,7 +14,6 @@ namespace Holograph
         public float rotSpeed = 20f;
 
         public Animator globeAnimator;
-        //public Animator nodeAnimator;
         public MapManager mapManager;
         private int sceneNum;
         public bool pushPinMode;
@@ -37,9 +36,7 @@ namespace Holograph
             if (Physics.Raycast(ray, out hit) && hit.transform.name == "Globe")
             {
                 GlobeCircleWave circleWave = GetComponent<GlobeCircleWave>();
-                //circleWave.showCircle = true;
                 circleWave.initCircleLines(hit.point);
-                //globeAnimator.SetTrigger(showsCircleHash);
             }
         }
 
@@ -92,29 +89,20 @@ namespace Holograph
 
         void AirTap()
         {
-            //stop rotating
             rotating = false;
 
             mapManager.initMap();
             mapManager.positionNodes();
 
-            //get hit position
             RaycastHit hit;
             Ray ray = new Ray(cam.position, cam.forward);
             if (Physics.Raycast(ray, out hit) && hit.transform.name == "Globe")
             {
-                //Vector3 camDirection = cam.forward;
-                //camDirection.y = 0;
-                //camDirection = camDirection.normalized * 1.5f;
-                //Vector3 target = cam.position + camDirection;
                 Vector3 target = this.transform.position;
-                //float d = (hit.point - target).magnitude;
                 if (firstNode != null)
                 {
                     firstNode.transform.position = hit.point;
                     NodeMovement nodeMovementScript = firstNode.GetComponent<NodeMovement>();
-                    //nodeMovementScript.maxSpeed = d;
-                    //nodeMovementScript.moveTarget = target;
                     nodeMovementScript.moveTo(target);
                 }
             }
@@ -124,11 +112,6 @@ namespace Holograph
                 globeAnimator.SetTrigger(fadesOutHash);
                 NetworkMessages.Instance.SendAnimationHash(fadesOutHash, NetworkMessages.AnimationTypes.Trigger);
             }
-            //if (nodeAnimator != null && nodeAnimator.isInitialized)
-            //{
-            //    nodeAnimator.SetTrigger(appearsHash);
-            //    NetworkMessages.Instance.SendAnimationHash(appearsHash, NetworkMessages.AnimationTypes.Trigger);
-            //}
             if (pushPinMode)
             {
                 string outVectors = "";

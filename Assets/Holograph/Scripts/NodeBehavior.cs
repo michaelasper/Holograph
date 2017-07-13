@@ -12,32 +12,22 @@ namespace Holograph
         public NodeInfo nodeInfo;
         public TextMesh textMesh;
         public LinkedList<GameObject> neighborhood = new LinkedList<GameObject>();
-        //private bool CanRenderLines = false;
         private static Material lineMaterial;
-        //public const int SEED = 1234;
 
 
         static void CreateLineMaterial()
         {
             if (!lineMaterial)
             {
-                // Unity has a built-in shader that is useful for drawing
-                // simple colored things.
                 Shader shader = Shader.Find("Hidden/Internal-Colored");
                 lineMaterial = new Material(shader);
                 lineMaterial.hideFlags = HideFlags.HideAndDontSave;
-                // Turn on alpha blending
                 lineMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
                 lineMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                // Turn backface culling off
                 lineMaterial.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
-                // Turn off depth writes
                 lineMaterial.SetInt("_ZWrite", 0);
             }
         }
-
-
-
 
         // Use this for initialization
         void Start()
@@ -73,7 +63,6 @@ namespace Holograph
 
         public void OnRenderObject()
         {
-            //if(CanRenderLines) DrawLine(StartNode.transform.position);
             DrawLines();
         }
 
@@ -96,7 +85,5 @@ namespace Holograph
             GL.End();
             GL.PopMatrix();
         }
-
-
     }
 }

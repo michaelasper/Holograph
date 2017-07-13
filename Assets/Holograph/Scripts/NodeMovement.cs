@@ -6,27 +6,19 @@ namespace Holograph
 {
     public class NodeMovement : MonoBehaviour
     {
-        //public GameObject globe;
-        //public Animation moveAnimation;
         public float speedPercentage;
         private float moveMaxSpeed;
         private Vector3 moveTarget;
-        //public float bounceOutAmt;
 
         private int movesHash = Animator.StringToHash("moves");
 
         void Start()
         {
             speedPercentage = 0f;
-            //bounceOutAmt = 0f;
         }
 
         void Update()
         {
-            //if (bounceOutAmt > 0.001f)
-            //{
-            //    transform.position = (transform.position - globe.transform.position).normalized * (.25f + bounceOutAmt) + globe.transform.position;
-            //}
             if (speedPercentage > 0.001f)
             {
                 float speed = moveMaxSpeed * speedPercentage;
