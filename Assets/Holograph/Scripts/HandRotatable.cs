@@ -46,6 +46,7 @@ namespace Holograph
         //private Vector3 objRefGrabPoint;
 
         private Vector3 handRefDirection;
+        private float objRedRotationEulerY;
 
         //private Vector3 draggingPosition;
         private Quaternion draggingRotation;
@@ -102,8 +103,6 @@ namespace Holograph
             // Add self as a modal input handler, to get all inputs during the manipulation
             InputManager.Instance.PushModalInputHandler(gameObject);
 
-            isDragging = true;
-
             Vector3 gazeHitPosition = GetHostHitPosition();
             Vector3 handPosition;
             currentInputSource.TryGetPosition(currentInputSourceId, out handPosition);
@@ -133,8 +132,10 @@ namespace Holograph
             //gazeAngularOffset = Quaternion.FromToRotation(handDirection, objDirection);
             //draggingPosition = gazeHitPosition;
 
+            objRedRotationEulerY = HostTransform.rotation.eulerAngles.y;
 
             StartedDragging.RaiseEvent();
+            isDragging = true;
         }
 
         private Vector3 GetHostHitPosition()
@@ -158,20 +159,20 @@ namespace Holograph
         /// Enables or disables dragging.
         /// </summary>
         /// <param name="isEnabled">Indicates whether dragging shoudl be enabled or disabled.</param>
-        public void SetDragging(bool isEnabled)
-        {
-            if (IsDraggingEnabled == isEnabled)
-            {
-                return;
-            }
+        //public void SetDragging(bool isEnabled)
+        //{
+        //    if (IsDraggingEnabled == isEnabled)
+        //    {
+        //        return;
+        //    }
 
-            IsDraggingEnabled = isEnabled;
+        //    IsDraggingEnabled = isEnabled;
 
-            if (isDragging)
-            {
-                StopDragging();
-            }
-        }
+        //    if (isDragging)
+        //    {
+        //        StopDragging();
+        //    }
+        //}
 
         /// <summary>
         /// Update the position of the object being dragged.
@@ -221,7 +222,7 @@ namespace Holograph
             //Debug.Log(handRotatedAngle);
 
             float hostRatationAngle = handRotatedAngle * objRefDistance / HostRadius;
-            draggingRotation = Quaternion.Euler(0f, HostTransform.rotation.y + hostRatationAngle, 0f);
+            draggingRotation = Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
             HostTransform.rotation = Quaternion.Lerp(HostTransform.rotation, draggingRotation, RotationLerpSpeed);
 
             //if (RotationMode == RotationModeEnum.OrientTowardUserAndKeepUpright)
