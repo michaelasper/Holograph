@@ -1,0 +1,88 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.divResizeRule { 
+            border:dashed 1px #CCC; 
+            /*width:800px; 
+            height:120px;*/ 
+            padding:5px; 
+            margin:5px; 
+            font:13px Arial; 
+            cursor:move; 
+            float:left 
+        }
+.divResize { 
+            border:dashed 1px #CCC; 
+            padding:5px; 
+            margin:5px; 
+            font:13px Arial; 
+            cursor:move; 
+            float:left 
+        }
+.selectedBorder {
+  border: dashed 3px green;
+}
+.selectedDependentBorder {
+  border: dashed 2px darkgreen;
+}
+.dashed { 
+            border:dashed 1px #CCC; 
+            padding:5px; 
+            margin:5px; 
+            font:13px Arial; 
+        }
+.invalid {
+  background-color: lightpink;
+}
+.validOrNot {
+  position:absolute;
+    bottom:0;
+    right:0;
+}
+.validOrNotLeft {
+  position:absolute;
+    bottom:0;
+    left:0;
+}
+.noMove {
+  cursor:pointer; 
+}
+.typeahead-demo .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .message {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }

@@ -1,0 +1,14 @@
+﻿<div ng-app="gtbbDashboard">
+    <div >
+        <div class="btn-group">
+            <label class="btn btn-primary" btn-radio="Dashboard"><a style="color: white" ui-sref="dashboard">Dashboard</a></label>
+            <label class="btn btn-primary" btn-radio="Login"><a style="color: white" ui-sref="login">Login</a></label>
+        </div>
+    </div>
+
+    <div ng-class="$state.current.cssClass">
+        <div ui-view>
+
+        </div>
+    </div>
+</div>
