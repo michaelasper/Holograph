@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine;
+using HoloToolkit.Sharing;
 
 namespace Holograph
 {
@@ -48,6 +49,8 @@ namespace Holograph
            
             fadesOutHash = Animator.StringToHash("fadesOut");
             cam = Camera.main.transform;
+
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.FirstNodeTransform] = FirstNodeTransform;
         }
 
         void Update()
@@ -97,6 +100,13 @@ namespace Holograph
                 {
                     firstNode.transform.position = hit.point;
                     NodeMovement nodeMovementScript = firstNode.GetComponent<NodeMovement>();
+
+
+                    // Sends position to other hololens
+                    NetworkMessages.Instance.SendFirstNodeTransform(hit.transform);
+
+                    //nodeMovementScript.maxSpeed = d;
+                    //nodeMovementScript.moveTarget = target;
                     nodeMovementScript.moveTo(target);
                 }
             }
@@ -116,6 +126,20 @@ namespace Holograph
                 }
                 Debug.Log(outVectors);
             }
+        }
+
+        private void FirstNodeTransform(NetworkInMessage msg)
+        {
+            Debug.Log("Recieived position for first node!!!!!!");
+            long userId = msg.ReadInt64();
+            Vector3 position = NetworkMessages.Instance.ReadVector3(msg);
+            Debug.Log("Position: " + position.ToString());
+
+            rotating = false;
+            mapManager.initMap();
+            mapManager.positionNodes();
+
+            firstNode.transform.position = position;
         }
     }
 }
