@@ -39,6 +39,12 @@ namespace Holograph {
             }
         }
 
+        public void ForceClosePane()
+        {
+            gameObject.SetActive(false);
+            
+        }
+
         /// <summary>
         /// Will close the panel if the panel is not pinned
         /// 
