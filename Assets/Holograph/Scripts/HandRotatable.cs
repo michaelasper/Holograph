@@ -41,6 +41,7 @@ namespace Holograph
         private Vector3 handRefDirection;
         private Quaternion objRefRotation;
         private float objRedRotationEulerY;
+
         private Quaternion draggingRotation;
 
         private IInputSource currentInputSource = null;
@@ -106,7 +107,7 @@ namespace Holograph
 
             objRefRotation = HostTransform.rotation;
 
-            objRedRotationEulerY = HostTransform.rotation.eulerAngles.y;
+            objRefRotation = HostTransform.rotation;
 
 
             StartedDragging.RaiseEvent();
