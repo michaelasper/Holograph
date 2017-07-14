@@ -129,14 +129,13 @@ namespace Holograph
 
         private void FirstNodeTransform(NetworkInMessage msg)
         {
-            Debug.Log("Recieived position for first node!!!!!!");
             long userId = msg.ReadInt64();
             Vector3 position = NetworkMessages.Instance.ReadVector3(msg);
-            Debug.Log("Position: " + position.ToString());
 
             rotating = false;
             mapManager.initMap();
             mapManager.positionNodes(this.transform.position);
+            mapManager.positionNodes();
 
             firstNode.transform.position = position;
         }

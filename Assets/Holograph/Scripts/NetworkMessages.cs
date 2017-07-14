@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using HoloToolkit.Unity;
 using UnityEngine;
 using HoloToolkit.Sharing;
-using Assets.Holograph;
 
 namespace Holograph
 {
