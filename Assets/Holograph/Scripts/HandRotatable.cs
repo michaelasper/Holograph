@@ -39,7 +39,7 @@ namespace Holograph
         private bool isGazed;
         private float objRefDistance;
         private Vector3 handRefDirection;
-        private float objRedRotationEulerY;
+        private Quaternion objRefRotation;
         private Quaternion draggingRotation;
 
         private IInputSource currentInputSource = null;
@@ -104,7 +104,7 @@ namespace Holograph
             handRefDirection = (handPosition - pivotPosition).normalized;
 
 
-            objRedRotationEulerY = HostTransform.rotation.eulerAngles.y;
+            objRefRotation = HostTransform.rotation;
 
             StartedDragging.RaiseEvent();
             isDragging = true;
@@ -139,10 +139,11 @@ namespace Holograph
 
             Vector3 newHandDirection = (newHandPosition - pivotPosition).normalized;
 
-            float handRotatedAngle = Vector3.Angle(newHandDirection, handRefDirection) * Mathf.Sign(Vector3.Cross(newHandDirection, handRefDirection).y);
-
-            float hostRatationAngle = handRotatedAngle * objRefDistance / HostRadius;
-            draggingRotation = Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
+            Quaternion handRotation = Quaternion.FromToRotation(handRefDirection, newHandDirection); // Vector3.Angle(newHandDirection, handRefDirection) * Mathf.Sign(Vector3.Cross(newHandDirection, handRefDirection).y);
+            
+            // Scale the rotation
+            Quaternion hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
+            draggingRotation = objRefRotation * Quaternion.Inverse(hostRatation); //Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
             HostTransform.rotation = Quaternion.Lerp(HostTransform.rotation, draggingRotation, RotationLerpSpeed);
 
         }
