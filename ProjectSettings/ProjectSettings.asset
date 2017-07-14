@@ -629,7 +629,7 @@ PlayerSettings:
     Hub: 0
     UNet: 1
   facebookSdkVersion: 7.9.1
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: cb291667-df67-428f-b4cd-f8db8f4228e0
   projectName: Holograph (2)
   organizationId: cgs-camilogonzalez-gmail-com
