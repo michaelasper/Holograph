@@ -134,7 +134,6 @@ namespace Holograph
 
             rotating = false;
             mapManager.initMap();
-            mapManager.positionNodes(this.transform.position);
             mapManager.positionNodes();
 
             firstNode.transform.position = position;
