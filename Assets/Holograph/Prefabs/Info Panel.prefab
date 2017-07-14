@@ -397,7 +397,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682276299300680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4191618218929334}
@@ -1356,6 +1356,7 @@ MonoBehaviour:
   - {fileID: 102941161446731804}
   - {fileID: 102018321315025484}
   - {fileID: 102237176024438182}
+  isTaggedToUser: 1
 --- !u!114 &114698167376384922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1396,7 +1397,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114602348845945426}
-        m_MethodName: ClosePanel
+        m_MethodName: ForceClosePane
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
