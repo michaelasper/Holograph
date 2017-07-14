@@ -11,10 +11,10 @@ namespace Holograph
         private string[] ActionList = { "Expand", "ListInfo", "Hack1", "Hack2" };
 
         
-        private GameObject[] ObjectList = new GameObject[4];
+        //private GameObject[] ObjectList = new GameObject[4];
         public GameObject IconFab;
         public GameObject Map;
-        private GameObject[] Slides;
+        //private GameObject[] Slides;
 
         private InfoPanelBehavior infoPanelBehavior;
         public Animator GraphAnimator;
@@ -44,18 +44,6 @@ namespace Holograph
 
         }
 
-        public int GetSlideLocation()
-        {
-            GameObject parent = this.transform.parent.parent.gameObject;
-            Debug.Log(parent.name);
-            for (int i = 0; i < Slides.Length; i++)
-            {
-                if (parent.Equals(Slides[i])) return i;
-            }
-
-            return -1;
-        }
-
         /// <summary>
         /// Expands the graph when icon is hit
         /// </summary>
@@ -63,7 +51,7 @@ namespace Holograph
         {
             foreach (GameObject node in this.transform.parent.GetComponent<NodeBehavior>().neighborhood)
             {
-                MapManager mapManager = node.transform.parent.GetComponent<MapManager>();
+
                 mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
                 node.SetActive(true);
                 mapManager.positionNodes();

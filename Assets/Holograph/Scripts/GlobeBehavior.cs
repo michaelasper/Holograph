@@ -15,7 +15,6 @@ namespace Holograph
 
         public Animator globeAnimator;
         public MapManager mapManager;
-        private int sceneNum;
         public bool pushPinMode;
         public Transform pushPin;
         public bool rotating;
@@ -23,10 +22,7 @@ namespace Holograph
         public List<Vector3> pinPositions;
 
         private int invisibleStateHash;
-        private int appearsHash;
         private int fadesOutHash;
-        private int showsCircleHash;
-
         private Transform cam;
 
         void IInputHandler.OnInputDown(InputEventData eventData)
@@ -47,12 +43,10 @@ namespace Holograph
 
         void Start()
         {
-            sceneNum = 1;
             pinPositions = new List<Vector3>();
             invisibleStateHash = Animator.StringToHash("Base Layer.Invisible");
-            appearsHash = Animator.StringToHash("appears");
+           
             fadesOutHash = Animator.StringToHash("fadesOut");
-            showsCircleHash = Animator.StringToHash("showsCircle");
             cam = Camera.main.transform;
         }
 
@@ -112,6 +106,7 @@ namespace Holograph
                 globeAnimator.SetTrigger(fadesOutHash);
                 NetworkMessages.Instance.SendAnimationHash(fadesOutHash, NetworkMessages.AnimationTypes.Trigger);
             }
+
             if (pushPinMode)
             {
                 string outVectors = "";
