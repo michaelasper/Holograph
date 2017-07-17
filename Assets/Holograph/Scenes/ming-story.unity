@@ -283,6 +283,11 @@ Prefab:
       propertyPath: mapManager
       value: 
       objectReference: {fileID: 286436074}
+    - target: {fileID: 95343382639724346, guid: 662323150571d6c48a3c09b6cdfaf1e5,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6c3542e956cd2074a903f1915e1b45e5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 662323150571d6c48a3c09b6cdfaf1e5, type: 2}
   m_IsPrefabParent: 0
@@ -1288,6 +1293,11 @@ Prefab:
       propertyPath: InfoPanel
       value: 
       objectReference: {fileID: 951066803}
+    - target: {fileID: 114197164154612164, guid: 61980f0a4d59dfa4aa6cab2cfa0c2882,
+        type: 2}
+      propertyPath: Globe
+      value: 
+      objectReference: {fileID: 1464671490}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61980f0a4d59dfa4aa6cab2cfa0c2882, type: 2}
   m_IsPrefabParent: 0
