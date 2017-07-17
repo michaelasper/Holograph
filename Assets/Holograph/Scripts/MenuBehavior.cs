@@ -16,14 +16,18 @@ namespace Holograph
         //private GameObject[] ObjectList = new GameObject[4];
         public GameObject IconFab;
         public GameObject Map;
+        public GameObject Globe;
         //private GameObject[] Slides;
 
         private InfoPanelBehavior infoPanelBehavior;
         public Animator GraphAnimator;
         public Animator MenuAnimator;
+        private Animator globeAnimator;
 
         private MapManager mapManager;
         public GameObject InfoPanel;
+
+        private int fadesInHash;
 
         // Use this for initialization
         void Start()
@@ -45,6 +49,9 @@ namespace Holograph
             infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
 
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuStatus] = UpdateRadialMenuStatus;
+
+            globeAnimator = Globe.GetComponent<Animator>();
+            fadesInHash = Animator.StringToHash("fadesIn");
         }
 
         /// <summary>
@@ -78,7 +85,8 @@ namespace Holograph
 
         public void Hack1()
         {
-            Debug.Log("Hack1");
+            //Debug.Log("Hack1");
+            resetStory();
         }
 
         public void Hack2()
@@ -86,6 +94,18 @@ namespace Holograph
             Debug.Log("Hack2");
         }
 
+        private void resetStory()
+        {
+            Globe.SetActive(true);
+            Globe.GetComponent<Collider>().enabled = true;
+            Globe.GetComponent<GlobeBehavior>().rotating = true;
+            if (globeAnimator != null && globeAnimator.isInitialized)
+            {
+                globeAnimator.SetTrigger(fadesInHash);
+                NetworkMessages.Instance.SendAnimationHash(fadesInHash, NetworkMessages.AnimationTypes.Trigger);
+            }
+            mapManager.hideNodes();
+        }
         // Update is called once per frame
         void Update()
         {

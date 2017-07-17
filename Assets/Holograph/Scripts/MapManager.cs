@@ -18,7 +18,7 @@ namespace Holograph
         public bool[] visible;
 
         //nodes and their indices in the adj-matrix
-        private Dictionary<string, int> nodeId = new Dictionary<string, int>();
+        private Dictionary<string, int> nodeId;
 
         private GameObject[] nodeObject;
 
@@ -51,6 +51,7 @@ namespace Holograph
             adjMatrix = new int[numNodes, numNodes];
             nodeObject = new GameObject[numNodes];
             visible = new bool[numNodes];
+            nodeId = new Dictionary<string, int>();
             for (int i = 0; i < numNodes; ++i)
             {
                 NodeInfo nodeInfo = new NodeInfo(jGraph.nodes[i].name, "default", jGraph.nodes[i].keyList, jGraph.nodes[i].valueList);
@@ -152,6 +153,16 @@ namespace Holograph
         void Update()
         {
 
+        }
+
+        public void hideNodes()
+        {
+            RadialMenu.transform.parent = this.transform.parent;
+            RadialMenu.SetActive(false);
+            for (int i = 0; i < nodeObject.Length; ++i)
+            {
+                GameObject.Destroy(nodeObject[i]);
+            }
         }
 
         [System.Serializable]
