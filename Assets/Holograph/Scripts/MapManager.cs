@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-
-
 namespace Holograph
 {
     public class MapManager : MonoBehaviour
@@ -15,10 +13,6 @@ namespace Holograph
 
         public GameObject globe;
 
-
-        //public GameObject globeObject;
-        //public Animation nodeMovementAnimation;
-
         public Material[] materials;
         
         public bool[] visible;
@@ -28,24 +22,12 @@ namespace Holograph
 
         private GameObject[] nodeObject;
 
-
-
         private int[,] adjMatrix;
 
         // Use this for initialization
         void Start()
-
         {
-            //nodeId;
-            //InitializeMap();
-            //positionNodes();
-            //for (int i = 0; i < adjMatrix.GetLength(0); ++i)
-            //{
-            //    for (int j = 0; j < adjMatrix.GetLength(1); ++j)
-            //    {
-            //        Debug.Log(adjMatrix[i, j]);
-            //    }
-            //}
+
         }
 
         private Material MatchMaterial(string color)
@@ -55,10 +37,8 @@ namespace Holograph
             {
                 if (materials[i].name == color) return materials[i];
             }
-
             throw new System.Exception("Invalid Material name: " + color);
         }
-
 
         public void initMap()
         {
@@ -75,7 +55,6 @@ namespace Holograph
                 NodeInfo nodeInfo = new NodeInfo(jGraph.nodes[i].name, "default", jGraph.nodes[i].keyList, jGraph.nodes[i].valueList);
                 GameObject node = Instantiate(NodeFab, this.transform);
                 NodeBehavior nodebehvaior = node.GetComponent<NodeBehavior>();
-                //node.GetComponent<NodeMovement>().globe = globeObject;
                 node.GetComponent<SpawnMenu>().RadialMenu = this.RadialMenu;
                 node.name = jGraph.nodes[i].name;
                 nodebehvaior.SetNodeInfo(nodeInfo);
@@ -105,7 +84,6 @@ namespace Holograph
             globe.GetComponent<GlobeBehavior>().firstNode = nodeObject[0];
         }
 
-
         public void positionNodes()
         {
             Vector3[] positions = sparseFruchtermanReingold(0);
@@ -115,11 +93,9 @@ namespace Holograph
             }
             for (int i = 0; i < positions.Length; ++i)
             {
-                //nodeObject[i].transform.position = positions[i];
                 nodeObject[i].GetComponent<NodeMovement>().moveTo(positions[i]);
             }
         }
-
 
         private Vector3[] sparseFruchtermanReingold(int originNode)
         {
@@ -135,7 +111,6 @@ namespace Holograph
             {
                 pos[i] = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
             }
-            
             for (int iteration = 0; iteration < iterations; ++iteration)
             {
                 Vector3[] displacement = new Vector3[numNodes];
@@ -164,7 +139,6 @@ namespace Holograph
                 }
                 t -= dt;
             }
-
             return pos;
         }
 
@@ -172,7 +146,6 @@ namespace Holograph
         {
 
         }
-
 
         [System.Serializable]
         public struct JGraph

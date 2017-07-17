@@ -35,20 +35,11 @@ namespace Holograph
         public bool IsDraggingEnabled = true;
 
         private Transform cam;
-        //private Camera mainCamera;
         public bool isDragging;
         private bool isGazed;
-        //private Vector3 objRefForward;
-        //private Vector3 objRefUp;
         private float objRefDistance;
-        //private Quaternion gazeAngularOffset;
-        //private float handRefDistance;
-        //private Vector3 objRefGrabPoint;
-
         private Vector3 handRefDirection;
         private float objRedRotationEulerY;
-
-        //private Vector3 draggingPosition;
         private Quaternion draggingRotation;
 
         private IInputSource currentInputSource = null;
@@ -108,29 +99,10 @@ namespace Holograph
             currentInputSource.TryGetPosition(currentInputSourceId, out handPosition);
 
             Vector3 pivotPosition = GetHandPivotPosition();
-            //handRefDistance = Vector3.Magnitude(handPosition - pivotPosition);
             objRefDistance = Vector3.Magnitude(gazeHitPosition - pivotPosition);
 
-            //Vector3 objForward = HostTransform.forward;
-            //Vector3 objUp = HostTransform.up;
-
-            //// Store where the object was grabbed from
-            //objRefGrabPoint = mainCamera.transform.InverseTransformDirection(HostTransform.position - gazeHitPosition);
-
-            //Vector3 objDirection = Vector3.Normalize(gazeHitPosition - pivotPosition);
             handRefDirection = (handPosition - pivotPosition).normalized;
 
-            //objForward = mainCamera.transform.InverseTransformDirection(objForward);       // in camera space
-            //objUp = mainCamera.transform.InverseTransformDirection(objUp);       		   // in camera space
-            //objDirection = mainCamera.transform.InverseTransformDirection(objDirection);   // in camera space
-            //handRefDirection = cam.InverseTransformDirection(handDirection); // in camera space
-
-            //objRefForward = objForward;
-            //objRefUp = objUp;
-
-            //// Store the initial offset between the hand and the object, so that we can consider it when dragging
-            //gazeAngularOffset = Quaternion.FromToRotation(handDirection, objDirection);
-            //draggingPosition = gazeHitPosition;
 
             objRedRotationEulerY = HostTransform.rotation.eulerAngles.y;
 
@@ -151,28 +123,9 @@ namespace Holograph
         /// <returns>Pivot position for the hand.</returns>
         private Vector3 GetHandPivotPosition()
         {
-            Vector3 pivot = cam.position + new Vector3(0, -0.2f, 0);// - Camera.main.transform.forward * 0.2f; // a bit lower and behind
+            Vector3 pivot = cam.position + new Vector3(0, -0.2f, 0); // a bit lower
             return pivot;
         }
-
-        /// <summary>
-        /// Enables or disables dragging.
-        /// </summary>
-        /// <param name="isEnabled">Indicates whether dragging shoudl be enabled or disabled.</param>
-        //public void SetDragging(bool isEnabled)
-        //{
-        //    if (IsDraggingEnabled == isEnabled)
-        //    {
-        //        return;
-        //    }
-
-        //    IsDraggingEnabled = isEnabled;
-
-        //    if (isDragging)
-        //    {
-        //        StopDragging();
-        //    }
-        //}
 
         /// <summary>
         /// Update the position of the object being dragged.
@@ -186,50 +139,12 @@ namespace Holograph
 
             Vector3 newHandDirection = (newHandPosition - pivotPosition).normalized;
 
-            //newHandDirection = mainCamera.transform.InverseTransformDirection(newHandDirection); // in camera space
-            //Vector3 targetDirection = Vector3.Normalize(gazeAngularOffset * newHandDirection);
-            //targetDirection = mainCamera.transform.TransformDirection(targetDirection); // back to world space
-
-            //float currenthandDistance = Vector3.Magnitude(newHandPosition - pivotPosition);
-
-            //float distanceRatio = currenthandDistance / handRefDistance;
-            //float distanceOffset = distanceRatio > 0 ? (distanceRatio - 1f) * DistanceScale : 0;
-            //float targetDistance = objRefDistance + distanceOffset;
-
-            //draggingPosition = pivotPosition + (targetDirection * targetDistance);
-
-            //if (RotationMode == RotationModeEnum.OrientTowardUser || RotationMode == RotationModeEnum.OrientTowardUserAndKeepUpright)
-            //{
-            //    draggingRotation = Quaternion.LookRotation(HostTransform.position - pivotPosition);
-            //}
-            //else if (RotationMode == RotationModeEnum.LockObjectRotation)
-            //{
-            //    draggingRotation = HostTransform.rotation;
-            //}
-            //else // RotationModeEnum.Default
-            //{
-            //    Vector3 objForward = mainCamera.transform.TransformDirection(objRefForward); // in world space
-            //    Vector3 objUp = mainCamera.transform.TransformDirection(objRefUp);   // in world space
-            //    draggingRotation = Quaternion.LookRotation(objForward, objUp);
-            //}
-
-            //// Apply Final Position
-            //HostTransform.position = Vector3.Lerp(HostTransform.position, draggingPosition + mainCamera.transform.TransformDirection(objRefGrabPoint), PositionLerpSpeed);
-            //// Apply Final Rotation
-            //HostTransform.rotation = Quaternion.Lerp(HostTransform.rotation, draggingRotation, RotationLerpSpeed);
-
             float handRotatedAngle = Vector3.Angle(newHandDirection, handRefDirection) * Mathf.Sign(Vector3.Cross(newHandDirection, handRefDirection).y);
-            //Debug.Log(handRotatedAngle);
 
             float hostRatationAngle = handRotatedAngle * objRefDistance / HostRadius;
             draggingRotation = Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
             HostTransform.rotation = Quaternion.Lerp(HostTransform.rotation, draggingRotation, RotationLerpSpeed);
 
-            //if (RotationMode == RotationModeEnum.OrientTowardUserAndKeepUpright)
-            //{
-            //    Quaternion upRotation = Quaternion.FromToRotation(HostTransform.up, Vector3.up);
-            //    HostTransform.rotation = upRotation * HostTransform.rotation;
-            //}
         }
 
         /// <summary>
@@ -297,11 +212,6 @@ namespace Holograph
                 return;
             }
 
-            //if (!eventData.InputSource.SupportsInputInfo(eventData.SourceId, SupportedInputInfo.Position))
-            //{
-            //    // The input source must provide positional data for this script to be usable
-            //    return;
-            //}
 
             currentInputSource = eventData.InputSource;
             currentInputSourceId = eventData.SourceId;
