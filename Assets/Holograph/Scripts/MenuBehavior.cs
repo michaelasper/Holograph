@@ -1,5 +1,4 @@
-﻿using Assets.Holograph;
-using HoloToolkit.Sharing;
+﻿using HoloToolkit.Sharing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -65,6 +64,7 @@ namespace Holograph
             CloseMenu();
             infoPanelBehavior.ClosePanel();
         }
+
 
         public void ListInfo()
         {
