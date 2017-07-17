@@ -106,8 +106,8 @@ namespace Holograph
             handRefDirection = (handPosition - pivotPosition).normalized;
 
             objRefRotation = HostTransform.rotation;
+            objRedRotationEulerY = HostTransform.rotation.eulerAngles.y;
 
-            objRefRotation = HostTransform.rotation;
 
 
             StartedDragging.RaiseEvent();
