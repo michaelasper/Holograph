@@ -89,7 +89,7 @@ namespace Holograph
             rotating = false;
 
             mapManager.initMap();
-            mapManager.positionNodes();
+            mapManager.positionNodes(this.transform.position);
 
             RaycastHit hit;
             Ray ray = new Ray(cam.position, cam.forward);
@@ -136,7 +136,7 @@ namespace Holograph
 
             rotating = false;
             mapManager.initMap();
-            mapManager.positionNodes();
+            mapManager.positionNodes(this.transform.position);
 
             firstNode.transform.position = position;
         }
