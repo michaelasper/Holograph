@@ -6,7 +6,6 @@ namespace Holograph
 {
     public class MenuBehavior : MonoBehaviour
     {
-
         // List of how Icons should look and what they should do
         private string[] TextureList = { "First Icon", "Second Icon", "Third Icon", "Fourth Icon" };
         private string[] ActionList = { "Expand", "ListInfo", "Hack1", "Hack2" };
@@ -23,8 +22,6 @@ namespace Holograph
 
         private MapManager mapManager;
         public GameObject InfoPanel;
-
-
 
         // Use this for initialization
         void Start()
@@ -43,24 +40,9 @@ namespace Holograph
             }
 
             mapManager = Map.GetComponent<MapManager>();
-            //Slides =  mapManager.GetSlides();
             infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
 
         }
-
-        //public int GetSlideLocation()
-        //{
-        //    GameObject parent = this.transform.parent.parent.gameObject;
-        //    Debug.Log(parent.name);
-        //    //if (Slides == null) Slides = mapManager.GetSlides();
-        //    for (int i = 0; i < Slides.Length; i++)
-        //    {
-        //        if (parent.Equals(Slides[i])) return i;
-        //    }
-
-        //    return -1;
-        //}
-
 
         /// <summary>
         /// Expands the graph when icon is hit
@@ -81,7 +63,6 @@ namespace Holograph
 
         }
 
-
         public void ListInfo()
         {
 
@@ -92,8 +73,6 @@ namespace Holograph
             infoPanelBehavior.UpdateInfo(nodeInfo);
 
         }
-
-
 
         public void Hack1()
         {

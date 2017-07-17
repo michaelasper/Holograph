@@ -115,7 +115,7 @@ namespace Holograph
                 globeAnimator.SetTrigger(fadesOutHash);
                 NetworkMessages.Instance.SendAnimationHash(fadesOutHash, NetworkMessages.AnimationTypes.Trigger);
             }
-           
+
             if (pushPinMode)
             {
                 string outVectors = "";
