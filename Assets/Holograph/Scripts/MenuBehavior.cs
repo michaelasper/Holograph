@@ -10,7 +10,7 @@ namespace Holograph
         private string[] TextureList = { "First Icon", "Second Icon", "Third Icon", "Fourth Icon" };
         private string[] ActionList = { "Expand", "ListInfo", "Hack1", "Hack2" };
 
-        
+
         //private GameObject[] ObjectList = new GameObject[4];
         public GameObject IconFab;
         public GameObject Map;
@@ -59,14 +59,15 @@ namespace Holograph
             MenuAnimator.SetBool("Button_1", false);
             CloseMenu();
             infoPanelBehavior.ClosePanel();
-            
-            
+
+
         }
+
 
         public void ListInfo()
         {
 
-           
+
             InfoPanel.SetActive(true);
 
             NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
