@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Holograph;
+using HoloToolkit.Sharing;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,6 +44,8 @@ namespace Holograph
             mapManager = Map.GetComponent<MapManager>();
             infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
 
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuState] = UpdateRadialMenuState;
+
         }
 
         /// <summary>
@@ -60,7 +64,7 @@ namespace Holograph
             CloseMenu();
             infoPanelBehavior.ClosePanel();
 
-
+            NetworkMessages.Instance.SendRadialMenuState("Expand", Helpers.GameObjectLinkListToArray(this.transform.parent.GetComponent<NodeBehavior>().neighborhood));
         }
 
         public void ListInfo()
@@ -72,16 +76,21 @@ namespace Holograph
             NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
             infoPanelBehavior.UpdateInfo(nodeInfo);
 
+            NetworkMessages.Instance.SendRadialMenuState("ListInfo");
         }
 
         public void Hack1()
         {
             Debug.Log("Hack1");
+
+            NetworkMessages.Instance.SendRadialMenuState("Hack1");
         }
 
         public void Hack2()
         {
             Debug.Log("Hack2");
+
+            NetworkMessages.Instance.SendRadialMenuState("Hack2");
         }
 
         // Update is called once per frame
@@ -93,6 +102,47 @@ namespace Holograph
         public void CloseMenu()
         {
             gameObject.SetActive(false);
+
+            NetworkMessages.Instance.SendRadialMenuState("CloseMenu");
+        }
+
+        private void UpdateRadialMenuState(NetworkInMessage msg)
+        {
+            long userId = msg.ReadInt64();
+            string action = msg.ReadString();
+
+            switch(action)
+            {
+                case "Expand":
+                    foreach (GameObject node in this.transform.parent.GetComponent<NodeBehavior>().neighborhood)
+                    {
+
+                        mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
+                        node.SetActive(true);
+                        mapManager.positionNodes();
+                    }
+                    MenuAnimator.SetBool("Button_1", false);
+                    CloseMenu();
+                    infoPanelBehavior.ClosePanel();
+
+                    break;
+                case "ListInfo":
+                    InfoPanel.SetActive(true);
+
+                    NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
+                    infoPanelBehavior.UpdateInfo(nodeInfo);
+
+                    break;
+                case "Hack1":
+                    break;
+                case "Hack2":
+                    break;
+                case "CloseMenu":
+                    break;
+                default:
+                    Debug.Log("Recieved RadialMenuState but no handler was found");
+                    break;
+            }
         }
     }
 }

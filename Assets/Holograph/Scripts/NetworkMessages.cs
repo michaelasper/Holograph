@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using HoloToolkit.Unity;
 using UnityEngine;
 using HoloToolkit.Sharing;
+using Assets.Holograph;
 
 namespace Holograph
 {
@@ -235,12 +236,18 @@ namespace Holograph
             }
         }
 
-        public void RadialMenuState(String state)
+        public void SendRadialMenuState(String state, GameObject[] neiborhoodNodes = null)
         {
+            Debug.Log("SENDING RADIAL MENU STATE: " + state);
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenuState);
                 msg.Write(state);
+
+                if (neiborhoodNodes != null)
+                {
+                    msg.WriteArray(Helpers.GameObjectArrayToByteArray(neiborhoodNodes), (uint)neiborhoodNodes.Length);
+                }
 
                 serverConnection.Broadcast(
                     msg,
