@@ -25,6 +25,7 @@ namespace Holograph
             AnimationHash,
             ObjectRotation,
             RadialMenu,
+            RadialMenuState,
             FirstNodeTransform,
             Max
         }
@@ -221,11 +222,25 @@ namespace Holograph
 
         public void SendFirstNodeTransform(Transform transform)
         {
-            Debug.Log("POSITION SENT!!!");
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.FirstNodeTransform);
                 AppendTransform(msg, transform.position, transform.rotation);
+
+                serverConnection.Broadcast(
+                    msg,
+                    MessagePriority.Immediate,
+                    MessageReliability.Unreliable,
+                    MessageChannel.Default);
+            }
+        }
+
+        public void RadialMenuState(String state)
+        {
+            if (serverConnection != null && serverConnection.IsConnected())
+            {
+                NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenuState);
+                msg.Write(state);
 
                 serverConnection.Broadcast(
                     msg,
