@@ -101,7 +101,6 @@ namespace Holograph
                     firstNode.transform.position = hit.point;
                     NodeMovement nodeMovementScript = firstNode.GetComponent<NodeMovement>();
 
-
                     // Sends position to other hololens
                     NetworkMessages.Instance.SendFirstNodeTransform(hit.transform);
 
@@ -138,7 +137,6 @@ namespace Holograph
             rotating = false;
             mapManager.initMap();
             mapManager.positionNodes(this.transform.position);
-
 
             firstNode.transform.position = position;
         }
