@@ -40,11 +40,9 @@ namespace Holograph
         private float objRefDistance;
         private Vector3 handRefDirection;
         private Quaternion objRefRotation;
-<<<<<<< HEAD
+
         private float objRedRotationEulerY;
 
-=======
->>>>>>> add drag and rotation up and down feature
         private Quaternion draggingRotation;
 
         private IInputSource currentInputSource = null;
