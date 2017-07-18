@@ -66,7 +66,7 @@ namespace Holograph
                 GL.MultMatrix(transform.localToWorldMatrix);
                 mat.SetPass(0);
                 GL.Begin(GL.QUADS);
-                Debug.Log("Transparency is " + transparency);
+                // Debug.Log("Transparency is " + transparency);
                 GL.Color(new Color(1f, 1f, 1f, 1f) * transparency);
                 for (int i = 0; i < 4; ++i)
                 {
