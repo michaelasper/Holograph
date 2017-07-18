@@ -15,6 +15,7 @@ namespace Holograph
         public GameObject IconFab;
         public GameObject Map;
         public GameObject Globe;
+        public GameObject ReportPanel;
         //private GameObject[] Slides;
 
         private InfoPanelBehavior infoPanelBehavior;
@@ -97,6 +98,7 @@ namespace Holograph
             Globe.SetActive(true);
             Globe.GetComponent<Collider>().enabled = true;
             Globe.GetComponent<GlobeBehavior>().rotating = true;
+            ReportPanel.SetActive(true);
             if (globeAnimator != null && globeAnimator.isInitialized)
             {
                 globeAnimator.SetTrigger(fadesInHash);
