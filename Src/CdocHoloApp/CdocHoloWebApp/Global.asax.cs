@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CdocHoloWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,8 @@ namespace CdocHoloWebApp
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+        public static CasesDto cases;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -19,6 +22,8 @@ namespace CdocHoloWebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            cases = new CasesDto();
         }
     }
 }
