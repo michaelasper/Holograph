@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Sharing;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,14 +16,19 @@ namespace Holograph
         //private GameObject[] ObjectList = new GameObject[4];
         public GameObject IconFab;
         public GameObject Map;
+        public GameObject Globe;
+        public GameObject ReportPanel;
         //private GameObject[] Slides;
 
         private InfoPanelBehavior infoPanelBehavior;
         public Animator GraphAnimator;
         public Animator MenuAnimator;
+        private Animator globeAnimator;
 
         private MapManager mapManager;
         public GameObject InfoPanel;
+
+        private int fadesInHash;
 
         // Use this for initialization
         void Start()
@@ -42,6 +49,10 @@ namespace Holograph
             mapManager = Map.GetComponent<MapManager>();
             infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
 
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuStatus] = UpdateRadialMenuStatus;
+
+            globeAnimator = Globe.GetComponent<Animator>();
+            fadesInHash = Animator.StringToHash("fadesIn");
         }
 
         /// <summary>
@@ -57,10 +68,9 @@ namespace Holograph
                 mapManager.positionNodes();
             }
             MenuAnimator.SetBool("Button_1", false);
+
             CloseMenu();
             infoPanelBehavior.ClosePanel();
-
-
         }
 
 
@@ -72,12 +82,12 @@ namespace Holograph
 
             NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
             infoPanelBehavior.UpdateInfo(nodeInfo);
-
         }
 
         public void Hack1()
         {
-            Debug.Log("Hack1");
+            //Debug.Log("Hack1");
+            resetStory();
         }
 
         public void Hack2()
@@ -85,6 +95,19 @@ namespace Holograph
             Debug.Log("Hack2");
         }
 
+        private void resetStory()
+        {
+            Globe.SetActive(true);
+            Globe.GetComponent<Collider>().enabled = true;
+            Globe.GetComponent<GlobeBehavior>().rotating = true;
+            ReportPanel.SetActive(true);
+            if (globeAnimator != null && globeAnimator.isInitialized)
+            {
+                globeAnimator.SetTrigger(fadesInHash);
+                NetworkMessages.Instance.SendAnimationHash(fadesInHash, NetworkMessages.AnimationTypes.Trigger);
+            }
+            mapManager.hideNodes();
+        }
         // Update is called once per frame
         void Update()
         {
@@ -94,6 +117,16 @@ namespace Holograph
         public void CloseMenu()
         {
             gameObject.SetActive(false);
+
+            NetworkMessages.Instance.SendRadialMenuStatus(false);
+        }
+
+        public void UpdateRadialMenuStatus(NetworkInMessage msg)
+        {
+            long userId = msg.ReadInt64();
+            bool status = Convert.ToBoolean(msg.ReadByte());
+
+            gameObject.SetActive(status);
         }
     }
 }

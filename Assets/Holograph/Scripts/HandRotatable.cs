@@ -150,7 +150,7 @@ namespace Holograph
 
 
             Quaternion handRotation = Quaternion.FromToRotation(handRefDirection, newHandDirection); // Vector3.Angle(newHandDirection, handRefDirection) * Mathf.Sign(Vector3.Cross(newHandDirection, handRefDirection).y);
-            
+
             // Scale the rotation
             Quaternion hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
             draggingRotation = objRefRotation * Quaternion.Inverse(hostRatation); //Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);

@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: GridFadingIn
+  m_Name: report
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -26,39 +26,61 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 1
-        value: 1
+        time: 0.75
+        value: 0.111
+        inSlope: 0.22153845
+        outSlope: 0.22153845
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.0833334
+        value: 0.24
+        inSlope: 0.037500013
+        outSlope: 0.037500013
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.8166667
+        value: 0.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 2
+        value: 0.25
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: fadeAmt
-    path: 
-    classID: 114
-    script: {fileID: 11500000, guid: 1bcb99e80ae7098428323ca81ee55917, type: 3}
+    attribute: m_SizeDelta.x
+    path: Panel/Progress Bar
+    classID: 224
+    script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      - serializedVersion: 2
-        time: 1
-        value: 0
+        value: 0.015
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._Fade
-    path: 
-    classID: 23
+    attribute: m_SizeDelta.y
+    path: Panel/Progress Bar
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SizeDelta.z
+    path: Panel/Progress Bar
+    classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -69,18 +91,18 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
-      attribute: 546040794
-      script: {fileID: 11500000, guid: 1bcb99e80ae7098428323ca81ee55917, type: 3}
-      typeID: 114
+      path: 3390034415
+      attribute: 1967290853
+      script: {fileID: 0}
+      typeID: 224
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 0
-      attribute: 2269262469
+      path: 3390034415
+      attribute: 38095219
       script: {fileID: 0}
-      typeID: 23
-      customType: 22
+      typeID: 224
+      customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
@@ -88,7 +110,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -114,39 +136,61 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 1
-        value: 1
+        time: 0.75
+        value: 0.111
+        inSlope: 0.22153845
+        outSlope: 0.22153845
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.0833334
+        value: 0.24
+        inSlope: 0.037500013
+        outSlope: 0.037500013
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 1.8166667
+        value: 0.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 2
+        value: 0.25
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: fadeAmt
-    path: 
-    classID: 114
-    script: {fileID: 11500000, guid: 1bcb99e80ae7098428323ca81ee55917, type: 3}
+    attribute: m_SizeDelta.x
+    path: Panel/Progress Bar
+    classID: 224
+    script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      - serializedVersion: 2
-        time: 1
-        value: 0
+        value: 0.015
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._Fade
-    path: 
-    classID: 23
+    attribute: m_SizeDelta.y
+    path: Panel/Progress Bar
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SizeDelta.z
+    path: Panel/Progress Bar
+    classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0

@@ -1,4 +1,6 @@
-﻿using HoloToolkit.Unity.InputModule;
+﻿using HoloToolkit.Sharing;
+using HoloToolkit.Unity.InputModule;
+using System;
 using UnityEngine;
 
 namespace Holograph
@@ -13,7 +15,6 @@ namespace Holograph
             ButtonPressed = false;
         }
 
-        // Update is called once per frame
         void Update()
         {
 
@@ -26,12 +27,12 @@ namespace Holograph
 
         public void OnInputUp(InputEventData eventData)
         {
-            //    Transform child = transform.GetChild(0);
-            //    child.gameObject.SetActive(!child.gameObject.activeSelf);
-            //}
             ButtonPressed = !ButtonPressed;
             IconAnimator.SetBool("Button_1", ButtonPressed);
+
+            NetworkMessages.Instance.SendMenuAnimationHash(Animator.StringToHash("Button_1"), NetworkMessages.AnimationTypes.Boolean, ButtonPressed ? 1 : 0); 
         }
+
         public void OnFocusEnter()
         {
 
@@ -39,8 +40,8 @@ namespace Holograph
 
         public void OnFocusExit()
         {
-        }
 
+        }
     }
 }
 
