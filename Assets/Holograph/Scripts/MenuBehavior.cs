@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Sharing;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,7 +48,7 @@ namespace Holograph
 
             mapManager = Map.GetComponent<MapManager>();
             infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
-
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuStatus] = UpdateRadialMenuStatus;
             globeAnimator = Globe.GetComponent<Animator>();
             fadesInHash = Animator.StringToHash("fadesIn");
         }
@@ -64,10 +66,9 @@ namespace Holograph
                 mapManager.positionNodes();
             }
             MenuAnimator.SetBool("Button_1", false);
+
             CloseMenu();
             infoPanelBehavior.ClosePanel();
-
-
         }
 
 
@@ -79,7 +80,6 @@ namespace Holograph
 
             NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
             infoPanelBehavior.UpdateInfo(nodeInfo);
-
         }
 
         public void Hack1()
@@ -115,6 +115,16 @@ namespace Holograph
         public void CloseMenu()
         {
             gameObject.SetActive(false);
+
+            NetworkMessages.Instance.SendRadialMenuStatus(false);
+        }
+
+        public void UpdateRadialMenuStatus(NetworkInMessage msg)
+        {
+            long userId = msg.ReadInt64();
+            bool status = Convert.ToBoolean(msg.ReadByte());
+
+            gameObject.SetActive(status);
         }
     }
 }

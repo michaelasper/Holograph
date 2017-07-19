@@ -28,68 +28,48 @@ namespace Holograph
 
         }
 
-        public void OnInputUp(InputEventData data)
+        private void OpenCloseMenu(bool isActiveSelf, bool isParentTransform)
         {
-            if (RadialMenu.activeSelf)
-            {
-                if (RadialMenu.transform.parent == this.transform)
-                {
-                    NetworkMessages.Instance.SendRadialMenu(this.transform, true, true);
-                    RadialMenu.SetActive(false);
-                }
-                else
-                {
-                    NetworkMessages.Instance.SendRadialMenu(this.transform, true, false);
-                    RadialMenu.transform.parent = this.transform;
-                }
-            }
-            else
-            {
-                if (RadialMenu.transform.parent != this.transform)
-                {
-                    NetworkMessages.Instance.SendRadialMenu(this.transform, false, false);
-                    RadialMenu.transform.parent = this.transform;
-                }
-                RadialMenu.SetActive(true);
-            }
-            RadialMenu.transform.localPosition = Vector3.zero;
-            //RadialMenu.transform.localScale = Vector3.one * 2;
-            //RadialMenu.transform.parent = this.transform.parent;
-            //RadialMenu.SetActive(!RadialMenu.activeSelf);
-
-        }
-
-        private void UpdateRadialMenu(NetworkInMessage msg)
-        {
-            long userId = msg.ReadInt64();
-            Vector3 position = NetworkMessages.Instance.ReadVector3(msg);
-            Quaternion rotation = NetworkMessages.Instance.ReadQuaternion(msg);
-            bool isActiveSelf = Convert.ToBoolean(msg.ReadByte());
-            bool isParentTransform = Convert.ToBoolean(msg.ReadByte());
-
-
             if (isActiveSelf)
             {
                 if (isParentTransform)
                 {
+
                     RadialMenu.SetActive(false);
                 }
                 else
                 {
-                    RadialMenu.transform.parent.position = position;
-                    RadialMenu.transform.parent.rotation = rotation;
+                    RadialMenu.transform.parent = this.transform;
                 }
             }
             else
             {
                 if (!isParentTransform)
                 {
-                    RadialMenu.transform.parent.position = position;
-                    RadialMenu.transform.parent.rotation = rotation;
+                    RadialMenu.transform.parent = this.transform;
                 }
                 RadialMenu.SetActive(true);
             }
             RadialMenu.transform.localPosition = Vector3.zero;
+        }
+
+        public void OnInputUp(InputEventData data)
+        {
+            NetworkMessages.Instance.SendRadialMenu(GetComponent<NodeBehavior>().id, RadialMenu.activeSelf, RadialMenu.transform.parent == this.transform);
+            OpenCloseMenu(RadialMenu.activeSelf, RadialMenu.transform.parent == this.transform);
+        }
+
+        private void UpdateRadialMenu(NetworkInMessage msg)
+        {
+            long userId = msg.ReadInt64();
+            int id = msg.ReadInt32();
+            bool isActiveSelf = Convert.ToBoolean(msg.ReadByte());
+            bool isParentTransform = Convert.ToBoolean(msg.ReadByte());
+
+            if(id == GetComponent<NodeBehavior>().id)
+            {
+                OpenCloseMenu(isActiveSelf, isParentTransform);
+            }
         }
     }
 }

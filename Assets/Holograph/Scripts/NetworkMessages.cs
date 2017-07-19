@@ -23,9 +23,13 @@ namespace Holograph
             HeadTransform = HoloToolkit.Sharing.MessageID.UserMessageIDStart,
             PresenterId,
             AnimationHash,
+            MenuAnimationHash,
             ObjectRotation,
             RadialMenu,
+            RadialMenuStatus,
+            RadialMenuState,
             FirstNodeTransform,
+            Button1Animation,
             Max
         }
 
@@ -185,6 +189,24 @@ namespace Holograph
             }
         }
 
+        public void SendMenuAnimationHash(int animationHash, AnimationTypes type, float value = -1)
+        {
+            if (serverConnection != null && serverConnection.IsConnected())
+            {
+                NetworkOutMessage msg = CreateMessage((byte)MessageID.MenuAnimationHash);
+                msg.Write(animationHash);
+                msg.Write((int)type);
+                msg.Write(value);
+
+                // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
+                serverConnection.Broadcast(
+                    msg,
+                    MessagePriority.Immediate,
+                    MessageReliability.Unreliable,
+                    MessageChannel.Default);
+            }
+        }
+
         public void SendObjectRotation(int objectId, float angle)
         {
             if (serverConnection != null && serverConnection.IsConnected())
@@ -201,15 +223,14 @@ namespace Holograph
             }
         }
 
-        public void SendRadialMenu(Transform transform, bool isActiveSelf, bool isParentTransform)
+        public void SendRadialMenu(int id, bool isActiveSelf, bool isParentTransform)
         {
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenu);
-                AppendTransform(msg, transform.position, transform.rotation);
+                msg.Write(id);
                 msg.Write(Convert.ToByte(isActiveSelf));
                 msg.Write(Convert.ToByte(isParentTransform));
-
 
                 serverConnection.Broadcast(
                     msg,
@@ -219,9 +240,24 @@ namespace Holograph
             }
         }
 
+        public void SendRadialMenuStatus(bool isActive)
+        {
+            if (serverConnection != null && serverConnection.IsConnected())
+            {
+                NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenuStatus);
+                msg.Write(Convert.ToByte(isActive));
+
+                serverConnection.Broadcast(
+                    msg,
+                    MessagePriority.Immediate,
+                    MessageReliability.Unreliable,
+                    MessageChannel.Default);
+            }
+
+        }
+
         public void SendFirstNodeTransform(Transform transform)
         {
-            Debug.Log("POSITION SENT!!!");
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.FirstNodeTransform);
