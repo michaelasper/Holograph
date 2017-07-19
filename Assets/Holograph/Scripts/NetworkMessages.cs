@@ -28,6 +28,7 @@ namespace Holograph
             RadialMenu,
             RadialMenuStatus,
             RadialMenuState,
+            RadialMenuClickIcon,
             FirstNodeTransform,
             Button1Animation,
             Max
@@ -246,6 +247,26 @@ namespace Holograph
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenuStatus);
                 msg.Write(Convert.ToByte(isActive));
+
+                serverConnection.Broadcast(
+                    msg,
+                    MessagePriority.Immediate,
+                    MessageReliability.Unreliable,
+                    MessageChannel.Default);
+            }
+
+        }
+
+        public void SendRadialMenuClickIcon(string methodName)
+        {
+            if (serverConnection != null && serverConnection.IsConnected())
+            {
+                NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenuClickIcon);
+                msg.Write(Convert.ToInt32(methodName.Length));
+                foreach (char c in methodName.ToCharArray())
+                {
+                    msg.Write(Convert.ToByte(c));
+                }
 
                 serverConnection.Broadcast(
                     msg,
