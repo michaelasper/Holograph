@@ -12,8 +12,10 @@ namespace Holograph
         private Vector3[] quadCoords;
 
         [Tooltip("Width and height of the shade rectangle.")]
-        public Vector2 size = new Vector2(.2f, .2f);
-        
+        public Vector2 size = new Vector2(.55f, .55f);
+
+        [Tooltip("Greater value means more transparent.")]
+        public float transparency = .1f;
 
         // Use this for initialization
         void Start()
@@ -21,10 +23,10 @@ namespace Holograph
             cam = Camera.main.transform;
             CreateMaterial();
             quadCoords = new Vector3[4];
-            quadCoords[0] = size.x * this.transform.right + size.y * this.transform.up - .05f * this.transform.forward;
-            quadCoords[1] = size.x * this.transform.right - size.y * this.transform.up - .05f * this.transform.forward;
-            quadCoords[2] = -size.x * this.transform.right - size.y * this.transform.up - .05f * this.transform.forward;
-            quadCoords[3] = -size.x * this.transform.right + size.y * this.transform.up - .05f * this.transform.forward;
+            quadCoords[0] = size.x * Vector3.right + size.y * Vector3.up - .05f * Vector3.forward;
+            quadCoords[1] = size.x * Vector3.right - size.y * Vector3.up - .05f * Vector3.forward;
+            quadCoords[2] = -size.x * Vector3.right - size.y * Vector3.up - .05f * Vector3.forward;
+            quadCoords[3] = -size.x * Vector3.right + size.y * Vector3.up - .05f * Vector3.forward;
         }
 
         // Update is called once per frame
@@ -64,7 +66,8 @@ namespace Holograph
                 GL.MultMatrix(transform.localToWorldMatrix);
                 mat.SetPass(0);
                 GL.Begin(GL.QUADS);
-                GL.Color(new Color(.1f, .1f, .1f, 1f));
+                Debug.Log("Transparency is " + transparency);
+                GL.Color(new Color(1f, 1f, 1f, 1f) * transparency);
                 for (int i = 0; i < 4; ++i)
                 {
                     GL.Vertex(quadCoords[i]);
