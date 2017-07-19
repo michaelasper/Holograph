@@ -5,7 +5,7 @@ using System;
 namespace Holograph
 {
     [RequireComponent(typeof(Animator))]
-    public class NetworkAnimationListener : MonoBehaviour
+    public class NetworkMenuAnimationListener : MonoBehaviour
     {
         private Animator NetworkAnimator;
         private AnimatorControllerParameter[] animatorHashes;
@@ -28,7 +28,7 @@ namespace Holograph
 
         private void Start()
         {
-            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.AnimationHash] = UpdateAnimationHash;
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.MenuAnimationHash] = UpdateAnimationHash;
 
             NetworkAnimator = GetComponent<Animator>();
 
