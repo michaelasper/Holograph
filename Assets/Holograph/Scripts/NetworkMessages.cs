@@ -26,8 +26,6 @@ namespace Holograph
             MenuAnimationHash,
             ObjectRotation,
             RadialMenu,
-            RadialMenuStatus,
-            RadialMenuState,
             RadialMenuClickIcon,
             FirstNodeTransform,
             Button1Animation,
@@ -224,14 +222,14 @@ namespace Holograph
             }
         }
 
-        public void SendRadialMenu(int id, bool isActiveSelf, bool isParentTransform)
+        public void SendRadialMenu(int nodeId, bool setActive)
         {
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenu);
-                msg.Write(id);
-                msg.Write(Convert.ToByte(isActiveSelf));
-                msg.Write(Convert.ToByte(isParentTransform));
+                msg.Write(nodeId);
+                msg.Write(Convert.ToByte(setActive));
+                //msg.Write(Convert.ToByte(isParentTransform));
 
                 serverConnection.Broadcast(
                     msg,
@@ -239,22 +237,6 @@ namespace Holograph
                     MessageReliability.Unreliable,
                     MessageChannel.Default);
             }
-        }
-
-        public void SendRadialMenuStatus(bool isActive)
-        {
-            if (serverConnection != null && serverConnection.IsConnected())
-            {
-                NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenuStatus);
-                msg.Write(Convert.ToByte(isActive));
-
-                serverConnection.Broadcast(
-                    msg,
-                    MessagePriority.Immediate,
-                    MessageReliability.Unreliable,
-                    MessageChannel.Default);
-            }
-
         }
 
         public void SendRadialMenuClickIcon(string methodName)

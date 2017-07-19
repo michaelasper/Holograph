@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33615624526196904}
   - component: {fileID: 135713631376162062}
   - component: {fileID: 23407816136909434}
-  - component: {fileID: 114454247529037314}
   - component: {fileID: 114196873967831434}
   - component: {fileID: 114510124050008404}
   - component: {fileID: 114595965051944148}
@@ -198,20 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86df3f572fda694ba7a802e2156a14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RandomLines: 1
+  mapManager: {fileID: 0}
   textMesh: {fileID: 102755142526724446}
---- !u!114 &114454247529037314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1058676183348706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3746fe3d73c58b44cbcaadd66530bd76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RadialMenu: {fileID: 0}
 --- !u!114 &114510124050008404
 MonoBehaviour:
   m_ObjectHideFlags: 1

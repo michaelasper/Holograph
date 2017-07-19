@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Sharing;
 
 namespace Holograph
 {
@@ -28,7 +30,7 @@ namespace Holograph
         // Use this for initialization
         void Start()
         {
-
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = UpdateRadialMenu;
         }
 
         private Material MatchMaterial(string color)
@@ -57,7 +59,6 @@ namespace Holograph
                 NodeInfo nodeInfo = new NodeInfo(jGraph.nodes[i].name, "default", jGraph.nodes[i].keyList, jGraph.nodes[i].valueList);
                 GameObject node = Instantiate(NodeFab, this.transform);
                 NodeBehavior nodebehvaior = node.GetComponent<NodeBehavior>();
-                node.GetComponent<SpawnMenu>().RadialMenu = this.RadialMenu;
                 node.name = jGraph.nodes[i].name;
                 nodebehvaior.SetNodeInfo(nodeInfo);
                 Material material = MatchMaterial(jGraph.nodes[i].color);
@@ -114,10 +115,10 @@ namespace Holograph
             float dt = t / iterations;
             Vector3[] pos = new Vector3[numNodes];
             pos[0] = originPos;
-            Random.InitState(123);
+            UnityEngine.Random.InitState(123);
             for (int i = 1; i < numNodes; ++i)
             {
-                pos[i] = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+                pos[i] = new Vector3(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
             }
             for (int iteration = 0; iteration < iterations; ++iteration)
             {
@@ -163,6 +164,33 @@ namespace Holograph
             {
                 GameObject.Destroy(nodeObject[i]);
             }
+        }
+
+        public void menuClickedOn(int nodeId)
+        {
+            int? radialMenuParentId = RadialMenu.transform.parent.GetComponent<NodeBehavior>()?.id;
+            if (nodeId.Equals(radialMenuParentId))
+            {
+                RadialMenu.SetActive(!RadialMenu.activeSelf);
+            }
+            else
+            {
+                Debug.Log("got it");
+                RadialMenu.transform.parent = nodeObject[nodeId].transform;
+                RadialMenu.SetActive(true);
+            }
+            RadialMenu.transform.localPosition = Vector3.zero;
+            NetworkMessages.Instance.SendRadialMenu(nodeId, RadialMenu.activeSelf);
+        }
+
+        private void UpdateRadialMenu(NetworkInMessage msg)
+        {
+            long userId = msg.ReadInt64();
+            int nodeId = msg.ReadInt32();
+            bool setActive = Convert.ToBoolean(msg.ReadByte());
+            RadialMenu.transform.parent = nodeObject[nodeId].transform;
+            RadialMenu.transform.localPosition = Vector3.zero;
+            RadialMenu.SetActive(setActive);
         }
 
         [System.Serializable]
