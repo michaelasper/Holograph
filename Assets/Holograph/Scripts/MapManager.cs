@@ -87,10 +87,9 @@ namespace Holograph
             globe.GetComponent<GlobeBehavior>().firstNode = nodeObject[0];
         }
 
-        public void positionNodes(Vector3 originPos)
+        public void positionNodes()
         {
-            this.originPos = originPos;
-            Vector3[] positions = sparseFruchtermanReingold(0, originPos);
+            Vector3[] positions = sparseFruchtermanReingold(0);
             if (positions == null)
             {
                 throw new System.NullReferenceException("Fruchterman-Reingold algorithm returns null");
@@ -101,12 +100,7 @@ namespace Holograph
             }
         }
 
-        public void positionNodes()
-        {
-            positionNodes(originPos);
-        }
-
-        private Vector3[] sparseFruchtermanReingold(int originNode, Vector3 originPos)
+        private Vector3[] sparseFruchtermanReingold(int originNode)
         {
             int numNodes = adjMatrix.GetLength(0);
             float k = Mathf.Sqrt(1f / numNodes);

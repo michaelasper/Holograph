@@ -88,8 +88,9 @@ namespace Holograph
         {
             rotating = false;
 
+            mapManager.transform.position = transform.position;
             mapManager.initMap();
-            mapManager.positionNodes(this.transform.position);
+            mapManager.positionNodes();
 
             RaycastHit hit;
             Ray ray = new Ray(cam.position, cam.forward);
@@ -133,8 +134,9 @@ namespace Holograph
             Vector3 position = NetworkMessages.Instance.ReadVector3(msg);
 
             rotating = false;
+            mapManager.transform.position = transform.position;
             mapManager.initMap();
-            mapManager.positionNodes(this.transform.position);
+            mapManager.positionNodes();
 
             firstNode.transform.position = position;
         }
