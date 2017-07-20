@@ -31,8 +31,4 @@ public class ReportPanelBehavior : MonoBehaviour
         var progressFraction = progress / .25f;
         percentTextLabel.text = ((int)(progressFraction * 100)).ToString() + "%";
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1bc1a197fdfee26f33d8d1eea1a7c81f37ae1a2b
