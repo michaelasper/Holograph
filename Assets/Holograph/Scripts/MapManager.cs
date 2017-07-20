@@ -25,7 +25,6 @@ namespace Holograph
         private GameObject[] nodeObject;
 
         private int[,] adjMatrix;
-        private Vector3 originPos;
 
         // Use this for initialization
         void Start()
@@ -108,7 +107,7 @@ namespace Holograph
             int iterations = 50;
             float dt = t / iterations;
             Vector3[] pos = new Vector3[numNodes];
-            pos[0] = originPos;
+            pos[0] = Vector3.zero;
             UnityEngine.Random.InitState(123);
             for (int i = 1; i < numNodes; ++i)
             {
