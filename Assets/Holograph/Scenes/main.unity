@@ -1274,7 +1274,7 @@ Prefab:
     - target: {fileID: 114000012667812730, guid: 8aaf37823b26ee449bb3b3d7775965c3,
         type: 2}
       propertyPath: ServerAddress
-      value: 192.168.0.101
+      value: cdocholoanchor.cloudapp.net
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000013602799446, guid: 8aaf37823b26ee449bb3b3d7775965c3, type: 2}
