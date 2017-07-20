@@ -25,7 +25,7 @@ namespace Holograph
         [Tooltip("Game object that will be dragged.")]
         public GameObject RotatedObject;
         private Transform RotatedObjectTransform;
-        private ObjectRotationListener RotatedObjectListener;
+        private MapRotationListener RotatedMapListener;
 
         [Tooltip("Radius used to model the dragged object as a ball.")]
         public float HostRadius = 1f;
@@ -56,7 +56,7 @@ namespace Holograph
 
             cam = Camera.main.transform;
             RotatedObjectTransform = RotatedObject.transform;
-            RotatedObjectListener = RotatedObject.GetComponent<ObjectRotationListener>();
+            RotatedMapListener = RotatedObject.GetComponent<MapRotationListener>();
         }
 
         private void OnDestroy()
@@ -148,8 +148,8 @@ namespace Holograph
             // Scale the rotation
             Quaternion hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
             draggingRotation = objRefRotation * Quaternion.Inverse(hostRatation); //Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
-            NetworkMessages.Instance.SendObjectRotation(RotatedObject.GetInstanceID(), draggingRotation);
-            RotatedObjectListener.targetRotation = draggingRotation;
+            NetworkMessages.Instance.SendMapRotation(draggingRotation);
+            RotatedMapListener.targetRotation = draggingRotation;
             //RotatedObjectTransform.rotation = Quaternion.Lerp(RotatedObjectTransform.rotation, draggingRotation, RotationLerpSpeed);
 
         }

@@ -24,7 +24,7 @@ namespace Holograph
             PresenterId,
             AnimationHash,
             MenuAnimationHash,
-            ObjectRotation,
+            MapRotation,
             RadialMenu,
             RadialMenuClickIcon,
             FirstNodeTransform,
@@ -206,12 +206,11 @@ namespace Holograph
             }
         }
 
-        public void SendObjectRotation(int objectId, Quaternion rotation)
+        public void SendMapRotation(Quaternion rotation)
         {
             if (serverConnection != null && serverConnection.IsConnected())
             {
-                NetworkOutMessage msg = CreateMessage((byte)MessageID.ObjectRotation);
-                msg.Write(objectId);
+                NetworkOutMessage msg = CreateMessage((byte)MessageID.MapRotation);
                 msg.Write(rotation.x);
                 msg.Write(rotation.y);
                 msg.Write(rotation.z);
