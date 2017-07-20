@@ -24,6 +24,7 @@ namespace CdocHoloWebApp
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             cases = new CasesDto();
+            cases.Cases = new List<CaseDto>();
         }
     }
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdocHoloDto", "DTO\CdocHolo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosDbConnector", "CosmosDbConnector\CosmosDbConnector.csproj", "{8EA975E4-438B-477A-BB8C-044855A727D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnchorServer", "AnchorServer\AnchorServer.csproj", "{36D24EFD-FA50-4B62-9D39-DDAEBA3609DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{8EA975E4-438B-477A-BB8C-044855A727D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EA975E4-438B-477A-BB8C-044855A727D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EA975E4-438B-477A-BB8C-044855A727D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36D24EFD-FA50-4B62-9D39-DDAEBA3609DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36D24EFD-FA50-4B62-9D39-DDAEBA3609DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36D24EFD-FA50-4B62-9D39-DDAEBA3609DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36D24EFD-FA50-4B62-9D39-DDAEBA3609DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

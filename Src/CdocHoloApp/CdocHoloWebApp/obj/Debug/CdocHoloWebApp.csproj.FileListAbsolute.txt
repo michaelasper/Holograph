@@ -56,9 +56,6 @@ C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\roslyn\
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\roslyn\vbc.exe
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\roslyn\VBCSCompiler.exe
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\GreenTeamBaseBallWebApp.dll.config
-C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\GreenTeamBaseBallWebApp.dll
-C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\GreenTeamBaseBallWebApp.pdb
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\Antlr3.Runtime.dll
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\Microsoft.Web.Infrastructure.dll
@@ -88,5 +85,8 @@ C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\System.
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\System.Web.WebPages.Razor.xml
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\Antlr3.Runtime.pdb
 C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\obj\Debug\CdocHoloWebApp.csprojResolveAssemblyReference.cache
-C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\obj\Debug\GreenTeamBaseBallWebApp.dll
-C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\obj\Debug\GreenTeamBaseBallWebApp.pdb
+C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\CdocHoloWebApp.dll.config
+C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\CdocHoloWebApp.dll
+C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\bin\CdocHoloWebApp.pdb
+C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\obj\Debug\CdocHoloWebApp.dll
+C:\Users\zanco\Source\Repos\Holograph\Src\CdocHoloApp\CdocHoloWebApp\obj\Debug\CdocHoloWebApp.pdb

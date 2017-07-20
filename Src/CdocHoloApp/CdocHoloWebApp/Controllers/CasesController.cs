@@ -48,6 +48,7 @@ namespace CdocHoloWebApp.Controllers
         {
             if (theCase != null)
             {
+                theCase._id = Guid.NewGuid().ToString();
                 WebApiApplication.cases.Cases.Add(theCase);
             }
 
