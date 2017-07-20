@@ -48,9 +48,7 @@ namespace Holograph
 
             mapManager = Map.GetComponent<MapManager>();
             infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
-
-            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuStatus] = UpdateRadialMenuStatus;
-
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuClickIcon] = UpdateRadialMenuClickIcon;
             globeAnimator = Globe.GetComponent<Animator>();
             fadesInHash = Animator.StringToHash("fadesIn");
         }
@@ -118,15 +116,21 @@ namespace Holograph
         {
             gameObject.SetActive(false);
 
-            NetworkMessages.Instance.SendRadialMenuStatus(false);
+            NetworkMessages.Instance.SendRadialMenu(-1, false);
         }
 
-        public void UpdateRadialMenuStatus(NetworkInMessage msg)
+        public void UpdateRadialMenuClickIcon(NetworkInMessage msg)
         {
             long userId = msg.ReadInt64();
-            bool status = Convert.ToBoolean(msg.ReadByte());
-
-            gameObject.SetActive(status);
+            int l = msg.ReadInt32();
+            char[] methodNameChars = new char[l];
+            for (int i = 0; i<l; ++i)
+            {
+                methodNameChars[i] = Convert.ToChar(msg.ReadByte());
+            }
+            string methodName = new string(methodNameChars);
+            Invoke(methodName, 0);
         }
+
     }
 }

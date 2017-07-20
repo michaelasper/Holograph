@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity.InputModule;
 
 namespace Holograph
 {
-    public class NodeBehavior : MonoBehaviour
+    public class NodeBehavior : MonoBehaviour, IInputHandler
     {
 
+        public MapManager mapManager;
         public int id { set; get; }
 
         public NodeInfo nodeInfo;
@@ -32,7 +34,7 @@ namespace Holograph
         // Use this for initialization
         void Start()
         {
-
+            mapManager = transform.parent.GetComponent<MapManager>();
         }
 
         // Update is called once per frame
@@ -84,6 +86,16 @@ namespace Holograph
             }
             GL.End();
             GL.PopMatrix();
+        }
+
+        public void OnInputUp(InputEventData eventData)
+        {
+            mapManager.menuClickedOn(id);
+        }
+
+        public void OnInputDown(InputEventData eventData)
+        {
+            //throw new NotImplementedException();
         }
     }
 }

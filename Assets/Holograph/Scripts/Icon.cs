@@ -33,6 +33,7 @@ namespace Holograph
         public void OnInputUp(InputEventData eventData)
         {
             menubehvaior.Invoke(this.Message, 0);
+            NetworkMessages.Instance.SendRadialMenuClickIcon(this.Message);
         }
 
     }
