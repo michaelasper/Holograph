@@ -22,20 +22,22 @@ namespace Holograph
         /// </summary>
         public event Action StoppedDragging;
 
-        [Tooltip("Transform that will be dragged. Defaults to the object of the component.")]
-        public Transform HostTransform;
+        [Tooltip("Game object that will be dragged.")]
+        public GameObject RotatedObject;
+        private Transform RotatedObjectTransform;
+        private ObjectRotationListener RotatedObjectListener;
 
         [Tooltip("Radius used to model the dragged object as a ball.")]
         public float HostRadius = 1f;
 
-        [Tooltip("Controls the speed at which the object will interpolate toward the desired rotation")]
-        [Range(0.01f, 1.0f)]
-        public float RotationLerpSpeed = 0.2f;
+        //[Tooltip("Controls the speed at which the object will interpolate toward the desired rotation")]
+        //[Range(0.01f, 1.0f)]
+        //public float RotationLerpSpeed = 0.2f;
 
         public bool IsDraggingEnabled = true;
 
         private Transform cam;
-        public bool isDragging;
+        private bool isDragging;
         private bool isGazed;
         private float objRefDistance;
         private Vector3 handRefDirection;
@@ -47,12 +49,14 @@ namespace Holograph
 
         private void Start()
         {
-            if (HostTransform == null)
+            if (RotatedObject == null)
             {
-                HostTransform = transform;
+                RotatedObject = this.gameObject;
             }
 
             cam = Camera.main.transform;
+            RotatedObjectTransform = RotatedObject.transform;
+            RotatedObjectListener = RotatedObject.GetComponent<ObjectRotationListener>();
         }
 
         private void OnDestroy()
@@ -104,7 +108,7 @@ namespace Holograph
             handRefDirection = (handPosition - pivotPosition).normalized;
 
 
-            objRefRotation = HostTransform.rotation;
+            objRefRotation = RotatedObjectTransform.rotation;
 
             StartedDragging.RaiseEvent();
             isDragging = true;
@@ -112,7 +116,7 @@ namespace Holograph
 
         private Vector3 GetHostHitPosition()
         {
-            Vector3 hostRelativeToCam = HostTransform.position - cam.position;
+            Vector3 hostRelativeToCam = RotatedObjectTransform.position - cam.position;
             float hitDistance = hostRelativeToCam.magnitude - HostRadius;
             return cam.TransformVector(hostRelativeToCam.normalized * hitDistance);
         }
@@ -144,7 +148,9 @@ namespace Holograph
             // Scale the rotation
             Quaternion hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
             draggingRotation = objRefRotation * Quaternion.Inverse(hostRatation); //Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
-            HostTransform.rotation = Quaternion.Lerp(HostTransform.rotation, draggingRotation, RotationLerpSpeed);
+            NetworkMessages.Instance.SendObjectRotation(RotatedObject.GetInstanceID(), draggingRotation);
+            RotatedObjectListener.targetRotation = draggingRotation;
+            //RotatedObjectTransform.rotation = Quaternion.Lerp(RotatedObjectTransform.rotation, draggingRotation, RotationLerpSpeed);
 
         }
 

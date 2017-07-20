@@ -530,6 +530,25 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 662323150571d6c48a3c09b6cdfaf1e5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &184836095 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012072213228, guid: a611e772ef8ddf64d8106a9cbb70f31c,
+    type: 2}
+  m_PrefabInternal: {fileID: 282596250}
+--- !u!114 &184836098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 184836095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ad5295b2c90bb47901823efce8c9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotatedObject: {fileID: 286436072}
+  HostRadius: 1
+  IsDraggingEnabled: 1
 --- !u!1 &197143763 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1682276299300680, guid: 8af8bde2c62d8724c912a5367f048c4c,
@@ -752,6 +771,7 @@ GameObject:
   - component: {fileID: 286436073}
   - component: {fileID: 286436075}
   - component: {fileID: 286436074}
+  - component: {fileID: 286436076}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -767,7 +787,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 286436072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 921672464}
@@ -814,6 +834,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &286436076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 286436072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0deb8a16b0502b4799203b1961bf96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationLerpSpeed: 0.2
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &502052319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,7 +1274,7 @@ Prefab:
     - target: {fileID: 114000012667812730, guid: 8aaf37823b26ee449bb3b3d7775965c3,
         type: 2}
       propertyPath: ServerAddress
-      value: 192.168.0.101
+      value: 104.45.224.102
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000013602799446, guid: 8aaf37823b26ee449bb3b3d7775965c3, type: 2}
@@ -1370,7 +1403,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4635390475032896, guid: 61980f0a4d59dfa4aa6cab2cfa0c2882, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4635390475032896, guid: 61980f0a4d59dfa4aa6cab2cfa0c2882, type: 2}
       propertyPath: m_LocalRotation.x

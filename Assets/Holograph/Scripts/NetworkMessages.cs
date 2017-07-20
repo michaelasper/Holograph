@@ -206,13 +206,16 @@ namespace Holograph
             }
         }
 
-        public void SendObjectRotation(int objectId, float angle)
+        public void SendObjectRotation(int objectId, Quaternion rotation)
         {
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.ObjectRotation);
                 msg.Write(objectId);
-                msg.Write(angle);
+                msg.Write(rotation.x);
+                msg.Write(rotation.y);
+                msg.Write(rotation.z);
+                msg.Write(rotation.w);
 
                 serverConnection.Broadcast(
                     msg,
@@ -244,7 +247,7 @@ namespace Holograph
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.RadialMenuClickIcon);
-                msg.Write(Convert.ToInt32(methodName.Length));
+                msg.Write(methodName.Length);
                 foreach (char c in methodName.ToCharArray())
                 {
                     msg.Write(Convert.ToByte(c));
