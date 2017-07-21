@@ -6,10 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HoloToolkit_Default
+  m_Name: Close Button
   m_Shader: {fileID: 4800000, guid: f1f3948b20c230044bda31b620ddd37f, type: 3}
-  m_ShaderKeywords: _EMISSION _USEAMBIENT_ON _USECOLOR_ON _USEDIFFUSE_ON _USEMAINCOLOR_ON
-  m_LightmapFlags: 1
+  m_ShaderKeywords: _FORCEPERPIXEL_ON _SHADE4_ON _SPECULARHIGHLIGHTS_ON _USEAMBIENT_ON
+    _USEDIFFUSE_ON _USEMAINCOLOR_ON
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -40,10 +41,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -81,8 +78,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
-    - _ForcePerPixel: 0
-    - _Gloss: 0.68
+    - _ForcePerPixel: 1
+    - _Gloss: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -92,19 +89,17 @@ Material:
     - _Parallax: 0.02
     - _ReflectionScale: 2
     - _RimPower: 0.7
-    - _Shade4: 0
+    - _Shade4: 1
     - _SmoothnessTextureChannel: 0
-    - _Specular: 0.128
-    - _SpecularHighlights: 0
+    - _Specular: 10
+    - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _UVSec: 0
     - _UseAmbient: 1
     - _UseBumpMap: 0
-    - _UseColor: 1
     - _UseDiffuse: 1
     - _UseEmissionColor: 0
     - _UseEmissionMap: 0
-    - _UseEmissionTex: 0
     - _UseGlossMap: 0
     - _UseMainColor: 1
     - _UseMainTex: 0
@@ -116,7 +111,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 0.716}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.234}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
