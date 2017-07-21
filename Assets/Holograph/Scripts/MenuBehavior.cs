@@ -63,8 +63,8 @@ namespace Holograph
 
                 mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
                 node.SetActive(true);
-                mapManager.positionNodes();
             }
+            mapManager.positionNodes();
             MenuAnimator.SetBool("Button_1", false);
 
             CloseMenu();
