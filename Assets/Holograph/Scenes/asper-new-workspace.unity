@@ -939,11 +939,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ad5295b2c90bb47901823efce8c9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostTransform: {fileID: 286436073}
+  RotatedObject: {fileID: 0}
   HostRadius: 1
-  RotationLerpSpeed: 0.2
   IsDraggingEnabled: 1
-  isDragging: 0
 --- !u!1 &1329201915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +1092,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1572899102
+--- !u!4 &1590503580 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4478095986576514, guid: ed73a7ced93d63d49b150533b724affe,
+    type: 2}
+  m_PrefabInternal: {fileID: 678712488}
+--- !u!1001 &1664367850
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1159,7 +1162,7 @@ Prefab:
     - target: {fileID: 224302797891844542, guid: 4efd08cd14874d74eb082dcd0c97d648,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0.155
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 224302797891844542, guid: 4efd08cd14874d74eb082dcd0c97d648,
         type: 2}
@@ -1194,11 +1197,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4efd08cd14874d74eb082dcd0c97d648, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1590503580 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4478095986576514, guid: ed73a7ced93d63d49b150533b724affe,
-    type: 2}
-  m_PrefabInternal: {fileID: 678712488}
 --- !u!1 &1785583397
 GameObject:
   m_ObjectHideFlags: 0
