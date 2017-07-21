@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ReportPanelBehavior : MonoBehaviour
 {
 
-    public RectTransform progressBar;
+    public Image progressBar;
     public Text percentTextLabel;
     private Animator reportPanelAnimator;
     private int invisibleStateHash;
@@ -27,8 +27,7 @@ public class ReportPanelBehavior : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
         }
-        var progress = progressBar.sizeDelta.x;
-        var progressFraction = progress / .25f;
-        percentTextLabel.text = ((int)(progressFraction * 100)).ToString() + "%";
+        var progress = progressBar.fillAmount;
+        percentTextLabel.text = ((int)(progress * 100)).ToString() + "%";
     }
 }
