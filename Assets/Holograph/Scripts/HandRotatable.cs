@@ -147,7 +147,7 @@ namespace Holograph
 
             // Scale the rotation
             Quaternion hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
-            draggingRotation = objRefRotation * Quaternion.Inverse(hostRatation); //Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
+            draggingRotation = Quaternion.Inverse(hostRatation) * objRefRotation; //Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
             NetworkMessages.Instance.SendMapRotation(draggingRotation);
             RotatedMapListener.targetRotation = draggingRotation;
             //RotatedObjectTransform.rotation = Quaternion.Lerp(RotatedObjectTransform.rotation, draggingRotation, RotationLerpSpeed);
