@@ -103,10 +103,8 @@ namespace Holograph
                     NodeMovement nodeMovementScript = firstNode.GetComponent<NodeMovement>();
 
                     // Sends position to other hololens
-                    NetworkMessages.Instance.SendFirstNodeTransform(hit.transform);
+                    NetworkMessages.Instance.SendFirstNodeTransform(); // (hit.transform);
 
-                    //nodeMovementScript.maxSpeed = d;
-                    //nodeMovementScript.moveTarget = target;
                     nodeMovementScript.moveTo(target);
                 }
             }
@@ -131,14 +129,15 @@ namespace Holograph
         private void FirstNodeTransform(NetworkInMessage msg)
         {
             long userId = msg.ReadInt64();
-            Vector3 position = NetworkMessages.Instance.ReadVector3(msg);
+            //Vector3 position = NetworkMessages.Instance.ReadVector3(msg);
 
             rotating = false;
             mapManager.transform.position = transform.position;
             mapManager.initMap();
             mapManager.positionNodes();
+            firstNode.transform.localPosition = Vector3.zero;
 
-            firstNode.transform.position = position;
+            //firstNode.transform.position = position;
         }
     }
 }

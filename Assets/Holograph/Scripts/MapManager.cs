@@ -95,7 +95,7 @@ namespace Holograph
             }
             for (int i = 0; i < positions.Length; ++i)
             {
-                nodeObject[i].GetComponent<NodeMovement>().moveTo(positions[i]);
+                nodeObject[i].GetComponent<NodeMovement>().moveTo(transform.TransformPoint(positions[i]));
             }
         }
 
@@ -103,15 +103,18 @@ namespace Holograph
         {
             int numNodes = adjMatrix.GetLength(0);
             float k = Mathf.Sqrt(1f / numNodes);
-            float t = .1f;
-            int iterations = 50;
+            float t = .2f;
+            int iterations = 75;
             float dt = t / iterations;
             Vector3[] pos = new Vector3[numNodes];
-            pos[0] = Vector3.zero;
+            pos[originNode] = Vector3.zero;
             UnityEngine.Random.InitState(123);
-            for (int i = 1; i < numNodes; ++i)
+            for (int i = 0; i < numNodes; ++i)
             {
-                pos[i] = new Vector3(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
+                if (i != originNode)
+                {
+                    pos[i] = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
+                }
             }
             for (int iteration = 0; iteration < iterations; ++iteration)
             {
@@ -137,6 +140,10 @@ namespace Holograph
                 }
                 for (int i = 0; i < numNodes; ++i)
                 {
+                    if (!visible[i] || i == originNode)
+                    {
+                        continue;
+                    }
                     pos[i] += displacement[i].normalized * t;
                 }
                 t -= dt;
