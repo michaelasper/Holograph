@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity;
-
+using UnityEngine.UI;
 
 namespace Holograph {
 
     public class InfoPanelBehavior : MonoBehaviour {
 
 
-        public TextMesh[] infoTextMeshes;
+        public Text[] infoTextList;
         public NodeInfo info;
         public bool isTaggedToUser = true;
         // Use this for initialization
@@ -30,11 +30,11 @@ namespace Holograph {
 
         private void UpdateText()
         {
-            int textMeshIndex = 0;
+            int textIndex = 0;
             foreach (var dictItem in info.nodeDictionary)
             {
-                infoTextMeshes[textMeshIndex].text = dictItem.Key + ":  " + dictItem.Value;
-                textMeshIndex++;
+                infoTextList[textIndex].text = dictItem.Value;
+                textIndex++;
 
             }
         }

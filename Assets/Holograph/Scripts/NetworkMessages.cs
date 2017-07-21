@@ -261,12 +261,12 @@ namespace Holograph
 
         }
 
-        public void SendFirstNodeTransform(Transform transform)
+        public void SendFirstNodeTransform() // (Transform transform)
         {
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.FirstNodeTransform);
-                AppendTransform(msg, transform.position, transform.rotation);
+                //AppendTransform(msg, transform.position, transform.rotation);
 
                 serverConnection.Broadcast(
                     msg,

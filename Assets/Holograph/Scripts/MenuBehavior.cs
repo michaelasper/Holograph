@@ -63,8 +63,8 @@ namespace Holograph
 
                 mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
                 node.SetActive(true);
-                mapManager.positionNodes();
             }
+            mapManager.positionNodes();
             MenuAnimator.SetBool("Button_1", false);
 
             CloseMenu();
@@ -84,7 +84,7 @@ namespace Holograph
 
         public void Hack1()
         {
-            //Debug.Log("Hack1");
+            Debug.Log("Hack1");
             resetStory();
         }
 
@@ -102,7 +102,7 @@ namespace Holograph
             if (globeAnimator != null && globeAnimator.isInitialized)
             {
                 globeAnimator.SetTrigger(fadesInHash);
-                NetworkMessages.Instance.SendAnimationHash(fadesInHash, NetworkMessages.AnimationTypes.Trigger);
+                //NetworkMessages.Instance.SendAnimationHash(fadesInHash, NetworkMessages.AnimationTypes.Trigger);
             }
             mapManager.hideNodes();
         }
