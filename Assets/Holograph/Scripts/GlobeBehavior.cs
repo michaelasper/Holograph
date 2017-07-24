@@ -8,20 +8,18 @@ namespace Holograph
 {
     public class GlobeBehavior : MonoBehaviour, IInputHandler
     {
-
         public GameObject globe;
-        public GameObject firstNode;
-
-        public float rotSpeed = 20f;
-
-        public Animator globeAnimator;
         public MapManager mapManager;
-        public bool pushPinMode;
-        public Transform pushPin;
-        public bool rotating;
+        [Range(15f, 25f)]
+        public float globeRotationSpeed = 20f;
+        [Tooltip("If true, clicking on globe creates a pushpin, whose coordinates will be printed when globe is airtapped")]
+        public bool pushpinMode;
 
-        public List<Vector3> pinPositions;
-
+        public bool rotating = true;
+        public GameObject firstNode;
+        private Animator globeAnimator;
+        private Transform pushPin;
+        private List<Vector3> pinPositions;
         private int invisibleStateHash;
         private int fadesOutHash;
         private Transform cam;
@@ -46,18 +44,17 @@ namespace Holograph
         {
             pinPositions = new List<Vector3>();
             invisibleStateHash = Animator.StringToHash("Base Layer.Invisible");
-           
             fadesOutHash = Animator.StringToHash("fadesOut");
             cam = Camera.main.transform;
-
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.FirstNodeTransform] = FirstNodeTransform;
+            globeAnimator = globe.GetComponent<Animator>();
         }
 
         void Update()
         {
             if (rotating)
             {
-                this.transform.Rotate(0, rotSpeed * Time.deltaTime, 0, Space.World);
+                this.transform.Rotate(0, globeRotationSpeed * Time.deltaTime, 0, Space.World);
             }
             if (globeAnimator != null && globeAnimator.isInitialized)
             {
@@ -67,8 +64,7 @@ namespace Holograph
                     globe.SetActive(false);
                 }
             }
-
-            if (pushPinMode && Input.GetMouseButtonDown(0))
+            if (pushpinMode && Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -87,11 +83,9 @@ namespace Holograph
         void AirTap()
         {
             rotating = false;
-
             mapManager.transform.position = transform.position;
             mapManager.initMap();
             mapManager.positionNodes();
-
             RaycastHit hit;
             Ray ray = new Ray(cam.position, cam.forward);
             if (Physics.Raycast(ray, out hit) && hit.transform.name == "Globe")
@@ -101,10 +95,7 @@ namespace Holograph
                 {
                     firstNode.transform.position = hit.point;
                     NodeMovement nodeMovementScript = firstNode.GetComponent<NodeMovement>();
-
-                    // Sends position to other hololens
-                    NetworkMessages.Instance.SendFirstNodeTransform(); // (hit.transform);
-
+                    NetworkMessages.Instance.SendFirstNodeTransform();
                     nodeMovementScript.moveTo(target);
                 }
             }
@@ -114,8 +105,8 @@ namespace Holograph
                 globeAnimator.SetTrigger(fadesOutHash);
                 NetworkMessages.Instance.SendAnimationHash(fadesOutHash, NetworkMessages.AnimationTypes.Trigger);
             }
-
-            if (pushPinMode)
+            //Used in pushpin mode
+            if (pushpinMode)
             {
                 string outVectors = "";
                 foreach (Vector3 v in pinPositions)
@@ -129,15 +120,11 @@ namespace Holograph
         private void FirstNodeTransform(NetworkInMessage msg)
         {
             long userId = msg.ReadInt64();
-            //Vector3 position = NetworkMessages.Instance.ReadVector3(msg);
-
             rotating = false;
             mapManager.transform.position = transform.position;
             mapManager.initMap();
             mapManager.positionNodes();
             firstNode.transform.localPosition = Vector3.zero;
-
-            //firstNode.transform.position = position;
         }
     }
 }

@@ -12,14 +12,7 @@ namespace Holograph
                                      IInputHandler,
                                      ISourceStateHandler
     {
-        /// <summary>
-        /// Event triggered when dragging starts.
-        /// </summary>
         public event Action StartedDragging;
-
-        /// <summary>
-        /// Event triggered when dragging stops.
-        /// </summary>
         public event Action StoppedDragging;
 
         [Tooltip("Game object that will be dragged.")]
@@ -29,10 +22,6 @@ namespace Holograph
 
         [Tooltip("Radius used to model the dragged object as a ball.")]
         public float HostRadius = 1f;
-
-        //[Tooltip("Controls the speed at which the object will interpolate toward the desired rotation")]
-        //[Range(0.01f, 1.0f)]
-        //public float RotationLerpSpeed = 0.2f;
 
         public bool IsDraggingEnabled = true;
 
@@ -53,7 +42,6 @@ namespace Holograph
             {
                 RotatedObject = this.gameObject;
             }
-
             cam = Camera.main.transform;
             RotatedObjectTransform = RotatedObject.transform;
             RotatedMapListener = RotatedObject.GetComponent<MapRotationListener>();
@@ -65,7 +53,6 @@ namespace Holograph
             {
                 StopDragging();
             }
-
             if (isGazed)
             {
                 OnFocusExit();
@@ -80,34 +67,24 @@ namespace Holograph
             }
         }
 
-        /// <summary>
-        /// Starts dragging the object.
-        /// </summary>
         public void StartDragging()
         {
             if (!IsDraggingEnabled)
             {
                 return;
             }
-
             if (isDragging)
             {
                 return;
             }
-
-            // Add self as a modal input handler, to get all inputs during the manipulation
             InputManager.Instance.PushModalInputHandler(gameObject);
 
             Vector3 gazeHitPosition = GetHostHitPosition();
             Vector3 handPosition;
             currentInputSource.TryGetPosition(currentInputSourceId, out handPosition);
-
             Vector3 pivotPosition = GetHandPivotPosition();
             objRefDistance = Vector3.Magnitude(gazeHitPosition - pivotPosition);
-
             handRefDirection = (handPosition - pivotPosition).normalized;
-
-
             objRefRotation = RotatedObjectTransform.rotation;
 
             StartedDragging.RaiseEvent();
@@ -121,42 +98,25 @@ namespace Holograph
             return cam.TransformVector(hostRelativeToCam.normalized * hitDistance);
         }
 
-        /// <summary>
-        /// Gets the pivot position for the hand, which is approximated to the base of the neck.
-        /// </summary>
-        /// <returns>Pivot position for the hand.</returns>
         private Vector3 GetHandPivotPosition()
         {
-            Vector3 pivot = cam.position + new Vector3(0, -0.2f, 0); // a bit lower
+            Vector3 pivot = cam.position + new Vector3(0, -0.2f, 0);
             return pivot;
         }
 
-        /// <summary>
-        /// Update the position of the object being dragged.
-        /// </summary>
         private void UpdateDragging()
         {
             Vector3 newHandPosition;
             currentInputSource.TryGetPosition(currentInputSourceId, out newHandPosition);
-
             Vector3 pivotPosition = GetHandPivotPosition();
-
             Vector3 newHandDirection = (newHandPosition - pivotPosition).normalized;
-
-            Quaternion handRotation = Quaternion.FromToRotation(handRefDirection, newHandDirection); // Vector3.Angle(newHandDirection, handRefDirection) * Mathf.Sign(Vector3.Cross(newHandDirection, handRefDirection).y);
-
-            // Scale the rotation
+            Quaternion handRotation = Quaternion.FromToRotation(handRefDirection, newHandDirection);
             Quaternion hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
-            draggingRotation = Quaternion.Inverse(hostRatation) * objRefRotation; //Quaternion.Euler(0f, objRedRotationEulerY + hostRatationAngle, 0f);
+            draggingRotation = Quaternion.Inverse(hostRatation) * objRefRotation;
             NetworkMessages.Instance.SendMapRotation(draggingRotation);
             RotatedMapListener.targetRotation = draggingRotation;
-            //RotatedObjectTransform.rotation = Quaternion.Lerp(RotatedObjectTransform.rotation, draggingRotation, RotationLerpSpeed);
-
         }
 
-        /// <summary>
-        /// Stops dragging the object.
-        /// </summary>
         public void StopDragging()
         {
             if (!isDragging)
@@ -164,7 +124,6 @@ namespace Holograph
                 return;
             }
 
-            // Remove self as a modal input handler
             InputManager.Instance.PopModalInputHandler();
 
             isDragging = false;
@@ -174,31 +133,19 @@ namespace Holograph
 
         public void OnFocusEnter()
         {
-            if (!IsDraggingEnabled)
+            if (!IsDraggingEnabled || isGazed)
             {
                 return;
             }
-
-            if (isGazed)
-            {
-                return;
-            }
-
             isGazed = true;
         }
 
         public void OnFocusExit()
         {
-            if (!IsDraggingEnabled)
+            if (!IsDraggingEnabled || !isGazed)
             {
                 return;
             }
-
-            if (!isGazed)
-            {
-                return;
-            }
-
             isGazed = false;
         }
 
@@ -215,11 +162,8 @@ namespace Holograph
         {
             if (isDragging)
             {
-                // We're already handling drag input, so we can't start a new drag operation.
                 return;
             }
-
-
             currentInputSource = eventData.InputSource;
             currentInputSourceId = eventData.SourceId;
             StartDragging();
@@ -227,7 +171,6 @@ namespace Holograph
 
         public void OnSourceDetected(SourceStateEventData eventData)
         {
-            // Nothing to do
         }
 
         public void OnSourceLost(SourceStateEventData eventData)
