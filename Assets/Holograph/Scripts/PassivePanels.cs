@@ -8,17 +8,18 @@ public class PassivePanels : MonoBehaviour {
     public Text Attendees;
     public Text Cases;
     public int Interval = 5;
+    public GameObject Graph;
     private string _attendeeScan = "scanning...";
     private string _casesScan = "";
     private int _attendees = 19;
     private int _cases = 1768;
 
-    private GameObject _graph;
+    //private GameObject _graph;
 
 	// Use this for initialization
 	void Start () {
-        _graph = GameObject.FindGameObjectWithTag("graph");
-        _graph.SetActive(false);
+        //_graph = GameObject.FindGameObjectWithTag("graph");
+        //_graph.SetActive(false);
         Attendees.text = _attendeeScan;
         Cases.text = _casesScan;
         StartCoroutine(PanelLoop());		
@@ -39,7 +40,7 @@ public class PassivePanels : MonoBehaviour {
         {
             Attendees.text = ($"Attendees: {_attendees} \n   -Tayler \n   -Casey \n   -Ash \n   -Alex");
             Cases.text = ($"Active Cases: {_cases}");
-            _graph.SetActive(true);
+            Graph.SetActive(true);
         }
         else
         {
@@ -47,7 +48,7 @@ public class PassivePanels : MonoBehaviour {
             _cases = _cases + 2;
             Attendees.text = _attendeeScan;
             Cases.text = _casesScan;
-            _graph.SetActive(false);
+            Graph.SetActive(false);
         }
 
     }

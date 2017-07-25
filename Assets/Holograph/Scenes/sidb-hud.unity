@@ -367,6 +367,7 @@ MonoBehaviour:
   Attendees: {fileID: 319780552}
   Cases: {fileID: 149439140}
   Interval: 5
+  Graph: {fileID: 1498870125}
 --- !u!1 &804959712
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1498870126
 RectTransform:
   m_ObjectHideFlags: 0
