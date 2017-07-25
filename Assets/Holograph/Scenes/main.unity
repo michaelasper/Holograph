@@ -1472,6 +1472,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 936769228}
+  - component: {fileID: 936769229}
   m_Layer: 0
   m_Name: HexRadialMenu
   m_TagString: Untagged
@@ -1499,6 +1500,19 @@ Transform:
   m_Father: {fileID: 921672464}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &936769229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 936769227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PivotAxis: 1
+  TargetTransform: {fileID: 936769228}
 --- !u!1001 &1062729759
 Prefab:
   m_ObjectHideFlags: 0

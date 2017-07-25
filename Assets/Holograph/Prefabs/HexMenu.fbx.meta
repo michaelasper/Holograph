@@ -1,31 +1,26 @@
 fileFormatVersion: 2
-guid: 9bd1f402c7e1c9047ba97f7efb3fdc42
-timeCreated: 1500943721
+guid: c9e01b9125a5711468feed8bb5895fd3
+timeCreated: 1501008631
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: 0HexMenuCombined
-    100002: Camera
+    100002: //RootNode
     100004: HexMenuBottom
     100006: HexMenuBottomLeft
     100008: HexMenuBottomRight
     100010: HexMenuTop
     100012: HexMenuTopLeft
     100014: HexMenuTopRight
-    100016: //RootNode
-    100018: Lamp
     400000: 0HexMenuCombined
-    400002: Camera
+    400002: //RootNode
     400004: HexMenuBottom
     400006: HexMenuBottomLeft
     400008: HexMenuBottomRight
     400010: HexMenuTop
     400012: HexMenuTopLeft
     400014: HexMenuTopRight
-    400016: //RootNode
-    400018: Lamp
-    2000000: Camera
     2300000: 0HexMenuCombined
     2300002: HexMenuBottom
     2300004: HexMenuBottomLeft
@@ -40,14 +35,13 @@ ModelImporter:
     3300008: HexMenuTop
     3300010: HexMenuTopLeft
     3300012: HexMenuTopRight
-    4300000: HexMenuBottom
-    4300002: HexMenuBottomLeft
-    4300004: HexMenuTopLeft
+    4300000: HexMenuBottomRight
+    4300002: 0HexMenuCombined
+    4300004: HexMenuTopRight
     4300006: HexMenuTop
-    4300008: HexMenuTopRight
-    4300010: 0HexMenuCombined
-    4300012: HexMenuBottomRight
-    10800000: Lamp
+    4300008: HexMenuTopLeft
+    4300010: HexMenuBottomLeft
+    4300012: HexMenuBottom
   materials:
     importMaterials: 1
     materialName: 0
