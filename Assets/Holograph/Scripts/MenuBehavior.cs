@@ -76,7 +76,7 @@ namespace Holograph
             mapManager.positionNodes();
             MenuAnimator.SetBool("Button_1", false);
 
-            CloseMenu();
+            //CloseMenu();
             infoPanelBehavior.ClosePanel();
         }
 
@@ -137,6 +137,7 @@ namespace Holograph
                 methodNameChars[i] = Convert.ToChar(msg.ReadByte());
             }
             string methodName = new string(methodNameChars);
+            CloseMenu();
             Invoke(methodName, 0);
         }
         public void ChangeColor(Material color)

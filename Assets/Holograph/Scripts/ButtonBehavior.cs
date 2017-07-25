@@ -61,6 +61,7 @@ namespace Holograph
             //Debug.Log("button " + buttonName + " is clicked");
             menuBehavior.CloseMenu();
             menuBehavior.Invoke(methodName, 0f);
+            NetworkMessages.Instance.SendRadialMenuClickIcon(methodName);
             //NetworkMessages.Instance.SendMenuAnimationHash(Animator.StringToHash("Button_1"), NetworkMessages.AnimationTypes.Boolean, ButtonPressed ? 1 : 0); 
         }
 
