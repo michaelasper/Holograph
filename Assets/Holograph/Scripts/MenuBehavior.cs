@@ -9,9 +9,9 @@ namespace Holograph
     public class MenuBehavior : MonoBehaviour
     {
         // List of how Icons should look and what they should do
-        private string[] TextureList = { "First Icon", "Second Icon", "Third Icon", "Fourth Icon" };
-        private string[] ActionList = { "Expand", "ListInfo", "Hack1", "Hack2" };
-
+       // private string[] TextureList = { "First Icon", "Second Icon", "Third Icon", "Fourth Icon" };
+        //private string[] ActionList; //= { "Expand", "ListInfo", "Hack1", "Hack2" };
+        private RadialMenuManager.JGraph.Nodemenuitem[] NodeMenuItemArray;  
 
         //private GameObject[] ObjectList = new GameObject[4];
         public GameObject IconFab;
@@ -36,14 +36,18 @@ namespace Holograph
             // Starts with Menu open to run Start() Script
             CloseMenu();
             MenuAnimator = this.GetComponent<Animator>();
-            for (int i = 0; i < TextureList.Length; i++)
+            NodeMenuItemArray = GetComponent<RadialMenuManager>().jGraph.nodeMenuItems;
+            //Debug.Log(NodeMenuItemArray);
+            for (int i = 0; i < NodeMenuItemArray.Length; i++)
             {
                 GameObject icon = this.transform.GetChild(0).GetChild(0).GetChild(i).GetChild(0).gameObject;
-                icon.name = TextureList[i];
+                icon.name = NodeMenuItemArray[i].name;
                 icon.GetComponent<Icon>().menubehvaior = this;
-                icon.GetComponent<Icon>().TextureName = TextureList[i];
-                icon.GetComponent<Icon>().Message = ActionList[i];
-
+                icon.GetComponent<Icon>().TextureName = NodeMenuItemArray[i].texture;
+                //for(int j = 0; j < NodeMenuItemArray[i].subNodeMenu.Length; j++)
+                //{
+                    //icon.GetComponent<Icon>().Message = NodeMenuItemArray[i].subNodeMenu[j].actionName;
+                //}
             }
 
             mapManager = Map.GetComponent<MapManager>();
@@ -124,13 +128,18 @@ namespace Holograph
             long userId = msg.ReadInt64();
             int l = msg.ReadInt32();
             char[] methodNameChars = new char[l];
-            for (int i = 0; i<l; ++i)
+            for (int i = 0; i < l; ++i)
             {
                 methodNameChars[i] = Convert.ToChar(msg.ReadByte());
             }
             string methodName = new string(methodNameChars);
             Invoke(methodName, 0);
         }
+        public void ChangeColor(Material color)
+        {
+            GetComponent<Renderer>().material = color;
+        }
+
 
     }
 }

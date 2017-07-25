@@ -1,0 +1,54 @@
+{
+    "menu": [
+        {
+            "name": "Enrich",
+            "color": "red",
+            "TextureList": "FirstIcon",
+            "ActionList": [
+                "Expand",
+                "ListInfo",
+                "Hack1",
+                "Hack2"
+            ]
+        },
+        {
+            "name": "Investigate",
+            "color": "blue",
+            "TextureList": "SecondIcon",
+            "ActionList": [
+                "Hack2",
+                "Hack2",
+                "Hack2",
+                "Hack2"
+            ]
+        },
+        {
+            "name": "Mitigate",
+            "color": "green",
+            "TextureList": "ThirdIcon",
+            "ActionList": [
+                "Hack2",
+                "Hack2",
+                "Hack2",
+                "Hack2"
+            ]
+        },
+        {
+            "name": "Report",
+            "color": "yellow",
+            "TextureList": "ForthIcon",
+            "ActionList": [
+                "Report",
+                "Hack2",
+                "Hack2",
+                "Hack2"
+            ]
+        }
+
+
+
+
+
+
+    ]
+}
