@@ -8,8 +8,8 @@ public class PassivePanels : MonoBehaviour {
     public Text Attendees;
     public Text Cases;
     public int Interval = 5;
-    private string _attendeeScan = "Scanning active users...";
-    private string _casesScan = "Scanning active cases...";
+    private string _attendeeScan = "scanning...";
+    private string _casesScan = "";
     private int _attendees = 19;
     private int _cases = 1768;
 
@@ -37,7 +37,7 @@ public class PassivePanels : MonoBehaviour {
     {
         if (Attendees.text  == _attendeeScan && Cases.text == _casesScan)
         {
-            Attendees.text = ($"Attendees: {_attendees}");
+            Attendees.text = ($"Attendees: {_attendees} \n   -Tayler \n   -Casey \n   -Ash \n   -Alex");
             Cases.text = ($"Active Cases: {_cases}");
             _graph.SetActive(true);
         }
