@@ -22,6 +22,7 @@ namespace Holograph
         {
             HeadTransform = HoloToolkit.Sharing.MessageID.UserMessageIDStart,
             PresenterId,
+            SelfPresenterId,
             AnimationHash,
             MenuAnimationHash,
             MapRotation,
@@ -167,6 +168,20 @@ namespace Holograph
                     MessagePriority.Immediate,
                     MessageReliability.Unreliable,
                     MessageChannel.Avatar);
+            }
+        }
+
+        public void SendPresenterId()
+        {
+            if (serverConnection != null && serverConnection.IsConnected())
+            {
+                NetworkOutMessage msg = CreateMessage((byte)MessageID.SelfPresenterId);
+                Debug.Log("SENT MESSAGEEEEEE");
+                serverConnection.Broadcast(
+                    msg,
+                    MessagePriority.Immediate,
+                    MessageReliability.Unreliable,
+                    MessageChannel.Default);
             }
         }
 

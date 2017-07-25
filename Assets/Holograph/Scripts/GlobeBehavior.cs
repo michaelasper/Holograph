@@ -92,6 +92,9 @@ namespace Holograph
             mapManager.initMap();
             mapManager.positionNodes();
 
+            // For testing purposes
+            NetworkMessages.Instance.SendPresenterId();
+
             RaycastHit hit;
             Ray ray = new Ray(cam.position, cam.forward);
             if (Physics.Raycast(ray, out hit) && hit.transform.name == "Globe")

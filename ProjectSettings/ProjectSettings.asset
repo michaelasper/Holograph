@@ -544,7 +544,7 @@ PlayerSettings:
       AllJoyn: False
       BlockedChatMessages: False
       Bluetooth: False
-      Chat: False
+      Chat: True
       CodeGeneration: False
       EnterpriseAuthentication: False
       HumanInterfaceDevice: False
@@ -564,7 +564,7 @@ PlayerSettings:
       SpatialPerception: True
       UserAccountInformation: False
       VideosLibrary: False
-      VoipCall: False
+      VoipCall: True
       WebCam: True
   metroFTAName: 
   metroFTAFileTypes: []
