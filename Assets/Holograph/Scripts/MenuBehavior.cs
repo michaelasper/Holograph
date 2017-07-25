@@ -11,39 +11,44 @@ namespace Holograph
         // List of how Icons should look and what they should do
        // private string[] TextureList = { "First Icon", "Second Icon", "Third Icon", "Fourth Icon" };
         //private string[] ActionList; //= { "Expand", "ListInfo", "Hack1", "Hack2" };
-        private RadialMenuManager.JGraph.Nodemenuitem[] NodeMenuItemArray;  
 
         //private GameObject[] ObjectList = new GameObject[4];
-        public GameObject IconFab;
+        //public GameObject IconFab;
         public GameObject Map;
         public GameObject Globe;
         public GameObject ReportPanel;
         //private GameObject[] Slides;
 
         private InfoPanelBehavior infoPanelBehavior;
-        public Animator GraphAnimator;
-        public Animator MenuAnimator;
+        //public Animator GraphAnimator;
+        private Animator MenuAnimator;
         private Animator globeAnimator;
 
         private MapManager mapManager;
         public GameObject InfoPanel;
+        public TextAsset jsonfile;
 
         private int fadesInHash;
-
-        // Use this for initialization
-        void Start()
+        
+        //void Start()
+        void Awake()
         {
-            // Starts with Menu open to run Start() Script
-            CloseMenu();
+            //CloseMenu();
             MenuAnimator = this.GetComponent<Animator>();
-            NodeMenuItemArray = GetComponent<RadialMenuManager>().jGraph.nodeMenuItems;
-            //Debug.Log(NodeMenuItemArray);
-            for (int i = 0; i < NodeMenuItemArray.Length; i++)
+            if (jsonfile == null) throw new System.Exception("JSON File not found");
+
+            string json = jsonfile.text;
+            JNodeMenu.NodeMenuItem[] nodeMenuItems = JsonUtility.FromJson<JNodeMenu>(json).nodeMenuItems;
+            Debug.Log("there are " + nodeMenuItems.Length + " menu items");
+            for (int i = 0; i < nodeMenuItems.Length; i++)
             {
-                GameObject icon = this.transform.GetChild(0).GetChild(0).GetChild(i).GetChild(0).gameObject;
-                icon.name = NodeMenuItemArray[i].name;
-                icon.GetComponent<Icon>().menubehvaior = this;
-                icon.GetComponent<Icon>().TextureName = NodeMenuItemArray[i].texture;
+                //Debug.Log("we have node menu item " + nodeMenuItems[i]);
+                transform.GetChild(i).GetComponent<ButtonBehavior>().initLayout(nodeMenuItems[i]);
+                //Debug.Log("init " + transform.GetChild(i).GetComponent<ButtonBehavior>().methodName);
+                //GameObject icon = this.transform.GetChild(0).GetChild(0).GetChild(i).GetChild(0).gameObject;
+                //icon.name = nodeMenuItems[i].name;
+                //icon.GetComponent<Icon>().menubehvaior = this;
+                //icon.GetComponent<Icon>().TextureName = nodeMenuItems[i].texture;
                 //for(int j = 0; j < NodeMenuItemArray[i].subNodeMenu.Length; j++)
                 //{
                     //icon.GetComponent<Icon>().Message = NodeMenuItemArray[i].subNodeMenu[j].actionName;
@@ -86,10 +91,9 @@ namespace Holograph
             infoPanelBehavior.UpdateInfo(nodeInfo);
         }
 
-        public void Hack1()
+        public void Hack()
         {
-            Debug.Log("Hack1");
-            resetStory();
+            Debug.Log("Hack!");
         }
 
         public void Hack2()
@@ -97,7 +101,7 @@ namespace Holograph
             Debug.Log("Hack2");
         }
 
-        private void resetStory()
+        private void ResetStory()
         {
             Globe.SetActive(true);
             Globe.GetComponent<Collider>().enabled = true;
@@ -140,6 +144,26 @@ namespace Holograph
             GetComponent<Renderer>().material = color;
         }
 
+        [Serializable]
+        public struct JNodeMenu
+        {
+            public NodeMenuItem[] nodeMenuItems;
+            [Serializable]
+            public struct NodeMenuItem
+            {
+                public string name;
+                public string methodName;
+                public string color;
+                public string texture;
+                public SubNodeMenuItem[] subNodeMenu;
+            }
+            [Serializable]
+            public struct SubNodeMenuItem
+            {
+                public string actionName;
+                public string actionValue;
+            }
+        }
 
     }
 }
