@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HoloToolkit_Default
+  m_Name: Random
   m_Shader: {fileID: 4800000, guid: 0118fa4f1c88b4640b193eca2c181644, type: 3}
   m_ShaderKeywords: _EMISSION _USECOLOR_ON
   m_LightmapFlags: 1
