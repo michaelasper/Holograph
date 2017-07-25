@@ -8,7 +8,7 @@ namespace Holograph
     public class MapManager : MonoBehaviour
     {
         public TextAsset jsonfile;
-
+     
         public GameObject RadialMenu;
 
         public GameObject NodeFab;
@@ -16,7 +16,7 @@ namespace Holograph
         public GameObject globe;
 
         public Material[] materials;
-        
+
         public bool[] visible;
 
         //nodes and their indices in the adj-matrix
@@ -215,6 +215,5 @@ namespace Holograph
                 public string target;
             }
         }
-
     }
 }
