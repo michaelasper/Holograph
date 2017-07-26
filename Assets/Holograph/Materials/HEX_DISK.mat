@@ -6,15 +6,16 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HEX_TOP_RIGHT
-  m_Shader: {fileID: 4800000, guid: b41b88257b4affd458eb5ec647d29517, type: 3}
+  m_Name: HEX_DISK
+  m_Shader: {fileID: 4800000, guid: f1f3948b20c230044bda31b620ddd37f, type: 3}
   m_ShaderKeywords: _FORCEPERPIXEL_ON _SHADE4_ON _SPECULARHIGHLIGHTS_ON _USEAMBIENT_ON
     _USEDIFFUSE_ON _USEMAINTEX_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -48,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 20a228ceba38a604287bf5bebfd2df69, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9c2186d5aabfc404286e5d13daffa2ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -96,7 +97,6 @@ Material:
     - _UVSec: 0
     - _UseAmbient: 1
     - _UseBumpMap: 0
-    - _UseColor: 0
     - _UseDiffuse: 1
     - _UseEmissionColor: 0
     - _UseEmissionMap: 0

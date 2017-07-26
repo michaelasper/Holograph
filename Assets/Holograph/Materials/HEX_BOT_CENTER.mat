@@ -7,14 +7,15 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: HEX_BOT_CENTER
-  m_Shader: {fileID: 4800000, guid: 5c2339e78c48ab14bb095cea2be5fb1a, type: 3}
+  m_Shader: {fileID: 4800000, guid: b41b88257b4affd458eb5ec647d29517, type: 3}
   m_ShaderKeywords: _FORCEPERPIXEL_ON _SHADE4_ON _SPECULARHIGHLIGHTS_ON _USEAMBIENT_ON
     _USEDIFFUSE_ON _USEMAINTEX_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -102,7 +103,7 @@ Material:
     - _UseEmissionMap: 0
     - _UseGlossMap: 0
     - _UseMainColor: 0
-    - _UseMainTex: 1
+    - _UseMainTex: 0
     - _UseOcclusionMap: 0
     - _UseReflections: 0
     - _UseRimLighting: 0
@@ -111,7 +112,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.88235295, b: 0.88235295, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
