@@ -11,13 +11,27 @@ namespace Holograph
      
         public GameObject RadialMenu;
 
-        public GameObject NodeFab;
+        //public GameObject NodeFab;
 
         public GameObject globe;
 
         public Material[] materials;
 
         public bool[] visible;
+
+        //public GameObject alertNodePrefab;
+        //public GameObject monitorNodePrefab;
+        //public GameObject serverNodePrefab;
+        //public GameObject userNodePrefab;
+
+        [Serializable]
+        public struct StringPrefabPair
+        {
+            public string nodeType;
+            public GameObject nodePrefab;
+        }
+
+        public StringPrefabPair[] nodePrefabs;
 
         //nodes and their indices in the adj-matrix
         private Dictionary<string, int> nodeId;
@@ -55,18 +69,48 @@ namespace Holograph
             nodeId = new Dictionary<string, int>();
             for (int i = 0; i < numNodes; ++i)
             {
-                NodeInfo nodeInfo = new NodeInfo(jGraph.nodes[i].name, "default", jGraph.nodes[i].keyList, jGraph.nodes[i].valueList);
-                GameObject node = Instantiate(NodeFab, this.transform);
+                NodeInfo nodeInfo = new NodeInfo(jGraph.nodes[i].name, jGraph.nodes[i].type, jGraph.nodes[i].keyList, jGraph.nodes[i].valueList);
+                GameObject nodePrefab = null;
+                foreach (StringPrefabPair stringPrefabPair in nodePrefabs)
+                {
+                    if (stringPrefabPair.nodeType.Equals(jGraph.nodes[i].type))
+                    {
+                        nodePrefab = stringPrefabPair.nodePrefab;
+                        break;
+                    }
+                }
+                //switch (jGraph.nodes[i].type)
+                //{
+                //    case "ALERT":
+                //        nodePrefab = alertNodePrefab;
+                //        break;
+                //    case "MONITOR":
+                //        nodePrefab = monitorNodePrefab;
+                //        break;
+                //    case "SERVER":
+                //        nodePrefab = serverNodePrefab;
+                //        break;
+                //    case "USER":
+                //        nodePrefab = userNodePrefab;
+                //        break;
+                //    default:
+                //        nodePrefab = null;
+                //        break;
+                //}
+                if (nodePrefab == null)
+                {
+                    throw new NotSupportedException("JSON specifies unsupported node type");
+                }
+                GameObject node = Instantiate(nodePrefab, this.transform);
                 NodeBehavior nodebehvaior = node.GetComponent<NodeBehavior>();
                 node.name = jGraph.nodes[i].name;
                 nodebehvaior.SetNodeInfo(nodeInfo);
-                Material material = MatchMaterial(jGraph.nodes[i].color);
-                nodebehvaior.ChangeColor(material);
+                //Material material = MatchMaterial(jGraph.nodes[i].color);
+                //nodebehvaior.ChangeColor(material);
                 nodebehvaior.id = i;
                 nodeId.Add(jGraph.nodes[i].name, i);
                 nodeObject[i] = node;
                 node.SetActive(false);
-
             }
             for (int i = 0; i < jGraph.edges.Length; ++i)
             {
@@ -204,7 +248,7 @@ namespace Holograph
             public struct Node
             {
                 public string name;
-                public string color;
+                public string type;
                 public string[] keyList;
                 public string[] valueList;
             }

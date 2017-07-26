@@ -21,7 +21,7 @@ namespace Holograph
 
         private InfoPanelBehavior infoPanelBehavior;
         //public Animator GraphAnimator;
-        private Animator MenuAnimator;
+        //private Animator MenuAnimator;
         private Animator globeAnimator;
 
         private MapManager mapManager;
@@ -34,7 +34,7 @@ namespace Holograph
         void Awake()
         {
             //CloseMenu();
-            MenuAnimator = this.GetComponent<Animator>();
+            //MenuAnimator = this.GetComponent<Animator>();
             if (jsonfile == null) throw new System.Exception("JSON File not found");
 
             string json = jsonfile.text;
@@ -74,7 +74,7 @@ namespace Holograph
                 node.SetActive(true);
             }
             mapManager.positionNodes();
-            MenuAnimator.SetBool("Button_1", false);
+            //MenuAnimator.SetBool("Button_1", false);
 
             //CloseMenu();
             infoPanelBehavior.ClosePanel();

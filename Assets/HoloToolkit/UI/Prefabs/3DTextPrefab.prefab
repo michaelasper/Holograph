@@ -71,6 +71,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!102 &102000010767390410
 TextMesh:
@@ -79,7 +80,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013198843976}
-  m_Text: 3D Text Prefab
+  m_Text: 99
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
