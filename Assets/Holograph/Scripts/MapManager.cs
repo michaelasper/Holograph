@@ -202,7 +202,7 @@ namespace Holograph
 
         public void hideNodes()
         {
-            RadialMenu.transform.parent = this.transform.parent;
+            RadialMenu.transform.SetParent(this.transform.parent);
             RadialMenu.SetActive(false);
             for (int i = 0; i < nodeObject.Length; ++i)
             {
@@ -212,15 +212,16 @@ namespace Holograph
 
         public void menuClickedOn(int nodeId)
         {
-            int? radialMenuParentId = RadialMenu.transform.parent.GetComponent<NodeBehavior>()?.id;
+            int? radialMenuParentId = RadialMenu.transform.GetComponentInParent<NodeBehavior>()?.id;
             if (nodeId.Equals(radialMenuParentId))
             {
                 RadialMenu.SetActive(!RadialMenu.activeSelf);
             }
             else
             {
-                Debug.Log("got it");
-                RadialMenu.transform.parent = nodeObject[nodeId].transform;
+                Transform targetNodeTransform = nodeObject[nodeId].transform;
+                RadialMenu.transform.SetParent(targetNodeTransform, worldPositionStays: false);
+                RadialMenu.transform.localScale = Vector3.Scale(new Vector3(.1f, .1f, .1f), new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
                 RadialMenu.SetActive(true);
             }
             RadialMenu.transform.localPosition = Vector3.zero;
@@ -232,7 +233,9 @@ namespace Holograph
             long userId = msg.ReadInt64();
             int nodeId = msg.ReadInt32();
             bool setActive = Convert.ToBoolean(msg.ReadByte());
-            RadialMenu.transform.parent = nodeObject[nodeId].transform;
+            Transform targetNodeTransform = nodeObject[nodeId].transform;
+            RadialMenu.transform.SetParent(targetNodeTransform, worldPositionStays: false);
+            RadialMenu.transform.localScale = Vector3.Scale(new Vector3(.1f, .1f, .1f), new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
             RadialMenu.transform.localPosition = Vector3.zero;
             RadialMenu.SetActive(setActive);
         }

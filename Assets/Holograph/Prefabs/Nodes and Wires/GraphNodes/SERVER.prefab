@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114368756498373806}
   - component: {fileID: 114247883907761808}
   - component: {fileID: 114797117468455016}
+  - component: {fileID: 135938068720896114}
   m_Layer: 0
   m_Name: SERVER
   m_TagString: Untagged
@@ -93,7 +94,7 @@ MeshCollider:
   m_GameObject: {fileID: 1393008178202100}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Convex: 0
   m_InflateMesh: 0
@@ -154,3 +155,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedPercentage: 0
+--- !u!135 &135938068720896114
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1393008178202100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.006416994
+  m_Center: {x: -0.000019106783, y: -0.00048723986, z: 0.0000036482234}

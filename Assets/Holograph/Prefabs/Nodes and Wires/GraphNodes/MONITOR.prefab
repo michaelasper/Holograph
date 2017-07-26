@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114250944860474172}
   - component: {fileID: 114959704965789296}
   - component: {fileID: 114562379686237658}
+  - component: {fileID: 135346694969419704}
   m_Layer: 0
   m_Name: MONITOR
   m_TagString: Untagged
@@ -93,7 +94,7 @@ MeshCollider:
   m_GameObject: {fileID: 1071941963697930}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Convex: 0
   m_InflateMesh: 0
@@ -154,3 +155,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PivotAxis: 0
   TargetTransform: {fileID: 0}
+--- !u!135 &135346694969419704
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071941963697930}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.2626905
+  m_Center: {x: 0.04843831, y: -0.14592683, z: -0.0000538826}
