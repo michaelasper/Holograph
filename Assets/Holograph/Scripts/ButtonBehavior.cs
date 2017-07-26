@@ -7,8 +7,7 @@ namespace Holograph
 {
     public class ButtonBehavior : MonoBehaviour, IInputHandler, IFocusable
     {
-        [Range(1f, 2f)]
-        public float hightlight = 1.5f;
+        public Color hoverHighlight;
         private bool isGazedAt;
         private Transform cam;
         private Material objectMaterial;
@@ -31,21 +30,17 @@ namespace Holograph
         void Update()
         {
 
-            RaycastHit hit;
-            Ray ray = new Ray(cam.position, cam.forward);
-            if (Physics.Raycast(ray, out hit) && hit.transform == this.transform)
-            {
-                if (!isGazedAt)
-                {
-                    isGazedAt = true;
-                    objectMaterial.color *= hightlight;
-                }
-            }
-            else if (isGazedAt)
-            {
-                isGazedAt = false;
-                objectMaterial.color /= hightlight;
-            }
+            //RaycastHit hit;
+            //Ray ray = new Ray(cam.position, cam.forward);
+            //if (Physics.Raycast(ray, out hit) && hit.transform == this.transform)
+            //{
+            //    if (!isGazedAt)
+            //    {
+            //    }
+            //}
+            //else if (isGazedAt)
+            //{
+            //}
 
         }
 
@@ -67,12 +62,14 @@ namespace Holograph
 
         public void OnFocusEnter()
         {
-
+            Debug.Log("Hover enter");
+            objectMaterial.color = hoverHighlight;
         }
 
         public void OnFocusExit()
         {
-
+            Debug.Log("Hover exit");
+            objectMaterial.color = Color.white;
         }
 
         public void initLayout(MenuBehavior.JNodeMenu.NodeMenuItem nodeMenuItem)
