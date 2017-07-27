@@ -26,7 +26,7 @@ namespace Holograph
                 var gazeDirection = cam.forward;
                 gazeDirection.y = 0f;
                 gazeDirection = Quaternion.Euler(0f, -7f, 0f) * gazeDirection; //Ad hoc solution to misplacement of hud anchor
-                moveTarget = headPosition + new Vector3(0f, -.5f, 0f) + gazeDirection.normalized * 1.5f;
+                moveTarget = headPosition + new Vector3(0f, -.8f, 0f) + gazeDirection.normalized * 1f;
             }
 
             //var hudDepth = (gazeDirection.y * -1500) + MAX_HUD_DEPTH;
