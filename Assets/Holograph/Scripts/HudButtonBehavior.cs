@@ -22,6 +22,7 @@ namespace Holograph
         public void OnFocusEnter()
         {
             isGazedAt = true;
+            hudManager.isGazedAt = true;
             if (!isSelected)
             {
                 buttonMaterial.SetTexture(texturePropertyId, hoverTexture);
@@ -31,6 +32,7 @@ namespace Holograph
         public void OnFocusExit()
         {
             isGazedAt = false;
+            hudManager.isGazedAt = false;
             if (!isSelected)
             {
                 buttonMaterial.SetTexture(texturePropertyId, idleTexture);
