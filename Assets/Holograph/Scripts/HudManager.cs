@@ -26,7 +26,7 @@ namespace Holograph
                 var headPosition = cam.position;
                 var gazeDirection = cam.forward;
                 gazeDirection.y = 0f;
-                moveTarget = headPosition + new Vector3(0f, -.5f, 0f) + gazeDirection.normalized * 1f;
+                moveTarget = headPosition + new Vector3(0f, -.7f, 0f) + gazeDirection.normalized * 1f;
             }
             transform.position = Vector3.Lerp(transform.position, moveTarget, moveLerp);
         }
