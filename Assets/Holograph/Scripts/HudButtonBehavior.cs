@@ -8,7 +8,7 @@ namespace Holograph
 {
     public class HudButtonBehavior : MonoBehaviour,
                                             IFocusable,
-                                            IInputClickHandler
+                                            IInputHandler
     {
         public Texture idleTexture;
         private Material buttonMaterial;
@@ -39,9 +39,16 @@ namespace Holograph
             }
         }
 
-        public void OnInputClicked(InputClickedEventData eventData)
+        public void OnInputUp(InputEventData eventData)
         {
-            hudManager.selectButton(transform);
+            if (isSelected)
+            {
+                switchSelected(false);
+            }
+            else
+            {
+                hudManager.selectButton(transform);
+            }
         }
 
         public void switchSelected(bool select)
@@ -67,6 +74,11 @@ namespace Holograph
         void Update()
         {
 
+        }
+
+        public void OnInputDown(InputEventData eventData)
+        {
+            //throw new NotImplementedException();
         }
     }
 }

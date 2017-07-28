@@ -1,5 +1,4 @@
-﻿using HoloToolkit.Unity.InputModule;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,16 +24,9 @@ namespace Holograph
                 var headPosition = cam.position;
                 var gazeDirection = cam.forward;
                 gazeDirection.y = 0f;
-                gazeDirection = Quaternion.Euler(0f, -7f, 0f) * gazeDirection; //Ad hoc solution to misplacement of hud anchor
                 moveTarget = headPosition + new Vector3(0f, -.8f, 0f) + gazeDirection.normalized * 1f;
             }
-
-            //var hudDepth = (gazeDirection.y * -1500) + MAX_HUD_DEPTH;
-            //Debug.Log("Depth: " + hudDepth);
-            //var newPos = new Vector3((float)hud.transform.localPosition.x, hudDepth, (float)hud.transform.localPosition.z);
-
-            transform.position = Vector3.Lerp(transform.position, moveTarget,
-                moveLerp);
+            transform.position = Vector3.Lerp(transform.position, moveTarget, moveLerp);
         }
         
         public void selectButton(Transform clickedButton)
@@ -44,16 +36,6 @@ namespace Holograph
                 Transform childButton = transform.GetChild(i);
                 childButton.GetComponent<HudButtonBehavior>().switchSelected(clickedButton == childButton);
             }
-        }
-
-        public void OnFocusEnter()
-        {
-            isGazedAt = true;
-        }
-
-        public void OnFocusExit()
-        {
-            isGazedAt = false;
         }
     }
 }
