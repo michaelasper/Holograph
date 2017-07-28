@@ -10,14 +10,15 @@ namespace Holograph
                                             IFocusable,
                                             IInputHandler
     {
+        //public GlobeBehavior globe;
         public Texture idleTexture;
-        private Material buttonMaterial;
         public Texture hoverTexture;
         public Texture selectedTexture;
         private int texturePropertyId;
         private bool isSelected;
         private bool isGazedAt;
         private HudManager hudManager;
+        private Material buttonMaterial;
 
         public void OnFocusEnter()
         {
@@ -41,20 +42,13 @@ namespace Holograph
 
         public void OnInputUp(InputEventData eventData)
         {
-            if (isSelected)
-            {
-                switchSelected(false);
-            }
-            else
-            {
-                hudManager.selectButton(transform);
-            }
+            hudManager.clickButtonUp(transform);
         }
 
         public void switchSelected(bool select)
         {
-            isSelected = select;
-            if (select)
+            isSelected = select && !isSelected;
+            if (isSelected)
             {
                 buttonMaterial.SetTexture(texturePropertyId, selectedTexture);
             }
@@ -78,7 +72,7 @@ namespace Holograph
 
         public void OnInputDown(InputEventData eventData)
         {
-            //throw new NotImplementedException();
+            //this function doesn't work
         }
     }
 }

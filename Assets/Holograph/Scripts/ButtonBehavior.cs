@@ -54,6 +54,7 @@ namespace Holograph
             //ButtonPressed = !ButtonPressed;
             //IconAnimator.SetBool("Button_1", ButtonPressed);
             //Debug.Log("button " + buttonName + " is clicked");
+            isGazedAt = false;
             menuBehavior.CloseMenu();
             menuBehavior.Invoke(methodName, 0f);
             NetworkMessages.Instance.SendRadialMenuClickIcon(methodName);

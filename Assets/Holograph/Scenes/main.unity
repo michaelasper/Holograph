@@ -584,6 +584,11 @@ Prefab:
       propertyPath: hoverHighlight.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114985262316139182, guid: b275cac9dbb694720882703b265143e0,
+        type: 2}
+      propertyPath: storyManager
+      value: 
+      objectReference: {fileID: 921672466}
     m_RemovedComponents:
     - {fileID: 65925208917429872, guid: b275cac9dbb694720882703b265143e0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b275cac9dbb694720882703b265143e0, type: 2}
@@ -1241,6 +1246,27 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -0.043699987
       objectReference: {fileID: 0}
+    - target: {fileID: 1733055727601384, guid: c160e83f2411045e6bb35e569c408686, type: 2}
+      propertyPath: m_Name
+      value: CASES
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944126427228642, guid: c160e83f2411045e6bb35e569c408686, type: 2}
+      propertyPath: m_Name
+      value: USERS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751298820945298, guid: c160e83f2411045e6bb35e569c408686, type: 2}
+      propertyPath: m_Name
+      value: STATS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507218192309130, guid: c160e83f2411045e6bb35e569c408686, type: 2}
+      propertyPath: m_Name
+      value: HOME
+      objectReference: {fileID: 0}
+    - target: {fileID: 114351127198564212, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: storyManager
+      value: 
+      objectReference: {fileID: 921672466}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c160e83f2411045e6bb35e569c408686, type: 2}
   m_IsPrefabParent: 0
@@ -1351,6 +1377,7 @@ GameObject:
   - component: {fileID: 921672463}
   - component: {fileID: 921672462}
   - component: {fileID: 921672465}
+  - component: {fileID: 921672466}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -1416,6 +1443,17 @@ MonoBehaviour:
   KeepRoomAlive: 0
   RoomName: DefaultRoom
   AnchorDebugText: {fileID: 41418565}
+--- !u!114 &921672466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 921672461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc2daf9e4157ee48a9c20517b29ab8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1062729759
 Prefab:
   m_ObjectHideFlags: 0

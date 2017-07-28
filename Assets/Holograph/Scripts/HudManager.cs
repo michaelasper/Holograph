@@ -8,6 +8,7 @@ namespace Holograph
 {
     public class HudManager : MonoBehaviour, IFocusable
     {
+        public StoryManager storyManager;
         [Range(.1f, .3f)]
         public float moveLerp = .2f;
         private Transform cam;
@@ -25,17 +26,37 @@ namespace Holograph
                 var headPosition = cam.position;
                 var gazeDirection = cam.forward;
                 gazeDirection.y = 0f;
-                moveTarget = headPosition + new Vector3(0f, -.8f, 0f) + gazeDirection.normalized * 1f;
+                moveTarget = headPosition + new Vector3(0f, -.5f, 0f) + gazeDirection.normalized * 1f;
             }
             transform.position = Vector3.Lerp(transform.position, moveTarget, moveLerp);
         }
         
-        public void selectButton(Transform clickedButton)
+        private void selectButton(Transform selectedButton)
         {
             for (int i = 0; i < transform.childCount; ++i)
             {
                 Transform childButton = transform.GetChild(i);
-                childButton.GetComponent<HudButtonBehavior>().switchSelected(clickedButton == childButton);
+                childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
+            }
+
+        }
+
+        public void clickButtonUp(Transform clickedButton)
+        {
+            switch (clickedButton.name)
+            {
+                case "CASES":
+                    storyManager.DefaultStoryEntry();
+                    break;
+                case "USERS":
+                case "STATS":
+                    selectButton(clickedButton);
+                    break;
+                case "HOME":
+                    storyManager.ResetStory();
+                    break;
+                default:
+                    break;
             }
         }
 
