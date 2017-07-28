@@ -12,6 +12,8 @@ namespace Holograph
         private GameObject reportPanel;
         private Animator globeAnimator;
         private GlobeBehavior globeBehavior;
+        private GameObject infoPanel;
+        private InfoPanelBehavior infoPanelBehavior;
 
         private int fadesInHash;
 
@@ -29,6 +31,28 @@ namespace Holograph
             mapManager.hideNodes();
         }
 
+        public void Expand(Transform expandedNode)
+        {
+            foreach (GameObject node in expandedNode.GetComponent<NodeBehavior>().neighborhood)
+            {
+
+                mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
+                node.SetActive(true);
+            }
+            mapManager.positionNodes();
+            //MenuAnimator.SetBool("Button_1", false);
+
+            //CloseMenu();
+            infoPanelBehavior.ClosePanel();
+        }
+
+        public void ListInfo(Transform node)
+        {
+            infoPanel.SetActive(true);
+            NodeInfo nodeInfo = node.GetComponent<NodeBehavior>().nodeInfo;
+            infoPanelBehavior.UpdateInfo(nodeInfo);
+        }
+
         public void DefaultStoryEntry()
         {
             globeBehavior.DefaultStoryEntry();
@@ -42,6 +66,8 @@ namespace Holograph
             globeAnimator = globe.GetComponent<Animator>();
             fadesInHash = Animator.StringToHash("fadesIn");
             globeBehavior = globe.GetComponent<GlobeBehavior>();
+            infoPanel = transform.Find("InfoPanel").gameObject;
+            infoPanelBehavior = infoPanel.GetComponent<InfoPanelBehavior>();
         }
 
         // Update is called once per frame
