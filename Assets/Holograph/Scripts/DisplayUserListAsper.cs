@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Holograph
 {
-    public class DisplayUserList : MonoBehaviour
+    public class DisplayUserListAsper : MonoBehaviour
     {
         public Text TextPrefab;
         public Dictionary<long, String> Users = new Dictionary<long, string>(0);
