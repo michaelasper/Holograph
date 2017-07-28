@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity.InputModule;
 
 namespace Holograph
 {
-    public class HudManager : MonoBehaviour
+    public class HudManager : MonoBehaviour, IFocusable
     {
         [Range(.1f, .3f)]
         public float moveLerp = .2f;
@@ -36,6 +37,16 @@ namespace Holograph
                 Transform childButton = transform.GetChild(i);
                 childButton.GetComponent<HudButtonBehavior>().switchSelected(clickedButton == childButton);
             }
+        }
+
+        public void OnFocusEnter()
+        {
+            isGazedAt = true;
+        }
+
+        public void OnFocusExit()
+        {
+            isGazedAt = false;
         }
     }
 }
