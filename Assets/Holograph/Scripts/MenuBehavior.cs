@@ -19,7 +19,7 @@ namespace Holograph
         public GameObject Globe;
         public GameObject ReportPanel;
         //private GameObject[] Slides;
-
+        private InfoPanelBehavior infoPanelBehavior;
 
         private MapManager mapManager;
         public GameObject InfoPanel;
@@ -50,6 +50,8 @@ namespace Holograph
                     //icon.GetComponent<Icon>().Message = NodeMenuItemArray[i].subNodeMenu[j].actionName;
                 //}
             }
+            
+            infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuClickIcon] = UpdateRadialMenuClickIcon;
         }
 

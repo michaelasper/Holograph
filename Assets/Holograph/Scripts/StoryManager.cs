@@ -14,7 +14,6 @@ namespace Holograph
         private GlobeBehavior globeBehavior;
         private GameObject infoPanel;
         private InfoPanelBehavior infoPanelBehavior;
-
         private int fadesInHash;
 
         public void ResetStory()
