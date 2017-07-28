@@ -9,26 +9,23 @@ namespace Holograph
     public class MenuBehavior : MonoBehaviour
     {
         // List of how Icons should look and what they should do
-       // private string[] TextureList = { "First Icon", "Second Icon", "Third Icon", "Fourth Icon" };
+        // private string[] TextureList = { "First Icon", "Second Icon", "Third Icon", "Fourth Icon" };
         //private string[] ActionList; //= { "Expand", "ListInfo", "Hack1", "Hack2" };
 
         //private GameObject[] ObjectList = new GameObject[4];
         //public GameObject IconFab;
-        public GameObject Map;
+        public StoryManager storyManager;
+        //public GameObject Map;
         public GameObject Globe;
         public GameObject ReportPanel;
         //private GameObject[] Slides;
 
         private InfoPanelBehavior infoPanelBehavior;
-        //public Animator GraphAnimator;
-        //private Animator MenuAnimator;
-        private Animator globeAnimator;
 
         private MapManager mapManager;
         public GameObject InfoPanel;
         public TextAsset jsonfile;
 
-        private int fadesInHash;
         
         //void Start()
         void Awake()
@@ -54,12 +51,9 @@ namespace Holograph
                     //icon.GetComponent<Icon>().Message = NodeMenuItemArray[i].subNodeMenu[j].actionName;
                 //}
             }
-
-            mapManager = Map.GetComponent<MapManager>();
+            
             infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuClickIcon] = UpdateRadialMenuClickIcon;
-            globeAnimator = Globe.GetComponent<Animator>();
-            fadesInHash = Animator.StringToHash("fadesIn");
         }
 
         /// <summary>
@@ -103,16 +97,7 @@ namespace Holograph
 
         private void ResetStory()
         {
-            Globe.SetActive(true);
-            Globe.GetComponent<Collider>().enabled = true;
-            Globe.GetComponent<GlobeBehavior>().rotating = true;
-            ReportPanel.SetActive(true);
-            if (globeAnimator != null && globeAnimator.isInitialized)
-            {
-                globeAnimator.SetTrigger(fadesInHash);
-                //NetworkMessages.Instance.SendAnimationHash(fadesInHash, NetworkMessages.AnimationTypes.Trigger);
-            }
-            mapManager.hideNodes();
+            storyManager.ResetStory();
         }
         // Update is called once per frame
         void Update()

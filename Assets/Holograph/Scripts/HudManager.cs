@@ -1,13 +1,14 @@
-﻿using HoloToolkit.Unity.InputModule;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity.InputModule;
 
 namespace Holograph
 {
-    public class HudManager : MonoBehaviour
+    public class HudManager : MonoBehaviour, IFocusable
     {
+        public StoryManager storyManager;
         [Range(.1f, .3f)]
         public float moveLerp = .2f;
         private Transform cam;
@@ -25,24 +26,37 @@ namespace Holograph
                 var headPosition = cam.position;
                 var gazeDirection = cam.forward;
                 gazeDirection.y = 0f;
-                gazeDirection = Quaternion.Euler(0f, -7f, 0f) * gazeDirection; //Ad hoc solution to misplacement of hud anchor
-                moveTarget = headPosition + new Vector3(0f, -.8f, 0f) + gazeDirection.normalized * 1f;
+                moveTarget = headPosition + new Vector3(0f, -.5f, 0f) + gazeDirection.normalized * 1f;
             }
-
-            //var hudDepth = (gazeDirection.y * -1500) + MAX_HUD_DEPTH;
-            //Debug.Log("Depth: " + hudDepth);
-            //var newPos = new Vector3((float)hud.transform.localPosition.x, hudDepth, (float)hud.transform.localPosition.z);
-
-            transform.position = Vector3.Lerp(transform.position, moveTarget,
-                moveLerp);
+            transform.position = Vector3.Lerp(transform.position, moveTarget, moveLerp);
         }
         
-        public void selectButton(Transform clickedButton)
+        private void selectButton(Transform selectedButton)
         {
             for (int i = 0; i < transform.childCount; ++i)
             {
                 Transform childButton = transform.GetChild(i);
-                childButton.GetComponent<HudButtonBehavior>().switchSelected(clickedButton == childButton);
+                childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
+            }
+
+        }
+
+        public void clickButtonUp(Transform clickedButton)
+        {
+            switch (clickedButton.name)
+            {
+                case "CASES":
+                    storyManager.DefaultStoryEntry();
+                    break;
+                case "USERS":
+                case "STATS":
+                    selectButton(clickedButton);
+                    break;
+                case "HOME":
+                    storyManager.ResetStory();
+                    break;
+                default:
+                    break;
             }
         }
 

@@ -103,7 +103,6 @@ namespace Holograph
             if (globeAnimator != null && globeAnimator.isInitialized)
             {
                 globeAnimator.SetTrigger(fadesOutHash);
-                NetworkMessages.Instance.SendAnimationHash(fadesOutHash, NetworkMessages.AnimationTypes.Trigger);
             }
             //Used in pushpin mode
             if (pushpinMode)
@@ -117,14 +116,19 @@ namespace Holograph
             }
         }
 
-        private void FirstNodeTransform(NetworkInMessage msg)
+        public void DefaultStoryEntry()
         {
-            long userId = msg.ReadInt64();
             rotating = false;
             mapManager.transform.position = transform.position;
             mapManager.initMap();
             mapManager.positionNodes();
             firstNode.transform.localPosition = Vector3.zero;
+            globeAnimator.SetTrigger(fadesOutHash);
+        }
+        private void FirstNodeTransform(NetworkInMessage msg)
+        {
+            //long userId = msg.ReadInt64();
+            DefaultStoryEntry();
         }
     }
 }
