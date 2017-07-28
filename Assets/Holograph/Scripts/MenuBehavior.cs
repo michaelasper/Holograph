@@ -20,7 +20,6 @@ namespace Holograph
         public GameObject ReportPanel;
         //private GameObject[] Slides;
 
-        private InfoPanelBehavior infoPanelBehavior;
 
         private MapManager mapManager;
         public GameObject InfoPanel;
@@ -51,8 +50,6 @@ namespace Holograph
                     //icon.GetComponent<Icon>().Message = NodeMenuItemArray[i].subNodeMenu[j].actionName;
                 //}
             }
-            
-            infoPanelBehavior = InfoPanel.GetComponent<InfoPanelBehavior>();
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuClickIcon] = UpdateRadialMenuClickIcon;
         }
 
@@ -61,28 +58,13 @@ namespace Holograph
         /// </summary>
         public void Expand()
         {
-            foreach (GameObject node in this.transform.parent.GetComponent<NodeBehavior>().neighborhood)
-            {
-
-                mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
-                node.SetActive(true);
-            }
-            mapManager.positionNodes();
-            //MenuAnimator.SetBool("Button_1", false);
-
-            //CloseMenu();
-            infoPanelBehavior.ClosePanel();
+            storyManager.Expand(transform.parent);
         }
 
 
         public void ListInfo()
         {
-
-
-            InfoPanel.SetActive(true);
-
-            NodeInfo nodeInfo = this.transform.parent.GetComponent<NodeBehavior>().nodeInfo;
-            infoPanelBehavior.UpdateInfo(nodeInfo);
+            storyManager.ListInfo(transform.parent);
         }
 
         public void Hack()
