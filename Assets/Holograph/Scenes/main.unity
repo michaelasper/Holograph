@@ -599,6 +599,21 @@ Prefab:
       propertyPath: StageStoryManager
       value: 
       objectReference: {fileID: 921672466}
+    - target: {fileID: 114747219454053144, guid: b275cac9dbb694720882703b265143e0,
+        type: 2}
+      propertyPath: HoverHighlight.r
+      value: 0.5441177
+      objectReference: {fileID: 0}
+    - target: {fileID: 114747219454053144, guid: b275cac9dbb694720882703b265143e0,
+        type: 2}
+      propertyPath: HoverHighlight.g
+      value: 0.5441177
+      objectReference: {fileID: 0}
+    - target: {fileID: 114747219454053144, guid: b275cac9dbb694720882703b265143e0,
+        type: 2}
+      propertyPath: HoverHighlight.b
+      value: 0.5441177
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65925208917429872, guid: b275cac9dbb694720882703b265143e0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b275cac9dbb694720882703b265143e0, type: 2}
@@ -1167,16 +1182,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c0e9485bdac184489848800ad87d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonfile: {fileID: 4900000, guid: 003d99678badd6c4db33f423b302d1e1, type: 3}
-  RadialMenu: {fileID: 2109098384}
   globe: {fileID: 1464671490}
+  jsonfile: {fileID: 4900000, guid: 003d99678badd6c4db33f423b302d1e1, type: 3}
   materials:
   - {fileID: 2100000, guid: fd561318dcb561c419f912545645fc7e, type: 2}
   - {fileID: 2100000, guid: 8eedd2a31edc7ba47ac76e7275fc514e, type: 2}
   - {fileID: 2100000, guid: d574a3366d3c2a34d8a51e104f2b331f, type: 2}
   - {fileID: 2100000, guid: 46210bcb07248e84ca4a5310c6414aab, type: 2}
   - {fileID: 2100000, guid: fe4226eef5a017d44b0a501bca422303, type: 2}
-  visible: 
+  nodeObject: []
   nodePrefabs:
   - nodeType: ALERT
     nodePrefab: {fileID: 1478787344977326, guid: be702116d18f4cb4ba984a9c1a244f18,
@@ -1190,7 +1204,8 @@ MonoBehaviour:
   - nodeType: USER
     nodePrefab: {fileID: 1990329819373972, guid: 7038201a83d8519479ee825340d4eb1e,
       type: 2}
-  nodeObject: []
+  RadialMenu: {fileID: 2109098384}
+  visible: 
 --- !u!95 &286436075
 Animator:
   serializedVersion: 3
@@ -2037,7 +2052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d336e8503f607864296c856500e0c759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SessionName: Default
 --- !u!1 &1464671490 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1949337950445680, guid: 662323150571d6c48a3c09b6cdfaf1e5,
