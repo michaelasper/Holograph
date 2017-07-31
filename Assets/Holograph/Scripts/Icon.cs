@@ -1,14 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
 using HoloToolkit.Unity.InputModule;
+using UnityEngine;
 
 namespace Holograph
 {
+    [Obsolete("Not used anymore", true)]
     public class Icon : MonoBehaviour, IInputHandler
     {
-
-        public string TextureName { get; set; }
-        public string Hash { get; set; }
-        public string Message { get; set; }
         public MenuBehavior menubehvaior;
 
         public Icon(string TextureName)
@@ -16,24 +14,18 @@ namespace Holograph
             this.TextureName = TextureName;
         }
 
-        void OnStart()
-        {
+        public string TextureName { get; set; }
+        public string Hash { get; set; }
+        public string Message { get; set; }
 
-        }
-
-        void ChangeTexture()
-        {
-
-        }
         public void OnInputDown(InputEventData eventData)
         {
-
         }
 
         public void OnInputUp(InputEventData eventData)
         {
-            menubehvaior.Invoke(this.Message, 0);
-            NetworkMessages.Instance.SendRadialMenuClickIcon(this.Message);
+            menubehvaior.Invoke(Message, 0);
+            NetworkMessages.Instance.SendRadialMenuClickIcon(Message);
         }
 
     }

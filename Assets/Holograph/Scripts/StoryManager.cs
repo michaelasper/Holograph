@@ -32,7 +32,7 @@ namespace Holograph
 
         public void Expand(Transform expandedNode)
         {
-            foreach (GameObject node in expandedNode.GetComponent<NodeBehavior>().neighborhood)
+            foreach (GameObject node in expandedNode.GetComponent<NodeBehavior>().Neighborhood)
             {
 
                 mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
@@ -48,7 +48,7 @@ namespace Holograph
         public void ListInfo(Transform node)
         {
             infoPanel.SetActive(true);
-            NodeInfo nodeInfo = node.GetComponent<NodeBehavior>().nodeInfo;
+            NodeInfo nodeInfo = node.GetComponent<NodeBehavior>().NodeInfo;
             infoPanelBehavior.UpdateInfo(nodeInfo);
         }
 

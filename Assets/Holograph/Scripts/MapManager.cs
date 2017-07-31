@@ -120,8 +120,8 @@ namespace Holograph
                 adjMatrix[targetId, sourceId] = 1;
                 GameObject source = nodeObject[sourceId];
                 GameObject target = nodeObject[targetId];
-                LinkedList<GameObject> sourceNeighborhood = source.GetComponent<NodeBehavior>().neighborhood;
-                LinkedList<GameObject> targetNeighborhood = target.GetComponent<NodeBehavior>().neighborhood;
+                LinkedList<GameObject> sourceNeighborhood = source.GetComponent<NodeBehavior>().Neighborhood;
+                LinkedList<GameObject> targetNeighborhood = target.GetComponent<NodeBehavior>().Neighborhood;
                 sourceNeighborhood.AddLast(target);
                 targetNeighborhood.AddLast(source);
             }

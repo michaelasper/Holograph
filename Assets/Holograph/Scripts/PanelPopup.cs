@@ -6,6 +6,8 @@ using System;
 
 namespace Holograph
 {
+    [Obsolete("Not used anymore", true)]
+
     public class PanelPopup : MonoBehaviour
     {
         public Transform hudTransform;

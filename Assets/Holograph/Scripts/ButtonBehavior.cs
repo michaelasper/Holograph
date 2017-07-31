@@ -1,61 +1,59 @@
-﻿using HoloToolkit.Sharing;
-using HoloToolkit.Unity.InputModule;
-using System;
+﻿using HoloToolkit.Unity.InputModule;
 using UnityEngine;
 
 namespace Holograph
 {
     public class ButtonBehavior : MonoBehaviour, IInputHandler, IFocusable
     {
-        public Color hoverHighlight;
-        private Transform cam;
-        private Material objectMaterial;
-        private string buttonName;
-        public string methodName;
-        private string color;
-        private string texture;
-        private MenuBehavior menuBehavior;
-        void Start()
+        private string _buttonName;
+        private Transform _cam;
+        private string _color;
+        private string _texture;
+
+        private MenuBehavior _menuBehavior;
+        private Material _objectMaterial;
+
+        public Color HoverHighlight;
+        public string MethodName;
+
+        public void OnFocusEnter()
         {
-            cam = Camera.main.transform;
-            objectMaterial = GetComponent<MeshRenderer>().material;
-            menuBehavior = transform.parent.GetComponent<MenuBehavior>();
+            _objectMaterial.color = HoverHighlight;
         }
 
-        void Update()
+        public void OnFocusExit()
         {
-
+            _objectMaterial.color = Color.white;
         }
 
         public void OnInputDown(InputEventData eventData)
         {
-
         }
 
         public void OnInputUp(InputEventData eventData)
         {
             OnFocusExit();
-            menuBehavior.CloseMenu();
-            menuBehavior.Invoke(methodName, 0f);
-            NetworkMessages.Instance.SendRadialMenuClickIcon(methodName);
+            _menuBehavior.Invoke(MethodName, 0f);
+            NetworkMessages.Instance.SendRadialMenuClickIcon(MethodName);
         }
 
-        public void OnFocusEnter()
+        private void Start()
         {
-            objectMaterial.color = hoverHighlight;
+            _cam = Camera.main.transform;
+            _objectMaterial = GetComponent<MeshRenderer>().material;
+            _menuBehavior = transform.parent.GetComponent<MenuBehavior>();
         }
 
-        public void OnFocusExit()
+        private void Update()
         {
-            objectMaterial.color = Color.white;
         }
 
         public void initLayout(MenuBehavior.JNodeMenu.NodeMenuItem nodeMenuItem)
         {
-            this.buttonName = nodeMenuItem.name;
-            this.methodName = nodeMenuItem.methodName;
-            this.color = nodeMenuItem.color;
-            this.texture = nodeMenuItem.texture;
+            _buttonName = nodeMenuItem.name;
+            MethodName = nodeMenuItem.methodName;
+            _color = nodeMenuItem.color;
+            _texture = nodeMenuItem.texture;
         }
     }
 }

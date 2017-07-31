@@ -1,40 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-public class NodeInfo {
-
-
-    public Dictionary<string, string> nodeDictionary;
-
-    public NodeInfo(string nodeName, string nodeType, string[] keyList, string[] valueList)
+namespace Holograph
+{
+    public class NodeInfo
     {
-        if (keyList.Length != valueList.Length) throw new System.Exception("Invalid key-value list");
+        public Dictionary<string, string> NodeDictionary;
 
-
-        nodeDictionary = new Dictionary<string, string>();
-        nodeDictionary.Add("name", nodeName);
-        nodeDictionary.Add("type", nodeType);
-
-        for(int i = 0; i < keyList.Length; i++)
+        public NodeInfo(string nodeName, string nodeType, string[] keyList, string[] valueList)
         {
-            nodeDictionary.Add(keyList[i], valueList[i]);
+            if (keyList.Length != valueList.Length) throw new Exception("Invalid key-value list");
+
+
+            NodeDictionary = new Dictionary<string, string> {{"name", nodeName}, {"type", nodeType}};
+
+            for (var i = 0; i < keyList.Length; i++)
+                NodeDictionary.Add(keyList[i], valueList[i]);
+        }
+
+
+        public void AddProperty(string propertyName, string propertyValue)
+        {
+            NodeDictionary.Add(propertyName, propertyValue);
+        }
+
+        public string GetProperty(string propertyName)
+        {
+            return NodeDictionary[propertyName];
+        }
+
+        public override string ToString()
+        {
+            return NodeDictionary.ToString();
         }
     }
-
-   
-
-    public void AddProperty(string propertyName, string propertyValue)
-    {
-        nodeDictionary.Add(propertyName, propertyValue);
-    }
-
-    public string GetProperty(string propertyName)
-    {
-        return nodeDictionary[propertyName];
-    }
-
-    public override string ToString()
-    {
-        return nodeDictionary.ToString();
-    }
-
 }

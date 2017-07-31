@@ -27,7 +27,7 @@
     },
     {
       "name": "Back",
-      "methodName": "Hack",
+      "methodName": "Back",
       "color": "white",
       "texture": "SecondIcon",
       "subNodeMenu": [
@@ -52,7 +52,7 @@
     },
     {
       "name": "Mitigate",
-      "methodName": "Hack",
+      "methodName": "Mitigate",
       "color": "green",
       "texture": "ThirdIcon",
       "subNodeMenu": [
@@ -76,13 +76,13 @@
       ]
     },
     {
-      "name": "Information",
-      "methodName": "ListInfo",
-      "color": "yellow",
-      "texture": "ForthIcon",
+      "name": "Enrich",
+      "methodName": "Enrich",
+      "color": "red",
+      "texture": "FirstIcon",
       "subNodeMenu": [
         {
-          "actionName": "Hack2",
+          "actionName": "Expand",
           "actionValue": "Gather Info"
         },
         {
@@ -100,6 +100,7 @@
         }
       ]
     },
+
     {
       "name": "Home",
       "methodName": "ResetStory",
@@ -125,14 +126,15 @@
         }
       ]
     },
+
     {
-      "name": "Enrich",
-      "methodName": "Hack",
-      "color": "red",
-      "texture": "FirstIcon",
+      "name": "Information",
+      "methodName": "ListInfo",
+      "color": "yellow",
+      "texture": "ForthIcon",
       "subNodeMenu": [
         {
-          "actionName": "Expand",
+          "actionName": "Hack2",
           "actionValue": "Gather Info"
         },
         {

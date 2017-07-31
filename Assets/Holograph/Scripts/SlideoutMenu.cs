@@ -1,23 +1,21 @@
 ﻿using HoloToolkit.Unity.InputModule;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.Rendering;
 
 namespace Holograph
 {
     public class SlideoutMenu : MonoBehaviour, IInputHandler
     {
-        public float MenuLength = .5f;
-        public float SlidingSpeedPercentage;
-        public Color MenuColor = new Color(.5f, .5f, .5f);
-
-        private Animator slideoutAnimator;
-        private int slidesHash;
-        public float currMenuLength;
-        private float t;
-        private float yTop, yBottom;
         private static Material mat;
+        public float CurrMenuLength;
+        public Color MenuColor = new Color(.5f, .5f, .5f);
+        public float MenuLength = .5f;
+
+        private Animator _slideoutAnimator;
+        private int _slidesHash;
+        public float SlidingSpeedPercentage;
+        private float _t;
+        private float _yTop, _yBottom;
 
         void IInputHandler.OnInputDown(InputEventData eventData)
         {
@@ -26,41 +24,38 @@ namespace Holograph
 
         void IInputHandler.OnInputUp(InputEventData eventData)
         {
-            slideoutAnimator.SetTrigger(slidesHash);
-            t = 0f;
+            _slideoutAnimator.SetTrigger(_slidesHash);
+            _t = 0f;
         }
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
-            slideoutAnimator = GetComponent<Animator>();
-            slidesHash = Animator.StringToHash("slides");
-            yTop = 1f / 2;
-            yBottom = -1f / 2;
+            _slideoutAnimator = GetComponent<Animator>();
+            _slidesHash = Animator.StringToHash("slides");
+            _yTop = 1f / 2;
+            _yBottom = -1f / 2;
             CreateMaterial();
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            if (t < 1f)
-            {
-                float speed = MenuLength * SlidingSpeedPercentage;
-                currMenuLength = Mathf.Lerp(0f, MenuLength, t);
-                t += speed * Time.deltaTime;
-            }
+            if (!(_t < 1f)) return;
+            var speed = MenuLength * SlidingSpeedPercentage;
+            CurrMenuLength = Mathf.Lerp(0f, MenuLength, _t);
+            _t += speed * Time.deltaTime;
         }
 
-        static void CreateMaterial()
+        private static void CreateMaterial()
         {
             if (!mat)
             {
-                Shader shader = Shader.Find("Hidden/Internal-Colored");
-                mat = new Material(shader);
-                mat.hideFlags = HideFlags.HideAndDontSave;
-                mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                mat.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
+                var shader = Shader.Find("Hidden/Internal-Colored");
+                mat = new Material(shader) {hideFlags = HideFlags.HideAndDontSave};
+                mat.SetInt("_SrcBlend", (int) BlendMode.One);
+                mat.SetInt("_DstBlend", (int) BlendMode.One);
+                mat.SetInt("_Cull", (int) CullMode.Off);
                 mat.SetInt("_ZWrite", 0);
             }
         }
@@ -72,10 +67,10 @@ namespace Holograph
             mat.SetPass(0);
             GL.Begin(GL.QUADS);
             GL.Color(MenuColor);
-            GL.Vertex3(.5f, yTop, 0f);
-            GL.Vertex3(.5f + currMenuLength, yTop, 0f);
-            GL.Vertex3(.5f + currMenuLength, yBottom, 0f);
-            GL.Vertex3(.5f, yBottom, 0f);
+            GL.Vertex3(.5f, _yTop, 0f);
+            GL.Vertex3(.5f + CurrMenuLength, _yTop, 0f);
+            GL.Vertex3(.5f + CurrMenuLength, _yBottom, 0f);
+            GL.Vertex3(.5f, _yBottom, 0f);
             GL.End();
             GL.PopMatrix();
         }

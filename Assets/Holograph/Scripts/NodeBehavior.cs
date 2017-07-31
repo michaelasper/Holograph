@@ -1,67 +1,69 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using HoloToolkit.Unity.InputModule;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Holograph
 {
     public class NodeBehavior : MonoBehaviour, IInputHandler
     {
+        private static Material _lineMaterial;
 
-        public MapManager mapManager;
+        public MapManager MapManager;
+        public LinkedList<GameObject> Neighborhood = new LinkedList<GameObject>();
+
+        public NodeInfo NodeInfo;
+
+        private float _nodeRadius;
+        public TextMesh TextMesh;
         public int id { set; get; }
 
-        public NodeInfo nodeInfo;
-        public TextMesh textMesh;
-        public LinkedList<GameObject> neighborhood = new LinkedList<GameObject>();
-        private static Material lineMaterial;
-
-        private float nodeRadius;
-
-        static void CreateLineMaterial()
+        public void OnInputUp(InputEventData eventData)
         {
-            if (!lineMaterial)
+            MapManager.menuClickedOn(id);
+        }
+
+        public void OnInputDown(InputEventData eventData)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private static void CreateLineMaterial()
+        {
+            if (_lineMaterial) return;
+            var shader = Shader.Find("Hidden/Internal-Colored");
+            _lineMaterial = new Material(shader)
             {
-                Shader shader = Shader.Find("Hidden/Internal-Colored");
-                lineMaterial = new Material(shader);
-                lineMaterial.hideFlags = HideFlags.HideAndDontSave;
-                lineMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                lineMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                lineMaterial.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
-                lineMaterial.SetInt("_ZWrite", 0);
-            }
+                hideFlags = HideFlags.HideAndDontSave
+            };
+            _lineMaterial.SetInt("_SrcBlend", (int) BlendMode.One);
+            _lineMaterial.SetInt("_DstBlend", (int) BlendMode.One);
+            _lineMaterial.SetInt("_Cull", (int) CullMode.Off);
+            _lineMaterial.SetInt("_ZWrite", 0);
         }
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
-            mapManager = transform.parent.GetComponent<MapManager>();
-            nodeRadius = 0f;// .0005f / transform.localScale.x;
+            MapManager = transform.parent.GetComponent<MapManager>();
+            _nodeRadius = 0f; // .0005f / transform.localScale.x;
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-
-
         }
 
         public void SetNodeInfo(NodeInfo info)
         {
-            this.nodeInfo = info;
+            NodeInfo = info;
             ChangeName(info.GetProperty("name"));
-
         }
-
-        //public void ChangeColor(Material color)
-        //{
-        //    GetComponent<Renderer>().material = color;
-        //}
 
 
         private void ChangeName(string text)
         {
-            textMesh.text = text;
+            TextMesh.text = text;
         }
 
 
@@ -75,34 +77,22 @@ namespace Holograph
             CreateLineMaterial();
             GL.PushMatrix();
             GL.Begin(GL.LINES);
-            lineMaterial.SetPass(0);
+            _lineMaterial.SetPass(0);
             GL.Color(Color.gray);
-            bool[] visible = this.transform.parent.GetComponent<MapManager>().visible;
-            foreach (GameObject n in neighborhood)
-            {
+            var visible = transform.parent.GetComponent<MapManager>().visible;
+            foreach (var n in Neighborhood)
                 if (visible[id] && visible[n.GetComponent<NodeBehavior>().id])
                 {
-                    Vector3 s = n.transform.position;
-                    Vector3 t = this.transform.position;
-                    Vector3 dir = (t - s).normalized;
-                    s += dir * nodeRadius;
-                    t -= dir * nodeRadius;
+                    var s = n.transform.position;
+                    var t = transform.position;
+                    var dir = (t - s).normalized;
+                    s += dir * _nodeRadius;
+                    t -= dir * _nodeRadius;
                     GL.Vertex(s);
                     GL.Vertex(t);
                 }
-            }
             GL.End();
             GL.PopMatrix();
-        }
-
-        public void OnInputUp(InputEventData eventData)
-        {
-            mapManager.menuClickedOn(id);
-        }
-
-        public void OnInputDown(InputEventData eventData)
-        {
-            //throw new NotImplementedException();
         }
     }
 }

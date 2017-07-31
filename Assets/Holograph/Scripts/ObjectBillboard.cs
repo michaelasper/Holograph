@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Obsolete("Not used anymore", true)]
 
 public class ObjectBillboard : MonoBehaviour
 {
