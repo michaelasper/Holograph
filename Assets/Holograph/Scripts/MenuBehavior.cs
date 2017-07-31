@@ -14,7 +14,7 @@ namespace Holograph
         public GameObject MitigatePanel;
         public GameObject ReportPanel;
 
-        public StoryManager StoryManager;
+        public StoryManager StageStoryManager;
 
 
         private void Awake()
@@ -25,7 +25,7 @@ namespace Holograph
             var json = JsonFileAsset.text;
             var nodeMenuItems = JsonUtility.FromJson<JNodeMenu>(json).nodeMenuItems;
             Debug.Log("there are " + nodeMenuItems.Length + " menu items");
-            for (var i = 0; i < nodeMenuItems.Length; i++)
+            for (var i = 0; i < nodeMenuItems.Length; ++i)
                 transform.GetChild(i).GetComponent<ButtonBehavior>().initLayout(nodeMenuItems[i]);
            
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuClickIcon] =
@@ -39,7 +39,7 @@ namespace Holograph
         {
             CloseAllPanels();
             CloseMenu();
-            storyManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().id);
+            StageStoryManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().id);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Holograph
         public void Enrich()
         {
             EnrichPanel.SetActive(!EnrichPanel.activeSelf);
-            storyManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().id);
+            StageStoryManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().id);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Holograph
         /// </summary>
         private void ResetStory()
         {
-            storyManager.TriggerStory(StoryManager.StoryAction.ResetStory);
+            StageStoryManager.TriggerStory(StoryManager.StoryAction.ResetStory);
         }
 
         // Update is called once per frame

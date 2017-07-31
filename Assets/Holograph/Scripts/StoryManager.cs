@@ -9,14 +9,14 @@ namespace Holograph
     public class StoryManager : MonoBehaviour
     {
         //This script has functions to control the story
-        private GameObject globe;
-        private MapManager mapManager;
-        private GameObject reportPanel;
-        private Animator globeAnimator;
-        private GlobeBehavior globeBehavior;
-        private GameObject infoPanel;
-        private InfoPanelBehavior infoPanelBehavior;
-        private int fadesInHash;
+        private GameObject _globe;
+        private MapManager _mapManager;
+        private GameObject _reportPanel;
+        private Animator _globeAnimator;
+        private GlobeBehavior _globeBehavior;
+        private GameObject _infoPanel;
+        private InfoPanelBehavior _infoPanelBehavior;
+        private int _fadesInHash;
 
         public enum StoryAction : byte
         {
@@ -28,15 +28,15 @@ namespace Holograph
 
         private void ResetStory()
         {
-            globe.gameObject.SetActive(true);
-            globe.GetComponent<Collider>().enabled = true;
-            globe.GetComponent<GlobeBehavior>().rotating = true;
-            reportPanel.SetActive(true);
-            if (globeAnimator != null && globeAnimator.isInitialized)
+            _globe.gameObject.SetActive(true);
+            _globe.GetComponent<Collider>().enabled = true;
+            _globe.GetComponent<GlobeBehavior>().rotating = true;
+            _reportPanel.SetActive(true);
+            if (_globeAnimator != null && _globeAnimator.isInitialized)
             {
-                globeAnimator.SetTrigger(fadesInHash);
+                _globeAnimator.SetTrigger(_fadesInHash);
             }
-            mapManager.hideNodes();
+            _mapManager.hideNodes();
         }
 
         private void Expand(Transform expandedNode)
@@ -44,36 +44,34 @@ namespace Holograph
             foreach (GameObject node in expandedNode.GetComponent<NodeBehavior>().Neighborhood)
             {
 
-                mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
+                _mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
                 node.SetActive(true);
             }
-            mapManager.positionNodes();
-            infoPanelBehavior.ClosePanel();
+            _mapManager.positionNodes();
+            //_infoPanelBehavior.ClosePanel();
         }
 
         private void ListInfo(Transform node)
         {
-            infoPanel.SetActive(true);
+            _infoPanel.SetActive(true);
             NodeInfo nodeInfo = node.GetComponent<NodeBehavior>().NodeInfo;
-            infoPanelBehavior.UpdateInfo(nodeInfo);
+            _infoPanelBehavior.UpdateInfo(nodeInfo);
         }
 
         private void EnterDefaultStory()
         {
-            globeBehavior.DefaultStoryEntry();
+            _globeBehavior.DefaultStoryEntry();
         }
 
         void Start()
         {
-            globe = transform.Find("Globe").gameObject;
-            mapManager = GetComponentInChildren<MapManager>();
-            reportPanel = transform.Find("ReportPanel").gameObject;
-            globeAnimator = globe.GetComponent<Animator>();
-            fadesInHash = Animator.StringToHash("fadesIn");
-            globeBehavior = globe.GetComponent<GlobeBehavior>();
-            infoPanel = transform.Find("InfoPanel").gameObject;
-            infoPanelBehavior = infoPanel.GetComponent<InfoPanelBehavior>();
-
+            _globe = transform.Find("Globe").gameObject;
+            _mapManager = GetComponentInChildren<MapManager>();
+            _reportPanel = transform.Find("ReportPanel").gameObject;
+            _globeAnimator = _globe.GetComponent<Animator>();
+            _fadesInHash = Animator.StringToHash("fadesIn");
+            _globeBehavior = _globe.GetComponent<GlobeBehavior>();
+            
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.StoryControl] = UpdateStoryControl;
         }
 
@@ -94,14 +92,14 @@ namespace Holograph
                     {
                         throw new ArgumentException("ListInfo expects one parameter");
                     }
-                    ListInfo(mapManager.nodeObject[args[0]].transform);
+                    ListInfo(_mapManager.nodeObject[args[0]].transform);
                     break;
                 case StoryAction.Expand:
                     if (args == null || args.Length != 1)
                     {
                         throw new ArgumentException("Expand expects one parameter");
                     }
-                    Expand(mapManager.nodeObject[args[0]].transform);
+                    Expand(_mapManager.nodeObject[args[0]].transform);
                     break;
                 case StoryAction.ResetStory:
                     ResetStory();

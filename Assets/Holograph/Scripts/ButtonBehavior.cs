@@ -13,7 +13,7 @@ namespace Holograph
         private MenuBehavior _menuBehavior;
         private Material _objectMaterial;
 
-        public Color HoverHighlight;
+        private Color HoverHighlight;
         public string MethodName;
 
         public void OnFocusEnter()
@@ -39,6 +39,7 @@ namespace Holograph
 
         private void Start()
         {
+            ColorUtility.TryParseHtmlString("#BABABAAE", out HoverHighlight);
             _cam = Camera.main.transform;
             _objectMaterial = GetComponent<MeshRenderer>().material;
             _menuBehavior = transform.parent.GetComponent<MenuBehavior>();

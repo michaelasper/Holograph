@@ -15,7 +15,7 @@ namespace Holograph
         public NodeInfo NodeInfo;
 
         private float _nodeRadius;
-        public TextMesh TextMesh;
+        //public TextMesh TextMesh;
         public int id { set; get; }
 
         public void OnInputUp(InputEventData eventData)
@@ -63,7 +63,7 @@ namespace Holograph
 
         private void ChangeName(string text)
         {
-            TextMesh.text = text;
+           // TextMesh.text = text;
         }
 
 

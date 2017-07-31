@@ -389,7 +389,7 @@ Prefab:
         type: 2}
       propertyPath: InfoPanel
       value: 
-      objectReference: {fileID: 149585105}
+      objectReference: {fileID: 75076927}
     - target: {fileID: 114804868811053674, guid: b275cac9dbb694720882703b265143e0,
         type: 2}
       propertyPath: hoverHighlight.r
@@ -589,10 +589,25 @@ Prefab:
       propertyPath: storyManager
       value: 
       objectReference: {fileID: 921672466}
+    - target: {fileID: 114985262316139182, guid: b275cac9dbb694720882703b265143e0,
+        type: 2}
+      propertyPath: StoryManager
+      value: 
+      objectReference: {fileID: 921672466}
+    - target: {fileID: 114985262316139182, guid: b275cac9dbb694720882703b265143e0,
+        type: 2}
+      propertyPath: StageStoryManager
+      value: 
+      objectReference: {fileID: 921672466}
     m_RemovedComponents:
     - {fileID: 65925208917429872, guid: b275cac9dbb694720882703b265143e0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b275cac9dbb694720882703b265143e0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &75076927 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1702574745475376, guid: b275cac9dbb694720882703b265143e0,
+    type: 2}
+  m_PrefabInternal: {fileID: 75076926}
 --- !u!1 &81200999
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,11 +761,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d379ed0a5618c9f479f58bd83a2d0ad3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &149585105 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1033226990202058, guid: f4098295572fafd44af0f2bc9bf0f20b,
-    type: 2}
-  m_PrefabInternal: {fileID: 547791060}
 --- !u!1001 &169824124
 Prefab:
   m_ObjectHideFlags: 0
@@ -1180,6 +1190,7 @@ MonoBehaviour:
   - nodeType: USER
     nodePrefab: {fileID: 1990329819373972, guid: 7038201a83d8519479ee825340d4eb1e,
       type: 2}
+  nodeObject: []
 --- !u!95 &286436075
 Animator:
   serializedVersion: 3
@@ -1348,53 +1359,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
---- !u!1001 &547791060
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 921672464}
-    m_Modifications:
-    - target: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.145
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.029838622
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f4098295572fafd44af0f2bc9bf0f20b, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &547791061 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4555902782298396, guid: f4098295572fafd44af0f2bc9bf0f20b,
-    type: 2}
-  m_PrefabInternal: {fileID: 547791060}
 --- !u!4 &609528803 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4727760775624410, guid: 662323150571d6c48a3c09b6cdfaf1e5,
@@ -1650,7 +1614,6 @@ Transform:
   - {fileID: 609528803}
   - {fileID: 123759824}
   - {fileID: 2109098385}
-  - {fileID: 547791061}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

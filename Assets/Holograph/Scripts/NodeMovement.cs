@@ -27,6 +27,7 @@ namespace Holograph
 
         public void moveTo(Vector3 target)
         {
+            Debug.Log(target);
             _moveTarget = target;
             _moveMaxSpeed = Vector3.Distance(transform.position, target);
             var nodeAnimator = GetComponent<Animator>();
