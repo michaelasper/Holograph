@@ -503,7 +503,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         ///  Mouse jumping is typically used during one of the mouse button modes.
         ///  It means that the cursor will be invisible when it is outside of the
-        ///  Unity game view window, and visible when it breaches the outer edges.
+        ///  Unity game view window, and visible when it breaches the outer Edges.
         /// </summary>
         /// <param name="wantsJumping">Wheter the mouse cursor should be visible over the game window.</param>
         private void SetWantsMouseJumping(bool wantsJumping)

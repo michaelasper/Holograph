@@ -288,7 +288,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a minimum length and width of the surface rectangle. 
-            /// Length is the longer of the two bounding edges and width the shorter edge.
+            /// Length is the longer of the two bounding Edges and width the shorter edge.
             /// </summary>
             /// <param name="minLength">Minimum length</param>
             /// <param name="minWidth">Minimum width</param>
@@ -304,7 +304,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a maximum length and width of the surface rectangle. 
-            /// Length is the longer of the two bounding edges and width the shorter edge.
+            /// Length is the longer of the two bounding Edges and width the shorter edge.
             /// </summary>
             /// <param name="maxLength">Maximum length</param>
             /// <param name="maxWidth">Maximum width</param>
@@ -320,7 +320,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a the length and width of the surface rectangle
-            /// to be within a specified range. Length is the longer of the two bounding edges and 
+            /// to be within a specified range. Length is the longer of the two bounding Edges and 
             /// width the shorter edge.
             /// </summary>
             /// <param name="minLength">Minimum length</param>
@@ -341,7 +341,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a specified length and width.
-            /// Length is the longer of the two bounding edges and width the shorter edge.
+            /// Length is the longer of the two bounding Edges and width the shorter edge.
             /// </summary>
             /// <param name="length">Required surface length</param>
             /// <param name="width">Required surface width</param>
@@ -357,7 +357,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a minimum length.
-            /// Length is the longer of the two bounding edges.
+            /// Length is the longer of the two bounding Edges.
             /// </summary>
             /// <param name="minLength">Minimum surface length</param>
             /// <returns>Constructed component constraint</returns>
@@ -371,7 +371,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a maximum length.
-            /// Length is the longer of the two bounding edges.
+            /// Length is the longer of the two bounding Edges.
             /// </summary>
             /// <param name="maxLength">Maximum surface length</param>
             /// <returns>Constructed component constraint</returns>
@@ -385,7 +385,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring the surface length to be between the given range.
-            /// Length is the longer of the two bounding edges.
+            /// Length is the longer of the two bounding Edges.
             /// </summary>
             /// <param name="minLength">Minimum surface length</param>
             /// <param name="maxLength">Maximum surface length</param>
@@ -401,7 +401,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a specific surface length.
-            /// Length is the longer of the two bounding edges.
+            /// Length is the longer of the two bounding Edges.
             /// </summary>
             /// <param name="length">Required surface length</param>
             /// <returns>Constructed component constraint</returns>
@@ -415,7 +415,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a minimum width.
-            /// Width is the shorter of the two bounding edges.
+            /// Width is the shorter of the two bounding Edges.
             /// </summary>
             /// <param name="minWidth">Minimum surface width</param>
             /// <returns>Constructed component constraint</returns>
@@ -429,7 +429,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a maximum width.
-            /// Width is the shorter of the two bounding edges.
+            /// Width is the shorter of the two bounding Edges.
             /// </summary>
             /// <param name="maxWidth">Maximum surface width</param>
             /// <returns>Constructed component constraint</returns>
@@ -442,7 +442,7 @@ namespace HoloToolkit.Unity
             }
             /// <summary>
             /// Constructs a constraint requiring the surface width to be between the given range.
-            /// Width is the shorter of the two bounding edges.
+            /// Width is the shorter of the two bounding Edges.
             /// </summary>
             /// <param name="minWidth">Minimum surface width</param>
             /// <param name="maxWidth">Maximum surface width</param>
@@ -458,7 +458,7 @@ namespace HoloToolkit.Unity
 
             /// <summary>
             /// Constructs a constraint requiring a specific surface width.
-            /// Width is the shorter of the two bounding edges.
+            /// Width is the shorter of the two bounding Edges.
             /// </summary>
             /// <param name="width">Required surface width</param>
             /// <returns>Constructed component constraint</returns>
@@ -691,7 +691,7 @@ namespace HoloToolkit.Unity
             }
 
             /// <summary>
-            /// Constructs a constraint requiring the components shapes longer edges
+            /// Constructs a constraint requiring the components shapes longer Edges
             /// to have parallel alignment.
             /// </summary>
             /// <param name="componentIndexA">Zero based index of the first component constraint</param>
@@ -707,7 +707,7 @@ namespace HoloToolkit.Unity
             }
 
             /// <summary>
-            /// Constructs a constraint requiring the components shapes longer edges
+            /// Constructs a constraint requiring the components shapes longer Edges
             /// to have perpendicular alignment.
             /// </summary>
             /// <param name="componentIndexA">Zero based index of the first component constraint</param>
@@ -742,10 +742,10 @@ namespace HoloToolkit.Unity
             }
 
             /// <summary>
-            /// Constructs a constraint requiring the components shapes longest edges to
+            /// Constructs a constraint requiring the components shapes longest Edges to
             /// have the same length, within the difference difference parameter. 
             /// 
-            /// The difference is defined as the ratio of the longest edges of the two components.
+            /// The difference is defined as the ratio of the longest Edges of the two components.
             /// </summary>
             /// <param name="componentIndexA">Zero based index of the first component constraint</param>
             /// <param name="componentIndexB">Zero based index of the second component constraint</param>

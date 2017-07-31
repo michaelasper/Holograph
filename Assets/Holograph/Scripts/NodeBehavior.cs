@@ -20,7 +20,7 @@ namespace Holograph
 
         public void OnInputUp(InputEventData eventData)
         {
-            MapManager.menuClickedOn(id);
+            MapManager.TogglesMenu(id);
         }
 
         public void OnInputDown(InputEventData eventData)
@@ -79,7 +79,7 @@ namespace Holograph
             GL.Begin(GL.LINES);
             _lineMaterial.SetPass(0);
             GL.Color(Color.gray);
-            var visible = transform.parent.GetComponent<MapManager>().visible;
+            var visible = transform.parent.GetComponent<MapManager>().Visible;
             foreach (var n in Neighborhood)
                 if (visible[id] && visible[n.GetComponent<NodeBehavior>().id])
                 {

@@ -1,232 +1,357 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using HoloToolkit.Sharing;
-using UnityEngine;
-using Random = UnityEngine.Random;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Linq;
+
+    using HoloToolkit.Sharing;
+
+    using UnityEngine;
+
+    using Random = UnityEngine.Random;
+
+    /// <summary>
+    ///     The map manager.
+    /// </summary>
     public class MapManager : MonoBehaviour
     {
+        /// <summary>
+        ///     The globe.
+        /// </summary>
+        public GameObject Globe;
+
+        /// <summary>
+        ///     The JSON File.
+        /// </summary>
+        public TextAsset JsonFile;
+
+        /// <summary>
+        /// List of node objects
+        /// </summary>
+        public GameObject[] NodeObject;
+
+        /// <summary>
+        ///     The node prefabs.
+        /// </summary>
+        public StringPrefabPair[] NodePrefabs;
+
+        /// <summary>
+        /// The hexagonal menu.
+        /// </summary>
+        public GameObject HexialMenu;
+
+        /// <summary>
+        /// List of the visibilities of all Nodes.
+        /// </summary>
+        public bool[] Visible;
+
+        /// <summary>
+        /// The adjacency matrix of the graph
+        /// </summary>
         private int[,] adjMatrix;
 
-        //public GameObject NodeFab;
-
-        public GameObject globe;
-        public TextAsset jsonfile;
-
-        public Material[] materials;
-
-        //nodes and their indices in the adj-matrix
+        /// <summary>
+        /// Dictionary from names to node IDs
+        /// </summary>
         private Dictionary<string, int> nodeId;
 
-        public GameObject[] nodeObject;
-
-        public StringPrefabPair[] nodePrefabs;
-
-<<<<<<< HEAD
-        public GameObject RadialMenu;
-=======
-        //nodes and their indices in the adj-matrix
-        private Dictionary<string, int> nodeId;
-
-        public GameObject[] nodeObject;
->>>>>>> d3dd046c6deecba5edf262a56384e767361dad2e
-
-        public bool[] visible;
-
-        // Use this for initialization
-        private void Start()
+        /// <summary>
+        /// Hides all the Nodes
+        /// </summary>
+        public void HideNodes()
         {
-            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = UpdateRadialMenu;
+            this.HexialMenu.transform.SetParent(transform.parent);
+            this.HexialMenu.SetActive(false);
+            foreach (GameObject t in this.NodeObject)
+            {
+                Destroy(t);
+            }
         }
 
-        private Material MatchMaterial(string color)
-
+        /// <summary>
+        /// Initializes the map
+        /// </summary>
+        /// <exception cref="FileNotFoundException">
+        /// Thrown when JSON file is not specified (in Unity inspector)
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// Thrown when JSON specify an unsupported node type
+        /// </exception>
+        public void InitMap()
         {
-            for (var i = 0; i < materials.Length; i++)
-                if (materials[i].name == color) return materials[i];
-            throw new Exception("Invalid Material name: " + color);
-        }
+            if (this.JsonFile == null)
+            {
+                throw new FileNotFoundException("JSON not found");
+            }
 
-        public void initMap()
-        {
-            if (jsonfile == null) throw new Exception("JSON File not found");
-
-            var json = jsonfile.text;
-            var jGraph = JsonUtility.FromJson<JGraph>(json);
-            var numNodes = jGraph.nodes.Length;
-            adjMatrix = new int[numNodes, numNodes];
-            nodeObject = new GameObject[numNodes];
-            visible = new bool[numNodes];
-            nodeId = new Dictionary<string, int>();
+            string json = this.JsonFile.text;
+            var jsonGraph = JsonUtility.FromJson<JGraph>(json);
+            int numNodes = jsonGraph.Nodes.Length;
+            this.adjMatrix = new int[numNodes, numNodes];
+            this.NodeObject = new GameObject[numNodes];
+            this.Visible = new bool[numNodes];
+            this.nodeId = new Dictionary<string, int>();
             for (var i = 0; i < numNodes; ++i)
             {
-                var nodeInfo = new NodeInfo(jGraph.nodes[i].name, jGraph.nodes[i].type, jGraph.nodes[i].keyList,
-                    jGraph.nodes[i].valueList);
-                var nodePrefab = (from stringPrefabPair in nodePrefabs where stringPrefabPair.nodeType.Equals(jGraph.nodes[i].type) select stringPrefabPair.nodePrefab).FirstOrDefault();
+                var nodeInfo = new NodeInfo(jsonGraph.Nodes[i].Name, jsonGraph.Nodes[i].Type, jsonGraph.Nodes[i].Keys, jsonGraph.Nodes[i].Values);
+                var nodePrefab = (from stringPrefabPair in this.NodePrefabs where stringPrefabPair.NodeType.Equals(jsonGraph.Nodes[i].Type) select stringPrefabPair.NodePrefab)
+                    .FirstOrDefault();
                 if (nodePrefab == null)
+                {
                     throw new NotSupportedException("JSON specifies unsupported node type");
+                }
+
                 var node = Instantiate(nodePrefab, transform);
                 var nodebehvaior = node.GetComponent<NodeBehavior>();
-                node.name = jGraph.nodes[i].name;
+                node.name = jsonGraph.Nodes[i].Name;
                 nodebehvaior.SetNodeInfo(nodeInfo);
-                //Material material = MatchMaterial(jGraph.nodes[i].color);
-                //nodebehvaior.ChangeColor(material);
                 nodebehvaior.id = i;
-                nodeId.Add(jGraph.nodes[i].name, i);
-                nodeObject[i] = node;
+                this.nodeId.Add(jsonGraph.Nodes[i].Name, i);
+                this.NodeObject[i] = node;
                 node.SetActive(false);
             }
-            for (var i = 0; i < jGraph.edges.Length; ++i)
+
+            for (var i = 0; i < jsonGraph.Edges.Length; ++i)
             {
-                var sourceId = nodeId[jGraph.edges[i].source];
-                var targetId = nodeId[jGraph.edges[i].target];
-                adjMatrix[sourceId, targetId] = 1;
-                adjMatrix[targetId, sourceId] = 1;
-                var source = nodeObject[sourceId];
-                var target = nodeObject[targetId];
+                int sourceId = this.nodeId[jsonGraph.Edges[i].Source];
+                int targetId = this.nodeId[jsonGraph.Edges[i].Target];
+                this.adjMatrix[sourceId, targetId] = 1;
+                this.adjMatrix[targetId, sourceId] = 1;
+                var source = this.NodeObject[sourceId];
+                var target = this.NodeObject[targetId];
                 var sourceNeighborhood = source.GetComponent<NodeBehavior>().Neighborhood;
                 var targetNeighborhood = target.GetComponent<NodeBehavior>().Neighborhood;
                 sourceNeighborhood.AddLast(target);
                 targetNeighborhood.AddLast(source);
             }
-            visible[0] = true;
-            nodeObject[0].SetActive(true);
-            globe.GetComponent<GlobeBehavior>().firstNode = nodeObject[0];
+
+            this.Visible[0] = true;
+            this.NodeObject[0].SetActive(true);
+            this.Globe.GetComponent<GlobeBehavior>().firstNode = this.NodeObject[0];
         }
 
-        public void positionNodes()
+        /// <summary>
+        /// Toggles the menu
+        /// </summary>
+        /// <param name="clickedNodeId">
+        /// The node id.
+        /// </param>
+        public void TogglesMenu(int clickedNodeId)
         {
-            var positions = sparseFruchtermanReingold(0);
-            if (positions == null)
-                throw new NullReferenceException("Fruchterman-Reingold algorithm returns null");
+            var radialMenuParentId = this.HexialMenu.transform.GetComponentInParent<NodeBehavior>()?.id;
+            if (clickedNodeId.Equals(radialMenuParentId))
+            {
+                this.HexialMenu.SetActive(!this.HexialMenu.activeSelf);
+            }
+            else
+            {
+                var targetNodeTransform = this.NodeObject[clickedNodeId].transform;
+                this.HexialMenu.transform.SetParent(targetNodeTransform, false);
+                this.HexialMenu.transform.localScale = Vector3.Scale(
+                    new Vector3(.1f, .1f, .1f),
+                    new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
+                this.HexialMenu.SetActive(true);
+            }
+
+            this.HexialMenu.transform.localPosition = Vector3.zero;
+            NetworkMessages.Instance.SendRadialMenu(clickedNodeId, this.HexialMenu.activeSelf);
+        }
+
+        /// <summary>
+        /// Positions the Nodes using Fruchterman Reingold algorithm
+        /// </summary>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Proper noun for the algorithm")]
+        public void PositionNodes()
+        {
+            var positions = this.SparseFruchtermanReingold(0);
+
             for (var i = 0; i < positions.Length; ++i)
-                nodeObject[i].GetComponent<NodeMovement>().moveTo(transform.TransformPoint(positions[i]));
+            {
+                this.NodeObject[i].GetComponent<NodeMovement>().moveTo(transform.TransformPoint(positions[i]));
+            }
         }
 
-        private Vector3[] sparseFruchtermanReingold(int originNode)
+        /// <summary>
+        /// The sparse fruchterman reingold algorithm.
+        /// </summary>
+        /// <param name="originNode">
+        /// The origin node.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Vector3[]"/>.
+        /// </returns>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Proper noun for the algorithm")]
+        private Vector3[] SparseFruchtermanReingold(int originNode)
         {
-            var numNodes = adjMatrix.GetLength(0);
-            var k = Mathf.Sqrt(1f / numNodes);
+            int numNodes = this.adjMatrix.GetLength(0);
+            float k = Mathf.Sqrt(1f / numNodes);
             var t = .2f;
             var iterations = 75;
-            var dt = t / iterations;
+            float dt = t / iterations;
             var pos = new Vector3[numNodes];
             pos[originNode] = Vector3.zero;
             Random.InitState(123);
             for (var i = 0; i < numNodes; ++i)
+            {
                 if (i != originNode)
+                {
                     pos[i] = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                }
+            }
+
             for (var iteration = 0; iteration < iterations; ++iteration)
             {
                 var displacement = new Vector3[numNodes];
                 for (var i = 0; i < numNodes; ++i)
                 {
-                    if (!visible[i] || i == originNode)
+                    if (!this.Visible[i] || i == originNode)
+                    {
                         continue;
+                    }
+
                     for (var j = 0; j < numNodes; ++j)
                     {
-                        if (!visible[j])
+                        if (!this.Visible[j])
+                        {
                             continue;
+                        }
+
                         var delta = pos[i] - pos[j];
-                        var dist = Vector3.Distance(pos[i], pos[j]);
+                        float dist = Vector3.Distance(pos[i], pos[j]);
                         dist = dist > 0.01f ? dist : 0.01f;
-                        var force = delta * (k * k / (dist * dist) - adjMatrix[i, j] * dist / k);
+                        var force = delta * (((k * k) / (dist * dist)) - ((this.adjMatrix[i, j] * dist) / k));
                         displacement[i] += force;
                     }
                 }
+
                 for (var i = 0; i < numNodes; ++i)
                 {
-                    if (!visible[i] || i == originNode)
+                    if (!this.Visible[i] || i == originNode)
+                    {
                         continue;
+                    }
+
                     pos[i] += displacement[i].normalized * t;
                 }
+
                 t -= dt;
             }
+
             return pos;
         }
 
-        private void Update()
+        /// <summary>
+        /// Start method called by Unity Engine
+        /// </summary>
+        private void Start()
         {
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = UpdateMenu;
         }
 
-        public void hideNodes()
+        /// <summary>
+        /// Updates the menu around the node
+        /// </summary>
+        /// <param name="message">
+        /// The network message
+        /// </param>
+        private void UpdateMenu(NetworkInMessage message)
         {
-            RadialMenu.transform.SetParent(transform.parent);
-            RadialMenu.SetActive(false);
-            for (var i = 0; i < nodeObject.Length; ++i)
-                Destroy(nodeObject[i]);
+            message.ReadInt64();
+            int clickedNodeId = message.ReadInt32();
+            bool setActive = Convert.ToBoolean(message.ReadByte());
+            var targetNodeTransform = this.NodeObject[clickedNodeId].transform;
+            this.HexialMenu.transform.SetParent(targetNodeTransform, false);
+            this.HexialMenu.transform.localScale = Vector3.Scale(
+                new Vector3(.1f, .1f, .1f),
+                new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
+            this.HexialMenu.transform.localPosition = Vector3.zero;
+            this.HexialMenu.SetActive(setActive);
         }
 
-        public void menuClickedOn(int nodeId)
-        {
-            var radialMenuParentId = RadialMenu.transform.GetComponentInParent<NodeBehavior>()?.id;
-            if (nodeId.Equals(radialMenuParentId))
-            {
-                RadialMenu.SetActive(!RadialMenu.activeSelf);
-            }
-            else
-            {
-                var targetNodeTransform = nodeObject[nodeId].transform;
-                RadialMenu.transform.SetParent(targetNodeTransform, false);
-                RadialMenu.transform.localScale = Vector3.Scale(new Vector3(.1f, .1f, .1f),
-                    new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y,
-                        1f / targetNodeTransform.localScale.z));
-                RadialMenu.SetActive(true);
-            }
-            RadialMenu.transform.localPosition = Vector3.zero;
-            NetworkMessages.Instance.SendRadialMenu(nodeId, RadialMenu.activeSelf);
-        }
-
-        private void UpdateRadialMenu(NetworkInMessage msg)
-        {
-            var userId = msg.ReadInt64();
-            var nodeId = msg.ReadInt32();
-            var setActive = Convert.ToBoolean(msg.ReadByte());
-            var targetNodeTransform = nodeObject[nodeId].transform;
-            RadialMenu.transform.SetParent(targetNodeTransform, false);
-            RadialMenu.transform.localScale = Vector3.Scale(new Vector3(.1f, .1f, .1f),
-                new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y,
-                    1f / targetNodeTransform.localScale.z));
-            RadialMenu.transform.localPosition = Vector3.zero;
-            RadialMenu.SetActive(setActive);
-        }
-
-        //public GameObject alertNodePrefab;
-        //public GameObject monitorNodePrefab;
-        //public GameObject serverNodePrefab;
-        //public GameObject userNodePrefab;
-
-        [Serializable]
-        public struct StringPrefabPair
-        {
-            public string nodeType;
-            public GameObject nodePrefab;
-        }
-
+        /// <summary>
+        /// The deserialized struct for the JSON File
+        /// </summary>
         [Serializable]
         public struct JGraph
         {
-            public Node[] nodes;
-            public Edge[] edges;
+            /// <summary>
+            /// The Nodes.
+            /// </summary>
+            public Node[] Nodes;
 
+            /// <summary>
+            /// The Edges.
+            /// </summary>
+            public Edge[] Edges;
+
+            /// <summary>
+            /// Defines node struct
+            /// </summary>
             [Serializable]
             public struct Node
             {
-                public string name;
-                public string type;
-                public string[] keyList;
-                public string[] valueList;
+                /// <summary>
+                /// The name of node. Unique
+                /// </summary>
+                public string Name;
+
+                /// <summary>
+                /// The node type.
+                /// </summary>
+                public string Type;
+
+                /// <summary>
+                /// The keys in property list.
+                /// </summary>
+                public string[] Keys;
+
+                /// <summary>
+                /// The values in property list.
+                /// </summary>
+                public string[] Values;
             }
 
+            /// <summary>
+            /// The definition of an edge.
+            /// </summary>
             [Serializable]
             public struct Edge
             {
-                public string source;
-                public string target;
+                /// <summary>
+                /// The source of edge.
+                /// </summary>
+                public string Source;
+
+                /// <summary>
+                /// The target of edge.
+                /// </summary>
+                public string Target;
             }
+        }
+
+        /// <summary>
+        /// The wrapper function for list of materials so that Unity is able to serialize in inspector
+        /// </summary>
+        [Serializable]
+        public struct StringPrefabPair
+        {
+            /// <summary>
+            /// The node type.
+            /// </summary>
+            public string NodeType;
+
+            /// <summary>
+            /// The node prefab.
+            /// </summary>
+            public GameObject NodePrefab;
         }
     }
 }

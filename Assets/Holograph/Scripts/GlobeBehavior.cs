@@ -84,8 +84,8 @@ namespace Holograph
         {
             rotating = false;
             mapManager.transform.position = transform.position;
-            mapManager.initMap();
-            mapManager.positionNodes();
+            mapManager.InitMap();
+            mapManager.PositionNodes();
             RaycastHit hit;
             Ray ray = new Ray(cam.position, cam.forward);
             if (Physics.Raycast(ray, out hit) && hit.transform.name == "Globe")
@@ -120,8 +120,8 @@ namespace Holograph
         {
             rotating = false;
             mapManager.transform.position = transform.position;
-            mapManager.initMap();
-            mapManager.positionNodes();
+            mapManager.InitMap();
+            mapManager.PositionNodes();
             firstNode.transform.localPosition = Vector3.zero;
             globeAnimator.SetTrigger(fadesOutHash);
         }

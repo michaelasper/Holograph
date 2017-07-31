@@ -141,7 +141,7 @@ namespace HoloToolkit.Unity
             float tanFovy = Mathf.Tan(Mathf.Deg2Rad * fovy);
             float tanFovx = aspect * tanFovy;
 
-            // Calculate the edges of the frustum as world space offsets from the middle of the
+            // Calculate the Edges of the frustum as world space offsets from the middle of the
             // frustum in world space.
             Vector3 nearTop = near * tanFovy * cameraUp;
             Vector3 nearRight = near * tanFovx * cameraRight;

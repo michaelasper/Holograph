@@ -36,7 +36,7 @@ namespace Holograph
             {
                 _globeAnimator.SetTrigger(_fadesInHash);
             }
-            _mapManager.hideNodes();
+            _mapManager.HideNodes();
         }
 
         private void Expand(Transform expandedNode)
@@ -44,10 +44,10 @@ namespace Holograph
             foreach (GameObject node in expandedNode.GetComponent<NodeBehavior>().Neighborhood)
             {
 
-                _mapManager.visible[node.GetComponent<NodeBehavior>().id] = true;
+                _mapManager.Visible[node.GetComponent<NodeBehavior>().id] = true;
                 node.SetActive(true);
             }
-            _mapManager.positionNodes();
+            _mapManager.PositionNodes();
             //_infoPanelBehavior.ClosePanel();
         }
 
@@ -92,14 +92,14 @@ namespace Holograph
                     {
                         throw new ArgumentException("ListInfo expects one parameter");
                     }
-                    ListInfo(_mapManager.nodeObject[args[0]].transform);
+                    ListInfo(_mapManager.NodeObject[args[0]].transform);
                     break;
                 case StoryAction.Expand:
                     if (args == null || args.Length != 1)
                     {
                         throw new ArgumentException("Expand expects one parameter");
                     }
-                    Expand(_mapManager.nodeObject[args[0]].transform);
+                    Expand(_mapManager.NodeObject[args[0]].transform);
 
                     break;
                 default:
@@ -110,7 +110,8 @@ namespace Holograph
 
         public void UpdateStoryControl(NetworkInMessage msg)
         {
-            long userId = msg.ReadInt64();
+            msg.ReadInt64();
+            
             StoryAction action = (StoryAction) msg.ReadByte();
             int l = msg.ReadInt32();
             int[] args = new int[l];

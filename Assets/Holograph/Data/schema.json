@@ -1,1866 +1,1866 @@
 {
-   "nodes":[
+   "Nodes":[
       {
-         "name":"malware",
-         "type":"ALERT",
-         "keyList":[
+         "Name":"malware",
+         "Type":"ALERT",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"1",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"1",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"2",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"2",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"3",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"3",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"4",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"4",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"5",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"5",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"6",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"6",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"7",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"7",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"8",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"8",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"9",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"9",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"10",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"10",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"11",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"11",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"12",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"12",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"13",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"13",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"14",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"14",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"15",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"15",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"16",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"16",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"17",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"17",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"18",
-         "type":"USER",
-         "keyList":[
+         "Name":"18",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"19",
-         "type":"USER",
-         "keyList":[
+         "Name":"19",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"20",
-         "type":"USER",
-         "keyList":[
+         "Name":"20",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"21",
-         "type":"USER",
-         "keyList":[
+         "Name":"21",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"22",
-         "type":"USER",
-         "keyList":[
+         "Name":"22",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"23",
-         "type":"USER",
-         "keyList":[
+         "Name":"23",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"24",
-         "type":"USER",
-         "keyList":[
+         "Name":"24",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"25",
-         "type":"USER",
-         "keyList":[
+         "Name":"25",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"26",
-         "type":"USER",
-         "keyList":[
+         "Name":"26",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"27",
-         "type":"USER",
-         "keyList":[
+         "Name":"27",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"28",
-         "type":"USER",
-         "keyList":[
+         "Name":"28",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"29",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"29",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"30",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"30",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"31",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"31",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"32",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"32",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"33",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"33",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"34",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"34",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"35",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"35",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"36",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"36",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"37",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"37",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"38",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"38",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"39",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"39",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"40",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"40",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"41",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"41",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"42",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"42",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"43",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"43",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"44",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"44",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"45",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"45",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"46",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"46",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"47",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"47",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"48",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"48",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"49",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"49",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"50",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"50",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"51",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"51",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"52",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"52",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"53",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"53",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"54",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"54",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"55",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"55",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"56",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"56",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"57",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"57",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"58",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"58",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"59",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"59",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"60",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"60",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"61",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"61",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"62",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"62",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"63",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"63",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"64",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"64",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"65",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"65",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"66",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"66",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"67",
-         "type":"USER",
-         "keyList":[
+         "Name":"67",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"68",
-         "type":"USER",
-         "keyList":[
+         "Name":"68",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"69",
-         "type":"USER",
-         "keyList":[
+         "Name":"69",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"70",
-         "type":"USER",
-         "keyList":[
+         "Name":"70",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"71",
-         "type":"USER",
-         "keyList":[
+         "Name":"71",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"72",
-         "type":"USER",
-         "keyList":[
+         "Name":"72",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"73",
-         "type":"USER",
-         "keyList":[
+         "Name":"73",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"74",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"74",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"75",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"75",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"76",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"76",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"77",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"77",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"78",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"78",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"79",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"79",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"80",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"80",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"81",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"81",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"82",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"82",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"83",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"83",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"84",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"84",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"85",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"85",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"86",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"86",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"87",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"87",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"88",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"88",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"89",
-         "type":"SERVER",
-         "keyList":[
+         "Name":"89",
+         "Type":"SERVER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"90",
-         "type":"USER",
-         "keyList":[
+         "Name":"90",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"91",
-         "type":"USER",
-         "keyList":[
+         "Name":"91",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"92",
-         "type":"USER",
-         "keyList":[
+         "Name":"92",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"93",
-         "type":"USER",
-         "keyList":[
+         "Name":"93",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"94",
-         "type":"USER",
-         "keyList":[
+         "Name":"94",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"95",
-         "type":"USER",
-         "keyList":[
+         "Name":"95",
+         "Type":"USER",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"96",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"96",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"97",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"97",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"98",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"98",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       },
       {
-         "name":"99",
-         "type":"MONITOR",
-         "keyList":[
+         "Name":"99",
+         "Type":"MONITOR",
+         "Keys":[
             "prop1",
             "prop2",
             "prop3"
          ],
-         "valueList":[
+         "Values":[
             "something",
             "nothing",
             "everything"
          ]
       }
    ],
-  "edges": [
+  "Edges": [
     {
-      "source": "malware",
-      "target": "85"
+      "Source": "malware",
+      "Target": "85"
     },
     {
-      "source": "malware",
-      "target": "78"
+      "Source": "malware",
+      "Target": "78"
     },
     {
-      "source": "malware",
-      "target": "85"
+      "Source": "malware",
+      "Target": "85"
     },
     {
-      "source": "malware",
-      "target": "68"
+      "Source": "malware",
+      "Target": "68"
     },
     {
-      "source": "malware",
-      "target": "26"
+      "Source": "malware",
+      "Target": "26"
     },
     {
-      "source": "malware",
-      "target": "74"
+      "Source": "malware",
+      "Target": "74"
     },
     {
-      "source": "malware",
-      "target": "50"
+      "Source": "malware",
+      "Target": "50"
     },
     {
-      "source": "malware",
-      "target": "69"
+      "Source": "malware",
+      "Target": "69"
     },
     {
-      "source": "malware",
-      "target": "29"
+      "Source": "malware",
+      "Target": "29"
     },
     {
-      "source": "malware",
-      "target": "59"
+      "Source": "malware",
+      "Target": "59"
     },
     {
-      "source": "malware",
-      "target": "33"
+      "Source": "malware",
+      "Target": "33"
     },
     {
-      "source": "malware",
-      "target": "99"
+      "Source": "malware",
+      "Target": "99"
     },
     {
-      "source": "malware",
-      "target": "89"
+      "Source": "malware",
+      "Target": "89"
     },
     {
-      "source": "malware",
-      "target": "9"
+      "Source": "malware",
+      "Target": "9"
     },
     {
-      "source": "malware",
-      "target": "18"
+      "Source": "malware",
+      "Target": "18"
     },
     {
-      "source": "malware",
-      "target": "5"
+      "Source": "malware",
+      "Target": "5"
     },
     {
-      "source": "malware",
-      "target": "60"
+      "Source": "malware",
+      "Target": "60"
     },
     {
-      "source": "malware",
-      "target": "52"
+      "Source": "malware",
+      "Target": "52"
     },
     {
-      "source": "malware",
-      "target": "84"
+      "Source": "malware",
+      "Target": "84"
     },
     {
-      "source": "malware",
-      "target": "57"
+      "Source": "malware",
+      "Target": "57"
     },
     {
-      "source": "malware",
-      "target": "50"
+      "Source": "malware",
+      "Target": "50"
     },
     {
-      "source": "malware",
-      "target": "27"
+      "Source": "malware",
+      "Target": "27"
     },
     {
-      "source": "malware",
-      "target": "32"
+      "Source": "malware",
+      "Target": "32"
     },
     {
-      "source": "malware",
-      "target": "53"
+      "Source": "malware",
+      "Target": "53"
     },
     {
-      "source": "malware",
-      "target": "78"
+      "Source": "malware",
+      "Target": "78"
     },
     {
-      "source": "45",
-      "target": "92"
+      "Source": "45",
+      "Target": "92"
     },
     {
-      "source": "93",
-      "target": "70"
+      "Source": "93",
+      "Target": "70"
     },
     {
-      "source": "80",
-      "target": "9"
+      "Source": "80",
+      "Target": "9"
     },
     {
-      "source": "11",
-      "target": "4"
+      "Source": "11",
+      "Target": "4"
     },
     {
-      "source": "92",
-      "target": "50"
+      "Source": "92",
+      "Target": "50"
     },
     {
-      "source": "21",
-      "target": "52"
+      "Source": "21",
+      "Target": "52"
     },
     {
-      "source": "77",
-      "target": "26"
+      "Source": "77",
+      "Target": "26"
     },
     {
-      "source": "48",
-      "target": "40"
+      "Source": "48",
+      "Target": "40"
     },
     {
-      "source": "85",
-      "target": "54"
+      "Source": "85",
+      "Target": "54"
     },
     {
-      "source": "4",
-      "target": "39"
+      "Source": "4",
+      "Target": "39"
     },
     {
-      "source": "13",
-      "target": "45"
+      "Source": "13",
+      "Target": "45"
     },
     {
-      "source": "68",
-      "target": "31"
+      "Source": "68",
+      "Target": "31"
     },
     {
-      "source": "16",
-      "target": "3"
+      "Source": "16",
+      "Target": "3"
     },
     {
-      "source": "58",
-      "target": "15"
+      "Source": "58",
+      "Target": "15"
     },
     {
-      "source": "90",
-      "target": "19"
+      "Source": "90",
+      "Target": "19"
     },
     {
-      "source": "38",
-      "target": "14"
+      "Source": "38",
+      "Target": "14"
     },
     {
-      "source": "37",
-      "target": "5"
+      "Source": "37",
+      "Target": "5"
     },
     {
-      "source": "42",
-      "target": "78"
+      "Source": "42",
+      "Target": "78"
     },
     {
-      "source": "51",
-      "target": "68"
+      "Source": "51",
+      "Target": "68"
     },
     {
-      "source": "90",
-      "target": "30"
+      "Source": "90",
+      "Target": "30"
     },
     {
-      "source": "47",
-      "target": "97"
+      "Source": "47",
+      "Target": "97"
     },
     {
-      "source": "24",
-      "target": "8"
+      "Source": "24",
+      "Target": "8"
     },
     {
-      "source": "46",
-      "target": "2"
+      "Source": "46",
+      "Target": "2"
     },
     {
-      "source": "91",
-      "target": "80"
+      "Source": "91",
+      "Target": "80"
     },
     {
-      "source": "98",
-      "target": "40"
+      "Source": "98",
+      "Target": "40"
     },
     {
-      "source": "66",
-      "target": "61"
+      "Source": "66",
+      "Target": "61"
     },
     {
-      "source": "68",
-      "target": "86"
+      "Source": "68",
+      "Target": "86"
     },
     {
-      "source": "15",
-      "target": "12"
+      "Source": "15",
+      "Target": "12"
     },
     {
-      "source": "57",
-      "target": "50"
+      "Source": "57",
+      "Target": "50"
     },
     {
-      "source": "43",
-      "target": "40"
+      "Source": "43",
+      "Target": "40"
     },
     {
-      "source": "54",
-      "target": "59"
+      "Source": "54",
+      "Target": "59"
     },
     {
-      "source": "93",
-      "target": "76"
+      "Source": "93",
+      "Target": "76"
     },
     {
-      "source": "71",
-      "target": "52"
+      "Source": "71",
+      "Target": "52"
     },
     {
-      "source": "64",
-      "target": "63"
+      "Source": "64",
+      "Target": "63"
     },
     {
-      "source": "9",
-      "target": "35"
+      "Source": "9",
+      "Target": "35"
     },
     {
-      "source": "97",
-      "target": "64"
+      "Source": "97",
+      "Target": "64"
     },
     {
-      "source": "39",
-      "target": "91"
+      "Source": "39",
+      "Target": "91"
     },
     {
-      "source": "79",
-      "target": "8"
+      "Source": "79",
+      "Target": "8"
     },
     {
-      "source": "97",
-      "target": "96"
+      "Source": "97",
+      "Target": "96"
     },
     {
-      "source": "19",
-      "target": "12"
+      "Source": "19",
+      "Target": "12"
     },
     {
-      "source": "31",
-      "target": "66"
+      "Source": "31",
+      "Target": "66"
     },
     {
-      "source": "17",
-      "target": "54"
+      "Source": "17",
+      "Target": "54"
     },
     {
-      "source": "10",
-      "target": "30"
+      "Source": "10",
+      "Target": "30"
     },
     {
-      "source": "4",
-      "target": "51"
+      "Source": "4",
+      "Target": "51"
     },
     {
-      "source": "30",
-      "target": "5"
+      "Source": "30",
+      "Target": "5"
     },
     {
-      "source": "55",
-      "target": "33"
+      "Source": "55",
+      "Target": "33"
     },
     {
-      "source": "13",
-      "target": "75"
+      "Source": "13",
+      "Target": "75"
     },
     {
-      "source": "45",
-      "target": "72"
+      "Source": "45",
+      "Target": "72"
     },
     {
-      "source": "37",
-      "target": "86"
+      "Source": "37",
+      "Target": "86"
     },
     {
-      "source": "23",
-      "target": "90"
+      "Source": "23",
+      "Target": "90"
     },
     {
-      "source": "29",
-      "target": "9"
+      "Source": "29",
+      "Target": "9"
     },
     {
-      "source": "39",
-      "target": "46"
+      "Source": "39",
+      "Target": "46"
     },
     {
-      "source": "37",
-      "target": "27"
+      "Source": "37",
+      "Target": "27"
     },
     {
-      "source": "11",
-      "target": "52"
+      "Source": "11",
+      "Target": "52"
     },
     {
-      "source": "4",
-      "target": "35"
+      "Source": "4",
+      "Target": "35"
     },
     {
-      "source": "2",
-      "target": "98"
+      "Source": "2",
+      "Target": "98"
     },
     {
-      "source": "19",
-      "target": "43"
+      "Source": "19",
+      "Target": "43"
     },
     {
-      "source": "34",
-      "target": "1"
+      "Source": "34",
+      "Target": "1"
     },
     {
-      "source": "43",
-      "target": "40"
+      "Source": "43",
+      "Target": "40"
     },
     {
-      "source": "62",
-      "target": "36"
+      "Source": "62",
+      "Target": "36"
     },
     {
-      "source": "36",
-      "target": "85"
+      "Source": "36",
+      "Target": "85"
     },
     {
-      "source": "89",
-      "target": "18"
+      "Source": "89",
+      "Target": "18"
     },
     {
-      "source": "40",
-      "target": "53"
+      "Source": "40",
+      "Target": "53"
     },
     {
-      "source": "17",
-      "target": "9"
+      "Source": "17",
+      "Target": "9"
     },
     {
-      "source": "80",
-      "target": "64"
+      "Source": "80",
+      "Target": "64"
     },
     {
-      "source": "10",
-      "target": "43"
+      "Source": "10",
+      "Target": "43"
     },
     {
-      "source": "98",
-      "target": "27"
+      "Source": "98",
+      "Target": "27"
     },
     {
-      "source": "44",
-      "target": "16"
+      "Source": "44",
+      "Target": "16"
     },
     {
-      "source": "38",
-      "target": "64"
+      "Source": "38",
+      "Target": "64"
     },
     {
-      "source": "61",
-      "target": "46"
+      "Source": "61",
+      "Target": "46"
     },
     {
-      "source": "40",
-      "target": "85"
+      "Source": "40",
+      "Target": "85"
     },
     {
-      "source": "59",
-      "target": "46"
+      "Source": "59",
+      "Target": "46"
     },
     {
-      "source": "18",
-      "target": "94"
+      "Source": "18",
+      "Target": "94"
     },
     {
-      "source": "32",
-      "target": "24"
+      "Source": "32",
+      "Target": "24"
     },
     {
-      "source": "96",
-      "target": "27"
+      "Source": "96",
+      "Target": "27"
     },
     {
-      "source": "96",
-      "target": "18"
+      "Source": "96",
+      "Target": "18"
     },
     {
-      "source": "43",
-      "target": "29"
+      "Source": "43",
+      "Target": "29"
     },
     {
-      "source": "60",
-      "target": "93"
+      "Source": "60",
+      "Target": "93"
     },
     {
-      "source": "68",
-      "target": "78"
+      "Source": "68",
+      "Target": "78"
     },
     {
-      "source": "4",
-      "target": "82"
+      "Source": "4",
+      "Target": "82"
     },
     {
-      "source": "17",
-      "target": "90"
+      "Source": "17",
+      "Target": "90"
     },
     {
-      "source": "18",
-      "target": "88"
+      "Source": "18",
+      "Target": "88"
     },
     {
-      "source": "89",
-      "target": "78"
+      "Source": "89",
+      "Target": "78"
     },
     {
-      "source": "84",
-      "target": "79"
+      "Source": "84",
+      "Target": "79"
     },
     {
-      "source": "96",
-      "target": "59"
+      "Source": "96",
+      "Target": "59"
     },
     {
-      "source": "52",
-      "target": "30"
+      "Source": "52",
+      "Target": "30"
     },
     {
-      "source": "65",
-      "target": "37"
+      "Source": "65",
+      "Target": "37"
     },
     {
-      "source": "42",
-      "target": "91"
+      "Source": "42",
+      "Target": "91"
     },
     {
-      "source": "86",
-      "target": "70"
+      "Source": "86",
+      "Target": "70"
     },
     {
-      "source": "39",
-      "target": "81"
+      "Source": "39",
+      "Target": "81"
     }
   ]
 }

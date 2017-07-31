@@ -331,7 +331,7 @@ namespace HoloToolkit.Unity
                     Vector3 thirdVertex = meshVertices[meshIndices[index + 2]];
 
                     // The triangle may belong to multiple sectors.  We will copy the whole triangle
-                    // to all of the sectors it belongs to.  This will fill in seams on sector edges
+                    // to all of the sectors it belongs to.  This will fill in seams on sector Edges
                     // although it could cause some amount of visible z-fighting if rendering a wireframe.
                     Vector3 firstSector = VectorToSector(firstVertex);
 

@@ -1182,30 +1182,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c0e9485bdac184489848800ad87d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globe: {fileID: 1464671490}
-  jsonfile: {fileID: 4900000, guid: 003d99678badd6c4db33f423b302d1e1, type: 3}
-  materials:
-  - {fileID: 2100000, guid: fd561318dcb561c419f912545645fc7e, type: 2}
-  - {fileID: 2100000, guid: 8eedd2a31edc7ba47ac76e7275fc514e, type: 2}
-  - {fileID: 2100000, guid: d574a3366d3c2a34d8a51e104f2b331f, type: 2}
-  - {fileID: 2100000, guid: 46210bcb07248e84ca4a5310c6414aab, type: 2}
-  - {fileID: 2100000, guid: fe4226eef5a017d44b0a501bca422303, type: 2}
-  nodeObject: []
-  nodePrefabs:
-  - nodeType: ALERT
-    nodePrefab: {fileID: 1478787344977326, guid: be702116d18f4cb4ba984a9c1a244f18,
+  Globe: {fileID: 1464671490}
+  JsonFile: {fileID: 4900000, guid: 003d99678badd6c4db33f423b302d1e1, type: 3}
+  NodeObject: []
+  NodePrefabs:
+  - NodeType: ALERT
+    NodePrefab: {fileID: 1478787344977326, guid: be702116d18f4cb4ba984a9c1a244f18,
       type: 2}
-  - nodeType: MONITOR
-    nodePrefab: {fileID: 1071941963697930, guid: 750afa97e3c87a841b01c064aeccedba,
+  - NodeType: MONITOR
+    NodePrefab: {fileID: 1071941963697930, guid: 750afa97e3c87a841b01c064aeccedba,
       type: 2}
-  - nodeType: SERVER
-    nodePrefab: {fileID: 1393008178202100, guid: 75e3b2ec4bda8de4596be367216f02d0,
+  - NodeType: SERVER
+    NodePrefab: {fileID: 1393008178202100, guid: 75e3b2ec4bda8de4596be367216f02d0,
       type: 2}
-  - nodeType: USER
-    nodePrefab: {fileID: 1990329819373972, guid: 7038201a83d8519479ee825340d4eb1e,
+  - NodeType: USER
+    NodePrefab: {fileID: 1990329819373972, guid: 7038201a83d8519479ee825340d4eb1e,
       type: 2}
-  RadialMenu: {fileID: 2109098384}
-  visible: 
+  HexialMenu: {fileID: 2109098384}
+  Visible: 
 --- !u!95 &286436075
 Animator:
   serializedVersion: 3
