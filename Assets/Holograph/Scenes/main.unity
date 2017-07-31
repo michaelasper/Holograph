@@ -724,6 +724,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PivotAxis: 1
   TargetTransform: {fileID: 666157311}
+--- !u!114 &123759826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 123759823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3d4e835ede3504faa7f2e1f428c0ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentTextLabel: {fileID: 1908884298}
+  progressBar: {fileID: 889719113}
 --- !u!1001 &145513296
 Prefab:
   m_ObjectHideFlags: 0
@@ -1020,7 +1033,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1774199065299358, guid: 4efd08cd14874d74eb082dcd0c97d648, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114333040361001526, guid: 4efd08cd14874d74eb082dcd0c97d648, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4efd08cd14874d74eb082dcd0c97d648, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &239827787
@@ -1545,6 +1563,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed73a7ced93d63d49b150533b724affe, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &889719113 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114833508873892560, guid: 4efd08cd14874d74eb082dcd0c97d648,
+    type: 2}
+  m_PrefabInternal: {fileID: 221135729}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &921672461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,6 +2247,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013298573622, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
     type: 2}
   m_PrefabInternal: {fileID: 1476748677}
+--- !u!114 &1908884298 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114633101628474402, guid: 4efd08cd14874d74eb082dcd0c97d648,
+    type: 2}
+  m_PrefabInternal: {fileID: 221135729}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &2109098384 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1773272982459654, guid: b275cac9dbb694720882703b265143e0,
