@@ -3,13 +3,12 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity.SpatialMapping;
+
+#if UNITY_EDITOR || UNITY_WSA
 using UnityEngine.VR.WSA.Persistence;
 using UnityEngine.VR.WSA;
-using HoloToolkit.Unity.SpatialMapping;
-using UnityEngine.VR.WSA.Sharing;
-using System;
-using HoloToolkit.Sharing;
-using HoloToolkit.Sharing.Tests;
+#endif
 
 namespace HoloToolkit.Unity
 {
@@ -43,18 +42,12 @@ namespace HoloToolkit.Unity
         /// </summary>
         private Queue<AnchorAttachmentInfo> anchorOperations = new Queue<AnchorAttachmentInfo>();
 
+#if UNITY_EDITOR || UNITY_WSA
         /// <summary>
         /// The WorldAnchorStore for the current application.
         /// Can be null when the application starts.
         /// </summary>
         public WorldAnchorStore AnchorStore { get; private set; }
-
-        /// <summary>
-        /// The datablob of the anchor.
-        /// </summary>
-        private List<byte> exportingAnchorBytes = new List<byte>();
-        private WorldAnchorTransferBatch sharedAnchorInterface;
-        private string exportingAnchorName;
 
         /// <summary>
         /// Callback function that contains the WorldAnchorStore object.
@@ -64,6 +57,7 @@ namespace HoloToolkit.Unity
         {
             AnchorStore = anchorStore;
         }
+#endif
 
         /// <summary>
         /// When the app starts grab the anchor store immediately.
@@ -72,14 +66,16 @@ namespace HoloToolkit.Unity
         {
             base.Awake();
 
-            AnchorStore = null;
-
 #if UNITY_EDITOR
             Debug.LogWarning("World Anchor Manager does not work in the editor. Anchor Store will never be ready.");
 #endif
+#if UNITY_EDITOR || UNITY_WSA
+            AnchorStore = null;
             WorldAnchorStore.GetAsync(AnchorStoreReady);
+#endif
         }
 
+#if UNITY_EDITOR || UNITY_WSA
         /// <summary>
         /// Each frame see if there is work to do and if we can do a unit, do it.
         /// </summary>
@@ -90,6 +86,7 @@ namespace HoloToolkit.Unity
                 DoAnchorOperation(anchorOperations.Dequeue());
             }
         }
+#endif
 
         /// <summary>
         /// Attaches an anchor to the game object.  If the anchor store has
@@ -135,12 +132,14 @@ namespace HoloToolkit.Unity
                 return;
             }
 
+#if UNITY_EDITOR || UNITY_WSA
             // This case is unexpected, but just in case.
             if (AnchorStore == null)
             {
                 Debug.LogError("remove anchor called before anchor store is ready.");
                 return;
             }
+#endif
 
             anchorOperations.Enqueue(
                 new AnchorAttachmentInfo
@@ -156,6 +155,7 @@ namespace HoloToolkit.Unity
         /// </summary>
         public void RemoveAllAnchors()
         {
+#if UNITY_EDITOR || UNITY_WSA
             SpatialMappingManager spatialMappingManager = SpatialMappingManager.Instance;
 
             // This case is unexpected, but just in case.
@@ -183,6 +183,7 @@ namespace HoloToolkit.Unity
                     }
                 }
             }
+#endif
         }
 
         /// <summary>
@@ -191,14 +192,11 @@ namespace HoloToolkit.Unity
         /// <param name="anchorAttachmentInfo">Parameters for attaching the anchor.</param>
         private void DoAnchorOperation(AnchorAttachmentInfo anchorAttachmentInfo)
         {
-            WorldAnchor anchor = null;
-
+#if UNITY_EDITOR || UNITY_WSA
             switch (anchorAttachmentInfo.Operation)
             {
                 case AnchorOperation.Create:
                     string anchorName = anchorAttachmentInfo.AnchorName;
-                    exportingAnchorName = anchorName;
-
                     GameObject gameObjectToAnchor = anchorAttachmentInfo.GameObjectToAnchor;
 
                     if (gameObjectToAnchor == null)
@@ -215,18 +213,13 @@ namespace HoloToolkit.Unity
                         Debug.LogWarning(gameObjectToAnchor.name + " : World anchor could not be loaded for this game object. Creating a new anchor.");
 
                         // Create anchor since one does not exist.
-                        anchor = CreateAnchor(gameObjectToAnchor, anchorName);
+                        CreateAnchor(gameObjectToAnchor, anchorName);
                     }
                     else
                     {
-                        anchor = savedAnchor;
                         savedAnchor.name = anchorName;
                         Debug.Log(gameObjectToAnchor.name + " : World anchor loaded from anchor store and updated for this game object.");
                     }
-
-                    sharedAnchorInterface = new WorldAnchorTransferBatch();
-                    sharedAnchorInterface.AddWorldAnchor(anchorName, anchor);
-                    WorldAnchorTransferBatch.ExportAsync(sharedAnchorInterface, WriteBuffer, ExportComplete);
 
                     break;
                 case AnchorOperation.Delete:
@@ -237,7 +230,7 @@ namespace HoloToolkit.Unity
                     }
 
                     GameObject gameObjectToUnanchor = anchorAttachmentInfo.GameObjectToAnchor;
-                    anchor = gameObjectToUnanchor.GetComponent<WorldAnchor>();
+                    var anchor = gameObjectToUnanchor.GetComponent<WorldAnchor>();
 
                     if (anchor != null)
                     {
@@ -251,24 +244,7 @@ namespace HoloToolkit.Unity
 
                     break;
             }
-        }
-
-        private void ExportComplete(SerializationCompletionReason completionReason)
-        {
-            SharingStage.Instance.Manager.GetRoomManager().UploadAnchor(
-                SharingStage.Instance.Manager.GetRoomManager().GetRoom((int)ImportExportAnchorManager.Instance.RoomID),
-                new XString(exportingAnchorName),
-                exportingAnchorBytes.ToArray(),
-                exportingAnchorBytes.Count);
-        }
-
-        /// <summary>
-        /// Called by the WorldAnchorTransferBatch as anchor data is available.
-        /// </summary>
-        /// <param name="data"></param>
-        private void WriteBuffer(byte[] data)
-        {
-            exportingAnchorBytes.AddRange(data);
+#endif
         }
 
         /// <summary>
@@ -276,8 +252,9 @@ namespace HoloToolkit.Unity
         /// </summary>
         /// <param name="gameObjectToAnchor">The GameObject to attach the anchor to.</param>
         /// <param name="anchorName">The name to give to the anchor.</param>
-        private WorldAnchor CreateAnchor(GameObject gameObjectToAnchor, string anchorName)
+        private void CreateAnchor(GameObject gameObjectToAnchor, string anchorName)
         {
+#if UNITY_EDITOR || UNITY_WSA
             var anchor = gameObjectToAnchor.AddComponent<WorldAnchor>();
             anchor.name = anchorName;
 
@@ -291,10 +268,10 @@ namespace HoloToolkit.Unity
                 // Other times we must wait for the tracking system to locate the world.
                 anchor.OnTrackingChanged += Anchor_OnTrackingChanged;
             }
-
-            return anchor;
+#endif
         }
 
+#if UNITY_EDITOR || UNITY_WSA
         /// <summary>
         /// When an anchor isn't located immediately we subscribe to this event so
         /// we can save the anchor when it is finally located.
@@ -334,5 +311,6 @@ namespace HoloToolkit.Unity
                 Debug.LogError(gameObject.name + " : World anchor save failed.");
             }
         }
+#endif
     }
 }
