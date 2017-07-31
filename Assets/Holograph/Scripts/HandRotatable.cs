@@ -13,191 +13,297 @@ namespace Holograph
 
     using UnityEngine;
 
+    /// <summary>
+    /// Rotates the graph
+    /// </summary>
     public class HandRotatable : MonoBehaviour, IFocusable, IInputHandler, ISourceStateHandler
     {
+        /// <summary>
+        /// The radius of the host's range
+        /// </summary>
         [Tooltip("Radius used to model the dragged object as a ball.")]
         public float HostRadius = 1f;
 
+        /// <summary>
+        /// Whether or not dragging is enabled
+        /// </summary>
         public bool IsDraggingEnabled = true;
 
+        /// <summary>
+        /// The rotated object.
+        /// </summary>
         [Tooltip("Game object that will be dragged.")]
         public GameObject RotatedObject;
 
+        /// <summary>
+        /// The main camera's transform.
+        /// </summary>
         private Transform cam;
 
+        /// <summary>
+        /// The current input source.
+        /// </summary>
         private IInputSource currentInputSource;
 
+        /// <summary>
+        /// The current input source id.
+        /// </summary>
         private uint currentInputSourceId;
 
-        private Quaternion draggingRotation;
+        /// <summary>
+        /// The target rotation.
+        /// </summary>
+        private Quaternion targetRotation;
 
-        private Vector3 handRefDirection;
+        /// <summary>
+        /// The initial hand direction.
+        /// </summary>
+        private Vector3 initialHandDirection;
 
+        /// <summary>
+        /// True if is dragging
+        /// </summary>
         private bool isDragging;
 
+        /// <summary>
+        /// True if is gazed
+        /// </summary>
         private bool isGazed;
 
-        private float objRefDistance;
+        /// <summary>
+        /// Initial object distance
+        /// </summary>
+        private float initialObjectDistance;
 
-        private Quaternion objRefRotation;
+        /// <summary>
+        /// Initial object rotation
+        /// </summary>
+        private Quaternion initialObjectRotation;
 
-        private MapRotationListener RotatedMapListener;
+        /// <summary>
+        /// Handler for all rotations
+        /// </summary>
+        private MapRotationListener mapRotationHandler;
 
-        private Transform RotatedObjectTransform;
+        /// <summary>
+        /// The rotated object transform.
+        /// </summary>
+        private Transform rotatedObjectTransform;
 
-        public event Action StartedDragging;
+        /// <summary>
+        /// Start dragging event
+        /// </summary>
+        public event Action StartedDraggingEvent;
 
-        public event Action StoppedDragging;
+        /// <summary>
+        /// Stop dragging event.
+        /// </summary>
+        public event Action StoppedDraggingEvent;
 
+        /// <summary>
+        /// Activated when started to be gazed on
+        /// </summary>
         public void OnFocusEnter()
         {
-            if (!IsDraggingEnabled || isGazed)
+            if (!this.IsDraggingEnabled || this.isGazed)
             {
                 return;
             }
 
-            isGazed = true;
+            this.isGazed = true;
         }
 
+        /// <summary>
+        /// Activated when gaze has left object
+        /// </summary>
         public void OnFocusExit()
         {
-            if (!IsDraggingEnabled || !isGazed)
+            if (!this.IsDraggingEnabled || !this.isGazed)
             {
                 return;
             }
 
-            isGazed = false;
+            this.isGazed = false;
         }
 
+        /// <summary>
+        /// Activated when clicked on
+        /// </summary>
+        /// <param name="eventData">
+        /// The event data.
+        /// </param>
         public void OnInputDown(InputEventData eventData)
         {
-            if (isDragging)
+            if (this.isDragging)
             {
                 return;
             }
 
-            currentInputSource = eventData.InputSource;
-            currentInputSourceId = eventData.SourceId;
-            StartDragging();
+            this.currentInputSource = eventData.InputSource;
+            this.currentInputSourceId = eventData.SourceId;
+            this.StartDragging();
         }
 
+        /// <summary>
+        /// Activated when clicked on and has been let go
+        /// </summary>
+        /// <param name="eventData">
+        /// The event data.
+        /// </param>
         public void OnInputUp(InputEventData eventData)
         {
-            if (currentInputSource != null && eventData.SourceId == currentInputSourceId)
+            if (this.currentInputSource != null && eventData.SourceId == this.currentInputSourceId)
             {
-                StopDragging();
+                this.StopDragging();
             }
         }
 
+        /// <summary>
+        /// Activated when source is detected
+        /// </summary>
+        /// <param name="eventData">
+        /// The event data.
+        /// </param>
         public void OnSourceDetected(SourceStateEventData eventData)
         {
         }
 
+        /// <summary>
+        /// Activated when source has been lost
+        /// </summary>
+        /// <param name="eventData">
+        /// The event data.
+        /// </param>
         public void OnSourceLost(SourceStateEventData eventData)
         {
-            if (currentInputSource != null && eventData.SourceId == currentInputSourceId)
+            if (this.currentInputSource != null && eventData.SourceId == this.currentInputSourceId)
             {
-                StopDragging();
+                this.StopDragging();
             }
         }
 
+        /// <summary>
+        /// Starts dragging the object
+        /// </summary>
         public void StartDragging()
         {
-            if (!IsDraggingEnabled)
+            if (!this.IsDraggingEnabled || this.isDragging)
             {
                 return;
             }
 
-            if (isDragging)
-            {
-                return;
-            }
+            InputManager.Instance.PushModalInputHandler(this.gameObject);
 
-            InputManager.Instance.PushModalInputHandler(gameObject);
-
-            var gazeHitPosition = GetHostHitPosition();
+            var gazeHitPosition = this.GetHostHitPosition();
             Vector3 handPosition;
-            currentInputSource.TryGetPosition(currentInputSourceId, out handPosition);
-            var pivotPosition = GetHandPivotPosition();
-            objRefDistance = Vector3.Magnitude(gazeHitPosition - pivotPosition);
-            handRefDirection = (handPosition - pivotPosition).normalized;
-            objRefRotation = RotatedObjectTransform.rotation;
+            this.currentInputSource.TryGetPosition(this.currentInputSourceId, out handPosition);
+            var pivotPosition = this.GetHandPivotPosition();
+            this.initialObjectDistance = Vector3.Magnitude(gazeHitPosition - pivotPosition);
+            this.initialHandDirection = (handPosition - pivotPosition).normalized;
+            this.initialObjectRotation = this.rotatedObjectTransform.rotation;
 
-            StartedDragging.RaiseEvent();
-            isDragging = true;
+            this.StartedDraggingEvent.RaiseEvent();
+            this.isDragging = true;
         }
 
+        /// <summary>
+        /// Stops dragging the object
+        /// </summary>
         public void StopDragging()
         {
-            if (!isDragging)
+            if (!this.isDragging)
             {
                 return;
             }
 
             InputManager.Instance.PopModalInputHandler();
 
-            isDragging = false;
-            currentInputSource = null;
-            StoppedDragging.RaiseEvent();
+            this.isDragging = false;
+            this.currentInputSource = null;
+            this.StoppedDraggingEvent.RaiseEvent();
         }
 
+        /// <summary>
+        /// Gets the position of the pivot
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Vector3"/>.
+        /// </returns>
         private Vector3 GetHandPivotPosition()
         {
-            var pivot = cam.position + new Vector3(0, -0.2f, 0);
+            var pivot = this.cam.position + new Vector3(0, -0.2f, 0);
             return pivot;
         }
 
+        /// <summary>
+        /// Gets the position of the host.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Vector3"/>.
+        /// </returns>
         private Vector3 GetHostHitPosition()
         {
-            var hostRelativeToCam = RotatedObjectTransform.position - cam.position;
-            float hitDistance = hostRelativeToCam.magnitude - HostRadius;
-            return cam.TransformVector(hostRelativeToCam.normalized * hitDistance);
+            var hostRelativeToCam = this.rotatedObjectTransform.position - this.cam.position;
+            float hitDistance = hostRelativeToCam.magnitude - this.HostRadius;
+            return this.cam.TransformVector(hostRelativeToCam.normalized * hitDistance);
         }
 
+        /// <summary>
+        /// Called when object is destroyed
+        /// </summary>
         private void OnDestroy()
         {
-            if (isDragging)
+            if (this.isDragging)
             {
-                StopDragging();
+                this.StopDragging();
             }
 
-            if (isGazed)
+            if (this.isGazed)
             {
-                OnFocusExit();
+                this.OnFocusExit();
             }
         }
 
+        /// <summary>
+        /// Called when object is instantiated and active
+        /// </summary>
         private void Start()
         {
-            if (RotatedObject == null)
+            if (this.RotatedObject == null)
             {
-                RotatedObject = gameObject;
+                this.RotatedObject = this.gameObject;
             }
 
-            cam = Camera.main.transform;
-            RotatedObjectTransform = RotatedObject.transform;
-            RotatedMapListener = RotatedObject.GetComponent<MapRotationListener>();
+            this.cam = Camera.main.transform;
+            this.rotatedObjectTransform = this.RotatedObject.transform;
+            this.mapRotationHandler = this.RotatedObject.GetComponent<MapRotationListener>();
         }
 
+        /// <summary>
+        /// Called every frame by Unity
+        /// </summary>
         private void Update()
         {
-            if (IsDraggingEnabled && isDragging)
+            if (this.IsDraggingEnabled && this.isDragging)
             {
-                UpdateDragging();
+                this.UpdateDragging();
             }
         }
 
+        /// <summary>
+        /// Updates rotation value to network and the script that actually does the rotation
+        /// </summary>
         private void UpdateDragging()
         {
             Vector3 newHandPosition;
-            currentInputSource.TryGetPosition(currentInputSourceId, out newHandPosition);
-            var pivotPosition = GetHandPivotPosition();
+            this.currentInputSource.TryGetPosition(this.currentInputSourceId, out newHandPosition);
+            var pivotPosition = this.GetHandPivotPosition();
             var newHandDirection = (newHandPosition - pivotPosition).normalized;
-            var handRotation = Quaternion.FromToRotation(handRefDirection, newHandDirection);
-            var hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
-            draggingRotation = Quaternion.Inverse(hostRatation) * objRefRotation;
-            NetworkMessages.Instance.SendMapRotation(draggingRotation);
-            RotatedMapListener.targetRotation = draggingRotation;
+            var handRotation = Quaternion.FromToRotation(this.initialHandDirection, newHandDirection);
+            var hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, this.initialObjectDistance / this.HostRadius);
+            this.targetRotation = Quaternion.Inverse(hostRatation) * this.initialObjectRotation;
+            NetworkMessages.Instance.SendMapRotation(this.targetRotation);
+            this.mapRotationHandler.targetRotation = this.targetRotation;
         }
     }
 }
