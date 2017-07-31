@@ -6,8 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Holograph/Scenes/main.unity
-    guid: f82cb3569ecf3e74c8a3997a502e814b
-  - enabled: 0
-    path: Assets/Holograph/Scenes/asper-main.unity
-    guid: d62d215921cf46145be58d6d2b1253f2
+    path: Assets/Holograph/Scenes/camilo-nodeMenu.unity
+    guid: ad03c24be96018e438e6ac89bf1bbc46

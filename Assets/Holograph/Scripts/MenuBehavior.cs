@@ -19,11 +19,7 @@ namespace Holograph
         public GameObject Globe;
         public GameObject ReportPanel;
         //private GameObject[] Slides;
-<<<<<<< HEAD
         private InfoPanelBehavior infoPanelBehavior;
-=======
-
->>>>>>> added side panel; fix storymanager script
 
         private MapManager mapManager;
         public GameObject InfoPanel;
