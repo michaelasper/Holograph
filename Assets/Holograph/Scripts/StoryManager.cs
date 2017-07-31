@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Sharing;
 
 namespace Holograph
 {
@@ -16,7 +18,15 @@ namespace Holograph
         private InfoPanelBehavior infoPanelBehavior;
         private int fadesInHash;
 
-        public void ResetStory()
+        public enum StoryAction : byte
+        {
+            EnterDefaulStory,
+            Expand,
+            ListInfo,
+            ResetStory
+        }
+
+        private void ResetStory()
         {
             globe.gameObject.SetActive(true);
             globe.GetComponent<Collider>().enabled = true;
@@ -25,12 +35,11 @@ namespace Holograph
             if (globeAnimator != null && globeAnimator.isInitialized)
             {
                 globeAnimator.SetTrigger(fadesInHash);
-                //NetworkMessages.Instance.SendAnimationHash(fadesInHash, NetworkMessages.AnimationTypes.Trigger);
             }
             mapManager.hideNodes();
         }
 
-        public void Expand(Transform expandedNode)
+        private void Expand(Transform expandedNode)
         {
             foreach (GameObject node in expandedNode.GetComponent<NodeBehavior>().Neighborhood)
             {
@@ -39,20 +48,17 @@ namespace Holograph
                 node.SetActive(true);
             }
             mapManager.positionNodes();
-            //MenuAnimator.SetBool("Button_1", false);
-
-            //CloseMenu();
             infoPanelBehavior.ClosePanel();
         }
 
-        public void ListInfo(Transform node)
+        private void ListInfo(Transform node)
         {
             infoPanel.SetActive(true);
             NodeInfo nodeInfo = node.GetComponent<NodeBehavior>().NodeInfo;
             infoPanelBehavior.UpdateInfo(nodeInfo);
         }
 
-        public void DefaultStoryEntry()
+        private void EnterDefaultStory()
         {
             globeBehavior.DefaultStoryEntry();
         }
@@ -67,12 +73,56 @@ namespace Holograph
             globeBehavior = globe.GetComponent<GlobeBehavior>();
             infoPanel = transform.Find("InfoPanel").gameObject;
             infoPanelBehavior = infoPanel.GetComponent<InfoPanelBehavior>();
+
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.StoryControl] = UpdateStoryControl;
         }
 
-        // Update is called once per frame
         void Update()
         {
 
+        }
+
+        public void TriggerStory(StoryAction action, params int[] args)
+        {
+            switch (action)
+            {
+                case StoryAction.EnterDefaulStory:
+                    EnterDefaultStory();
+                    break;
+                case StoryAction.ListInfo:
+                    if (args == null || args.Length != 1)
+                    {
+                        throw new ArgumentException("ListInfo expects one parameter");
+                    }
+                    ListInfo(mapManager.nodeObject[args[0]].transform);
+                    break;
+                case StoryAction.Expand:
+                    if (args == null || args.Length != 1)
+                    {
+                        throw new ArgumentException("Expand expects one parameter");
+                    }
+                    Expand(mapManager.nodeObject[args[0]].transform);
+                    break;
+                case StoryAction.ResetStory:
+                    ResetStory();
+                    break;
+                default:
+                    throw new NotSupportedException("Story Action not supported");
+            }
+            NetworkMessages.Instance.SendStoryControl((byte)action, args);
+        }
+
+        public void UpdateStoryControl(NetworkInMessage msg)
+        {
+            long userId = msg.ReadInt64();
+            StoryAction action = (StoryAction) msg.ReadByte();
+            int l = msg.ReadInt32();
+            int[] args = new int[l];
+            for (int i = 0; i < l; ++i)
+            {
+                args[i] = msg.ReadInt32();
+            }
+            TriggerStory(action, args);
         }
     }
 }

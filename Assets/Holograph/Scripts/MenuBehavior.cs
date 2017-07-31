@@ -39,7 +39,7 @@ namespace Holograph
         {
             CloseAllPanels();
             CloseMenu();
-            StoryManager.Expand(transform.parent);
+            storyManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().id);
         }
 
         /// <summary>
@@ -56,6 +56,7 @@ namespace Holograph
         public void Enrich()
         {
             EnrichPanel.SetActive(!EnrichPanel.activeSelf);
+            storyManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().id);
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace Holograph
         /// </summary>
         private void ResetStory()
         {
-            StoryManager.ResetStory();
+            storyManager.TriggerStory(StoryManager.StoryAction.ResetStory);
         }
 
         // Update is called once per frame
