@@ -1,45 +1,29 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using HoloToolkit.Unity.InputModule;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using HoloToolkit.Unity.InputModule;
+
+    using UnityEngine;
+
     public class HudManager : MonoBehaviour, IFocusable
     {
-        public StoryManager storyManager;
+        public bool isGazedAt;
+
         [Range(.1f, .3f)]
         public float moveLerp = .2f;
+
+        public StoryManager storyManager;
+
         private Transform cam;
+
         private Vector3 moveTarget;
-        public bool isGazedAt;
-        void Start()
-        {
-            cam = Camera.main.transform;
-        }
-
-        void Update()
-        {
-            if (!isGazedAt)
-            {
-                var headPosition = cam.position;
-                var gazeDirection = cam.forward;
-                gazeDirection.y = 0f;
-                moveTarget = headPosition + new Vector3(0f, -.7f, 0f) + gazeDirection.normalized * 1f;
-            }
-            transform.position = Vector3.Lerp(transform.position, moveTarget, moveLerp);
-        }
-        
-        private void selectButton(Transform selectedButton)
-        {
-            for (int i = 0; i < transform.childCount; ++i)
-            {
-                Transform childButton = transform.GetChild(i);
-                childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
-            }
-
-        }
 
         public void clickButtonUp(Transform clickedButton)
         {
@@ -55,8 +39,7 @@ namespace Holograph
                 case "HOME":
                     storyManager.TriggerStory(StoryManager.StoryAction.ResetStory);
                     break;
-                default:
-                    break;
+                default: break;
             }
         }
 
@@ -68,6 +51,33 @@ namespace Holograph
         public void OnFocusExit()
         {
             isGazedAt = false;
+        }
+
+        private void selectButton(Transform selectedButton)
+        {
+            for (var i = 0; i < transform.childCount; ++i)
+            {
+                var childButton = transform.GetChild(i);
+                childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
+            }
+        }
+
+        private void Start()
+        {
+            cam = Camera.main.transform;
+        }
+
+        private void Update()
+        {
+            if (!isGazedAt)
+            {
+                var headPosition = cam.position;
+                var gazeDirection = cam.forward;
+                gazeDirection.y = 0f;
+                moveTarget = headPosition + new Vector3(0f, -.7f, 0f) + gazeDirection.normalized * 1f;
+            }
+
+            transform.position = Vector3.Lerp(transform.position, moveTarget, moveLerp);
         }
     }
 }

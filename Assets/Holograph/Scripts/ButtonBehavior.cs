@@ -1,20 +1,40 @@
-﻿using HoloToolkit.Unity.InputModule;
-using UnityEngine;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using HoloToolkit.Unity.InputModule;
+
+    using UnityEngine;
+
     public class ButtonBehavior : MonoBehaviour, IInputHandler, IFocusable
     {
+        public string MethodName;
+
         private string _buttonName;
+
         private Transform _cam;
+
         private string _color;
-        private string _texture;
 
         private MenuBehavior _menuBehavior;
+
         private Material _objectMaterial;
 
+        private string _texture;
+
         private Color HoverHighlight;
-        public string MethodName;
+
+        public void initLayout(MenuBehavior.JNodeMenu.NodeMenuItem nodeMenuItem)
+        {
+            _buttonName = nodeMenuItem.Name;
+            MethodName = nodeMenuItem.MethodName;
+        }
 
         public void OnFocusEnter()
         {
@@ -47,12 +67,6 @@ namespace Holograph
 
         private void Update()
         {
-        }
-
-        public void initLayout(MenuBehavior.JNodeMenu.NodeMenuItem nodeMenuItem)
-        {
-            _buttonName = nodeMenuItem.Name;
-            MethodName = nodeMenuItem.MethodName;
         }
     }
 }

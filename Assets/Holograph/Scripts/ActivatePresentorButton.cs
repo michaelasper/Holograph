@@ -1,21 +1,25 @@
-﻿using UnityEngine;
-using HoloToolkit.Unity.InputModule;
-using UnityEngine.UI;
-using HoloToolkit.Unity;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using HoloToolkit.Unity;
+    using HoloToolkit.Unity.InputModule;
+
+    using UnityEngine;
+    using UnityEngine.UI;
+
     [RequireComponent(typeof(Text))]
     public class ActivatePresentorButton : MonoBehaviour, IInputClickHandler
     {
-        private DisplayUserList userList;
         private Text textAsset;
 
-        private void Start()
-        {
-            userList = GetComponentInParent<DisplayUserList>();
-            textAsset = GetComponent<Text>();
-        }
+        private DisplayUserList userList;
 
         public void OnInputClicked(InputClickedEventData eventData)
         {
@@ -25,9 +29,9 @@ namespace Holograph
                 {
                     NetworkMessages.Instance.SendPresenterId(user.Key);
 
-                    RemoteHeadInfo headInfo = HeadManager.Instance.GetRemoteHeadInfo(user.Key);
+                    var headInfo = HeadManager.Instance.GetRemoteHeadInfo(user.Key);
 
-                    if(headInfo != null)
+                    if (headInfo != null)
                     {
                         for (var i = 0; i < HeadManager.Instance.Panels.Length; i++)
                         {
@@ -35,10 +39,15 @@ namespace Holograph
 
                             billboard.TargetTransform = headInfo == null ? Camera.main.transform : headInfo.HeadObject.transform;
                         }
-
                     }
                 }
             }
+        }
+
+        private void Start()
+        {
+            userList = GetComponentInParent<DisplayUserList>();
+            textAsset = GetComponent<Text>();
         }
     }
 }

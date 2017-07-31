@@ -1,18 +1,56 @@
-﻿using System;
-using HoloToolkit.Unity;
-using UnityEngine;
-using UnityEngine.UI;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using HoloToolkit.Unity;
+
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public class InfoPanelBehavior : MonoBehaviour
     {
         public NodeInfo info;
 
-
         public Text[] InfoTextList;
 
         public bool isTaggedToUser = true;
+
+        /// <summary>
+        ///     Will close the panel if the panel is not pinned
+        ///     Returns: state of panel
+        /// </summary>
+        public bool ClosePanel()
+        {
+            if (isTaggedToUser)
+            {
+                gameObject.SetActive(false);
+            }
+
+            return gameObject.activeSelf;
+        }
+
+        public void ForceClosePane()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void PinPanel()
+        {
+            isTaggedToUser = !isTaggedToUser;
+            GetComponentInChildren<Tagalong>().enabled = isTaggedToUser;
+        }
+
+        public void UpdateInfo(NodeInfo info)
+        {
+            this.info = info;
+            UpdateText();
+        }
 
         // Use this for initialization
         private void Start()
@@ -25,12 +63,6 @@ namespace Holograph
         {
         }
 
-        public void UpdateInfo(NodeInfo info)
-        {
-            this.info = info;
-            UpdateText();
-        }
-
         private void UpdateText()
         {
             var textIndex = 0;
@@ -39,28 +71,6 @@ namespace Holograph
                 InfoTextList[textIndex].text = dictItem.Value;
                 textIndex++;
             }
-        }
-
-        public void ForceClosePane()
-        {
-            gameObject.SetActive(false);
-        }
-
-        /// <summary>
-        ///     Will close the panel if the panel is not pinned
-        ///     Returns: state of panel
-        /// </summary>
-        public bool ClosePanel()
-        {
-            if (isTaggedToUser) gameObject.SetActive(false);
-
-            return gameObject.activeSelf;
-        }
-
-        public void PinPanel()
-        {
-            isTaggedToUser = !isTaggedToUser;
-            GetComponentInChildren<Tagalong>().enabled = isTaggedToUser;
         }
     }
 }

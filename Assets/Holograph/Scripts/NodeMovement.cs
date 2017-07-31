@@ -1,14 +1,39 @@
-﻿using UnityEngine;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using UnityEngine;
+    [Obsolete]
     public class NodeMovement : MonoBehaviour
     {
-        private float _moveMaxSpeed;
+        public float SpeedPercentage;
 
         private readonly int _movesHash = Animator.StringToHash("moves");
+
+        private float _moveMaxSpeed;
+
         private Vector3 _moveTarget;
-        public float SpeedPercentage;
+
+        public void moveTo(Vector3 target)
+        {
+            _moveTarget = target;
+            _moveMaxSpeed = Vector3.Distance(transform.position, target);
+            var nodeAnimator = GetComponent<Animator>();
+            int id = GetComponent<NodeBehavior>().id;
+            if (nodeAnimator == null || !nodeAnimator.isInitialized)
+            {
+                return;
+            }
+
+            nodeAnimator.SetTrigger(_movesHash);
+            NetworkMessages.Instance.SendAnimationHash(_movesHash, NetworkMessages.AnimationTypes.Trigger);
+        }
 
         private void Start()
         {
@@ -19,22 +44,9 @@ namespace Holograph
         {
             if (SpeedPercentage > 0.001f)
             {
-                var speed = _moveMaxSpeed * SpeedPercentage;
-                transform.position = Vector3.MoveTowards(transform.position, _moveTarget,
-                    speed * Time.deltaTime);
+                float speed = _moveMaxSpeed * SpeedPercentage;
+                transform.position = Vector3.MoveTowards(transform.position, _moveTarget, speed * Time.deltaTime);
             }
-        }
-
-        public void moveTo(Vector3 target)
-        {
-
-            _moveTarget = target;
-            _moveMaxSpeed = Vector3.Distance(transform.position, target);
-            var nodeAnimator = GetComponent<Animator>();
-            var id = GetComponent<NodeBehavior>().id;
-            if (nodeAnimator == null || !nodeAnimator.isInitialized) return;
-            nodeAnimator.SetTrigger(_movesHash);
-            NetworkMessages.Instance.SendAnimationHash(_movesHash, NetworkMessages.AnimationTypes.Trigger);
         }
     }
 }

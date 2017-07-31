@@ -1,11 +1,17 @@
-﻿using Holograph;
-using HoloToolkit.Sharing;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using HoloToolkit.Sharing;
+
+    using UnityEngine;
+
     public class MapRotationListener : MonoBehaviour
     {
         [Tooltip("Controls the speed at which the object will interpolate toward the desired rotation")]
@@ -13,13 +19,15 @@ namespace Holograph
         public float RotationLerpSpeed = 0.2f;
 
         public Quaternion targetRotation;
-        void Start()
+
+        private void Start()
         {
             targetRotation = transform.rotation;
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.MapRotation] = updateRotation;
             NetworkMessages.Instance.SendMapRotation(transform.rotation);
         }
-        void Update()
+
+        private void Update()
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, RotationLerpSpeed);
         }

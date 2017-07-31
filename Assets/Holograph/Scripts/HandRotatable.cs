@@ -1,69 +1,103 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using HoloToolkit.Unity;
-using HoloToolkit.Unity.InputModule;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
-    public class HandRotatable : MonoBehaviour,
-                                     IFocusable,
-                                     IInputHandler,
-                                     ISourceStateHandler
+    using System;
+
+    using HoloToolkit.Unity;
+    using HoloToolkit.Unity.InputModule;
+
+    using UnityEngine;
+
+    public class HandRotatable : MonoBehaviour, IFocusable, IInputHandler, ISourceStateHandler
     {
-        public event Action StartedDragging;
-        public event Action StoppedDragging;
-
-        [Tooltip("Game object that will be dragged.")]
-        public GameObject RotatedObject;
-        private Transform RotatedObjectTransform;
-        private MapRotationListener RotatedMapListener;
-
         [Tooltip("Radius used to model the dragged object as a ball.")]
         public float HostRadius = 1f;
 
         public bool IsDraggingEnabled = true;
 
-        private Transform cam;
-        private bool isDragging;
-        private bool isGazed;
-        private float objRefDistance;
-        private Vector3 handRefDirection;
-        private Quaternion objRefRotation;
-        private Quaternion draggingRotation;
+        [Tooltip("Game object that will be dragged.")]
+        public GameObject RotatedObject;
 
-        private IInputSource currentInputSource = null;
+        private Transform cam;
+
+        private IInputSource currentInputSource;
+
         private uint currentInputSourceId;
 
-        private void Start()
+        private Quaternion draggingRotation;
+
+        private Vector3 handRefDirection;
+
+        private bool isDragging;
+
+        private bool isGazed;
+
+        private float objRefDistance;
+
+        private Quaternion objRefRotation;
+
+        private MapRotationListener RotatedMapListener;
+
+        private Transform RotatedObjectTransform;
+
+        public event Action StartedDragging;
+
+        public event Action StoppedDragging;
+
+        public void OnFocusEnter()
         {
-            if (RotatedObject == null)
+            if (!IsDraggingEnabled || isGazed)
             {
-                RotatedObject = this.gameObject;
+                return;
             }
-            cam = Camera.main.transform;
-            RotatedObjectTransform = RotatedObject.transform;
-            RotatedMapListener = RotatedObject.GetComponent<MapRotationListener>();
+
+            isGazed = true;
         }
 
-        private void OnDestroy()
+        public void OnFocusExit()
+        {
+            if (!IsDraggingEnabled || !isGazed)
+            {
+                return;
+            }
+
+            isGazed = false;
+        }
+
+        public void OnInputDown(InputEventData eventData)
         {
             if (isDragging)
             {
-                StopDragging();
+                return;
             }
-            if (isGazed)
+
+            currentInputSource = eventData.InputSource;
+            currentInputSourceId = eventData.SourceId;
+            StartDragging();
+        }
+
+        public void OnInputUp(InputEventData eventData)
+        {
+            if (currentInputSource != null && eventData.SourceId == currentInputSourceId)
             {
-                OnFocusExit();
+                StopDragging();
             }
         }
 
-        private void Update()
+        public void OnSourceDetected(SourceStateEventData eventData)
         {
-            if (IsDraggingEnabled && isDragging)
+        }
+
+        public void OnSourceLost(SourceStateEventData eventData)
+        {
+            if (currentInputSource != null && eventData.SourceId == currentInputSourceId)
             {
-                UpdateDragging();
+                StopDragging();
             }
         }
 
@@ -73,48 +107,24 @@ namespace Holograph
             {
                 return;
             }
+
             if (isDragging)
             {
                 return;
             }
+
             InputManager.Instance.PushModalInputHandler(gameObject);
 
-            Vector3 gazeHitPosition = GetHostHitPosition();
+            var gazeHitPosition = GetHostHitPosition();
             Vector3 handPosition;
             currentInputSource.TryGetPosition(currentInputSourceId, out handPosition);
-            Vector3 pivotPosition = GetHandPivotPosition();
+            var pivotPosition = GetHandPivotPosition();
             objRefDistance = Vector3.Magnitude(gazeHitPosition - pivotPosition);
             handRefDirection = (handPosition - pivotPosition).normalized;
             objRefRotation = RotatedObjectTransform.rotation;
 
             StartedDragging.RaiseEvent();
             isDragging = true;
-        }
-
-        private Vector3 GetHostHitPosition()
-        {
-            Vector3 hostRelativeToCam = RotatedObjectTransform.position - cam.position;
-            float hitDistance = hostRelativeToCam.magnitude - HostRadius;
-            return cam.TransformVector(hostRelativeToCam.normalized * hitDistance);
-        }
-
-        private Vector3 GetHandPivotPosition()
-        {
-            Vector3 pivot = cam.position + new Vector3(0, -0.2f, 0);
-            return pivot;
-        }
-
-        private void UpdateDragging()
-        {
-            Vector3 newHandPosition;
-            currentInputSource.TryGetPosition(currentInputSourceId, out newHandPosition);
-            Vector3 pivotPosition = GetHandPivotPosition();
-            Vector3 newHandDirection = (newHandPosition - pivotPosition).normalized;
-            Quaternion handRotation = Quaternion.FromToRotation(handRefDirection, newHandDirection);
-            Quaternion hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
-            draggingRotation = Quaternion.Inverse(hostRatation) * objRefRotation;
-            NetworkMessages.Instance.SendMapRotation(draggingRotation);
-            RotatedMapListener.targetRotation = draggingRotation;
         }
 
         public void StopDragging()
@@ -131,54 +141,63 @@ namespace Holograph
             StoppedDragging.RaiseEvent();
         }
 
-        public void OnFocusEnter()
+        private Vector3 GetHandPivotPosition()
         {
-            if (!IsDraggingEnabled || isGazed)
-            {
-                return;
-            }
-            isGazed = true;
+            var pivot = cam.position + new Vector3(0, -0.2f, 0);
+            return pivot;
         }
 
-        public void OnFocusExit()
+        private Vector3 GetHostHitPosition()
         {
-            if (!IsDraggingEnabled || !isGazed)
-            {
-                return;
-            }
-            isGazed = false;
+            var hostRelativeToCam = RotatedObjectTransform.position - cam.position;
+            float hitDistance = hostRelativeToCam.magnitude - HostRadius;
+            return cam.TransformVector(hostRelativeToCam.normalized * hitDistance);
         }
 
-        public void OnInputUp(InputEventData eventData)
-        {
-            if (currentInputSource != null &&
-                eventData.SourceId == currentInputSourceId)
-            {
-                StopDragging();
-            }
-        }
-
-        public void OnInputDown(InputEventData eventData)
+        private void OnDestroy()
         {
             if (isDragging)
             {
-                return;
-            }
-            currentInputSource = eventData.InputSource;
-            currentInputSourceId = eventData.SourceId;
-            StartDragging();
-        }
-
-        public void OnSourceDetected(SourceStateEventData eventData)
-        {
-        }
-
-        public void OnSourceLost(SourceStateEventData eventData)
-        {
-            if (currentInputSource != null && eventData.SourceId == currentInputSourceId)
-            {
                 StopDragging();
             }
+
+            if (isGazed)
+            {
+                OnFocusExit();
+            }
+        }
+
+        private void Start()
+        {
+            if (RotatedObject == null)
+            {
+                RotatedObject = gameObject;
+            }
+
+            cam = Camera.main.transform;
+            RotatedObjectTransform = RotatedObject.transform;
+            RotatedMapListener = RotatedObject.GetComponent<MapRotationListener>();
+        }
+
+        private void Update()
+        {
+            if (IsDraggingEnabled && isDragging)
+            {
+                UpdateDragging();
+            }
+        }
+
+        private void UpdateDragging()
+        {
+            Vector3 newHandPosition;
+            currentInputSource.TryGetPosition(currentInputSourceId, out newHandPosition);
+            var pivotPosition = GetHandPivotPosition();
+            var newHandDirection = (newHandPosition - pivotPosition).normalized;
+            var handRotation = Quaternion.FromToRotation(handRefDirection, newHandDirection);
+            var hostRatation = Quaternion.Lerp(Quaternion.identity, handRotation, objRefDistance / HostRadius);
+            draggingRotation = Quaternion.Inverse(hostRatation) * objRefRotation;
+            NetworkMessages.Instance.SendMapRotation(draggingRotation);
+            RotatedMapListener.targetRotation = draggingRotation;
         }
     }
 }

@@ -1,16 +1,26 @@
-﻿using HoloToolkit.Sharing;
-using UnityEngine;
-using System;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using HoloToolkit.Sharing;
+
+    using UnityEngine;
+
     [RequireComponent(typeof(Animator))]
     public class NetworkMenuAnimationListener : MonoBehaviour
     {
-        private Animator NetworkAnimator;
         private AnimatorControllerParameter[] animatorHashes;
 
+        private Animator NetworkAnimator;
+
         private int testBoolId;
+
         private int testTriggerId;
 
         private void Awake()
@@ -38,11 +48,11 @@ namespace Holograph
         private void UpdateAnimationHash(NetworkInMessage msg)
         {
             Debug.Log("UpdateAnimationHash() is called");
-            //if (NetworkAnimator == null)
-            //{
-            //    throw System.NullReferenceException("shit is null yo");
-            //}
 
+            // if (NetworkAnimator == null)
+            // {
+            // throw System.NullReferenceException("shit is null yo");
+            // }
             long userId = msg.ReadInt64();
             int animationHash = msg.ReadInt32();
             int animationType = msg.ReadInt32();
@@ -54,14 +64,15 @@ namespace Holograph
             Debug.Log("    animationType: " + animationType);
             Debug.Log("    animationValue: " + animationValue);
 
-            if (NetworkAnimator != null) //&& NetworkAnimator.gameObject.activeInHierarchy)
+            if (NetworkAnimator != null)
             {
+                // && NetworkAnimator.gameObject.activeInHierarchy)
                 if (animatorHashes == null)
                 {
                     animatorHashes = NetworkAnimator.parameters;
                 }
 
-                for (int i = 0; i < animatorHashes.Length; i++)
+                for (var i = 0; i < animatorHashes.Length; i++)
                 {
                     if (animatorHashes[i].nameHash == animationHash)
                     {
@@ -79,8 +90,7 @@ namespace Holograph
                             case (int)NetworkMessages.AnimationTypes.Trigger:
                                 NetworkAnimator.SetTrigger(animationHash);
                                 break;
-                            default:
-                                break;
+                            default: break;
                         }
                     }
                 }

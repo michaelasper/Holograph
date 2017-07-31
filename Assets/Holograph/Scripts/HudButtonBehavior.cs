@@ -1,24 +1,35 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using HoloToolkit.Unity.InputModule;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
-    public class HudButtonBehavior : MonoBehaviour,
-                                            IFocusable,
-                                            IInputHandler
+    using System;
+
+    using HoloToolkit.Unity.InputModule;
+
+    using UnityEngine;
+
+    public class HudButtonBehavior : MonoBehaviour, IFocusable, IInputHandler
     {
-        //public GlobeBehavior globe;
-        public Texture idleTexture;
         public Texture hoverTexture;
+
+        // public GlobeBehavior globe;
+        public Texture idleTexture;
+
         public Texture selectedTexture;
-        private int texturePropertyId;
-        private bool isSelected;
-        private bool isGazedAt;
-        private HudManager hudManager;
+
         private Material buttonMaterial;
+
+        private HudManager hudManager;
+
+        private bool isGazedAt;
+
+        private bool isSelected;
+
+        private int texturePropertyId;
 
         public void OnFocusEnter()
         {
@@ -40,6 +51,11 @@ namespace Holograph
             }
         }
 
+        public void OnInputDown(InputEventData eventData)
+        {
+            // this function doesn't work
+        }
+
         public void OnInputUp(InputEventData eventData)
         {
             hudManager.clickButtonUp(transform);
@@ -58,21 +74,15 @@ namespace Holograph
             }
         }
 
-        void Start()
+        private void Start()
         {
             buttonMaterial = GetComponent<MeshRenderer>().material;
             texturePropertyId = Shader.PropertyToID("_MainTex");
             hudManager = GetComponentInParent<HudManager>();
         }
 
-        void Update()
+        private void Update()
         {
-
-        }
-
-        public void OnInputDown(InputEventData eventData)
-        {
-            //this function doesn't work
         }
     }
 }

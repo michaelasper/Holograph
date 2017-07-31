@@ -1,14 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using HoloToolkit.Unity.InputModule;
-using System;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using HoloToolkit.Unity.InputModule;
+
+    using UnityEngine;
+
     public class ClickSwitchLight : MonoBehaviour, IInputHandler
     {
         public GameObject lightSource;
+
         void IInputHandler.OnInputDown(InputEventData eventData)
         {
             throw new NotImplementedException();
@@ -20,15 +27,13 @@ namespace Holograph
         }
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
-
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-
         }
     }
 }

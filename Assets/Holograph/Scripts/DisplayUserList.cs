@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using HoloToolkit.Sharing;
-using UnityEngine;
-using UnityEngine.UI;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+    using System.Collections.Generic;
+
+    using HoloToolkit.Sharing;
+
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public class DisplayUserList : MonoBehaviour
     {
         public Text TextPrefab;
+
         public Dictionary<long, string> Users = new Dictionary<long, string>(0);
 
         private SessionUsersTracker usersTracker;
-
-        private void Start()
-        {
-            // SharingStage should be valid at this point, but we may not be connected.
-            if (SharingStage.Instance.IsConnected)
-                Connected();
-            else
-                SharingStage.Instance.SharingManagerConnected += Connected;
-        }
 
         private void Connected(object sender = null, EventArgs e = null)
         {
@@ -51,19 +51,21 @@ namespace Holograph
         private void NotifyUserJoined(User user)
         {
             if (user.IsValid())
+            {
                 if (!Users.ContainsKey(user.GetID()))
                 {
                     Users.Add(user.GetID(), user.GetName());
 
                     CreateUserTextIdentifier(user);
                 }
+            }
         }
 
         private void NotifyUserLeft(User user)
         {
             if (user.IsValid())
             {
-                var outName = string.Empty;
+                string outName = string.Empty;
 
                 if (Users.TryGetValue(user.GetID(), out outName))
                 {
@@ -73,7 +75,9 @@ namespace Holograph
                         var userObject = child.GetComponent<Text>();
 
                         if (userObject.text.Equals(outName))
+                        {
                             Destroy(child.gameObject);
+                        }
                     }
 
                     Users.Remove(user.GetID());
@@ -90,6 +94,19 @@ namespace Holograph
             }
 
             usersTracker = null;
+        }
+
+        private void Start()
+        {
+            // SharingStage should be valid at this point, but we may not be connected.
+            if (SharingStage.Instance.IsConnected)
+            {
+                Connected();
+            }
+            else
+            {
+                SharingStage.Instance.SharingManagerConnected += Connected;
+            }
         }
     }
 }

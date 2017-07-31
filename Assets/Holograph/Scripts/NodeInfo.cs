@@ -1,23 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+    using System.Collections.Generic;
+
     public class NodeInfo
     {
         public Dictionary<string, string> NodeDictionary;
 
         public NodeInfo(string nodeName, string nodeType, string[] keyList, string[] valueList)
         {
-            if (keyList.Length != valueList.Length) throw new Exception("Invalid key-value list");
+            if (keyList.Length != valueList.Length)
+            {
+                throw new Exception("Invalid key-value list");
+            }
 
-
-            NodeDictionary = new Dictionary<string, string> {{"name", nodeName}, {"type", nodeType}};
+            NodeDictionary = new Dictionary<string, string>
+                                 {
+                                     { "name", nodeName },
+                                     { "type", nodeType }
+                                 };
 
             for (var i = 0; i < keyList.Length; i++)
+            {
                 NodeDictionary.Add(keyList[i], valueList[i]);
+            }
         }
-
 
         public void AddProperty(string propertyName, string propertyValue)
         {
