@@ -253,7 +253,7 @@ namespace Holograph
         /// </summary>
         private void Start()
         {
-            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = UpdateMenu;
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = this.HandleMenuNetworkMessage;
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace Holograph
         /// <param name="message">
         /// The network message
         /// </param>
-        private void UpdateMenu(NetworkInMessage message)
+        private void HandleMenuNetworkMessage(NetworkInMessage message)
         {
             message.ReadInt64();
             int clickedNodeId = message.ReadInt32();

@@ -1,96 +1,78 @@
-﻿using System;
-using HoloToolkit.Sharing;
-using UnityEngine;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+    using System.IO;
+
+    using HoloToolkit.Sharing;
+
+    using UnityEngine;
+
+    /// <summary>
+    ///     The menu behavior.
+    /// </summary>
     public class MenuBehavior : MonoBehaviour
     {
+        /// <summary>
+        ///     The enrich panel.
+        /// </summary>
         public GameObject EnrichPanel;
+
+        /// <summary>
+        ///     The globe.
+        /// </summary>
         public GameObject Globe;
+
+        /// <summary>
+        ///     The info panel.
+        /// </summary>
         public GameObject InfoPanel;
+
+        /// <summary>
+        ///     The JSON file asset.
+        /// </summary>
         public TextAsset JsonFileAsset;
 
+        /// <summary>
+        ///     The mitigate panel.
+        /// </summary>
         public GameObject MitigatePanel;
+
+        /// <summary>
+        ///     The report panel.
+        /// </summary>
         public GameObject ReportPanel;
 
+        /// <summary>
+        ///     The stage story manager.
+        /// </summary>
         public StoryManager StageStoryManager;
 
-
-        private void Awake()
-        {
-            
-            if (JsonFileAsset == null) throw new Exception("JSON File not found");
-
-            var json = JsonFileAsset.text;
-            var nodeMenuItems = JsonUtility.FromJson<JNodeMenu>(json).nodeMenuItems;
-            Debug.Log("there are " + nodeMenuItems.Length + " menu items");
-            for (var i = 0; i < nodeMenuItems.Length; ++i)
-                transform.GetChild(i).GetComponent<ButtonBehavior>().initLayout(nodeMenuItems[i]);
-           
-            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuClickIcon] =
-                UpdateRadialMenuClickIcon;
-        }
-
         /// <summary>
-        ///     Expands the graph when icon is hit
+        ///     Goes back -- closes panel
         /// </summary>
-        public void Expand()
-        {
-            CloseAllPanels();
-            CloseMenu();
-            StageStoryManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().id);
-
-        }
-
-        /// <summary>
-        ///     Opens up the Info Panel on the Hexial Menu
-        /// </summary>
-        public void ListInfo()
-        {
-
-            InfoPanel.SetActive(!InfoPanel.activeSelf);
-        }
-
-        /// <summary>
-        ///     Opens up the Enrich Panel on the Hexial Menu
-        /// </summary>
-        public void Enrich()
-        {
-            EnrichPanel.SetActive(!EnrichPanel.activeSelf);
-            StageStoryManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().id);
-        }
-
-        /// <summary>
-        ///     Opens up the Mitigate Panel on the Hexial Menu
-        /// </summary>
-        public void Mitigate()
-        {
-            MitigatePanel.SetActive(!MitigatePanel.activeSelf);
-        }
-
         public void Back()
         {
             Debug.Log("Back");
         }
 
         /// <summary>
-        ///     Resets the application back to the globe stage
+        ///     Closes all open Panels
         /// </summary>
-        private void ResetStory()
+        public void CloseAllPanels()
         {
-
-            StageStoryManager.TriggerStory(StoryManager.StoryAction.ResetStory);
-
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
+            this.InfoPanel.SetActive(false);
+            this.EnrichPanel.SetActive(false);
+            this.MitigatePanel.SetActive(false);
         }
 
         /// <summary>
-        ///     Closes the hexial menu
+        ///     Closes the hexagonal menu
         /// </summary>
         public void CloseMenu()
         {
@@ -100,52 +82,119 @@ namespace Holograph
         }
 
         /// <summary>
-        ///     Closes all open Panels
+        ///     Opens up the Enrich Panel on the hexagonal Menu
         /// </summary>
-        public void CloseAllPanels()
+        public void Enrich()
         {
-            InfoPanel.SetActive(false);
-            EnrichPanel.SetActive(false);
-            MitigatePanel.SetActive(false);
+            this.EnrichPanel.SetActive(!this.EnrichPanel.activeSelf);
+            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().id);
         }
 
-        public void UpdateRadialMenuClickIcon(NetworkInMessage msg)
+        /// <summary>
+        ///     Expands the graph when icon is hit
+        /// </summary>
+        public void Expand()
         {
-            var userId = msg.ReadInt64();
-            var l = msg.ReadInt32();
+            this.CloseAllPanels();
+            this.CloseMenu();
+            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().id);
+        }
+
+        /// <summary>
+        ///     Handles the network message from a button click
+        /// </summary>
+        /// <param name="message">
+        ///     The network message.
+        /// </param>
+        public void HandleMenuButtonClickNetworkMessage(NetworkInMessage message)
+        {
+            message.ReadInt64();
+            int l = message.ReadInt32();
             var methodNameChars = new char[l];
             for (var i = 0; i < l; ++i)
-                methodNameChars[i] = Convert.ToChar(msg.ReadByte());
+            {
+                methodNameChars[i] = Convert.ToChar(message.ReadByte());
+            }
+
             var methodName = new string(methodNameChars);
-            CloseMenu();
-            Invoke(methodName, 0);
+            this.CloseMenu();
+            this.Invoke(methodName, 0);
         }
 
-        public void ChangeColor(Material color)
+        /// <summary>
+        ///     Opens up the Info Panel on the hexagonal Menu
+        /// </summary>
+        public void ListInfo()
         {
-            GetComponent<Renderer>().material = color;
+            this.InfoPanel.SetActive(!this.InfoPanel.activeSelf);
         }
 
+        /// <summary>
+        ///     Opens up the Mitigate Panel on the hexagonal Menu
+        /// </summary>
+        public void Mitigate()
+        {
+            this.MitigatePanel.SetActive(!this.MitigatePanel.activeSelf);
+        }
+
+        /// <summary>
+        ///     Resets the application back to the globe stage
+        /// </summary>
+        public void ResetStory()
+        {
+            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.ResetStory);
+        }
+
+        /// <summary>
+        ///     Called when instantiated but not active
+        /// </summary>
+        /// <exception cref="FileNotFoundException">
+        ///     JSON file was not found
+        /// </exception>
+        private void Awake()
+        {
+            if (this.JsonFileAsset == null)
+            {
+                throw new FileNotFoundException();
+            }
+
+            string json = this.JsonFileAsset.text;
+            var nodeMenuItems = JsonUtility.FromJson<JNodeMenu>(json).NodeMenuItems;
+            Debug.Log("there are " + nodeMenuItems.Length + " menu items");
+            for (var i = 0; i < nodeMenuItems.Length; ++i)
+            {
+                transform.GetChild(i).GetComponent<ButtonBehavior>().initLayout(nodeMenuItems[i]);
+            }
+
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenuClickIcon] = this.HandleMenuButtonClickNetworkMessage;
+        }
+
+        /// <summary>
+        ///     The deserialized struct for the JSON File
+        /// </summary>
         [Serializable]
         public struct JNodeMenu
         {
-            public NodeMenuItem[] nodeMenuItems;
+            /// <summary>
+            ///     The node menu items.
+            /// </summary>
+            public NodeMenuItem[] NodeMenuItems;
 
+            /// <summary>
+            ///     The node menu item.
+            /// </summary>
             [Serializable]
             public struct NodeMenuItem
             {
-                public string name;
-                public string methodName;
-                public string color;
-                public string texture;
-                public SubNodeMenuItem[] subNodeMenu;
-            }
+                /// <summary>
+                ///     Menu button name
+                /// </summary>
+                public string Name;
 
-            [Serializable]
-            public struct SubNodeMenuItem
-            {
-                public string actionName;
-                public string actionValue;
+                /// <summary>
+                ///     Menu button method
+                /// </summary>
+                public string MethodName;
             }
         }
     }

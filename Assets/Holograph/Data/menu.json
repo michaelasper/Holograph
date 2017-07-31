@@ -1,156 +1,30 @@
 {
-  "nodeMenuItems": [
+  "NodeMenuItems": [
     {
-      "name": "Investigate",
-      "methodName": "Expand",
-      "color": "blue",
-      "texture": "SecondIcon",
-      "subNodeMenu": [
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        }
-      ]
+      "Name": "Investigate",
+      "MethodName": "Expand"
+      },
+    {
+      "Name": "Back",
+      "MethodName": "Back"
     },
     {
-      "name": "Back",
-      "methodName": "Back",
-      "color": "white",
-      "texture": "SecondIcon",
-      "subNodeMenu": [
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        }
-      ]
+      "Name": "Mitigate",
+      "MethodName": "Mitigate"
     },
     {
-      "name": "Mitigate",
-      "methodName": "Mitigate",
-      "color": "green",
-      "texture": "ThirdIcon",
-      "subNodeMenu": [
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        }
-      ]
-    },
-    {
-      "name": "Enrich",
-      "methodName": "Enrich",
-      "color": "red",
-      "texture": "FirstIcon",
-      "subNodeMenu": [
-        {
-          "actionName": "Expand",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        }
-      ]
-    },
+      "Name": "Enrich",
+      "MethodName": "Enrich"
+      },
 
     {
-      "name": "Home",
-      "methodName": "ResetStory",
-      "color": "white",
-      "texture": "SecondIcon",
-      "subNodeMenu": [
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        }
-      ]
-    },
+      "Name": "Home",
+      "MethodName": "ResetStory"
+      },
 
     {
-      "name": "Information",
-      "methodName": "ListInfo",
-      "color": "yellow",
-      "texture": "ForthIcon",
-      "subNodeMenu": [
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        },
-        {
-          "actionName": "Hack2",
-          "actionValue": "Gather Info"
-        }
-      ]
-    }
+      "Name": "Information",
+      "MethodName": "ListInfo"
+     }
   ]
 }

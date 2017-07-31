@@ -51,10 +51,8 @@ namespace Holograph
 
         public void initLayout(MenuBehavior.JNodeMenu.NodeMenuItem nodeMenuItem)
         {
-            _buttonName = nodeMenuItem.name;
-            MethodName = nodeMenuItem.methodName;
-            _color = nodeMenuItem.color;
-            _texture = nodeMenuItem.texture;
+            _buttonName = nodeMenuItem.Name;
+            MethodName = nodeMenuItem.MethodName;
         }
     }
 }
