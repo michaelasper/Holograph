@@ -28,6 +28,7 @@ namespace Holograph
             RadialMenu,
             RadialMenuClickIcon,
             FirstNodeTransform,
+            StoryControl,
             Button1Animation,
             Max
         }
@@ -267,6 +268,33 @@ namespace Holograph
             {
                 NetworkOutMessage msg = CreateMessage((byte)MessageID.FirstNodeTransform);
                 //AppendTransform(msg, transform.position, transform.rotation);
+
+                serverConnection.Broadcast(
+                    msg,
+                    MessagePriority.Immediate,
+                    MessageReliability.Unreliable,
+                    MessageChannel.Default);
+            }
+        }
+
+        public void SendStoryControl(byte action, int[] args)
+        {
+            if (serverConnection != null && serverConnection.IsConnected())
+            {
+                NetworkOutMessage msg = CreateMessage((byte)MessageID.StoryControl);
+                msg.Write(action);
+                if (args == null)
+                {
+                    msg.Write(0);
+                }
+                else
+                {
+                    msg.Write(args.Length);
+                    foreach (int x in args)
+                    {
+                        msg.Write(x);
+                    }
+                }
 
                 serverConnection.Broadcast(
                     msg,

@@ -58,13 +58,13 @@ namespace Holograph
         /// </summary>
         public void Expand()
         {
-            storyManager.Expand(transform.parent);
+            storyManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().id);
         }
 
 
         public void ListInfo()
         {
-            storyManager.ListInfo(transform.parent);
+            storyManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().id);
         }
 
         public void Hack()
@@ -79,7 +79,7 @@ namespace Holograph
 
         private void ResetStory()
         {
-            storyManager.ResetStory();
+            storyManager.TriggerStory(StoryManager.StoryAction.ResetStory);
         }
         // Update is called once per frame
         void Update()

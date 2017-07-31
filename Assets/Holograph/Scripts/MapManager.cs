@@ -36,7 +36,7 @@ namespace Holograph
         //nodes and their indices in the adj-matrix
         private Dictionary<string, int> nodeId;
 
-        private GameObject[] nodeObject;
+        public GameObject[] nodeObject;
 
         private int[,] adjMatrix;
 
