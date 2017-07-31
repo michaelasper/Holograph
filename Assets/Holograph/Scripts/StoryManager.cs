@@ -100,9 +100,7 @@ namespace Holograph
                         throw new ArgumentException("Expand expects one parameter");
                     }
                     Expand(_mapManager.nodeObject[args[0]].transform);
-                    break;
-                case StoryAction.ResetStory:
-                    ResetStory();
+
                     break;
                 default:
                     throw new NotSupportedException("Story Action not supported");

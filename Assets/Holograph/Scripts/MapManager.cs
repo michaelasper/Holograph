@@ -25,7 +25,14 @@ namespace Holograph
 
         public StringPrefabPair[] nodePrefabs;
 
+<<<<<<< HEAD
         public GameObject RadialMenu;
+=======
+        //nodes and their indices in the adj-matrix
+        private Dictionary<string, int> nodeId;
+
+        public GameObject[] nodeObject;
+>>>>>>> d3dd046c6deecba5edf262a56384e767361dad2e
 
         public bool[] visible;
 
