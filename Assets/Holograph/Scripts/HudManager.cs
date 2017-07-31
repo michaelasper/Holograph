@@ -46,7 +46,7 @@ namespace Holograph
             switch (clickedButton.name)
             {
                 case "CASES":
-                    storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaulStory);
+                    storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 case "USERS":
                 case "STATS":

@@ -1,125 +1,205 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using HoloToolkit.Sharing;
+﻿// /********************************************************
+// *                                                       *
+// *   Copyright (C) Microsoft. All rights reserved.       *
+// *                                                       *
+// ********************************************************/
 
 namespace Holograph
 {
+    using System;
+
+    using HoloToolkit.Sharing;
+
+    using UnityEngine;
+
+    /// <summary>
+    /// This script has functions to control the story
+    /// </summary>
     public class StoryManager : MonoBehaviour
     {
-        //This script has functions to control the story
-        private GameObject _globe;
-        private MapManager _mapManager;
-        private GameObject _reportPanel;
-        private Animator _globeAnimator;
-        private GlobeBehavior _globeBehavior;
-        private GameObject _infoPanel;
-        private InfoPanelBehavior _infoPanelBehavior;
-        private int _fadesInHash;
+        /// <summary>
+        /// Hash code for fades-in trigger
+        /// </summary>
+        private int fadesInHash;
 
+        /// <summary>
+        /// The globe.
+        /// </summary>
+        private GameObject globe;
+
+        /// <summary>
+        /// The globe animator.
+        /// </summary>
+        private Animator globeAnimator;
+
+        /// <summary>
+        /// The globe behavior.
+        /// </summary>
+        private GlobeBehavior globeBehavior;
+
+        /// <summary>
+        /// The map manager.
+        /// </summary>
+        private MapManager mapManager;
+
+        /// <summary>
+        /// The report panel.
+        /// </summary>
+        private GameObject reportPanel;
+
+        /// <summary>
+        /// The story action.
+        /// </summary>
         public enum StoryAction : byte
         {
-            EnterDefaulStory,
+            /// <summary>
+            /// The enter default story.
+            /// </summary>
+            EnterDefaultStory,
+
+            /// <summary>
+            /// The expand.
+            /// </summary>
             Expand,
+
+            /// <summary>
+            /// The list info.
+            /// </summary>
             ListInfo,
+
+            /// <summary>
+            /// The reset story.
+            /// </summary>
             ResetStory
         }
 
-        private void ResetStory()
-        {
-            _globe.gameObject.SetActive(true);
-            _globe.GetComponent<Collider>().enabled = true;
-            _globe.GetComponent<GlobeBehavior>().rotating = true;
-            _reportPanel.SetActive(true);
-            if (_globeAnimator != null && _globeAnimator.isInitialized)
-            {
-                _globeAnimator.SetTrigger(_fadesInHash);
-            }
-            _mapManager.HideNodes();
-        }
-
-        private void Expand(Transform expandedNode)
-        {
-            foreach (GameObject node in expandedNode.GetComponent<NodeBehavior>().Neighborhood)
-            {
-
-                _mapManager.Visible[node.GetComponent<NodeBehavior>().id] = true;
-                node.SetActive(true);
-            }
-            _mapManager.PositionNodes();
-            //_infoPanelBehavior.ClosePanel();
-        }
-
-        private void ListInfo(Transform node)
-        {
-            _infoPanel.SetActive(true);
-            NodeInfo nodeInfo = node.GetComponent<NodeBehavior>().NodeInfo;
-            _infoPanelBehavior.UpdateInfo(nodeInfo);
-        }
-
-        private void EnterDefaultStory()
-        {
-            _globeBehavior.DefaultStoryEntry();
-        }
-
-        void Start()
-        {
-            _globe = transform.Find("Globe").gameObject;
-            _mapManager = GetComponentInChildren<MapManager>();
-            _reportPanel = transform.Find("ReportPanel").gameObject;
-            _globeAnimator = _globe.GetComponent<Animator>();
-            _fadesInHash = Animator.StringToHash("fadesIn");
-            _globeBehavior = _globe.GetComponent<GlobeBehavior>();
-            
-            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.StoryControl] = UpdateStoryControl;
-        }
-
-        void Update()
-        {
-
-        }
-
+        /// <summary>
+        /// The trigger story.
+        /// </summary>
+        /// <param name="action">
+        /// The action.
+        /// </param>
+        /// <param name="args">
+        /// The args.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown when a wrong number of arguments are passed
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// Thrown when story action is not supported
+        /// </exception>
         public void TriggerStory(StoryAction action, params int[] args)
         {
             switch (action)
             {
-                case StoryAction.EnterDefaulStory:
-                    EnterDefaultStory();
+                case StoryAction.EnterDefaultStory:
+                    this.EnterDefaultStory();
                     break;
                 case StoryAction.ListInfo:
                     if (args == null || args.Length != 1)
                     {
                         throw new ArgumentException("ListInfo expects one parameter");
                     }
-                    ListInfo(_mapManager.NodeObject[args[0]].transform);
+
+                    ////this.ListInfo(this.mapManager.NodeObject[args[0]].transform);
                     break;
                 case StoryAction.Expand:
                     if (args == null || args.Length != 1)
                     {
                         throw new ArgumentException("Expand expects one parameter");
                     }
-                    Expand(_mapManager.NodeObject[args[0]].transform);
 
+                    this.Expand(this.mapManager.NodeObject[args[0]].transform);
                     break;
-                default:
-                    throw new NotSupportedException("Story Action not supported");
+                case StoryAction.ResetStory:
+                    this.ResetStory();
+                    break;
+                default: throw new NotSupportedException("Story Action not supported");
             }
+
             NetworkMessages.Instance.SendStoryControl((byte)action, args);
         }
 
-        public void UpdateStoryControl(NetworkInMessage msg)
+        /// <summary>
+        /// Handles the story control network messages
+        /// </summary>
+        /// <param name="message">
+        /// The network message.
+        /// </param>
+        public void HandleStoryControlNetworkMessage(NetworkInMessage message)
         {
-            msg.ReadInt64();
-            
-            StoryAction action = (StoryAction) msg.ReadByte();
-            int l = msg.ReadInt32();
-            int[] args = new int[l];
-            for (int i = 0; i < l; ++i)
+            message.ReadInt64(); // smh
+
+            var action = (StoryAction)message.ReadByte();
+            int l = message.ReadInt32();
+            var args = new int[l];
+            for (var i = 0; i < l; ++i)
             {
-                args[i] = msg.ReadInt32();
+                args[i] = message.ReadInt32();
             }
-            TriggerStory(action, args);
+
+            this.TriggerStory(action, args);
         }
+
+        /// <summary>
+        /// The enter default story.
+        /// </summary>
+        private void EnterDefaultStory()
+        {
+            this.globeBehavior.DefaultStoryEntry();
+        }
+
+        /// <summary>
+        /// The expand.
+        /// </summary>
+        /// <param name="expandedNode">
+        /// The expanded node.
+        /// </param>
+        private void Expand(Transform expandedNode)
+        {
+            foreach (var node in expandedNode.GetComponent<NodeBehavior>().Neighborhood)
+            {
+                this.mapManager.Visible[node.GetComponent<NodeBehavior>().id] = true;
+                node.SetActive(true);
+            }
+
+            this.mapManager.PositionNodes();
+
+            // _infoPanelBehavior.ClosePanel();
+        }
+
+        /// <summary>
+        /// Resets the graph and returns back to the globe
+        /// </summary>
+        private void ResetStory()
+        {
+            this.globe.gameObject.SetActive(true);
+            this.globe.GetComponent<Collider>().enabled = true;
+            this.globe.GetComponent<GlobeBehavior>().rotating = true;
+            this.reportPanel.SetActive(true);
+            if (this.globeAnimator != null && this.globeAnimator.isInitialized)
+            {
+                this.globeAnimator.SetTrigger(this.fadesInHash);
+            }
+
+            this.mapManager.HideNodes();
+        }
+
+        /// <summary>
+        /// Unity calls this
+        /// </summary>
+        private void Start()
+        {
+            this.globe = transform.Find("Globe").gameObject;
+            this.mapManager = this.GetComponentInChildren<MapManager>();
+            this.reportPanel = transform.Find("ReportPanel").gameObject;
+            this.globeAnimator = this.globe.GetComponent<Animator>();
+            this.fadesInHash = Animator.StringToHash("fadesIn");
+            this.globeBehavior = this.globe.GetComponent<GlobeBehavior>();
+
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.StoryControl] = this.HandleStoryControlNetworkMessage;
+        }
+
     }
+
 }
