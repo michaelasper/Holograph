@@ -5,21 +5,12 @@
       "MethodName": "Expand"
       },
     {
-      "Name": "Back",
-      "MethodName": "Back"
-    },
-    {
       "Name": "Mitigate",
       "MethodName": "Mitigate"
     },
     {
       "Name": "Enrich",
       "MethodName": "Enrich"
-      },
-
-    {
-      "Name": "Home",
-      "MethodName": "ResetStory"
       },
 
     {
