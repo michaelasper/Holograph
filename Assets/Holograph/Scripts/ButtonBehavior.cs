@@ -16,6 +16,10 @@ namespace Holograph
     {
         public string MethodName;
 
+        public AudioSource AudioSource;
+
+        public AudioClip ClickSound;
+
         private string _buttonName;
 
         private Transform _cam;
@@ -53,6 +57,7 @@ namespace Holograph
         public void OnInputUp(InputEventData eventData)
         {
             OnFocusExit();
+            this.AudioSource.PlayOneShot(this.ClickSound);
             _menuBehavior.Invoke(MethodName, 0f);
             NetworkMessages.Instance.SendRadialMenuClickIcon(MethodName);
         }
