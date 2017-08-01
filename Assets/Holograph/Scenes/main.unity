@@ -1004,7 +1004,8 @@ MonoBehaviour:
   HexialMenu: {fileID: 2109098384}
   Visible: 
   AudioSource: {fileID: 184836096}
-  NodeClickSound: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+  MenuOnSound: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+  MenuOffSound: {fileID: 8300000, guid: 50e919a458417594a8a31793be7d5d3f, type: 3}
 --- !u!114 &286436076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,6 +1364,46 @@ Prefab:
       propertyPath: storyManager
       value: 
       objectReference: {fileID: 921672466}
+    - target: {fileID: 114593584945640682, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 184836096}
+    - target: {fileID: 114593584945640682, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: ClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+    - target: {fileID: 114980899642747178, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: ClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+    - target: {fileID: 114980899642747178, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 184836096}
+    - target: {fileID: 114406533889380494, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: ClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+    - target: {fileID: 114406533889380494, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 184836096}
+    - target: {fileID: 114234775876312992, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: ClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+    - target: {fileID: 114234775876312992, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 184836096}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c160e83f2411045e6bb35e569c408686, type: 2}
   m_IsPrefabParent: 0
@@ -1550,6 +1591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc2daf9e4157ee48a9c20517b29ab8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioSource: {fileID: 184836096}
+  ExpandGraphSound: {fileID: 8300000, guid: e254614b80395b04a88ce9cd4b2258e7, type: 3}
 --- !u!1001 &1062729759
 Prefab:
   m_ObjectHideFlags: 0

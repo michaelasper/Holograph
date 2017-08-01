@@ -21,6 +21,10 @@ namespace Holograph
 
         public Texture selectedTexture;
 
+        public AudioSource AudioSource;
+
+        public AudioClip ClickSound;
+
         private Material buttonMaterial;
 
         private HudManager hudManager;
@@ -58,6 +62,7 @@ namespace Holograph
 
         public void OnInputUp(InputEventData eventData)
         {
+            this.AudioSource.PlayOneShot(this.ClickSound);
             hudManager.clickButtonUp(transform);
         }
 
