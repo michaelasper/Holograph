@@ -59,9 +59,14 @@ namespace Holograph
         public AudioSource AudioSource;
 
         /// <summary>
-        /// Audio clip for clicking the nodes.
+        /// Audio clip for toggling on the node menu
         /// </summary>
-        public AudioClip NodeClickSound;
+        public AudioClip MenuOnSound;
+
+        /// <summary>
+        /// Audio clip for toggling off the node menu
+        /// </summary>
+        public AudioClip MenuOffSound;
 
         /// <summary>
         /// The adjacency matrix of the graph
@@ -124,8 +129,6 @@ namespace Holograph
                 node.name = jsonGraph.Nodes[i].Name;
                 nodebehvaior.SetNodeInfo(nodeInfo);
                 nodebehvaior.id = i;
-                nodebehvaior.AudioSource = this.AudioSource;
-                nodebehvaior.ClickSound = this.NodeClickSound;
                 this.nodeId.Add(jsonGraph.Nodes[i].Name, i);
                 this.NodeObject[i] = node;
                 node.SetActive(false);
@@ -172,7 +175,7 @@ namespace Holograph
                     new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
                 this.HexialMenu.SetActive(true);
             }
-
+            this.AudioSource.PlayOneShot(this.HexialMenu.activeSelf ? MenuOnSound : MenuOffSound);
             this.HexialMenu.transform.localPosition = Vector3.zero;
             NetworkMessages.Instance.SendRadialMenu(clickedNodeId, this.HexialMenu.activeSelf);
         }

@@ -1004,7 +1004,8 @@ MonoBehaviour:
   HexialMenu: {fileID: 2109098384}
   Visible: 
   AudioSource: {fileID: 184836096}
-  NodeClickSound: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+  MenuOnSound: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+  MenuOffSound: {fileID: 8300000, guid: 50e919a458417594a8a31793be7d5d3f, type: 3}
 --- !u!114 &286436076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1155,7 @@ Prefab:
     - target: {fileID: 224418469228128810, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224471207149152010, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
@@ -1174,7 +1175,7 @@ Prefab:
     - target: {fileID: 224471207149152010, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -7.7700005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224381462203193302, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
@@ -1194,7 +1195,7 @@ Prefab:
     - target: {fileID: 224381462203193302, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -13.540001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114020737034911390, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
