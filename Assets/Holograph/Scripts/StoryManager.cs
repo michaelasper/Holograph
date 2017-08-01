@@ -28,6 +28,16 @@ namespace Holograph
         private GameObject globe;
 
         /// <summary>
+        /// The user side panel
+        /// </summary>
+        private GameObject UserPanel;
+
+        /// <summary>
+        /// The stats side panel
+        /// </summary>
+        private GameObject StatsPanel;
+
+        /// <summary>
         /// The globe animator.
         /// </summary>
         private Animator globeAnimator;
@@ -70,7 +80,11 @@ namespace Holograph
             /// <summary>
             /// The reset story.
             /// </summary>
-            ResetStory
+            ResetStory,
+            /// <summary>
+            /// The toggle panel
+            /// </summary>
+            TogglePanel
         }
 
         /// <summary>
@@ -114,6 +128,9 @@ namespace Holograph
                 case StoryAction.ResetStory:
                     this.ResetStory();
                     break;
+                case StoryAction.TogglePanel:
+                    this.TogglePanel(args[0]);
+                    break;
                 default: throw new NotSupportedException("Story Action not supported");
             }
 
@@ -139,6 +156,25 @@ namespace Holograph
             }
 
             this.TriggerStory(action, args);
+        }
+
+        /// <summary>
+        /// Toggles the targeted panel 
+        /// </summary>
+        /// <param name="targetPanelId">The target panel's ID</param>
+        private void TogglePanel(int targetPanelId)
+        {
+            switch (targetPanelId)
+            {
+                case 0:
+                    this.UserPanel.SetActive(!this.UserPanel.activeSelf);
+                    break;
+                case 1:
+                    this.StatsPanel.SetActive(!this.StatsPanel.activeSelf);
+                    break;
+                default: break;
+            }
+            return;
         }
 
         /// <summary>
@@ -196,6 +232,8 @@ namespace Holograph
             this.globeAnimator = this.globe.GetComponent<Animator>();
             this.fadesInHash = Animator.StringToHash("fadesIn");
             this.globeBehavior = this.globe.GetComponent<GlobeBehavior>();
+            this.UserPanel = transform.Find("UserList SidePanel").gameObject;
+            this.StatsPanel = transform.Find("Stats SidePanel").gameObject;
 
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.StoryControl] = this.HandleStoryControlNetworkMessage;
         }

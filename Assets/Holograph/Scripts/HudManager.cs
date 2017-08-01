@@ -33,7 +33,11 @@ namespace Holograph
                     storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 case "USERS":
+                    storyManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 0);
+                    selectButton(clickedButton);
+                    break;
                 case "STATS":
+                    storyManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 1);
                     selectButton(clickedButton);
                     break;
                 case "HOME":
