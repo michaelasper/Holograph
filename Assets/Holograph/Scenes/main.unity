@@ -1154,7 +1154,7 @@ Prefab:
     - target: {fileID: 224418469228128810, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 224471207149152010, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
@@ -1174,7 +1174,7 @@ Prefab:
     - target: {fileID: 224471207149152010, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -7.7700005
       objectReference: {fileID: 0}
     - target: {fileID: 224381462203193302, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
@@ -1194,7 +1194,7 @@ Prefab:
     - target: {fileID: 224381462203193302, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -13.540001
       objectReference: {fileID: 0}
     - target: {fileID: 114020737034911390, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
@@ -1363,6 +1363,46 @@ Prefab:
       propertyPath: storyManager
       value: 
       objectReference: {fileID: 921672466}
+    - target: {fileID: 114593584945640682, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 184836096}
+    - target: {fileID: 114593584945640682, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: ClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+    - target: {fileID: 114980899642747178, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: ClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+    - target: {fileID: 114980899642747178, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 184836096}
+    - target: {fileID: 114406533889380494, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: ClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+    - target: {fileID: 114406533889380494, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 184836096}
+    - target: {fileID: 114234775876312992, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: ClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+    - target: {fileID: 114234775876312992, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 184836096}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c160e83f2411045e6bb35e569c408686, type: 2}
   m_IsPrefabParent: 0
