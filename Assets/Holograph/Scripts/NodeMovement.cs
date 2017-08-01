@@ -9,7 +9,6 @@ namespace Holograph
     using System;
 
     using UnityEngine;
-    [Obsolete]
     public class NodeMovement : MonoBehaviour
     {
         public float SpeedPercentage;

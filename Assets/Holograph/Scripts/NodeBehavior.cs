@@ -24,6 +24,9 @@ namespace Holograph
 
         public NodeInfo NodeInfo;
 
+        public AudioSource AudioSource;
+        public AudioClip ClickSound;
+
         private float _nodeRadius;
 
         // public TextMesh TextMesh;
@@ -36,6 +39,7 @@ namespace Holograph
 
         public void OnInputUp(InputEventData eventData)
         {
+            AudioSource.PlayOneShot(ClickSound);
             MapManager.TogglesMenu(id);
         }
 

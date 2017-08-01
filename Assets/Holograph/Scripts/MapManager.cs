@@ -54,6 +54,16 @@ namespace Holograph
         public bool[] Visible;
 
         /// <summary>
+        /// Audio source from default cursor for nodes to use.
+        /// </summary>
+        public AudioSource AudioSource;
+
+        /// <summary>
+        /// Audio clip for clicking the nodes.
+        /// </summary>
+        public AudioClip NodeClickSound;
+
+        /// <summary>
         /// The adjacency matrix of the graph
         /// </summary>
         private int[,] adjMatrix;
@@ -114,6 +124,8 @@ namespace Holograph
                 node.name = jsonGraph.Nodes[i].Name;
                 nodebehvaior.SetNodeInfo(nodeInfo);
                 nodebehvaior.id = i;
+                nodebehvaior.AudioSource = this.AudioSource;
+                nodebehvaior.ClickSound = this.NodeClickSound;
                 this.nodeId.Add(jsonGraph.Nodes[i].Name, i);
                 this.NodeObject[i] = node;
                 node.SetActive(false);

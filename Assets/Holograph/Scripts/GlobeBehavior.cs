@@ -25,6 +25,9 @@ namespace Holograph
 
         public MapManager mapManager;
 
+        public AudioSource audioSource;
+        public AudioClip enterStorySound;
+
         [Tooltip("If true, clicking on globe creates a pushpin, whose coordinates will be printed when globe is airtapped")]
         public bool pushpinMode;
 
@@ -71,6 +74,7 @@ namespace Holograph
         private void AirTap()
         {
             rotating = false;
+            audioSource.PlayOneShot(this.enterStorySound);
             mapManager.transform.position = transform.position;
             mapManager.InitMap();
             mapManager.PositionNodes();
