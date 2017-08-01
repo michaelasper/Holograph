@@ -1591,6 +1591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc2daf9e4157ee48a9c20517b29ab8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioSource: {fileID: 184836096}
+  ExpandGraphSound: {fileID: 8300000, guid: e254614b80395b04a88ce9cd4b2258e7, type: 3}
 --- !u!1001 &1062729759
 Prefab:
   m_ObjectHideFlags: 0

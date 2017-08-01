@@ -18,6 +18,16 @@ namespace Holograph
     public class StoryManager : MonoBehaviour
     {
         /// <summary>
+        /// Default cursor
+        /// </summary>
+        public AudioSource AudioSource;
+
+        /// <summary>
+        /// Audio clip for expanding the graph
+        /// </summary>
+        public AudioClip ExpandGraphSound;
+
+        /// <summary>
         /// Hash code for fades-in trigger
         /// </summary>
         private int fadesInHash;
@@ -109,6 +119,7 @@ namespace Holograph
                         throw new ArgumentException("Expand expects one parameter");
                     }
 
+                    this.AudioSource.PlayOneShot(ExpandGraphSound);
                     this.Expand(this.mapManager.NodeObject[args[0]].transform);
                     break;
                 case StoryAction.ResetStory:
