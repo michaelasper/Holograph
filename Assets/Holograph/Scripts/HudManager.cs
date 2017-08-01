@@ -59,11 +59,12 @@ namespace Holograph
 
         private void selectButton(Transform selectedButton)
         {
-            for (var i = 0; i < transform.childCount; ++i)
-            {
-                var childButton = transform.GetChild(i);
-                childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
-            }
+            //for (var i = 0; i < transform.childCount; ++i)
+            //{
+            //    var childButton = transform.GetChild(i);
+            //    childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
+            //}
+            selectedButton.GetComponent<HudButtonBehavior>().switchSelected(true);
         }
 
         private void Start()
