@@ -32,6 +32,7 @@ namespace Holograph
         public void StartStory()
         {
             this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
+            this.CasePanel.SetActive(!this.CasePanel.activeSelf);
         }
 
         public void clickButtonUp(Transform clickedButton)
