@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 224229017166040924}
   - component: {fileID: 222070430484692262}
   - component: {fileID: 114750910609878000}
-  - component: {fileID: 114182558008405028}
+  - component: {fileID: 114188804607939388}
   - component: {fileID: 114807486998287334}
   m_Layer: 0
   m_Name: List
@@ -73,13 +73,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4727188087971538}
+  - component: {fileID: 114673420186870198}
   m_Layer: 0
   m_Name: Side Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1717679196671878
 GameObject:
   m_ObjectHideFlags: 1
@@ -121,8 +122,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689233643662570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.2257, y: 0, z: -1.52}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224691759567927442}
   m_Father: {fileID: 0}
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114182558008405028
+--- !u!114 &114188804607939388
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -190,7 +191,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1319611897807724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7bfd984505bc147bf5d6f2a107afac, type: 3}
+  m_Script: {fileID: 11500000, guid: 77cdbf2d66eebe24dbf2ff7bcd7f298b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TextPrefab: {fileID: 114180272399717196, guid: a22e12568ae4a254ea26143162880f05,
@@ -244,6 +245,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114673420186870198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689233643662570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72c917458c45a249ba7f8e125ad7df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 1
+  position: {x: -0.195, y: -0.01}
 --- !u!114 &114750910609878000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
-    m_Right: -10
+    m_Right: -45
     m_Top: -13
     m_Bottom: 0
   m_ChildAlignment: 2
@@ -393,7 +407,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 85, y: 100}
+  m_SizeDelta: {x: 45, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224830125319689828
 RectTransform:
@@ -450,5 +464,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 85, y: 5}
+  m_SizeDelta: {x: 45, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
