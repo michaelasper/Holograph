@@ -1004,7 +1004,8 @@ MonoBehaviour:
   HexialMenu: {fileID: 2109098384}
   Visible: 
   AudioSource: {fileID: 184836096}
-  NodeClickSound: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
+  MenuOnSound: {fileID: 0}
+  MenuOffSound: {fileID: 0}
 --- !u!114 &286436076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,7 +1099,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 921672464}
     m_Modifications:
     - target: {fileID: 4171987614450378, guid: 9c25c4b7be254f74384f621c8bdd839e, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1130,7 +1131,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4171987614450378, guid: 9c25c4b7be254f74384f621c8bdd839e, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1882236130320034, guid: 9c25c4b7be254f74384f621c8bdd839e, type: 2}
       propertyPath: m_Name
@@ -1154,7 +1155,7 @@ Prefab:
     - target: {fileID: 224418469228128810, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 224471207149152010, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
@@ -1174,7 +1175,7 @@ Prefab:
     - target: {fileID: 224471207149152010, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -7.7700005
       objectReference: {fileID: 0}
     - target: {fileID: 224381462203193302, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
@@ -1194,7 +1195,7 @@ Prefab:
     - target: {fileID: 224381462203193302, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -13.540001
       objectReference: {fileID: 0}
     - target: {fileID: 114020737034911390, guid: 9c25c4b7be254f74384f621c8bdd839e,
         type: 2}
@@ -1457,6 +1458,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed73a7ced93d63d49b150533b724affe, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &739433254 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4171987614450378, guid: 9c25c4b7be254f74384f621c8bdd839e,
+    type: 2}
+  m_PrefabInternal: {fileID: 488556005}
 --- !u!114 &889719113 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114833508873892560, guid: 4efd08cd14874d74eb082dcd0c97d648,
@@ -1522,6 +1528,8 @@ Transform:
   - {fileID: 609528803}
   - {fileID: 123759824}
   - {fileID: 2109098385}
+  - {fileID: 1071946113}
+  - {fileID: 739433254}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1550,6 +1558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc2daf9e4157ee48a9c20517b29ab8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioSource: {fileID: 0}
+  ExpandGraphSound: {fileID: 0}
 --- !u!1001 &1062729759
 Prefab:
   m_ObjectHideFlags: 0
@@ -1621,8 +1631,8 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1318860740}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 921672464}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1071946114
 MonoBehaviour:

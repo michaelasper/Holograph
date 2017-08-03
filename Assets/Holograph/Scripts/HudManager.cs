@@ -10,38 +10,51 @@ namespace Holograph
 
     using HoloToolkit.Unity.InputModule;
 
+    using NUnit.Framework.Constraints;
+
     using UnityEngine;
 
     public class HudManager : MonoBehaviour, IFocusable
     {
-        public bool isGazedAt;
+        public bool IsGazedAt;
 
         [Range(.1f, .3f)]
-        public float moveLerp = .2f;
+        public float MoveLerp = .2f;
 
-        public StoryManager storyManager;
+        public StoryManager MainStoryManager;
+
+        public GameObject CasePanel;
 
         private Transform cam;
 
         private Vector3 moveTarget;
+
+        public void StartStory()
+        {
+            this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
+        }
 
         public void clickButtonUp(Transform clickedButton)
         {
             switch (clickedButton.name)
             {
                 case "CASES":
-                    storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
+                    this.CasePanel.SetActive(!this.CasePanel.activeSelf);
+                    ////storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 case "USERS":
-                    storyManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 0);
-                    selectButton(clickedButton);
+                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 0);
+                    this.SelectButton(clickedButton);
                     break;
                 case "STATS":
-                    storyManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 1);
-                    selectButton(clickedButton);
+                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 1);
+                    this.SelectButton(clickedButton);
                     break;
                 case "HOME":
-                    storyManager.TriggerStory(StoryManager.StoryAction.ResetStory);
+                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.ResetStory);
+                    break;
+                case "Case Panel":
+                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 default: break;
             }
@@ -49,15 +62,15 @@ namespace Holograph
 
         public void OnFocusEnter()
         {
-            isGazedAt = true;
+            this.IsGazedAt = true;
         }
 
         public void OnFocusExit()
         {
-            isGazedAt = false;
+            this.IsGazedAt = false;
         }
 
-        private void selectButton(Transform selectedButton)
+        private void SelectButton(Transform selectedButton)
         {
             //for (var i = 0; i < transform.childCount; ++i)
             //{
@@ -69,20 +82,20 @@ namespace Holograph
 
         private void Start()
         {
-            cam = Camera.main.transform;
+            this.cam = Camera.main.transform;
         }
 
         private void Update()
         {
-            if (!isGazedAt)
+            if (!IsGazedAt)
             {
-                var headPosition = cam.position;
-                var gazeDirection = cam.forward;
+                var headPosition = this.cam.position;
+                var gazeDirection = this.cam.forward;
                 gazeDirection.y = 0f;
-                moveTarget = headPosition + new Vector3(0f, -.7f, 0f) + gazeDirection.normalized * 1f;
+                this.moveTarget = headPosition + new Vector3(0f, -.7f, 0f) + (gazeDirection.normalized * 1f);
             }
 
-            transform.position = Vector3.Lerp(transform.position, moveTarget, moveLerp);
+            transform.position = Vector3.Lerp(transform.position, this.moveTarget, this.MoveLerp);
         }
     }
 }

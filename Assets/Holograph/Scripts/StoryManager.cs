@@ -9,6 +9,7 @@ namespace Holograph
     using System;
 
     using HoloToolkit.Sharing;
+    using HoloToolkit.Sharing.VoiceChat;
 
     using UnityEngine;
 
@@ -26,6 +27,8 @@ namespace Holograph
         /// Audio clip for expanding the graph
         /// </summary>
         public AudioClip ExpandGraphSound;
+
+        public MicrophoneTransmitter Microphone;
 
         /// <summary>
         /// Hash code for fades-in trigger
@@ -178,6 +181,7 @@ namespace Holograph
             switch (targetPanelId)
             {
                 case 0:
+                    Microphone.Mute = !Microphone.Mute;
                     this.UserPanel.SetActive(!this.UserPanel.activeSelf);
                     break;
                 case 1:
