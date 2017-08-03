@@ -41,6 +41,7 @@ namespace Holograph
             {
                 case "CASES":
                     this.CasePanel.SetActive(!this.CasePanel.activeSelf);
+                    this.SelectButton(clickedButton);
                     ////storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 case "USERS":
