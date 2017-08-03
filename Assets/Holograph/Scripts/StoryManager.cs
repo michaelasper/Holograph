@@ -248,7 +248,7 @@ namespace Holograph
             this.fadesInHash = Animator.StringToHash("fadesIn");
             this.globeBehavior = this.globe.GetComponent<GlobeBehavior>();
             this.UserPanel = transform.Find("UserList SidePanel").gameObject;
-            this.StatsPanel = transform.Find("Stats SidePanel").gameObject;
+
 
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.StoryControl] = this.HandleStoryControlNetworkMessage;
         }

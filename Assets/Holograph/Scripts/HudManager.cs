@@ -24,6 +24,7 @@ namespace Holograph
         public StoryManager MainStoryManager;
 
         public GameObject CasePanel;
+        public GameObject ASCPanel;
 
         private Transform cam;
 
@@ -32,7 +33,8 @@ namespace Holograph
         public void StartStory()
         {
             this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
-            this.CasePanel.SetActive(!this.CasePanel.activeSelf);
+            this.CasePanel.SetActive(false);
+            this.ASCPanel.SetActive(false);
         }
 
         public void clickButtonUp(Transform clickedButton)
@@ -40,7 +42,9 @@ namespace Holograph
             switch (clickedButton.name)
             {
                 case "CASES":
+                    this.ASCPanel.SetActive(false);
                     this.CasePanel.SetActive(!this.CasePanel.activeSelf);
+                    this.SelectButton(clickedButton);
                     ////storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 case "USERS":
@@ -48,7 +52,8 @@ namespace Holograph
                     this.SelectButton(clickedButton);
                     break;
                 case "STATS":
-                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 1);
+                    this.CasePanel.SetActive(false);
+                    this.ASCPanel.SetActive(!this.ASCPanel.activeSelf);
                     this.SelectButton(clickedButton);
                     break;
                 case "HOME":
@@ -73,7 +78,7 @@ namespace Holograph
 
         private void SelectButton(Transform selectedButton)
         {
-            for (var i = 0; i < transform.childCount; ++i)
+            for (var i = 0; i < transform.childCount-2; ++i)
             {
                 var childButton = transform.GetChild(i);
                 childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
