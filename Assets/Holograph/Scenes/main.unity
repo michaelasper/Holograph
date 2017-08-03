@@ -108,11 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &28166359 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4171987614450378, guid: 9c25c4b7be254f74384f621c8bdd839e,
-    type: 2}
-  m_PrefabInternal: {fileID: 488556005}
 --- !u!1001 &41418561
 Prefab:
   m_ObjectHideFlags: 0
@@ -2021,6 +2016,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 114351127198564212, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: IsGazedAt
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114037053062927058, guid: c160e83f2411045e6bb35e569c408686, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c160e83f2411045e6bb35e569c408686, type: 2}
@@ -2273,11 +2273,7 @@ Transform:
   - {fileID: 123759824}
   - {fileID: 2109098385}
   - {fileID: 1071946113}
-<<<<<<< HEAD
-  - {fileID: 28166359}
-=======
   - {fileID: 900700054}
->>>>>>> 54f6427278876118ae72a82390653c21fa64ef6b
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
