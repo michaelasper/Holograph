@@ -32,7 +32,7 @@ namespace Holograph
 
         public void StartStory()
         {
-            this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
+            this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory, 0);
             this.CasePanel.SetActive(false);
             this.ASCPanel.SetActive(false);
         }

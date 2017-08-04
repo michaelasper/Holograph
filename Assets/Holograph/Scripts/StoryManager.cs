@@ -28,8 +28,6 @@ namespace Holograph
         /// </summary>
         public AudioClip ExpandGraphSound;
 
-        public MicrophoneTransmitter Microphone;
-
         /// <summary>
         /// Hash code for fades-in trigger
         /// </summary>
@@ -44,11 +42,6 @@ namespace Holograph
         /// The user side panel
         /// </summary>
         private GameObject UserPanel;
-
-        /// <summary>
-        /// The stats side panel
-        /// </summary>
-        private GameObject StatsPanel;
 
         /// <summary>
         /// The globe animator.
@@ -69,7 +62,7 @@ namespace Holograph
         /// The report panel.
         /// </summary>
         private GameObject reportPanel;
-
+        
         /// <summary>
         /// The story action.
         /// </summary>
@@ -120,7 +113,7 @@ namespace Holograph
             switch (action)
             {
                 case StoryAction.EnterDefaultStory:
-                    this.EnterDefaultStory();
+                    this.EnterDefaultStory(args[0]);
                     break;
                 case StoryAction.ListInfo:
                     if (args == null || args.Length != 1)
@@ -137,7 +130,7 @@ namespace Holograph
                     }
 
                     this.AudioSource.PlayOneShot(ExpandGraphSound);
-                    this.Expand(this.mapManager.NodeObject[args[0]].transform);
+                    this.Expand(this.mapManager.getCurrentCaseObject().NodeObject[args[0]].transform);
                     break;
                 case StoryAction.ResetStory:
                     this.ResetStory();
@@ -184,9 +177,6 @@ namespace Holograph
                     ////Microphone.Mute = !Microphone.Mute;
                     this.UserPanel.SetActive(!this.UserPanel.activeSelf);
                     break;
-                case 1:
-                    this.StatsPanel.SetActive(!this.StatsPanel.activeSelf);
-                    break;
                 default: break;
             }
             return;
@@ -195,9 +185,9 @@ namespace Holograph
         /// <summary>
         /// The enter default story.
         /// </summary>
-        private void EnterDefaultStory()
+        private void EnterDefaultStory(int caseId)
         {
-            this.globeBehavior.DefaultStoryEntry();
+            this.globeBehavior.DefaultStoryEntry(caseId);
         }
 
         /// <summary>
@@ -210,7 +200,8 @@ namespace Holograph
         {
             foreach (var node in expandedNode.GetComponent<NodeBehavior>().Neighborhood)
             {
-                this.mapManager.Visible[node.GetComponent<NodeBehavior>().id] = true;
+                var currentCaseObject = this.mapManager.getCurrentCaseObject();
+                currentCaseObject.Visible[node.GetComponent<NodeBehavior>().id] = true;
                 node.SetActive(true);
             }
 
@@ -233,7 +224,7 @@ namespace Holograph
                 this.globeAnimator.SetTrigger(this.fadesInHash);
             }
 
-            this.mapManager.HideNodes();
+            this.mapManager.HideMap();
         }
 
         /// <summary>

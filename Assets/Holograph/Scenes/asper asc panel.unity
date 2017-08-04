@@ -836,6 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Globe: {fileID: 1464671490}
+  MainStoryManager: {fileID: 921672466}
   JsonFile: {fileID: 4900000, guid: 003d99678badd6c4db33f423b302d1e1, type: 3}
   NodeObject: []
   NodePrefabs:

@@ -45,12 +45,11 @@ namespace Holograph
 
         private Transform pushPin;
 
-        public void DefaultStoryEntry()
+        public void DefaultStoryEntry(int caseId)
         {
             rotating = false;
             mapManager.transform.position = transform.position;
-            mapManager.InitMap();
-            mapManager.PositionNodes();
+            mapManager.LoadMap(caseId);
             firstNode.transform.localPosition = Vector3.zero;
             globeAnimator.SetTrigger(fadesOutHash);
         }
@@ -68,9 +67,9 @@ namespace Holograph
 
         void IInputHandler.OnInputUp(InputEventData eventData)
         {
-            AirTap();
         }
 
+        [System.Obsolete]
         private void AirTap()
         {
             rotating = false;
@@ -114,7 +113,7 @@ namespace Holograph
         private void FirstNodeTransform(NetworkInMessage msg)
         {
             // long userId = msg.ReadInt64();
-            DefaultStoryEntry();
+            //DefaultStoryEntry();
         }
 
         private void Start()

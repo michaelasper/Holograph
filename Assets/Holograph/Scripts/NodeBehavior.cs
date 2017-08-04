@@ -8,6 +8,7 @@ namespace Holograph
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using HoloToolkit.Unity.InputModule;
 
@@ -80,7 +81,10 @@ namespace Holograph
             GL.Begin(GL.LINES);
             _lineMaterial.SetPass(0);
             GL.Color(Color.gray);
-            var visible = transform.parent.GetComponent<MapManager>().Visible;
+
+            int currentCase = MapManager.currentCase;
+            var targetCaseObject = MapManager.caseObjects.FirstOrDefault(caseObject => caseObject.CaseID == currentCase);
+            var visible = targetCaseObject.Visible;
             foreach (var n in Neighborhood)
             {
                 if (visible[id] && visible[n.GetComponent<NodeBehavior>().id])
