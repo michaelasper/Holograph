@@ -136,6 +136,9 @@ namespace Holograph
                 throw new FileNotFoundException("JSON not found");
             }
 
+            Debug.Log(JsonFile);
+            JSONObject SketchyJsonObject = new JSONObject(JsonFile.ToString());
+            Debug.Log(SketchyJsonObject["Cases"][0]["Nodes"][0]["Data"]["Message"]);
             caseObjects = new List<CaseObject>();
             string json = JsonFile.text;
             var caseList = JsonUtility.FromJson<CaseList>(json);
@@ -395,6 +398,8 @@ namespace Holograph
                     ///     The values in property list.
                     /// </summary>
                     public string[] Values;
+
+                    public Dictionary<String, String> Data;
                 }
 
                 /// <summary>
