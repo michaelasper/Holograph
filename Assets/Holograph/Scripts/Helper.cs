@@ -17,12 +17,15 @@ namespace Assets.Holograph.Scripts
             {
                 var currentNode = currentCase["Nodes"][i];
                 var temp = new MapManager.CaseList.Case.Node();
-                temp.Name = currentNode["Name"].ToString();
-                temp.Type = currentNode["Type"].ToString();
+                temp.Name = currentNode["Name"].ToString().Replace("\"", "");
+                temp.Type = currentNode["Type"].ToString().Replace("\"", "");
                 temp.Data = currentCase["Nodes"][i]["Data"].ToDictionary();
                 temp.Keys = new string[0];
                 temp.Values = new string[0];
-                
+
+                //temp.Name = temp.Name.Replace("\"", "");
+                //temp.Type = temp.Type.Replace("\"", "");
+
                 results[i] = temp;
             }
 
@@ -36,8 +39,8 @@ namespace Assets.Holograph.Scripts
             for(int i = 0; i < currentCase["Edges"].Count; i++)
             {
                 results[i] = new MapManager.CaseList.Case.Edge();
-                results[i].Source = currentCase["Edges"][i]["Source"].ToString();
-                results[i].Target = currentCase["Edges"][i]["Target"].ToString();
+                results[i].Source = currentCase["Edges"][i]["Source"].ToString().Replace("\"", "");
+                results[i].Target = currentCase["Edges"][i]["Target"].ToString().Replace("\"", "");
             }
 
             return results;
