@@ -137,20 +137,30 @@ namespace Holograph
             }
 
             Debug.Log(JsonFile);
-            JSONObject SketchyJsonObject = new JSONObject(JsonFile.ToString());
-            Debug.Log(SketchyJsonObject["Cases"][0]["Nodes"][0]["Data"]["Message"]);
+
+
             caseObjects = new List<CaseObject>();
             string json = JsonFile.text;
-            var caseList = JsonUtility.FromJson<CaseList>(json);
+            JSONObject caseListJson = new JSONObject(JsonFile.ToString());
+            //var caseList = JsonUtility.FromJson<CaseList>(json);
 
-            for (var index = 0; index < caseList.Cases.Length; index++)
+            //for (var index = 0; index < caseList.Cases.Length; index++)
+            //{
+            //    var jsonGraph = caseList.Cases[index];
+            //    int numNodes = jsonGraph.Nodes.Length;
+            //    var caseObject = new CaseObject(jsonGraph.Name, index, numNodes);
+            //    caseObject.SetUp(jsonGraph, NodePrefabs);
+            //    caseObjects.Add(caseObject);
+            //}
+
+            for (int i = 0; i < caseListJson["Cases"].Count; i++)
             {
-                var jsonGraph = caseList.Cases[index];
-                int numNodes = jsonGraph.Nodes.Length;
-                var caseObject = new CaseObject(jsonGraph.Name, index, numNodes);
-                caseObject.SetUp(jsonGraph, NodePrefabs);
+                var caseObject = new CaseObject(caseListJson["Cases"][i]["Name"].ToString(), i, caseListJson["Cases"][i]["Nodes"].Count);
+                caseObject.SetUp(caseListJson["Cases"][i]);
                 caseObjects.Add(caseObject);
             }
+
+            Debug.Log("----> " + caseObjects.Count);
         }
 
         /// <summary>
@@ -382,24 +392,24 @@ namespace Holograph
                     /// <summary>
                     ///     The name of node. Unique
                     /// </summary>
-                    public string Name;
+                    public string Name { get; set; }
 
                     /// <summary>
                     ///     The node type.
                     /// </summary>
-                    public string Type;
+                    public string Type { get; set; }
 
                     /// <summary>
                     ///     The keys in property list.
                     /// </summary>
-                    public string[] Keys;
+                    public string[] Keys { get; set; }
 
                     /// <summary>
                     ///     The values in property list.
                     /// </summary>
-                    public string[] Values;
+                    public string[] Values { get; set; }
 
-                    public Dictionary<String, String> Data;
+                    public Dictionary<String, String> Data { get; set; }
                 }
 
                 /// <summary>

@@ -835,8 +835,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c0e9485bdac184489848800ad87d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioSource: {fileID: 184836096}
   Globe: {fileID: 1464671490}
+  HexialMenu: {fileID: 2109098384}
   JsonFile: {fileID: 4900000, guid: 003d99678badd6c4db33f423b302d1e1, type: 3}
+  MainStoryManager: {fileID: 0}
+  MenuOffSound: {fileID: 8300000, guid: 50e919a458417594a8a31793be7d5d3f, type: 3}
+  MenuOnSound: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
   NodeObject: []
   NodePrefabs:
   - NodeType: ALERT
@@ -851,11 +856,7 @@ MonoBehaviour:
   - NodeType: USER
     NodePrefab: {fileID: 1990329819373972, guid: 7038201a83d8519479ee825340d4eb1e,
       type: 2}
-  HexialMenu: {fileID: 2109098384}
-  Visible: 
-  AudioSource: {fileID: 184836096}
-  MenuOnSound: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
-  MenuOffSound: {fileID: 8300000, guid: 50e919a458417594a8a31793be7d5d3f, type: 3}
+  currentCase: 0
 --- !u!114 &286436076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,17 +1571,17 @@ Prefab:
     - target: {fileID: 224554002514513950, guid: c160e83f2411045e6bb35e569c408686,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 47.6
+      value: 48.6
       objectReference: {fileID: 0}
     - target: {fileID: 224554002514513950, guid: c160e83f2411045e6bb35e569c408686,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -5.55
+      value: -36.73
       objectReference: {fileID: 0}
     - target: {fileID: 224554002514513950, guid: c160e83f2411045e6bb35e569c408686,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 95.2
+      value: 97.2
       objectReference: {fileID: 0}
     - target: {fileID: 224320309560744880, guid: c160e83f2411045e6bb35e569c408686,
         type: 2}
@@ -2016,6 +2017,56 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 224381481860904330, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224381481860904330, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224381481860904330, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 48.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224381481860904330, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -11.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 224381481860904330, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 97.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224693814482098876, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224693814482098876, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224693814482098876, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 48.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224693814482098876, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -61.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 224693814482098876, guid: c160e83f2411045e6bb35e569c408686,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 97.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114037053062927058, guid: c160e83f2411045e6bb35e569c408686, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c160e83f2411045e6bb35e569c408686, type: 2}
@@ -2299,7 +2350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioSource: {fileID: 184836096}
   ExpandGraphSound: {fileID: 8300000, guid: e254614b80395b04a88ce9cd4b2258e7, type: 3}
-  Microphone: {fileID: 0}
 --- !u!1001 &946185217
 Prefab:
   m_ObjectHideFlags: 0

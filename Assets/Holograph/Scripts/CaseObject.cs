@@ -11,6 +11,7 @@ namespace Holograph
     using System.Linq;
 
     using UnityEngine;
+    using Assets.Holograph.Scripts;
 
     public class CaseObject
     {
@@ -63,6 +64,28 @@ namespace Holograph
                 this.adjMatrix[sourceId, targetId] = 1;
                 this.adjMatrix[targetId, sourceId] = 1;
                 
+            }
+        }
+
+        public void SetUp(JSONObject jsonGraph)
+        {
+            this.Nodes = Helper.JsonObjectToNodeArray(jsonGraph);
+            this.Edges = Helper.JsonObjectToEdgeArray(jsonGraph);
+
+            for (var i = 0; i < this.numNodes; i++)
+            {
+                this.nodeId.Add(this.Nodes[i].Name, i);
+
+            }
+
+
+            for (var i = 0; i < this.Edges.Length; ++i)
+            {
+                int sourceId = this.nodeId[this.Edges[i].Source];
+                int targetId = this.nodeId[this.Edges[i].Target];
+                this.adjMatrix[sourceId, targetId] = 1;
+                this.adjMatrix[targetId, sourceId] = 1;
+
             }
         }
 

@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Holograph/Scenes/asper asc panel.unity
-    guid: 8acf8eb4c17a7a84793358cd90ddf7aa
+    path: Assets/Holograph/Scenes/main.unity
+    guid: f82cb3569ecf3e74c8a3997a502e814b
