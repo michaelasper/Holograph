@@ -17,7 +17,7 @@ namespace Holograph
     {
         public int[,] adjMatrix;
 
-        public Dictionary<string, int> nodeId;
+        public Dictionary<string, int> nodeIndex;
 
         public GameObject[] NodeObject;
 
@@ -29,43 +29,43 @@ namespace Holograph
         public bool[] Visible;
 
         public string Name;
-        public int CaseID;
+        public int CaseId;
 
         public CaseObject(string name, int caseId, int numNodes)
         {
             this.Name = name;
-            this.CaseID = caseId;
+            this.CaseId = caseId;
             this.numNodes = numNodes;
             this.adjMatrix = new int[numNodes,numNodes];
-            this.nodeId = new Dictionary<string, int>();
+            this.nodeIndex = new Dictionary<string, int>();
             this.NodeObject = new GameObject[numNodes];
             this.Visible = new bool[numNodes];
         }
 
-        public void SetUp(MapManager.CaseList.Case jsonGraph, MapManager.StringPrefabPair[] nodePrefabs)
-        {
-            Debug.Log("Setting up: " + this.Name);
-            this.Nodes = (MapManager.CaseList.Case.Node[])jsonGraph.Nodes.Clone();
-            Debug.Log(this.Nodes);
-            this.Edges = (MapManager.CaseList.Case.Edge[])jsonGraph.Edges.Clone();
-            Debug.Log(this.Edges);
+        //public void SetUp(MapManager.CaseList.Case jsonGraph, MapManager.StringPrefabPair[] nodePrefabs)
+        //{
+        //    Debug.Log("Setting up: " + this.Name);
+        //    this.Nodes = (MapManager.CaseList.Case.Node[])jsonGraph.Nodes.Clone();
+        //    Debug.Log(this.Nodes);
+        //    this.Edges = (MapManager.CaseList.Case.Edge[])jsonGraph.Edges.Clone();
+        //    Debug.Log(this.Edges);
 
-            for (var i = 0; i < this.numNodes; i++)
-            {
-                this.nodeId.Add(this.Nodes[i].Name, i);
+        //    for (var i = 0; i < this.numNodes; i++)
+        //    {
+        //        this.nodeIndex.Add(this.Nodes[i]._id, i);
                
-            }
+        //    }
 
 
-            for (var i = 0; i < this.Edges.Length; ++i)
-            {
-                int sourceId = this.nodeId[this.Edges[i].Source];
-                int targetId = this.nodeId[this.Edges[i].Target];
-                this.adjMatrix[sourceId, targetId] = 1;
-                this.adjMatrix[targetId, sourceId] = 1;
+        //    for (var i = 0; i < this.Edges.Length; ++i)
+        //    {
+        //        int sourceId = this.nodeIndex[this.Edges[i].Source];
+        //        int targetId = this.nodeIndex[this.Edges[i].Target];
+        //        this.adjMatrix[sourceId, targetId] = 1;
+        //        this.adjMatrix[targetId, sourceId] = 1;
                 
-            }
-        }
+        //    }
+        //}
 
         public void SetUp(JSONObject jsonGraph)
         {
@@ -74,17 +74,25 @@ namespace Holograph
 
             for (var i = 0; i < this.numNodes; i++)
             {
-                this.nodeId.Add(this.Nodes[i].Name, i);
+                this.nodeIndex.Add(this.Nodes[i]._id, i);
 
             }
 
 
             for (var i = 0; i < this.Edges.Length; ++i)
             {
-                int sourceId = this.nodeId[this.Edges[i].Source];
-                int targetId = this.nodeId[this.Edges[i].Target];
-                this.adjMatrix[sourceId, targetId] = 1;
-                this.adjMatrix[targetId, sourceId] = 1;
+                try
+                {
+                    int sourceIndex = this.nodeIndex[this.Edges[i].Source];
+
+                int targetIndex = this.nodeIndex[this.Edges[i].Target];
+                this.adjMatrix[sourceIndex, targetIndex] = 1;
+                this.adjMatrix[targetIndex, sourceIndex] = 1;
+                }
+                catch (KeyNotFoundException)
+                {
+                    Debug.Log(this.Edges[i].Source);
+                }
 
             }
         }

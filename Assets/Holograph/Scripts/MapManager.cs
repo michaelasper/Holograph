@@ -75,7 +75,7 @@ namespace Holograph
 
         public CaseObject getCurrentCaseObject()
         {
-            return caseObjects.FirstOrDefault(caseObject => caseObject.CaseID == currentCase);
+            return caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
         }
 
 
@@ -89,7 +89,7 @@ namespace Holograph
                 return;
             }
 
-            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseID == currentCase);
+            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
 
             if (targetCaseObject == null)
             {
@@ -173,7 +173,7 @@ namespace Holograph
         {
             if (caseLoaded) HideMap();
 
-            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseID == caseId);
+            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == caseId);
 
             if (targetCaseObject == null)
             {
@@ -184,7 +184,8 @@ namespace Holograph
 
             for (var i = 0; i < targetCaseObject.numNodes; i++)
             {
-                var nodeInfo = new NodeInfo(targetCaseObject.Nodes[i].Name, targetCaseObject.Nodes[i].Type, targetCaseObject.Nodes[i].Keys, targetCaseObject.Nodes[i].Values);
+                CaseList.Case.Node jNode = targetCaseObject.Nodes[i];
+                var nodeInfo = new NodeInfo(jNode.Name, jNode.Type, jNode.Keys, jNode.Values);
                 var nodePrefab = (from stringPrefabPair in NodePrefabs
                                   where stringPrefabPair.NodeType.Equals(targetCaseObject.Nodes[i].Type)
                                   select stringPrefabPair.NodePrefab).FirstOrDefault();
@@ -193,7 +194,8 @@ namespace Holograph
                 var nodebehvaior = node.GetComponent<NodeBehavior>();
                 node.name = targetCaseObject.Nodes[i].Name;
                 nodebehvaior.SetNodeInfo(nodeInfo);
-                nodebehvaior.id = i;
+                nodebehvaior.Index = i;
+                nodebehvaior._id = jNode._id;
                 targetCaseObject.NodeObject[i] = node;
                 node.SetActive(false);
             }
@@ -201,10 +203,11 @@ namespace Holograph
 
             for (var i = 0; i < targetCaseObject.Edges.Length; ++i)
             {
-                int sourceId = targetCaseObject.nodeId[targetCaseObject.Edges[i].Source];
-                int targetId = targetCaseObject.nodeId[targetCaseObject.Edges[i].Target];
-                var source = targetCaseObject.NodeObject[sourceId];
-                var target = targetCaseObject.NodeObject[targetId];
+                CaseList.Case.Edge jEdge = targetCaseObject.Edges[i];
+                int sourceIndex = targetCaseObject.nodeIndex[jEdge.Source];
+                int targetIndex = targetCaseObject.nodeIndex[jEdge.Target];
+                var source = targetCaseObject.NodeObject[sourceIndex];
+                var target = targetCaseObject.NodeObject[targetIndex];
                 var sourceNeighborhood = source.GetComponent<NodeBehavior>().Neighborhood;
                 var targetNeighborhood = target.GetComponent<NodeBehavior>().Neighborhood;
                 sourceNeighborhood.AddLast(target);
@@ -239,7 +242,7 @@ namespace Holograph
         /// </param>
         public void TogglesMenu(int clickedNodeId)
         {
-            var radialMenuParentId = HexialMenu.transform.GetComponentInParent<NodeBehavior>()?.id;
+            var radialMenuParentId = HexialMenu.transform.GetComponentInParent<NodeBehavior>()?.Index;
             if (clickedNodeId.Equals(radialMenuParentId))
             {
                 HexialMenu.SetActive(!HexialMenu.activeSelf);
@@ -292,7 +295,7 @@ namespace Holograph
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Proper noun for the algorithm")]
         private Vector3[] SparseFruchtermanReingold(int originNode)
         {
-            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseID == currentCase);
+            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
             int numNodes = targetCaseObject.adjMatrix.GetLength(0);
             float k = Mathf.Sqrt(1f / numNodes);
             var t = .2f;
@@ -390,7 +393,11 @@ namespace Holograph
                 public struct Node
                 {
                     /// <summary>
-                    ///     The name of node. Unique
+                    ///     The node id. Unique
+                    /// </summary>
+                    public string _id { get; set; }
+                    /// <summary>
+                    ///     The name of node
                     /// </summary>
                     public string Name { get; set; }
 

@@ -28,7 +28,9 @@ namespace Holograph
         private float _nodeRadius;
 
         // public TextMesh TextMesh;
-        public int id { get; set; }
+        public int Index { get; set; }
+
+        public string _id { get; set; }
 
         public void OnInputDown(InputEventData eventData)
         {
@@ -37,7 +39,7 @@ namespace Holograph
 
         public void OnInputUp(InputEventData eventData)
         {
-            MapManager.TogglesMenu(id);
+            MapManager.TogglesMenu(Index);
         }
 
         public void OnRenderObject()
@@ -83,11 +85,11 @@ namespace Holograph
             GL.Color(Color.gray);
 
             int currentCase = MapManager.currentCase;
-            var targetCaseObject = MapManager.caseObjects.FirstOrDefault(caseObject => caseObject.CaseID == currentCase);
+            var targetCaseObject = MapManager.caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
             var visible = targetCaseObject.Visible;
             foreach (var n in Neighborhood)
             {
-                if (visible[id] && visible[n.GetComponent<NodeBehavior>().id])
+                if (visible[Index] && visible[n.GetComponent<NodeBehavior>().Index])
                 {
                     var s = n.transform.position;
                     var t = transform.position;

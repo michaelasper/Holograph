@@ -19,12 +19,10 @@ namespace Assets.Holograph.Scripts
                 var temp = new MapManager.CaseList.Case.Node();
                 temp.Name = currentNode["Name"].ToString().Replace("\"", "");
                 temp.Type = currentNode["Type"].ToString().Replace("\"", "");
+                temp._id = currentNode["_id"].ToString().Replace("\"", "");
                 temp.Data = currentCase["Nodes"][i]["Data"].ToDictionary();
                 temp.Keys = new string[0];
                 temp.Values = new string[0];
-
-                //temp.Name = temp.Name.Replace("\"", "");
-                //temp.Type = temp.Type.Replace("\"", "");
 
                 results[i] = temp;
             }

@@ -201,7 +201,7 @@ namespace Holograph
             foreach (var node in expandedNode.GetComponent<NodeBehavior>().Neighborhood)
             {
                 var currentCaseObject = this.mapManager.getCurrentCaseObject();
-                currentCaseObject.Visible[node.GetComponent<NodeBehavior>().id] = true;
+                currentCaseObject.Visible[node.GetComponent<NodeBehavior>().Index] = true;
                 node.SetActive(true);
             }
 

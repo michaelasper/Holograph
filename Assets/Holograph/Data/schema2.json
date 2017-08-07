@@ -1,0 +1,49 @@
+{
+  "Cases": [
+    {
+      "Name": "WannaCrypt", 
+      "Nodes": [
+        {
+          "Name": "malware",
+          "Type": "ALERT",
+          "Keys": [
+            "prop1",
+            "prop2",
+            "prop3"
+          ],
+          "Values": [
+            "something",
+            "nothing",
+            "everything"
+          ],
+          "Data": {
+            "Message": "Hello World!!!"
+          }
+        },
+        {
+          "Name": "1",
+          "Type": "SERVER",
+          "Keys": [
+            "prop1",
+            "prop2",
+            "prop3"
+          ],
+          "Values": [
+            "something",
+            "nothing",
+            "everything"
+          ],
+          "Data": {
+            "Message": "Hello World from node 1!"
+          }
+        }
+      ],
+      "Edges": [
+        {
+          "Source": "malware",
+          "Target": "1"
+        }
+      ]
+    }
+  ]
+}

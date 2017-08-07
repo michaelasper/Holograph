@@ -87,7 +87,7 @@ namespace Holograph
         public void Enrich()
         {
             this.EnrichPanel.SetActive(!this.EnrichPanel.activeSelf);
-            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().id);
+            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().Index);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Holograph
         {
             this.CloseAllPanels();
             this.CloseMenu();
-            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().id);
+            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().Index);
         }
 
         /// <summary>
