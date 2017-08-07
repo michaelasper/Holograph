@@ -20,6 +20,8 @@ namespace Assets.Holograph.Scripts
                 temp.Name = currentNode["Name"].ToString();
                 temp.Type = currentNode["Type"].ToString();
                 temp.Data = currentCase["Nodes"][i]["Data"].ToDictionary();
+                temp.Keys = new string[0];
+                temp.Values = new string[0];
                 
                 results[i] = temp;
             }
