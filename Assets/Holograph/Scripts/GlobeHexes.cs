@@ -23,16 +23,6 @@ public class GlobeHexes : MonoBehaviour
 
     public float moveSpeed;
 
-    public float redmondColorParameter;
-
-    public float redmondRadius;
-
-    public float redmondSize;
-
-    public string redmondTextContent;
-
-    public float redmondTextSize;
-
     public int textCount;
 
     public GameObject textPrefab;
@@ -48,10 +38,6 @@ public class GlobeHexes : MonoBehaviour
     private float[] lifeSpan;
 
     private Vector3[] points;
-
-    private Vector3 redmondPosition;
-
-    private GameObject redmondText;
 
     private Color scarletColor;
 
@@ -141,54 +127,6 @@ public class GlobeHexes : MonoBehaviour
             textTransform.Rotate(textTransform.up, 180f);
         }
 
-        var redmondHexPosition = redmondPosition.normalized * redmondRadius;
-        var redmondX = Vector3.Cross(redmondHexPosition, new Vector3(0f, 1f, 0f)).normalized;
-        var redmondY = Vector3.Cross(redmondHexPosition, redmondX).normalized;
-        var redmondColor = scarletColor;
-        redmondColor.r *= redmondColorParameter;
-        redmondColor.b /= redmondColorParameter;
-        redmondColor.g /= redmondColorParameter;
-        var redmondQuad1 = new Vector3[4];
-        var redmondQuad2 = new Vector3[4];
-        redmondQuad1[0] = -redmondY;
-        redmondQuad1[1] = .866f * redmondX - .5f * redmondY;
-        redmondQuad1[2] = .866f * redmondX + .5f * redmondY;
-        redmondQuad1[3] = redmondY;
-        redmondQuad2[0] = redmondY;
-        redmondQuad2[1] = -.866f * redmondX + .5f * redmondY;
-        redmondQuad2[2] = -.866f * redmondX - .5f * redmondY;
-        redmondQuad2[3] = -redmondY;
-        GL.Begin(GL.QUADS);
-        GL.Color(redmondColor * fadeAmt);
-        for (var k = 0; k < 4; ++k)
-        {
-            GL.Vertex(redmondSize * redmondQuad1[k] + redmondHexPosition);
-        }
-
-        for (var k = 0; k < 4; ++k)
-        {
-            GL.Vertex(redmondSize * redmondQuad2[k] + redmondHexPosition);
-        }
-
-        GL.End();
-        GL.Begin(GL.LINES);
-        GL.Color(redmondColor * fadeAmt);
-        GL.Vertex3(0f, 0f, 0f);
-        GL.Vertex(redmondHexPosition);
-        GL.End();
-        GL.PopMatrix();
-
-        if (redmondText == null)
-        {
-            redmondText = Instantiate(textPrefab, transform);
-            redmondText.GetComponent<TextMesh>().text = redmondTextContent;
-        }
-
-        redmondText.GetComponent<MeshRenderer>().material.color = scarletColor * fadeAmt;
-        var redmondTextTransform = redmondText.transform;
-        redmondTextTransform.localPosition = redmondPosition.normalized * 0.72f;
-        redmondTextTransform.LookAt(transform);
-        redmondTextTransform.localScale = Vector3.one * redmondTextSize;
     }
 
     private void Start()
@@ -660,7 +598,6 @@ public class GlobeHexes : MonoBehaviour
                       "219.96.94.57",
                       "137.250.132.17"
                   };
-        redmondPosition = new Vector3(0.2862832f, 0.163605f, 0.3758664f);
         scarletColor = new Color(.91f, .322f, .322f, 1f);
         for (var i = 0; i < hexCount; ++i)
         {

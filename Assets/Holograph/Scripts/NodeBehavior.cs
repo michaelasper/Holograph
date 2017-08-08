@@ -25,7 +25,9 @@ namespace Holograph
 
         public Dictionary<string, string> NodeInfo { set; get; }
 
-        private float _nodeRadius;
+        //private float _nodeRadius;
+
+        private bool[] visible;
 
         // public TextMesh TextMesh;
         public int Index { get; set; }
@@ -79,15 +81,11 @@ namespace Holograph
 
         private void DrawLines()
         {
-            CreateLineMaterial();
             GL.PushMatrix();
             GL.Begin(GL.LINES);
             _lineMaterial.SetPass(0);
             GL.Color(Color.gray);
 
-            int currentCase = MapManager.currentCase;
-            var targetCaseObject = MapManager.caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
-            var visible = targetCaseObject.Visible;
             foreach (var n in Neighborhood)
             {
                 if (visible[Index] && visible[n.GetComponent<NodeBehavior>().Index])
@@ -95,8 +93,8 @@ namespace Holograph
                     var s = n.transform.position;
                     var t = transform.position;
                     var dir = (t - s).normalized;
-                    s += dir * _nodeRadius;
-                    t -= dir * _nodeRadius;
+                    //s += dir * _nodeRadius;
+                    //t -= dir * _nodeRadius;
                     GL.Vertex(s);
                     GL.Vertex(t);
                 }
@@ -110,7 +108,11 @@ namespace Holograph
         private void Start()
         {
             MapManager = transform.parent.GetComponent<MapManager>();
-            _nodeRadius = 0f; // .0005f / transform.localScale.x;
+            //_nodeRadius = 0f; // .0005f / transform.localScale.x;
+            CreateLineMaterial();
+            int currentCase = MapManager.currentCase;
+            CaseObject targetCaseObject = MapManager.caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
+            visible = targetCaseObject.Visible;
         }
 
         // Update is called once per frame
