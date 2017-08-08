@@ -41,7 +41,7 @@ namespace Holograph
 
         public void OnInputUp(InputEventData eventData)
         {
-            MapManager.TogglesMenu(Index);
+            MapManager.TogglesMenuWithNetworking(Index);
         }
 
         public void OnRenderObject()

@@ -239,33 +239,36 @@ namespace Holograph
             }
         }
 
+        public void TogglesMenuWithNetworking(int clickedNodeIndex)
+        {
+            togglesMenu(clickedNodeIndex);
+            NetworkMessages.Instance.SendRadialMenu(clickedNodeIndex);
+        }
+
         /// <summary>
         ///     Toggles the menu
         /// </summary>
-        /// <param name="clickedNodeId">
+        /// <param name="clickedNodeIndex">
         ///     The node id.
         /// </param>
-        public void TogglesMenu(int clickedNodeId)
+        private void togglesMenu(int clickedNodeIndex)
         {
-            var radialMenuParentId = HexialMenu.transform.GetComponentInParent<NodeBehavior>()?.Index;
-            if (clickedNodeId.Equals(radialMenuParentId))
+            var hexialMenuParentId = HexialMenu.transform.GetComponentInParent<NodeBehavior>()?.Index;
+            if (clickedNodeIndex.Equals(hexialMenuParentId))
             {
                 HexialMenu.SetActive(!HexialMenu.activeSelf);
             }
             else
             {
                 var currentCaseObject = getCurrentCaseObject();
-                var targetNodeTransform = currentCaseObject.NodeObject[clickedNodeId].transform;
+                var targetNodeTransform = currentCaseObject.NodeObject[clickedNodeIndex].transform;
                 HexialMenu.transform.SetParent(targetNodeTransform, false);
-                HexialMenu.transform.localScale = Vector3.Scale(
-                    new Vector3(.1f, .1f, .1f),
-                    new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
+                HexialMenu.transform.localScale = .1f * new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z);
                 HexialMenu.SetActive(true);
             }
 
             AudioSource.PlayOneShot(HexialMenu.activeSelf ? MenuOnSound : MenuOffSound);
             HexialMenu.transform.localPosition = Vector3.zero;
-            NetworkMessages.Instance.SendRadialMenu(clickedNodeId, HexialMenu.activeSelf);
         }
 
         /// <summary>
@@ -277,15 +280,8 @@ namespace Holograph
         private void HandleMenuNetworkMessage(NetworkInMessage message)
         {
             message.ReadInt64();
-            int clickedNodeId = message.ReadInt32();
-            bool setActive = Convert.ToBoolean(message.ReadByte());
-            var targetNodeTransform = NodeObject[clickedNodeId].transform;
-            HexialMenu.transform.SetParent(targetNodeTransform, false);
-            HexialMenu.transform.localScale = Vector3.Scale(
-                new Vector3(.1f, .1f, .1f),
-                new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
-            HexialMenu.transform.localPosition = Vector3.zero;
-            HexialMenu.SetActive(setActive);
+            int clickNodeIndex = message.ReadInt32();
+            togglesMenu(clickNodeIndex);
         }
 
         /// <summary>

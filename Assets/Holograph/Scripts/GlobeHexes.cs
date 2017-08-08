@@ -111,6 +111,7 @@ public class GlobeHexes : MonoBehaviour
             GL.Vertex(points[i]);
             GL.End();
         }
+        GL.PopMatrix();
 
         for (var i = 0; i < textCount; ++i)
         {
