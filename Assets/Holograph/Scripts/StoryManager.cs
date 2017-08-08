@@ -41,7 +41,7 @@ namespace Holograph
         /// <summary>
         /// The user side panel
         /// </summary>
-        private GameObject UserPanel;
+        //private GameObject UserPanel;
 
         /// <summary>
         /// The globe animator.
@@ -86,11 +86,11 @@ namespace Holograph
             /// <summary>
             /// The reset story.
             /// </summary>
-            ResetStory,
+            ResetStory//,
             /// <summary>
             /// The toggle panel
             /// </summary>
-            TogglePanel
+            //TogglePanel
         }
 
         /// <summary>
@@ -135,9 +135,9 @@ namespace Holograph
                 case StoryAction.ResetStory:
                     this.ResetStory();
                     break;
-                case StoryAction.TogglePanel:
-                    this.TogglePanel(args[0]);
-                    break;
+                //case StoryAction.TogglePanel:
+                //    this.TogglePanel(args[0]);
+                    //break;
                 default: throw new NotSupportedException("Story Action not supported");
             }
 
@@ -169,18 +169,18 @@ namespace Holograph
         /// Toggles the targeted panel 
         /// </summary>
         /// <param name="targetPanelId">The target panel's ID</param>
-        private void TogglePanel(int targetPanelId)
-        {
-            switch (targetPanelId)
-            {
-                case 0:
-                    ////Microphone.Mute = !Microphone.Mute;
-                    this.UserPanel.SetActive(!this.UserPanel.activeSelf);
-                    break;
-                default: break;
-            }
-            return;
-        }
+        //private void TogglePanel(int targetPanelId)
+        //{
+        //    switch (targetPanelId)
+        //    {
+        //        case 0:
+        //            ////Microphone.Mute = !Microphone.Mute;
+        //            this.UserPanel.SetActive(!this.UserPanel.activeSelf);
+        //            break;
+        //        default: break;
+        //    }
+        //    return;
+        //}
 
         /// <summary>
         /// The enter default story.
@@ -238,7 +238,7 @@ namespace Holograph
             this.globeAnimator = this.globe.GetComponent<Animator>();
             this.fadesInHash = Animator.StringToHash("fadesIn");
             this.globeBehavior = this.globe.GetComponent<GlobeBehavior>();
-            this.UserPanel = transform.Find("UserList SidePanel").gameObject;
+            //this.UserPanel = transform.Find("UserList SidePanel").gameObject;
 
 
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.StoryControl] = this.HandleStoryControlNetworkMessage;

@@ -68,7 +68,7 @@ namespace Holograph
 
             StoryControl,
 
-            Button1Animation,
+            //Button1Animation,
 
             Max
         }

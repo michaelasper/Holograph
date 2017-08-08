@@ -25,6 +25,7 @@ namespace Holograph
 
         public GameObject CasePanel;
         public GameObject ASCPanel;
+        public GameObject UserListSidePanel;
 
         private Transform cam;
 
@@ -48,7 +49,8 @@ namespace Holograph
                     ////storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 case "USERS":
-                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 0);
+                    //this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 0);
+                    this.UserListSidePanel.SetActive(!this.UserListSidePanel.activeSelf);
                     this.SelectButton(clickedButton);
                     break;
                 case "STATS":
