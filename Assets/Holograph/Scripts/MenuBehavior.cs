@@ -127,6 +127,7 @@ namespace Holograph
         public void ListInfo()
         {
             this.InfoPanel.SetActive(!this.InfoPanel.activeSelf);
+            this.InfoPanel.GetComponent<InfoPanelBehavior>().UpdateInfo(GetComponentInParent<NodeBehavior>().NodeInfo);
         }
 
         /// <summary>

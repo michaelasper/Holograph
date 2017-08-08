@@ -8,43 +8,31 @@ namespace Holograph
 {
     using System;
     using System.Collections.Generic;
-
+    [Obsolete]
     public class NodeInfo
     {
-        public Dictionary<string, string> NodeDictionary;
+        public Dictionary<string, string> NodeData;
 
-        public NodeInfo(string nodeName, string nodeType, string[] keyList, string[] valueList)
+        public NodeInfo(string nodeName, string nodeType, Dictionary<string, string> nodeDataList)
         {
-            if (keyList.Length != valueList.Length)
-            {
-                throw new Exception("Invalid key-value list");
-            }
-
-            NodeDictionary = new Dictionary<string, string>
-                                 {
-                                     { "name", nodeName },
-                                     { "type", nodeType }
-                                 };
-
-            for (var i = 0; i < keyList.Length; i++)
-            {
-                NodeDictionary.Add(keyList[i], valueList[i]);
-            }
+            NodeData = new Dictionary<string, string>(nodeDataList);
+            NodeData.Add("name", nodeName);
+            NodeData.Add("type", nodeType);
         }
 
         public void AddProperty(string propertyName, string propertyValue)
         {
-            NodeDictionary.Add(propertyName, propertyValue);
+            NodeData.Add(propertyName, propertyValue);
         }
 
         public string GetProperty(string propertyName)
         {
-            return NodeDictionary[propertyName];
+            return NodeData[propertyName];
         }
 
         public override string ToString()
         {
-            return NodeDictionary.ToString();
+            return NodeData.ToString();
         }
     }
 }

@@ -185,17 +185,22 @@ namespace Holograph
             for (var i = 0; i < targetCaseObject.numNodes; i++)
             {
                 CaseList.Case.Node jNode = targetCaseObject.Nodes[i];
-                var nodeInfo = new NodeInfo(jNode.Name, jNode.Type, jNode.Keys, jNode.Values);
+
+                Dictionary<string, string> nodeInfo = new Dictionary<string, string>(jNode.Data);
+                nodeInfo.Add("Name", jNode.Name);
+                nodeInfo.Add("Type", jNode.Type);
+                //var nodeInfo = new NodeInfo(jNode.Name, jNode.Type, jNode.Data);
                 var nodePrefab = (from stringPrefabPair in NodePrefabs
                                   where targetCaseObject.Nodes[i].Type.Trim().StartsWith(stringPrefabPair.NodeType)
                                   select stringPrefabPair.NodePrefab).FirstOrDefault();
 
                 var node = Instantiate(nodePrefab, transform);
-                var nodebehvaior = node.GetComponent<NodeBehavior>();
-                node.name = targetCaseObject.Nodes[i].Name;
-                nodebehvaior.SetNodeInfo(nodeInfo);
-                nodebehvaior.Index = i;
-                nodebehvaior._id = jNode._id;
+                var nodeBehavior = node.GetComponent<NodeBehavior>();
+                //node.name = targetCaseObject.Nodes[i].Name;
+                //nodebehvaior.SetNodeInfo(nodeInfo);
+                nodeBehavior.NodeInfo = nodeInfo;
+                nodeBehavior.Index = i;
+                nodeBehavior._id = jNode._id;
                 targetCaseObject.NodeObject[i] = node;
                 node.SetActive(false);
             }
@@ -405,17 +410,7 @@ namespace Holograph
                     ///     The node type.
                     /// </summary>
                     public string Type { get; set; }
-
-                    /// <summary>
-                    ///     The keys in property list.
-                    /// </summary>
-                    public string[] Keys { get; set; }
-
-                    /// <summary>
-                    ///     The values in property list.
-                    /// </summary>
-                    public string[] Values { get; set; }
-
+                    
                     public Dictionary<String, String> Data { get; set; }
                 }
 

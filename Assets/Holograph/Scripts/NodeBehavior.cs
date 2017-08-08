@@ -23,7 +23,7 @@ namespace Holograph
 
         public LinkedList<GameObject> Neighborhood = new LinkedList<GameObject>();
 
-        public NodeInfo NodeInfo;
+        public Dictionary<string, string> NodeInfo { set; get; }
 
         private float _nodeRadius;
 
@@ -47,11 +47,12 @@ namespace Holograph
             DrawLines();
         }
 
-        public void SetNodeInfo(NodeInfo info)
-        {
-            NodeInfo = info;
-            ChangeName(info.GetProperty("name"));
-        }
+        //[Obsolete]
+        //public void SetNodeInfo(NodeInfo info)
+        //{
+        //    NodeInfo = info;
+        //    ChangeName(info.GetProperty("name"));
+        //}
 
         private static void CreateLineMaterial()
         {
