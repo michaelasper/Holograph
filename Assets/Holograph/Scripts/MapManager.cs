@@ -187,7 +187,7 @@ namespace Holograph
                 CaseList.Case.Node jNode = targetCaseObject.Nodes[i];
                 var nodeInfo = new NodeInfo(jNode.Name, jNode.Type, jNode.Keys, jNode.Values);
                 var nodePrefab = (from stringPrefabPair in NodePrefabs
-                                  where stringPrefabPair.NodeType.Equals(targetCaseObject.Nodes[i].Type)
+                                  where targetCaseObject.Nodes[i].Type.Trim().StartsWith(stringPrefabPair.NodeType)
                                   select stringPrefabPair.NodePrefab).FirstOrDefault();
 
                 var node = Instantiate(nodePrefab, transform);
