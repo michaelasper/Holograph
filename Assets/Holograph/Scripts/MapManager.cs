@@ -17,6 +17,7 @@ namespace Holograph
     using UnityEngine;
 
     using Random = UnityEngine.Random;
+    using System.Collections;
 
     /// <summary>
     ///     The map manager.
@@ -118,7 +119,8 @@ namespace Holograph
             {
                 Destroy(t);
             }
-        }
+        }  
+
 
         /// <summary>
         ///     Initializes the map
@@ -131,17 +133,27 @@ namespace Holograph
         /// </exception>
         public void InitMap()
         {
-            if (JsonFile == null)
+            WWW results = new WWW("http://holographapi.azurewebsites.net/v1/cases");
+            
+            while(!results.isDone)
             {
-                throw new FileNotFoundException("JSON not found");
+                Debug.Log("Downloading...");
             }
 
-            Debug.Log(JsonFile);
+            //if (JsonFile == null)
+            //{
+            //    throw new FileNotFoundException("JSON not found");
+            //}
+
+            //Debug.Log(JsonFile);
 
 
             caseObjects = new List<CaseObject>();
-            string json = JsonFile.text;
-            JSONObject caseListJson = new JSONObject(JsonFile.ToString());
+            string json = results.text; //JsonFile.text;
+            JSONObject caseListJson = new JSONObject(json);//JsonFile.ToString());
+            
+            
+            
             //var caseList = JsonUtility.FromJson<CaseList>(json);
 
             //for (var index = 0; index < caseList.Cases.Length; index++)
