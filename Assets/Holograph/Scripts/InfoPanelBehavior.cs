@@ -21,9 +21,26 @@ namespace Holograph
 
         public void UpdateInfo(Dictionary<string, string> nodeInfo)
         {
+            int numChildren = PropertyList.childCount;
+            for (int i = 0; i < numChildren; ++i)
+            {
+                PropertyList.GetChild(i).gameObject.SetActive(false);
+            }
+            int k = 0;
             foreach (KeyValuePair<string, string> p in nodeInfo)
             {
-                Transform propertyTransform = Instantiate(NodePropertyPrefab, PropertyList).transform;
+                Transform propertyTransform;
+                if (k < numChildren)
+                {
+                    propertyTransform = PropertyList.GetChild(k);
+                    propertyTransform.gameObject.SetActive(true);
+                }
+                else
+                {
+                    propertyTransform = Instantiate(NodePropertyPrefab, PropertyList).transform;
+                    propertyTransform.SetAsLastSibling();
+                }
+                ++k;
                 Transform keyObject = propertyTransform.GetChild(0);
                 Transform valueObject = propertyTransform.GetChild(1);
                 keyObject.GetComponent<Text>().text = p.Key;
