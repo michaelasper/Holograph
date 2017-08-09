@@ -73,6 +73,8 @@ namespace Holograph
 
         public int currentCase;
 
+        private MenuBehavior hexialMenuBehavior;
+
 
         public CaseObject getCurrentCaseObject()
         {
@@ -98,7 +100,7 @@ namespace Holograph
             }
 
             HexialMenu.transform.SetParent(transform.parent);
-            HexialMenu.SetActive(false);
+            hexialMenuBehavior.TogglesMenu(false);
             foreach (var t in targetCaseObject.NodeObject)
             {
                 Destroy(t);
@@ -114,7 +116,7 @@ namespace Holograph
         public void HideNodes()
         {
             HexialMenu.transform.SetParent(transform.parent);
-            HexialMenu.SetActive(false);
+            hexialMenuBehavior.TogglesMenu(false);
             foreach (var t in NodeObject)
             {
                 Destroy(t);
@@ -245,7 +247,7 @@ namespace Holograph
             var hexialMenuParentId = HexialMenu.transform.GetComponentInParent<NodeBehavior>()?.Index;
             if (clickedNodeIndex.Equals(hexialMenuParentId))
             {
-                HexialMenu.SetActive(!HexialMenu.activeSelf);
+                hexialMenuBehavior.TogglesMenu();
             }
             else
             {
@@ -253,7 +255,7 @@ namespace Holograph
                 var targetNodeTransform = currentCaseObject.NodeObject[clickedNodeIndex].transform;
                 HexialMenu.transform.SetParent(targetNodeTransform, false);
                 HexialMenu.transform.localScale = .1f * new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z);
-                HexialMenu.SetActive(true);
+                hexialMenuBehavior.TogglesMenu(true);
             }
 
             AudioSource.PlayOneShot(HexialMenu.activeSelf ? MenuOnSound : MenuOffSound);
@@ -350,6 +352,7 @@ namespace Holograph
         {
             InitMap();
             caseLoaded = false;
+            hexialMenuBehavior = HexialMenu.GetComponent<MenuBehavior>();
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = HandleMenuNetworkMessage;
         }
 
