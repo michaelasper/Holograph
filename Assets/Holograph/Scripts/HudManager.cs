@@ -80,7 +80,7 @@ namespace Holograph
 
         private void SelectButton(Transform selectedButton)
         {
-            for (var i = 0; i < transform.childCount-2; ++i)
+            for (var i = 0; i < 4; ++i)
             {
                 var childButton = transform.GetChild(i);
                 childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
