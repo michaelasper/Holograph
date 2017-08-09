@@ -78,7 +78,7 @@ namespace Holograph
         {
             gameObject.SetActive(false);
 
-            NetworkMessages.Instance.SendRadialMenu(-1, false);
+            //NetworkMessages.Instance.SendRadialMenu(-1, false);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Holograph
         public void Enrich()
         {
             this.EnrichPanel.SetActive(!this.EnrichPanel.activeSelf);
-            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().id);
+            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.ListInfo, GetComponentInParent<NodeBehavior>().Index);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Holograph
         {
             this.CloseAllPanels();
             this.CloseMenu();
-            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().id);
+            this.StageStoryManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().Index);
         }
 
         /// <summary>
@@ -117,7 +117,6 @@ namespace Holograph
             }
 
             var methodName = new string(methodNameChars);
-            this.CloseMenu();
             this.Invoke(methodName, 0);
         }
 
@@ -127,6 +126,7 @@ namespace Holograph
         public void ListInfo()
         {
             this.InfoPanel.SetActive(!this.InfoPanel.activeSelf);
+            this.InfoPanel.GetComponent<InfoPanelBehavior>().UpdateInfo(GetComponentInParent<NodeBehavior>().NodeInfo);
         }
 
         /// <summary>

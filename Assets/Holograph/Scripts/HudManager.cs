@@ -24,6 +24,8 @@ namespace Holograph
         public StoryManager MainStoryManager;
 
         public GameObject CasePanel;
+        public GameObject ASCPanel;
+        public GameObject UserListSidePanel;
 
         private Transform cam;
 
@@ -31,8 +33,9 @@ namespace Holograph
 
         public void StartStory()
         {
-            this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
-            this.CasePanel.SetActive(!this.CasePanel.activeSelf);
+            this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory, 0);
+            this.CasePanel.SetActive(false);
+            this.ASCPanel.SetActive(false);
         }
 
         public void clickButtonUp(Transform clickedButton)
@@ -40,16 +43,19 @@ namespace Holograph
             switch (clickedButton.name)
             {
                 case "CASES":
+                    this.ASCPanel.SetActive(false);
                     this.CasePanel.SetActive(!this.CasePanel.activeSelf);
                     this.SelectButton(clickedButton);
                     ////storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 case "USERS":
-                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 0);
+                    //this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 0);
+                    this.UserListSidePanel.SetActive(!this.UserListSidePanel.activeSelf);
                     this.SelectButton(clickedButton);
                     break;
                 case "STATS":
-                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 1);
+                    this.CasePanel.SetActive(false);
+                    this.ASCPanel.SetActive(!this.ASCPanel.activeSelf);
                     this.SelectButton(clickedButton);
                     break;
                 case "HOME":
@@ -74,11 +80,6 @@ namespace Holograph
 
         private void SelectButton(Transform selectedButton)
         {
-            //for (var i = 0; i < transform.childCount; ++i)
-            //{
-            //    var childButton = transform.GetChild(i);
-            //    childButton.GetComponent<HudButtonBehavior>().switchSelected(selectedButton == childButton);
-            //}
             selectedButton.GetComponent<HudButtonBehavior>().switchSelected(true);
         }
 

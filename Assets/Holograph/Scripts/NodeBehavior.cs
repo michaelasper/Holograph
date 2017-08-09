@@ -8,6 +8,7 @@ namespace Holograph
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using HoloToolkit.Unity.InputModule;
 
@@ -22,12 +23,16 @@ namespace Holograph
 
         public LinkedList<GameObject> Neighborhood = new LinkedList<GameObject>();
 
-        public NodeInfo NodeInfo;
+        public Dictionary<string, string> NodeInfo { set; get; }
 
-        private float _nodeRadius;
+        //private float _nodeRadius;
+
+        private bool[] visible;
 
         // public TextMesh TextMesh;
-        public int id { get; set; }
+        public int Index { get; set; }
+
+        public string _id { get; set; }
 
         public void OnInputDown(InputEventData eventData)
         {
@@ -36,7 +41,7 @@ namespace Holograph
 
         public void OnInputUp(InputEventData eventData)
         {
-            MapManager.TogglesMenu(id);
+            MapManager.TogglesMenuWithNetworking(Index);
         }
 
         public void OnRenderObject()
@@ -44,11 +49,12 @@ namespace Holograph
             DrawLines();
         }
 
-        public void SetNodeInfo(NodeInfo info)
-        {
-            NodeInfo = info;
-            ChangeName(info.GetProperty("name"));
-        }
+        //[Obsolete]
+        //public void SetNodeInfo(NodeInfo info)
+        //{
+        //    NodeInfo = info;
+        //    ChangeName(info.GetProperty("name"));
+        //}
 
         private static void CreateLineMaterial()
         {
@@ -75,21 +81,20 @@ namespace Holograph
 
         private void DrawLines()
         {
-            CreateLineMaterial();
             GL.PushMatrix();
             GL.Begin(GL.LINES);
             _lineMaterial.SetPass(0);
             GL.Color(Color.gray);
-            var visible = transform.parent.GetComponent<MapManager>().Visible;
+
             foreach (var n in Neighborhood)
             {
-                if (visible[id] && visible[n.GetComponent<NodeBehavior>().id])
+                if (visible[Index] && visible[n.GetComponent<NodeBehavior>().Index])
                 {
                     var s = n.transform.position;
                     var t = transform.position;
                     var dir = (t - s).normalized;
-                    s += dir * _nodeRadius;
-                    t -= dir * _nodeRadius;
+                    //s += dir * _nodeRadius;
+                    //t -= dir * _nodeRadius;
                     GL.Vertex(s);
                     GL.Vertex(t);
                 }
@@ -103,7 +108,11 @@ namespace Holograph
         private void Start()
         {
             MapManager = transform.parent.GetComponent<MapManager>();
-            _nodeRadius = 0f; // .0005f / transform.localScale.x;
+            //_nodeRadius = 0f; // .0005f / transform.localScale.x;
+            CreateLineMaterial();
+            int currentCase = MapManager.currentCase;
+            CaseObject targetCaseObject = MapManager.caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
+            visible = targetCaseObject.Visible;
         }
 
         // Update is called once per frame

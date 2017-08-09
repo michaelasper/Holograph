@@ -68,7 +68,7 @@ namespace Holograph
 
             StoryControl,
 
-            Button1Animation,
+            //Button1Animation,
 
             Max
         }
@@ -176,15 +176,13 @@ namespace Holograph
             }
         }
 
-        public void SendRadialMenu(int nodeId, bool setActive)
+        public void SendRadialMenu(int nodeId)
         {
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 var msg = CreateMessage((byte)MessageID.RadialMenu);
                 msg.Write(nodeId);
-                msg.Write(Convert.ToByte(setActive));
 
-                // msg.Write(Convert.ToByte(isParentTransform));
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
         }

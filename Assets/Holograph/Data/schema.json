@@ -1,1866 +1,1208 @@
 {
-   "Nodes":[
-      {
-         "Name":"malware",
-         "Type":"ALERT",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"1",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"2",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"3",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"4",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"5",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"6",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"7",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"8",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"9",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"10",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"11",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"12",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"13",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"14",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"15",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"16",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"17",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"18",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"19",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"20",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"21",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"22",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"23",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"24",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"25",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"26",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"27",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"28",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"29",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"30",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"31",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"32",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"33",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"34",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"35",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"36",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"37",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"38",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"39",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"40",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"41",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"42",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"43",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"44",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"45",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"46",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"47",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"48",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"49",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"50",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"51",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"52",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"53",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"54",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"55",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"56",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"57",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"58",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"59",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"60",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"61",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"62",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"63",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"64",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"65",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"66",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"67",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"68",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"69",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"70",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"71",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"72",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"73",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"74",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"75",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"76",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"77",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"78",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"79",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"80",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"81",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"82",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"83",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"84",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"85",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"86",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"87",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"88",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"89",
-         "Type":"SERVER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"90",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"91",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"92",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"93",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"94",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"95",
-         "Type":"USER",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"96",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"97",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"98",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      },
-      {
-         "Name":"99",
-         "Type":"MONITOR",
-         "Keys":[
-            "prop1",
-            "prop2",
-            "prop3"
-         ],
-         "Values":[
-            "something",
-            "nothing",
-            "everything"
-         ]
-      }
-   ],
-  "Edges": [
-    {
-      "Source": "malware",
-      "Target": "85"
-    },
-    {
-      "Source": "malware",
-      "Target": "78"
-    },
-    {
-      "Source": "malware",
-      "Target": "85"
-    },
-    {
-      "Source": "malware",
-      "Target": "68"
-    },
-    {
-      "Source": "malware",
-      "Target": "26"
-    },
-    {
-      "Source": "malware",
-      "Target": "74"
-    },
-    {
-      "Source": "malware",
-      "Target": "50"
-    },
-    {
-      "Source": "malware",
-      "Target": "69"
-    },
-    {
-      "Source": "malware",
-      "Target": "29"
-    },
-    {
-      "Source": "malware",
-      "Target": "59"
-    },
-    {
-      "Source": "malware",
-      "Target": "33"
-    },
-    {
-      "Source": "malware",
-      "Target": "99"
-    },
-    {
-      "Source": "malware",
-      "Target": "89"
-    },
-    {
-      "Source": "malware",
-      "Target": "9"
-    },
-    {
-      "Source": "malware",
-      "Target": "18"
-    },
-    {
-      "Source": "malware",
-      "Target": "5"
-    },
-    {
-      "Source": "malware",
-      "Target": "60"
-    },
-    {
-      "Source": "malware",
-      "Target": "52"
-    },
-    {
-      "Source": "malware",
-      "Target": "84"
-    },
-    {
-      "Source": "malware",
-      "Target": "57"
-    },
-    {
-      "Source": "malware",
-      "Target": "50"
-    },
-    {
-      "Source": "malware",
-      "Target": "27"
-    },
-    {
-      "Source": "malware",
-      "Target": "32"
-    },
-    {
-      "Source": "malware",
-      "Target": "53"
-    },
-    {
-      "Source": "malware",
-      "Target": "78"
-    },
-    {
-      "Source": "45",
-      "Target": "92"
-    },
-    {
-      "Source": "93",
-      "Target": "70"
-    },
-    {
-      "Source": "80",
-      "Target": "9"
-    },
-    {
-      "Source": "11",
-      "Target": "4"
-    },
-    {
-      "Source": "92",
-      "Target": "50"
-    },
-    {
-      "Source": "21",
-      "Target": "52"
-    },
-    {
-      "Source": "77",
-      "Target": "26"
-    },
-    {
-      "Source": "48",
-      "Target": "40"
-    },
-    {
-      "Source": "85",
-      "Target": "54"
-    },
-    {
-      "Source": "4",
-      "Target": "39"
-    },
-    {
-      "Source": "13",
-      "Target": "45"
-    },
-    {
-      "Source": "68",
-      "Target": "31"
-    },
-    {
-      "Source": "16",
-      "Target": "3"
-    },
-    {
-      "Source": "58",
-      "Target": "15"
-    },
-    {
-      "Source": "90",
-      "Target": "19"
-    },
-    {
-      "Source": "38",
-      "Target": "14"
-    },
-    {
-      "Source": "37",
-      "Target": "5"
-    },
-    {
-      "Source": "42",
-      "Target": "78"
-    },
-    {
-      "Source": "51",
-      "Target": "68"
-    },
-    {
-      "Source": "90",
-      "Target": "30"
-    },
-    {
-      "Source": "47",
-      "Target": "97"
-    },
-    {
-      "Source": "24",
-      "Target": "8"
-    },
-    {
-      "Source": "46",
-      "Target": "2"
-    },
-    {
-      "Source": "91",
-      "Target": "80"
-    },
-    {
-      "Source": "98",
-      "Target": "40"
-    },
-    {
-      "Source": "66",
-      "Target": "61"
-    },
-    {
-      "Source": "68",
-      "Target": "86"
-    },
-    {
-      "Source": "15",
-      "Target": "12"
-    },
-    {
-      "Source": "57",
-      "Target": "50"
-    },
-    {
-      "Source": "43",
-      "Target": "40"
-    },
-    {
-      "Source": "54",
-      "Target": "59"
-    },
-    {
-      "Source": "93",
-      "Target": "76"
-    },
-    {
-      "Source": "71",
-      "Target": "52"
-    },
-    {
-      "Source": "64",
-      "Target": "63"
-    },
-    {
-      "Source": "9",
-      "Target": "35"
-    },
-    {
-      "Source": "97",
-      "Target": "64"
-    },
-    {
-      "Source": "39",
-      "Target": "91"
-    },
-    {
-      "Source": "79",
-      "Target": "8"
-    },
-    {
-      "Source": "97",
-      "Target": "96"
-    },
-    {
-      "Source": "19",
-      "Target": "12"
-    },
-    {
-      "Source": "31",
-      "Target": "66"
-    },
-    {
-      "Source": "17",
-      "Target": "54"
-    },
-    {
-      "Source": "10",
-      "Target": "30"
-    },
-    {
-      "Source": "4",
-      "Target": "51"
-    },
-    {
-      "Source": "30",
-      "Target": "5"
-    },
-    {
-      "Source": "55",
-      "Target": "33"
-    },
-    {
-      "Source": "13",
-      "Target": "75"
-    },
-    {
-      "Source": "45",
-      "Target": "72"
-    },
-    {
-      "Source": "37",
-      "Target": "86"
-    },
-    {
-      "Source": "23",
-      "Target": "90"
-    },
-    {
-      "Source": "29",
-      "Target": "9"
-    },
-    {
-      "Source": "39",
-      "Target": "46"
-    },
-    {
-      "Source": "37",
-      "Target": "27"
-    },
-    {
-      "Source": "11",
-      "Target": "52"
-    },
-    {
-      "Source": "4",
-      "Target": "35"
-    },
-    {
-      "Source": "2",
-      "Target": "98"
-    },
-    {
-      "Source": "19",
-      "Target": "43"
-    },
-    {
-      "Source": "34",
-      "Target": "1"
-    },
-    {
-      "Source": "43",
-      "Target": "40"
-    },
-    {
-      "Source": "62",
-      "Target": "36"
-    },
-    {
-      "Source": "36",
-      "Target": "85"
-    },
-    {
-      "Source": "89",
-      "Target": "18"
-    },
-    {
-      "Source": "40",
-      "Target": "53"
-    },
-    {
-      "Source": "17",
-      "Target": "9"
-    },
-    {
-      "Source": "80",
-      "Target": "64"
-    },
-    {
-      "Source": "10",
-      "Target": "43"
-    },
-    {
-      "Source": "98",
-      "Target": "27"
-    },
-    {
-      "Source": "44",
-      "Target": "16"
-    },
-    {
-      "Source": "38",
-      "Target": "64"
-    },
-    {
-      "Source": "61",
-      "Target": "46"
-    },
-    {
-      "Source": "40",
-      "Target": "85"
-    },
-    {
-      "Source": "59",
-      "Target": "46"
-    },
-    {
-      "Source": "18",
-      "Target": "94"
-    },
-    {
-      "Source": "32",
-      "Target": "24"
-    },
-    {
-      "Source": "96",
-      "Target": "27"
-    },
-    {
-      "Source": "96",
-      "Target": "18"
-    },
-    {
-      "Source": "43",
-      "Target": "29"
-    },
-    {
-      "Source": "60",
-      "Target": "93"
-    },
-    {
-      "Source": "68",
-      "Target": "78"
-    },
-    {
-      "Source": "4",
-      "Target": "82"
-    },
-    {
-      "Source": "17",
-      "Target": "90"
-    },
-    {
-      "Source": "18",
-      "Target": "88"
-    },
-    {
-      "Source": "89",
-      "Target": "78"
-    },
-    {
-      "Source": "84",
-      "Target": "79"
-    },
-    {
-      "Source": "96",
-      "Target": "59"
-    },
-    {
-      "Source": "52",
-      "Target": "30"
-    },
-    {
-      "Source": "65",
-      "Target": "37"
-    },
-    {
-      "Source": "42",
-      "Target": "91"
-    },
-    {
-      "Source": "86",
-      "Target": "70"
-    },
-    {
-      "Source": "39",
-      "Target": "81"
+  "Cases": [
+    {
+      "Name": "Bruteforce attack from 52.175.144.185",
+      "Description": "Attack from 52.175.144.185",
+      "Nodes": [
+        {
+          "Name": "Originating Ip",
+          "Type": "Computer",
+          "Data": {
+            "Ip": "52.175.144.185"
+          },
+          "_id": "Subscription"
+        },
+        {
+          "Name": "Azure Subscription",
+          "Type": "Subscription owner of ip 52.175.144.185",
+          "Data": {
+            "SubscriptionId": "b60dd32e-052d-425f-8ee0-95401e4055ec",
+            "TenantId": "3ef3a802-539c-4e9f-b97e-bc78e8f76c99",
+            "Region": "japanwest",
+            "AccountLiveEnailId": "ldccbigData@hotmail.com"
+          },
+          "_id": "SourceComputer"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.56.121",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 12:53:04.0000000",
+            "EndDate": "2017-08-03 12:53:04.0000000"
+          },
+          "_id": "Comm1"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "144.76.121.202",
+            "DestPort": "23393",
+            "Count": "87",
+            "TransportLength": "20760",
+            "StartDate": "2017-08-03 12:53:30.0000000",
+            "EndDate": "2017-08-03 15:24:15.0000000"
+          },
+          "_id": "Comm2"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "1.55.101.47",
+            "DestPort": "54643",
+            "Count": "1",
+            "TransportLength": "424",
+            "StartDate": "2017-08-03 12:56:34.0000000",
+            "EndDate": "2017-08-03 12:56:34.0000000"
+          },
+          "_id": "Comm3"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.56.178",
+            "DestPort": "443",
+            "Count": "5",
+            "TransportLength": "692",
+            "StartDate": "2017-08-03 12:57:37.0000000",
+            "EndDate": "2017-08-03 17:48:31.0000000"
+          },
+          "_id": "Comm4"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "74.125.5.170",
+            "DestPort": "443",
+            "Count": "5",
+            "TransportLength": "776",
+            "StartDate": "2017-08-03 12:58:31.0000000",
+            "EndDate": "2017-08-03 13:01:25.0000000"
+          },
+          "_id": "Comm5"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "184.105.182.141",
+            "DestPort": "465",
+            "Count": "1",
+            "TransportLength": "340",
+            "StartDate": "2017-08-03 13:00:20.0000000",
+            "EndDate": "2017-08-03 13:00:20.0000000"
+          },
+          "_id": "Comm6"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.173.66.181",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 13:03:12.0000000",
+            "EndDate": "2017-08-03 13:03:12.0000000"
+          },
+          "_id": "Comm7"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.141.247",
+            "DestPort": "443",
+            "Count": "4",
+            "TransportLength": "436",
+            "StartDate": "2017-08-03 13:04:53.0000000",
+            "EndDate": "2017-08-03 13:08:10.0000000"
+          },
+          "_id": "Comm8"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "113.190.108.236",
+            "DestPort": "33603",
+            "Count": "2",
+            "TransportLength": "260",
+            "StartDate": "2017-08-03 13:07:08.0000000",
+            "EndDate": "2017-08-03 13:20:26.0000000"
+          },
+          "_id": "Comm9"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.204",
+            "DestPort": "80",
+            "Count": "5",
+            "TransportLength": "860",
+            "StartDate": "2017-08-03 13:17:22.0000000",
+            "EndDate": "2017-08-03 13:39:24.0000000"
+          },
+          "_id": "Comm10"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "23.41.75.27",
+            "DestPort": "80",
+            "Count": "2",
+            "TransportLength": "680",
+            "StartDate": "2017-08-03 13:17:26.0000000",
+            "EndDate": "2017-08-04 07:08:04.0000000"
+          },
+          "_id": "Comm11"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "116.104.31.61",
+            "DestPort": "65378",
+            "Count": "8",
+            "TransportLength": "1208",
+            "StartDate": "2017-08-03 13:17:33.0000000",
+            "EndDate": "2017-08-03 13:41:07.0000000"
+          },
+          "_id": "Comm12"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "104.75.242.94",
+            "DestPort": "443",
+            "Count": "4",
+            "TransportLength": "436",
+            "StartDate": "2017-08-03 13:17:37.0000000",
+            "EndDate": "2017-08-03 22:43:21.0000000"
+          },
+          "_id": "Comm13"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "171.245.255.138",
+            "DestPort": "64730",
+            "Count": "2",
+            "TransportLength": "344",
+            "StartDate": "2017-08-03 13:17:57.0000000",
+            "EndDate": "2017-08-03 13:17:58.0000000"
+          },
+          "_id": "Comm14"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.203",
+            "DestPort": "80",
+            "Count": "4",
+            "TransportLength": "940",
+            "StartDate": "2017-08-03 13:18:22.0000000",
+            "EndDate": "2017-08-03 13:35:32.0000000"
+          },
+          "_id": "Comm15"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.210",
+            "DestPort": "80",
+            "Count": "7",
+            "TransportLength": "1456",
+            "StartDate": "2017-08-03 13:19:08.0000000",
+            "EndDate": "2017-08-03 13:38:49.0000000"
+          },
+          "_id": "Comm16"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "194.88.106.146",
+            "DestPort": "59932",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 13:20:06.0000000",
+            "EndDate": "2017-08-03 13:20:06.0000000"
+          },
+          "_id": "Comm17"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.209",
+            "DestPort": "80",
+            "Count": "3",
+            "TransportLength": "600",
+            "StartDate": "2017-08-03 13:20:07.0000000",
+            "EndDate": "2017-08-03 13:40:57.0000000"
+          },
+          "_id": "Comm18"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.201",
+            "DestPort": "80",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 13:20:53.0000000",
+            "EndDate": "2017-08-03 13:20:53.0000000"
+          },
+          "_id": "Comm19"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.202",
+            "DestPort": "80",
+            "Count": "5",
+            "TransportLength": "776",
+            "StartDate": "2017-08-03 13:22:21.0000000",
+            "EndDate": "2017-08-03 13:41:41.0000000"
+          },
+          "_id": "Comm20"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.208",
+            "DestPort": "80",
+            "Count": "2",
+            "TransportLength": "596",
+            "StartDate": "2017-08-03 13:23:50.0000000",
+            "EndDate": "2017-08-03 13:36:50.0000000"
+          },
+          "_id": "Comm21"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.56.111",
+            "DestPort": "443",
+            "Count": "5",
+            "TransportLength": "860",
+            "StartDate": "2017-08-03 13:25:27.0000000",
+            "EndDate": "2017-08-03 16:59:59.0000000"
+          },
+          "_id": "Comm22"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "87.250.250.119",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 13:28:12.0000000",
+            "EndDate": "2017-08-03 13:28:12.0000000"
+          },
+          "_id": "Comm23"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "172.217.26.46",
+            "DestPort": "443",
+            "Count": "7",
+            "TransportLength": "868",
+            "StartDate": "2017-08-03 13:28:26.0000000",
+            "EndDate": "2017-08-03 18:57:08.0000000"
+          },
+          "_id": "Comm24"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "174.138.41.79",
+            "DestPort": "61864",
+            "Count": "6",
+            "TransportLength": "1368",
+            "StartDate": "2017-08-03 13:28:35.0000000",
+            "EndDate": "2017-08-03 13:30:06.0000000"
+          },
+          "_id": "Comm25"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "104.24.105.46",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 13:28:39.0000000",
+            "EndDate": "2017-08-03 13:28:39.0000000"
+          },
+          "_id": "Comm26"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "193.252.22.84",
+            "DestPort": "465",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 13:29:18.0000000",
+            "EndDate": "2017-08-03 13:29:18.0000000"
+          },
+          "_id": "Comm27"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "216.58.219.234",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "256",
+            "StartDate": "2017-08-03 13:29:32.0000000",
+            "EndDate": "2017-08-03 13:29:32.0000000"
+          },
+          "_id": "Comm28"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "52.42.57.212",
+            "DestPort": "80",
+            "Count": "1",
+            "TransportLength": "256",
+            "StartDate": "2017-08-03 13:29:55.0000000",
+            "EndDate": "2017-08-03 13:29:55.0000000"
+          },
+          "_id": "Comm29"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.207",
+            "DestPort": "80",
+            "Count": "2",
+            "TransportLength": "512",
+            "StartDate": "2017-08-03 13:29:59.0000000",
+            "EndDate": "2017-08-03 13:31:23.0000000"
+          },
+          "_id": "Comm30"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "52.84.26.254",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 13:30:06.0000000",
+            "EndDate": "2017-08-03 13:30:06.0000000"
+          },
+          "_id": "Comm31"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.205",
+            "DestPort": "80",
+            "Count": "3",
+            "TransportLength": "516",
+            "StartDate": "2017-08-03 13:30:20.0000000",
+            "EndDate": "2017-08-03 13:35:00.0000000"
+          },
+          "_id": "Comm32"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.56.184",
+            "DestPort": "443",
+            "Count": "2",
+            "TransportLength": "512",
+            "StartDate": "2017-08-03 13:30:24.0000000",
+            "EndDate": "2017-08-03 13:31:14.0000000"
+          },
+          "_id": "Comm33"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "62.112.11.88",
+            "DestPort": "63325",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 13:32:16.0000000",
+            "EndDate": "2017-08-03 13:32:16.0000000"
+          },
+          "_id": "Comm34"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "109.236.83.3",
+            "DestPort": "54788",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 13:34:17.0000000",
+            "EndDate": "2017-08-03 13:34:17.0000000"
+          },
+          "_id": "Comm35"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "116.31.116.17",
+            "DestPort": "63732",
+            "Count": "1",
+            "TransportLength": "256",
+            "StartDate": "2017-08-03 13:35:39.0000000",
+            "EndDate": "2017-08-03 13:35:39.0000000"
+          },
+          "_id": "Comm36"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "104.167.2.79",
+            "DestPort": "63049",
+            "Count": "3",
+            "TransportLength": "432",
+            "StartDate": "2017-08-03 13:37:02.0000000",
+            "EndDate": "2017-08-03 13:37:31.0000000"
+          },
+          "_id": "Comm37"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.152.28",
+            "DestPort": "443",
+            "Count": "2",
+            "TransportLength": "176",
+            "StartDate": "2017-08-03 13:38:59.0000000",
+            "EndDate": "2017-08-03 13:42:04.0000000"
+          },
+          "_id": "Comm38"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "17.253.13.206",
+            "DestPort": "80",
+            "Count": "1",
+            "TransportLength": "256",
+            "StartDate": "2017-08-03 13:39:26.0000000",
+            "EndDate": "2017-08-03 13:39:26.0000000"
+          },
+          "_id": "Comm39"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "74.125.5.180",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 13:52:34.0000000",
+            "EndDate": "2017-08-03 13:52:34.0000000"
+          },
+          "_id": "Comm40"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "104.167.2.79",
+            "DestPort": "62073",
+            "Count": "1",
+            "TransportLength": "424",
+            "StartDate": "2017-08-03 13:54:06.0000000",
+            "EndDate": "2017-08-03 13:54:06.0000000"
+          },
+          "_id": "Comm41"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "104.24.104.171",
+            "DestPort": "80",
+            "Count": "2",
+            "TransportLength": "428",
+            "StartDate": "2017-08-03 13:54:06.0000000",
+            "EndDate": "2017-08-03 21:19:59.0000000"
+          },
+          "_id": "Comm42"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "172.217.26.33",
+            "DestPort": "443",
+            "Count": "2",
+            "TransportLength": "176",
+            "StartDate": "2017-08-03 13:55:21.0000000",
+            "EndDate": "2017-08-03 20:01:34.0000000"
+          },
+          "_id": "Comm43"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "74.125.5.242",
+            "DestPort": "443",
+            "Count": "8",
+            "TransportLength": "1040",
+            "StartDate": "2017-08-03 13:56:00.0000000",
+            "EndDate": "2017-08-03 16:21:33.0000000"
+          },
+          "_id": "Comm44"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "216.58.197.195",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 13:56:21.0000000",
+            "EndDate": "2017-08-03 13:56:21.0000000"
+          },
+          "_id": "Comm45"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.152.58",
+            "DestPort": "443",
+            "Count": "2",
+            "TransportLength": "428",
+            "StartDate": "2017-08-03 14:05:23.0000000",
+            "EndDate": "2017-08-03 14:09:08.0000000"
+          },
+          "_id": "Comm46"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "77.88.55.80",
+            "DestPort": "80",
+            "Count": "2",
+            "TransportLength": "260",
+            "StartDate": "2017-08-03 14:12:29.0000000",
+            "EndDate": "2017-08-03 14:51:30.0000000"
+          },
+          "_id": "Comm47"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.152.60",
+            "DestPort": "443",
+            "Count": "4",
+            "TransportLength": "520",
+            "StartDate": "2017-08-03 14:14:27.0000000",
+            "EndDate": "2017-08-03 14:17:30.0000000"
+          },
+          "_id": "Comm48"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "172.217.27.78",
+            "DestPort": "443",
+            "Count": "3",
+            "TransportLength": "432",
+            "StartDate": "2017-08-03 14:19:37.0000000",
+            "EndDate": "2017-08-03 15:07:23.0000000"
+          },
+          "_id": "Comm49"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.152.122",
+            "DestPort": "443",
+            "Count": "5",
+            "TransportLength": "524",
+            "StartDate": "2017-08-03 14:20:13.0000000",
+            "EndDate": "2017-08-03 19:25:58.0000000"
+          },
+          "_id": "Comm50"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "116.31.116.17",
+            "DestPort": "27046",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 14:22:40.0000000",
+            "EndDate": "2017-08-03 14:22:40.0000000"
+          },
+          "_id": "Comm51"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.24.235",
+            "DestPort": "443",
+            "Count": "3",
+            "TransportLength": "516",
+            "StartDate": "2017-08-03 14:27:42.0000000",
+            "EndDate": "2017-08-03 14:30:31.0000000"
+          },
+          "_id": "Comm52"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "172.217.26.35",
+            "DestPort": "443",
+            "Count": "8",
+            "TransportLength": "1712",
+            "StartDate": "2017-08-03 14:37:07.0000000",
+            "EndDate": "2017-08-04 00:01:05.0000000"
+          },
+          "_id": "Comm53"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.56.105",
+            "DestPort": "443",
+            "Count": "10",
+            "TransportLength": "1552",
+            "StartDate": "2017-08-03 14:37:33.0000000",
+            "EndDate": "2017-08-03 14:47:11.0000000"
+          },
+          "_id": "Comm54"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "14.164.131.97",
+            "DestPort": "53988",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 14:40:02.0000000",
+            "EndDate": "2017-08-03 14:40:02.0000000"
+          },
+          "_id": "Comm55"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "177.147.92.181",
+            "DestPort": "56307",
+            "Count": "1",
+            "TransportLength": "340",
+            "StartDate": "2017-08-03 14:42:43.0000000",
+            "EndDate": "2017-08-03 14:42:43.0000000"
+          },
+          "_id": "Comm56"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "172.217.24.35",
+            "DestPort": "443",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 14:45:23.0000000",
+            "EndDate": "2017-08-03 14:45:23.0000000"
+          },
+          "_id": "Comm57"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "74.125.5.234",
+            "DestPort": "443",
+            "Count": "5",
+            "TransportLength": "776",
+            "StartDate": "2017-08-03 14:49:01.0000000",
+            "EndDate": "2017-08-03 14:55:20.0000000"
+          },
+          "_id": "Comm58"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.152.25",
+            "DestPort": "443",
+            "Count": "5",
+            "TransportLength": "692",
+            "StartDate": "2017-08-03 14:58:56.0000000",
+            "EndDate": "2017-08-03 15:01:56.0000000"
+          },
+          "_id": "Comm59"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "1.55.101.47",
+            "DestPort": "50937",
+            "Count": "1",
+            "TransportLength": "424",
+            "StartDate": "2017-08-03 15:08:27.0000000",
+            "EndDate": "2017-08-03 15:08:27.0000000"
+          },
+          "_id": "Comm60"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.152.124",
+            "DestPort": "443",
+            "Count": "4",
+            "TransportLength": "604",
+            "StartDate": "2017-08-03 15:08:51.0000000",
+            "EndDate": "2017-08-03 15:47:45.0000000"
+          },
+          "_id": "Comm61"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "62.112.11.50",
+            "DestPort": "31278",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 15:10:28.0000000",
+            "EndDate": "2017-08-03 15:10:28.0000000"
+          },
+          "_id": "Comm62"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "194.88.106.146",
+            "DestPort": "63538",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 15:13:13.0000000",
+            "EndDate": "2017-08-03 15:13:13.0000000"
+          },
+          "_id": "Comm63"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.56.245",
+            "DestPort": "443",
+            "Count": "4",
+            "TransportLength": "856",
+            "StartDate": "2017-08-03 15:17:10.0000000",
+            "EndDate": "2017-08-03 17:30:25.0000000"
+          },
+          "_id": "Comm64"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "173.194.56.232",
+            "DestPort": "443",
+            "Count": "5",
+            "TransportLength": "440",
+            "StartDate": "2017-08-03 15:20:57.0000000",
+            "EndDate": "2017-08-03 15:24:07.0000000"
+          },
+          "_id": "Comm65"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "38.84.132.236",
+            "DestPort": "55313",
+            "Count": "1",
+            "TransportLength": "88",
+            "StartDate": "2017-08-03 15:27:16.0000000",
+            "EndDate": "2017-08-03 15:27:16.0000000"
+          },
+          "_id": "Comm66"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "189.114.229.185",
+            "DestPort": "38033",
+            "Count": "1",
+            "TransportLength": "172",
+            "StartDate": "2017-08-03 15:27:48.0000000",
+            "EndDate": "2017-08-03 15:27:48.0000000"
+          },
+          "_id": "Comm67"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "74.125.71.26",
+            "DestPort": "25",
+            "Count": "1",
+            "TransportLength": "256",
+            "StartDate": "2017-08-03 15:29:45.0000000",
+            "EndDate": "2017-08-03 15:29:45.0000000"
+          },
+          "_id": "Comm68"
+        },
+        {
+          "Name": "Outbound Communication",
+          "Type": "IpCommunication",
+          "Data": {
+            "DestIp": "189.114.229.185",
+            "DestPort": "52918",
+            "Count": "1",
+            "TransportLength": "340",
+            "StartDate": "2017-08-03 15:33:29.0000000",
+            "EndDate": "2017-08-03 15:33:29.0000000"
+          },
+          "_id": "Comm69"
+        }
+      ],
+      "Edges": [
+        {
+          "Source": "Subscription",
+          "Target": "SourceComputer"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm1"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm2"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm3"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm4"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm5"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm6"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm7"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm8"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm9"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm10"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm11"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm12"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm13"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm14"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm15"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm16"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm17"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm18"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm19"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm20"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm21"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm22"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm23"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm24"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm25"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm26"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm27"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm28"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm29"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm30"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm31"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm32"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm33"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm34"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm35"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm36"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm37"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm38"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm39"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm40"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm41"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm42"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm43"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm44"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm45"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm46"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm47"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm48"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm49"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm50"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm51"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm52"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm53"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm54"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm55"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm56"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm57"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm58"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm59"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm60"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm61"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm62"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm63"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm64"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm65"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm66"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm67"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm68"
+        },
+        {
+          "Source": "SourceComputer",
+          "Target": "Comm69"
+        }
+      ]
     }
   ]
 }

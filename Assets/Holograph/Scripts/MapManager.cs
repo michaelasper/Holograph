@@ -24,17 +24,39 @@ namespace Holograph
     public class MapManager : MonoBehaviour
     {
         /// <summary>
+        ///     Audio source from default cursor for nodes to use.
+        /// </summary>
+        public AudioSource AudioSource;
+
+        /// <summary>
         ///     The globe.
         /// </summary>
         public GameObject Globe;
+
+        /// <summary>
+        ///     The hexagonal menu.
+        /// </summary>
+        public GameObject HexialMenu;
 
         /// <summary>
         ///     The JSON File.
         /// </summary>
         public TextAsset JsonFile;
 
+        public StoryManager MainStoryManager;
+
         /// <summary>
-        /// List of node objects
+        ///     Audio clip for toggling off the node menu
+        /// </summary>
+        public AudioClip MenuOffSound;
+
+        /// <summary>
+        ///     Audio clip for toggling on the node menu
+        /// </summary>
+        public AudioClip MenuOnSound;
+
+        /// <summary>
+        ///     List of node objects
         /// </summary>
         public GameObject[] NodeObject;
 
@@ -43,170 +65,239 @@ namespace Holograph
         /// </summary>
         public StringPrefabPair[] NodePrefabs;
 
-        /// <summary>
-        /// The hexagonal menu.
-        /// </summary>
-        public GameObject HexialMenu;
+
+        public List<CaseObject> caseObjects;
+
+        private bool caseLoaded;
+
+        public int currentCase;
+
+
+        public CaseObject getCurrentCaseObject()
+        {
+            return caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
+        }
+
 
         /// <summary>
-        /// List of the visibilities of all Nodes.
+        ///     Hides all the Nodes
         /// </summary>
-        public bool[] Visible;
+        public void HideMap()
+        {
+            if (!caseLoaded)
+            {
+                return;
+            }
+
+            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
+
+            if (targetCaseObject == null)
+            {
+                throw new NullReferenceException("Case not found");
+            }
+
+            HexialMenu.transform.SetParent(transform.parent);
+            HexialMenu.SetActive(false);
+            foreach (var t in targetCaseObject.NodeObject)
+            {
+                Destroy(t);
+            }
+
+            caseLoaded = false;
+        }
 
         /// <summary>
-        /// Audio source from default cursor for nodes to use.
+        ///     Hides all the Nodes
         /// </summary>
-        public AudioSource AudioSource;
-
-        /// <summary>
-        /// Audio clip for toggling on the node menu
-        /// </summary>
-        public AudioClip MenuOnSound;
-
-        /// <summary>
-        /// Audio clip for toggling off the node menu
-        /// </summary>
-        public AudioClip MenuOffSound;
-
-        /// <summary>
-        /// The adjacency matrix of the graph
-        /// </summary>
-        private int[,] adjMatrix;
-
-        /// <summary>
-        /// Dictionary from names to node IDs
-        /// </summary>
-        private Dictionary<string, int> nodeId;
-
-        /// <summary>
-        /// Hides all the Nodes
-        /// </summary>
+        [System.Obsolete]
         public void HideNodes()
         {
-            this.HexialMenu.transform.SetParent(transform.parent);
-            this.HexialMenu.SetActive(false);
-            foreach (GameObject t in this.NodeObject)
+            HexialMenu.transform.SetParent(transform.parent);
+            HexialMenu.SetActive(false);
+            foreach (var t in NodeObject)
             {
                 Destroy(t);
             }
         }
 
         /// <summary>
-        /// Initializes the map
+        ///     Initializes the map
         /// </summary>
         /// <exception cref="FileNotFoundException">
-        /// Thrown when JSON file is not specified (in Unity inspector)
+        ///     Thrown when JSON file is not specified (in Unity inspector)
         /// </exception>
         /// <exception cref="NotSupportedException">
-        /// Thrown when JSON specify an unsupported node type
+        ///     Thrown when JSON specify an unsupported node type
         /// </exception>
         public void InitMap()
         {
-            if (this.JsonFile == null)
+            if (JsonFile == null)
             {
                 throw new FileNotFoundException("JSON not found");
             }
 
-            string json = this.JsonFile.text;
-            var jsonGraph = JsonUtility.FromJson<JGraph>(json);
-            int numNodes = jsonGraph.Nodes.Length;
-            this.adjMatrix = new int[numNodes, numNodes];
-            this.NodeObject = new GameObject[numNodes];
-            this.Visible = new bool[numNodes];
-            this.nodeId = new Dictionary<string, int>();
-            for (var i = 0; i < numNodes; ++i)
+            Debug.Log(JsonFile);
+
+
+            caseObjects = new List<CaseObject>();
+            string json = JsonFile.text;
+            JSONObject caseListJson = new JSONObject(JsonFile.ToString());
+            //var caseList = JsonUtility.FromJson<CaseList>(json);
+
+            //for (var index = 0; index < caseList.Cases.Length; index++)
+            //{
+            //    var jsonGraph = caseList.Cases[index];
+            //    int numNodes = jsonGraph.Nodes.Length;
+            //    var caseObject = new CaseObject(jsonGraph.Name, index, numNodes);
+            //    caseObject.SetUp(jsonGraph, NodePrefabs);
+            //    caseObjects.Add(caseObject);
+            //}
+
+            for (int i = 0; i < caseListJson["Cases"].Count; i++)
             {
-                var nodeInfo = new NodeInfo(jsonGraph.Nodes[i].Name, jsonGraph.Nodes[i].Type, jsonGraph.Nodes[i].Keys, jsonGraph.Nodes[i].Values);
-                var nodePrefab = (from stringPrefabPair in this.NodePrefabs where stringPrefabPair.NodeType.Equals(jsonGraph.Nodes[i].Type) select stringPrefabPair.NodePrefab)
-                    .FirstOrDefault();
-                if (nodePrefab == null)
-                {
-                    throw new NotSupportedException("JSON specifies unsupported node type");
-                }
+                var caseObject = new CaseObject(caseListJson["Cases"][i]["Name"].ToString(), i, caseListJson["Cases"][i]["Nodes"].Count);
+                caseObject.SetUp(caseListJson["Cases"][i]);
+                caseObjects.Add(caseObject);
+            }
+
+            Debug.Log("----> " + caseObjects.Count);
+        }
+
+        /// <summary>
+        ///     Loads a case
+        /// </summary>
+        /// <param name="caseId">
+        ///     The name of the case which to load
+        /// </param>
+        public void LoadMap(int caseId)
+        {
+            if (caseLoaded) HideMap();
+
+            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == caseId);
+
+            if (targetCaseObject == null)
+            {
+                throw new NullReferenceException("Case not found");
+            }
+
+            currentCase = caseId;
+
+            for (var i = 0; i < targetCaseObject.numNodes; i++)
+            {
+                CaseList.Case.Node jNode = targetCaseObject.Nodes[i];
+
+                Dictionary<string, string> nodeInfo = new Dictionary<string, string>(jNode.Data);
+                nodeInfo.Add("Name", jNode.Name);
+                nodeInfo.Add("Type", jNode.Type);
+                //var nodeInfo = new NodeInfo(jNode.Name, jNode.Type, jNode.Data);
+                var nodePrefab = (from stringPrefabPair in NodePrefabs
+                                  where targetCaseObject.Nodes[i].Type.Trim().StartsWith(stringPrefabPair.NodeType)
+                                  select stringPrefabPair.NodePrefab).FirstOrDefault();
 
                 var node = Instantiate(nodePrefab, transform);
-                var nodebehvaior = node.GetComponent<NodeBehavior>();
-                node.name = jsonGraph.Nodes[i].Name;
-                nodebehvaior.SetNodeInfo(nodeInfo);
-                nodebehvaior.id = i;
-                this.nodeId.Add(jsonGraph.Nodes[i].Name, i);
-                this.NodeObject[i] = node;
+                var nodeBehavior = node.GetComponent<NodeBehavior>();
+                //node.name = targetCaseObject.Nodes[i].Name;
+                //nodebehvaior.SetNodeInfo(nodeInfo);
+                nodeBehavior.NodeInfo = nodeInfo;
+                nodeBehavior.Index = i;
+                nodeBehavior._id = jNode._id;
+                targetCaseObject.NodeObject[i] = node;
                 node.SetActive(false);
             }
 
-            for (var i = 0; i < jsonGraph.Edges.Length; ++i)
+
+            for (var i = 0; i < targetCaseObject.Edges.Length; ++i)
             {
-                int sourceId = this.nodeId[jsonGraph.Edges[i].Source];
-                int targetId = this.nodeId[jsonGraph.Edges[i].Target];
-                this.adjMatrix[sourceId, targetId] = 1;
-                this.adjMatrix[targetId, sourceId] = 1;
-                var source = this.NodeObject[sourceId];
-                var target = this.NodeObject[targetId];
+                CaseList.Case.Edge jEdge = targetCaseObject.Edges[i];
+                int sourceIndex = targetCaseObject.nodeIndex[jEdge.Source];
+                int targetIndex = targetCaseObject.nodeIndex[jEdge.Target];
+                var source = targetCaseObject.NodeObject[sourceIndex];
+                var target = targetCaseObject.NodeObject[targetIndex];
                 var sourceNeighborhood = source.GetComponent<NodeBehavior>().Neighborhood;
                 var targetNeighborhood = target.GetComponent<NodeBehavior>().Neighborhood;
                 sourceNeighborhood.AddLast(target);
                 targetNeighborhood.AddLast(source);
             }
+            caseLoaded = true;
 
-            this.Visible[0] = true;
-            this.NodeObject[0].SetActive(true);
-            this.Globe.GetComponent<GlobeBehavior>().firstNode = this.NodeObject[0];
+            targetCaseObject.Visible[0] = true;
+            targetCaseObject.NodeObject[0].SetActive(true);
+            Globe.GetComponent<GlobeBehavior>().firstNode = targetCaseObject.NodeObject[0];
         }
 
         /// <summary>
-        /// Toggles the menu
-        /// </summary>
-        /// <param name="clickedNodeId">
-        /// The node id.
-        /// </param>
-        public void TogglesMenu(int clickedNodeId)
-        {
-            var radialMenuParentId = this.HexialMenu.transform.GetComponentInParent<NodeBehavior>()?.id;
-            if (clickedNodeId.Equals(radialMenuParentId))
-            {
-                this.HexialMenu.SetActive(!this.HexialMenu.activeSelf);
-            }
-            else
-            {
-                var targetNodeTransform = this.NodeObject[clickedNodeId].transform;
-                this.HexialMenu.transform.SetParent(targetNodeTransform, false);
-                this.HexialMenu.transform.localScale = Vector3.Scale(
-                    new Vector3(.1f, .1f, .1f),
-                    new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
-                this.HexialMenu.SetActive(true);
-            }
-            this.AudioSource.PlayOneShot(this.HexialMenu.activeSelf ? MenuOnSound : MenuOffSound);
-            this.HexialMenu.transform.localPosition = Vector3.zero;
-            NetworkMessages.Instance.SendRadialMenu(clickedNodeId, this.HexialMenu.activeSelf);
-        }
-
-        /// <summary>
-        /// Positions the Nodes using Fruchterman Reingold algorithm
+        ///     Positions the Nodes using Fruchterman Reingold algorithm
         /// </summary>
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Proper noun for the algorithm")]
         public void PositionNodes()
         {
-            var positions = this.SparseFruchtermanReingold(0);
+            var positions = SparseFruchtermanReingold(0);
 
             for (var i = 0; i < positions.Length; ++i)
             {
-                this.NodeObject[i].GetComponent<NodeMovement>().moveTo(transform.TransformPoint(positions[i]));
+                getCurrentCaseObject().NodeObject[i].GetComponent<NodeMovement>().moveTo(transform.TransformPoint(positions[i]));
             }
         }
 
+        public void TogglesMenuWithNetworking(int clickedNodeIndex)
+        {
+            togglesMenu(clickedNodeIndex);
+            NetworkMessages.Instance.SendRadialMenu(clickedNodeIndex);
+        }
+
         /// <summary>
-        /// The sparse fruchterman reingold algorithm.
+        ///     Toggles the menu
+        /// </summary>
+        /// <param name="clickedNodeIndex">
+        ///     The node id.
+        /// </param>
+        private void togglesMenu(int clickedNodeIndex)
+        {
+            var hexialMenuParentId = HexialMenu.transform.GetComponentInParent<NodeBehavior>()?.Index;
+            if (clickedNodeIndex.Equals(hexialMenuParentId))
+            {
+                HexialMenu.SetActive(!HexialMenu.activeSelf);
+            }
+            else
+            {
+                var currentCaseObject = getCurrentCaseObject();
+                var targetNodeTransform = currentCaseObject.NodeObject[clickedNodeIndex].transform;
+                HexialMenu.transform.SetParent(targetNodeTransform, false);
+                HexialMenu.transform.localScale = .1f * new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z);
+                HexialMenu.SetActive(true);
+            }
+
+            AudioSource.PlayOneShot(HexialMenu.activeSelf ? MenuOnSound : MenuOffSound);
+            HexialMenu.transform.localPosition = Vector3.zero;
+        }
+
+        /// <summary>
+        ///     Updates the menu around the node
+        /// </summary>
+        /// <param name="message">
+        ///     The network message
+        /// </param>
+        private void HandleMenuNetworkMessage(NetworkInMessage message)
+        {
+            message.ReadInt64();
+            int clickNodeIndex = message.ReadInt32();
+            togglesMenu(clickNodeIndex);
+        }
+
+        /// <summary>
+        ///     The sparse fruchterman reingold algorithm.
         /// </summary>
         /// <param name="originNode">
-        /// The origin node.
+        ///     The origin node.
         /// </param>
         /// <returns>
-        /// The <see cref="Vector3[]"/>.
+        ///     The <see cref="Vector3[]" />.
         /// </returns>
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Proper noun for the algorithm")]
         private Vector3[] SparseFruchtermanReingold(int originNode)
         {
-            int numNodes = this.adjMatrix.GetLength(0);
+            var targetCaseObject = caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
+            int numNodes = targetCaseObject.adjMatrix.GetLength(0);
             float k = Mathf.Sqrt(1f / numNodes);
             var t = .2f;
             var iterations = 75;
@@ -227,14 +318,14 @@ namespace Holograph
                 var displacement = new Vector3[numNodes];
                 for (var i = 0; i < numNodes; ++i)
                 {
-                    if (!this.Visible[i] || i == originNode)
+                    if (!targetCaseObject.Visible[i] || i == originNode)
                     {
                         continue;
                     }
 
                     for (var j = 0; j < numNodes; ++j)
                     {
-                        if (!this.Visible[j])
+                        if (!targetCaseObject.Visible[j])
                         {
                             continue;
                         }
@@ -242,14 +333,14 @@ namespace Holograph
                         var delta = pos[i] - pos[j];
                         float dist = Vector3.Distance(pos[i], pos[j]);
                         dist = dist > 0.01f ? dist : 0.01f;
-                        var force = delta * (((k * k) / (dist * dist)) - ((this.adjMatrix[i, j] * dist) / k));
+                        var force = delta * (k * k / (dist * dist) - targetCaseObject.adjMatrix[i, j] * dist / k);
                         displacement[i] += force;
                     }
                 }
 
                 for (var i = 0; i < numNodes; ++i)
                 {
-                    if (!this.Visible[i] || i == originNode)
+                    if (!targetCaseObject.Visible[i] || i == originNode)
                     {
                         continue;
                     }
@@ -264,107 +355,93 @@ namespace Holograph
         }
 
         /// <summary>
-        /// Start method called by Unity Engine
+        ///     Start method called by Unity Engine
         /// </summary>
         private void Start()
         {
-            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = this.HandleMenuNetworkMessage;
+            InitMap();
+            caseLoaded = false;
+            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.RadialMenu] = HandleMenuNetworkMessage;
         }
 
-        /// <summary>
-        /// Updates the menu around the node
-        /// </summary>
-        /// <param name="message">
-        /// The network message
-        /// </param>
-        private void HandleMenuNetworkMessage(NetworkInMessage message)
-        {
-            message.ReadInt64();
-            int clickedNodeId = message.ReadInt32();
-            bool setActive = Convert.ToBoolean(message.ReadByte());
-            var targetNodeTransform = this.NodeObject[clickedNodeId].transform;
-            this.HexialMenu.transform.SetParent(targetNodeTransform, false);
-            this.HexialMenu.transform.localScale = Vector3.Scale(
-                new Vector3(.1f, .1f, .1f),
-                new Vector3(1f / targetNodeTransform.localScale.x, 1f / targetNodeTransform.localScale.y, 1f / targetNodeTransform.localScale.z));
-            this.HexialMenu.transform.localPosition = Vector3.zero;
-            this.HexialMenu.SetActive(setActive);
-        }
-
-        /// <summary>
-        /// The deserialized struct for the JSON File
-        /// </summary>
         [Serializable]
-        public struct JGraph
+        public struct CaseList
         {
-            /// <summary>
-            /// The Nodes.
-            /// </summary>
-            public Node[] Nodes;
+            public Case[] Cases;
 
             /// <summary>
-            /// The Edges.
-            /// </summary>
-            public Edge[] Edges;
-
-            /// <summary>
-            /// Defines node struct
+            ///     The deserialized struct for the JSON File
             /// </summary>
             [Serializable]
-            public struct Node
+            public struct Case
             {
-                /// <summary>
-                /// The name of node. Unique
-                /// </summary>
                 public string Name;
 
                 /// <summary>
-                /// The node type.
+                ///     The Nodes.
                 /// </summary>
-                public string Type;
+                public Node[] Nodes;
 
                 /// <summary>
-                /// The keys in property list.
+                ///     The Edges.
                 /// </summary>
-                public string[] Keys;
+                public Edge[] Edges;
 
                 /// <summary>
-                /// The values in property list.
+                ///     Defines node struct
                 /// </summary>
-                public string[] Values;
-            }
+                [Serializable]
+                public struct Node
+                {
+                    /// <summary>
+                    ///     The node id. Unique
+                    /// </summary>
+                    public string _id { get; set; }
+                    /// <summary>
+                    ///     The name of node
+                    /// </summary>
+                    public string Name { get; set; }
 
-            /// <summary>
-            /// The definition of an edge.
-            /// </summary>
-            [Serializable]
-            public struct Edge
-            {
-                /// <summary>
-                /// The source of edge.
-                /// </summary>
-                public string Source;
+                    /// <summary>
+                    ///     The node type.
+                    /// </summary>
+                    public string Type { get; set; }
+                    
+                    public Dictionary<String, String> Data { get; set; }
+                }
 
                 /// <summary>
-                /// The target of edge.
+                ///     The definition of an edge.
                 /// </summary>
-                public string Target;
+                [Serializable]
+                public struct Edge
+                {
+                    /// <summary>
+                    ///     The source of edge.
+                    /// </summary>
+                    public string Source;
+
+                    /// <summary>
+                    ///     The target of edge.
+                    /// </summary>
+                    public string Target;
+                }
             }
         }
 
         /// <summary>
-        /// The wrapper function for list of materials so that Unity is able to serialize in inspector
+        ///     The wrapper function for list of materials so that Unity is able to serialize in inspector
         /// </summary>
         [Serializable]
         public struct StringPrefabPair
         {
             /// <summary>
-            /// The node type.
+            ///     The node type.
             /// </summary>
             public string NodeType;
 
             /// <summary>
-            /// The node prefab.
+            ///     The node prefab.
             /// </summary>
             public GameObject NodePrefab;
         }
