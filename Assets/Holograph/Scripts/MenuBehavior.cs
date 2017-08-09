@@ -72,13 +72,18 @@ namespace Holograph
         }
 
         /// <summary>
-        ///     Closes the hexagonal menu
+        ///     Toggles the hexagonal menu
         /// </summary>
-        public void CloseMenu()
+        public void TogglesMenu(bool on)
         {
-            gameObject.SetActive(false);
-
+            this.CloseAllPanels();
+            gameObject.SetActive(on);
             //NetworkMessages.Instance.SendRadialMenu(-1, false);
+        }
+
+        public void TogglesMenu()
+        {
+            TogglesMenu(!this.gameObject.activeSelf);
         }
 
         /// <summary>
@@ -95,8 +100,7 @@ namespace Holograph
         /// </summary>
         public void Expand()
         {
-            this.CloseAllPanels();
-            this.CloseMenu();
+            this.TogglesMenu(false);
             this.StageStoryManager.TriggerStory(StoryManager.StoryAction.Expand, GetComponentInParent<NodeBehavior>().Index);
         }
 
