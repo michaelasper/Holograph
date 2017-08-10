@@ -24,34 +24,29 @@ namespace Holograph
             int numChildren = PropertyList.childCount;
             for (int i = 0; i < numChildren; ++i)
             {
-                PropertyList.GetChild(i).gameObject.SetActive(false);
+                GameObject.Destroy(PropertyList.GetChild(0));
+            }
+            int numProps = nodeInfo.Count;
+            for (int i = 0; i < numProps; ++i)
+            {
+                Instantiate(NodePropertyPrefab, PropertyList);
             }
             int k = 0;
+            float prevY = 0f;
             foreach (KeyValuePair<string, string> p in nodeInfo)
             {
-                Transform propertyTransform;
-                if (k < numChildren)
-                {
-                    propertyTransform = PropertyList.GetChild(k);
-                    propertyTransform.gameObject.SetActive(true);
-                }
-                else
-                {
-                    propertyTransform = Instantiate(NodePropertyPrefab, PropertyList).transform;
-                    propertyTransform.SetAsLastSibling();
-                }
-                ++k;
+                Transform propertyTransform = PropertyList.GetChild(k);
                 Transform keyObject = propertyTransform.GetChild(0);
                 Transform valueObject = propertyTransform.GetChild(1);
                 keyObject.GetComponent<Text>().text = p.Key;
                 valueObject.GetComponent<Text>().text = p.Value;
+                RectTransform propertyRectTransform = propertyTransform.GetComponent<RectTransform>();
+                propertyRectTransform.sizeDelta = new Vector2(propertyRectTransform.sizeDelta.x, valueObject.GetComponent<RectTransform>().sizeDelta.y);
+                ////propertyRectTransform.anchorMin = new Vector2(0, valueObject.GetComponent<RectTransform>().sizeDelta.y);
+                propertyTransform.localPosition = new Vector3(0f, prevY, 0f);
+                ++k;
+                prevY -= propertyRectTransform.sizeDelta.y;
             }
-            Transform panel = this.transform.GetChild(0).GetChild(0);
-            RectTransform panelRectTransform = panel.GetComponent<RectTransform>();
-            Debug.Log("Looking at " + panel.name);
-            Debug.Log("Changing " + panelRectTransform.offsetMin);
-            panelRectTransform.offsetMin = new Vector2(panelRectTransform.offsetMin.x, 45f - 12f * k);
-            Debug.Log("to " + panelRectTransform.offsetMin);
         }
     }
 }
