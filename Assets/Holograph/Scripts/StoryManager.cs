@@ -93,6 +93,12 @@ namespace Holograph
             //TogglePanel
         }
 
+        public void TriggerStoryWithNetworking(StoryAction action, params int[] args)
+        {
+            this.triggerStory(action, args);
+            NetworkMessages.Instance.SendStoryControl((byte)action, args);
+        }
+
         /// <summary>
         /// The trigger story.
         /// </summary>
@@ -108,7 +114,7 @@ namespace Holograph
         /// <exception cref="NotSupportedException">
         /// Thrown when story action is not supported
         /// </exception>
-        public void TriggerStory(StoryAction action, params int[] args)
+        private void triggerStory(StoryAction action, params int[] args)
         {
             switch (action)
             {
@@ -141,7 +147,6 @@ namespace Holograph
                 default: throw new NotSupportedException("Story Action not supported");
             }
 
-            NetworkMessages.Instance.SendStoryControl((byte)action, args);
         }
 
         /// <summary>
@@ -162,7 +167,7 @@ namespace Holograph
                 args[i] = message.ReadInt32();
             }
 
-            this.TriggerStory(action, args);
+            this.triggerStory(action, args);
         }
 
         /// <summary>

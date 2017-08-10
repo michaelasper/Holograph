@@ -15,7 +15,7 @@
 
         public void callStory()
         {
-            StoryManagerObject.TriggerStory(StoryManager.StoryAction.EnterDefaultStory, CaseID);
+            StoryManagerObject.TriggerStoryWithNetworking(StoryManager.StoryAction.EnterDefaultStory, CaseID);
         }
     }
 

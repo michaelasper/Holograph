@@ -33,7 +33,7 @@ namespace Holograph
 
         public void StartStory()
         {
-            this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory, 0);
+            this.MainStoryManager.TriggerStoryWithNetworking(StoryManager.StoryAction.EnterDefaultStory, 0);
             this.CasePanel.SetActive(false);
             this.ASCPanel.SetActive(false);
         }
@@ -59,10 +59,10 @@ namespace Holograph
                     this.SelectButton(clickedButton);
                     break;
                 case "HOME":
-                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.ResetStory);
+                    this.MainStoryManager.TriggerStoryWithNetworking(StoryManager.StoryAction.ResetStory);
                     break;
                 case "Case Panel":
-                    this.MainStoryManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
+                    this.MainStoryManager.TriggerStoryWithNetworking(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 default: break;
             }
