@@ -34,7 +34,7 @@ namespace Holograph
 
         private void updateRotation(NetworkInMessage msg)
         {
-            long userId = msg.ReadInt64();
+            msg.ReadInt64();
             targetRotation = new Quaternion(msg.ReadFloat(), msg.ReadFloat(), msg.ReadFloat(), msg.ReadFloat());
         }
 

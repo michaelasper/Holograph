@@ -20,10 +20,6 @@ namespace Holograph
 
         public AudioClip ClickSound;
 
-        private string _buttonName;
-
-        private Transform _cam;
-
         private string _color;
 
         private MenuBehavior _menuBehavior;
@@ -36,7 +32,6 @@ namespace Holograph
 
         public void initLayout(MenuBehavior.JNodeMenu.NodeMenuItem nodeMenuItem)
         {
-            _buttonName = nodeMenuItem.Name;
             MethodName = nodeMenuItem.MethodName;
         }
 
@@ -65,7 +60,6 @@ namespace Holograph
         private void Start()
         {
             ColorUtility.TryParseHtmlString("#BABABAAE", out HoverHighlight);
-            _cam = Camera.main.transform;
             _objectMaterial = GetComponent<MeshRenderer>().material;
             _menuBehavior = transform.parent.GetComponent<MenuBehavior>();
         }

@@ -147,8 +147,9 @@ namespace Holograph
 
         private void UpdatePresenterId(NetworkInMessage msg)
         {
-            long userId = msg.ReadInt64(); // The user that sent the msg.
-            long presenterId = msg.ReadInt64(); // The user that we want to set as presenter.
+            msg.ReadInt64();
+
+            long presenterId = msg.ReadInt64();
 
             var headInfo = GetRemoteHeadInfo(presenterId);
 

@@ -45,7 +45,7 @@ namespace Holograph
 
         private void UpdateAnimationHash(NetworkInMessage msg)
         {
-            long userId = msg.ReadInt64();
+            msg.ReadInt64();
             int animationHash = msg.ReadInt32();
             int animationType = msg.ReadInt32();
             float animationValue = msg.ReadFloat();
