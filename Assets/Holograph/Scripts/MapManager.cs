@@ -69,6 +69,8 @@ namespace Holograph
 
         public List<CaseObject> caseObjects;
 
+        public Holograph.CaseList CaseListManager;
+
         private bool caseLoaded;
 
         public int currentCase;
@@ -137,7 +139,7 @@ namespace Holograph
         {
             WWW results = new WWW("http://holographapi.azurewebsites.net/v1/cases");
             
-            while(!results.isDone)
+            while (!results.isDone)
             {
                 Debug.Log("Downloading...");
             }
@@ -152,6 +154,8 @@ namespace Holograph
                 caseObject.SetUp(caseListJson["Cases"][i]);
                 caseObjects.Add(caseObject);
             }
+
+            CaseListManager.SetUp(caseObjects);
         }
 
         /// <summary>
