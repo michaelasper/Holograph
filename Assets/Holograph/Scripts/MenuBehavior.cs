@@ -78,7 +78,6 @@ namespace Holograph
         {
             this.CloseAllPanels();
             gameObject.SetActive(on);
-            //NetworkMessages.Instance.SendRadialMenu(-1, false);
         }
 
         public void TogglesMenu()
@@ -199,6 +198,9 @@ namespace Holograph
                 /// </summary>
                 public string MethodName;
             }
+
         }
+
     }
+
 }

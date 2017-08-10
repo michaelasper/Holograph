@@ -288,6 +288,7 @@ namespace Holograph
             {
                 this.UpdateDragging();
             }
+
         }
 
         /// <summary>
@@ -305,5 +306,7 @@ namespace Holograph
             NetworkMessages.Instance.SendMapRotation(this.targetRotation);
             this.mapRotationHandler.targetRotation = this.targetRotation;
         }
+
     }
+
 }

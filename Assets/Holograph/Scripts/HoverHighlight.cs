@@ -17,14 +17,12 @@ public class HoverHighlight : MonoBehaviour
 
     private Material objectMaterial;
 
-    // Use this for initialization
     private void Start()
     {
         cam = Camera.main.transform;
         objectMaterial = GetComponent<MeshRenderer>().material;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         RaycastHit hit;
@@ -36,11 +34,14 @@ public class HoverHighlight : MonoBehaviour
                 isGazedAt = true;
                 objectMaterial.color *= hightlight;
             }
+
         }
+
         else if (isGazedAt)
         {
             isGazedAt = false;
             objectMaterial.color /= hightlight;
         }
     }
+
 }

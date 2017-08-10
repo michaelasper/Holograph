@@ -30,8 +30,6 @@ public class GlobeCircleWave : MonoBehaviour
     public void initCircleLines(Vector3 clickPosition)
     {
         var circleLinesList = new List<Vector2>();
-
-        // Debug.Log(transform.InverseTransformPoint(clickPosition).magnitude);
         var circleNormal = transform.InverseTransformPoint(clickPosition);
         circleCenter = circleNormal;
         circleBaseX = Vector3.Cross(new Vector3(0f, 1f, 0f), circleNormal).normalized;
@@ -48,7 +46,6 @@ public class GlobeCircleWave : MonoBehaviour
     {
         if (circleCenter != Vector3.zero)
         {
-            // Debug.Log("Drawing circle");
             CreateLineMaterial();
             GL.PushMatrix();
             GL.MultMatrix(transform.localToWorldMatrix);
@@ -59,7 +56,6 @@ public class GlobeCircleWave : MonoBehaviour
             Vector3? v0 = null;
             foreach (var v in circleLines)
             {
-                // Debug.Log("drew a line");
                 if (v0.HasValue)
                 {
                     GL.Vertex(circleCenter + circleRadius * (v0.Value.x * circleBaseX + v0.Value.y * circleBaseY));
@@ -88,14 +84,9 @@ public class GlobeCircleWave : MonoBehaviour
         }
     }
 
-    // Use this for initialization
     private void Start()
     {
         showCircle = false;
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
 }

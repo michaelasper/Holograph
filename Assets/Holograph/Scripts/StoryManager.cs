@@ -62,7 +62,7 @@ namespace Holograph
         /// The report panel.
         /// </summary>
         private GameObject reportPanel;
-        
+
         /// <summary>
         /// The story action.
         /// </summary>
@@ -86,11 +86,7 @@ namespace Holograph
             /// <summary>
             /// The reset story.
             /// </summary>
-            ResetStory//,
-            /// <summary>
-            /// The toggle panel
-            /// </summary>
-            //TogglePanel
+            ResetStory
         }
 
         public void TriggerStoryWithNetworking(StoryAction action, params int[] args)
@@ -127,7 +123,6 @@ namespace Holograph
                         throw new ArgumentException("ListInfo expects one parameter");
                     }
 
-                    ////this.ListInfo(this.mapManager.NodeObject[args[0]].transform);
                     break;
                 case StoryAction.Expand:
                     if (args == null || args.Length != 1)
@@ -141,10 +136,8 @@ namespace Holograph
                 case StoryAction.ResetStory:
                     this.ResetStory();
                     break;
-                //case StoryAction.TogglePanel:
-                //    this.TogglePanel(args[0]);
-                    //break;
-                default: throw new NotSupportedException("Story Action not supported");
+                default:
+                    throw new NotSupportedException("Story Action not supported");
             }
 
         }
@@ -157,8 +150,7 @@ namespace Holograph
         /// </param>
         public void HandleStoryControlNetworkMessage(NetworkInMessage message)
         {
-            message.ReadInt64(); // smh
-
+            message.ReadInt64();
             var action = (StoryAction)message.ReadByte();
             int l = message.ReadInt32();
             var args = new int[l];
@@ -169,23 +161,6 @@ namespace Holograph
 
             this.triggerStory(action, args);
         }
-
-        /// <summary>
-        /// Toggles the targeted panel 
-        /// </summary>
-        /// <param name="targetPanelId">The target panel's ID</param>
-        //private void TogglePanel(int targetPanelId)
-        //{
-        //    switch (targetPanelId)
-        //    {
-        //        case 0:
-        //            ////Microphone.Mute = !Microphone.Mute;
-        //            this.UserPanel.SetActive(!this.UserPanel.activeSelf);
-        //            break;
-        //        default: break;
-        //    }
-        //    return;
-        //}
 
         /// <summary>
         /// The enter default story.
@@ -211,8 +186,6 @@ namespace Holograph
             }
 
             this.mapManager.PositionNodes();
-
-            // _infoPanelBehavior.ClosePanel();
         }
 
         /// <summary>
@@ -243,8 +216,6 @@ namespace Holograph
             this.globeAnimator = this.globe.GetComponent<Animator>();
             this.fadesInHash = Animator.StringToHash("fadesIn");
             this.globeBehavior = this.globe.GetComponent<GlobeBehavior>();
-            //this.UserPanel = transform.Find("UserList SidePanel").gameObject;
-
 
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.StoryControl] = this.HandleStoryControlNetworkMessage;
         }

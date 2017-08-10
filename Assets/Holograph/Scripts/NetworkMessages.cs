@@ -66,8 +66,6 @@ namespace Holograph
 
             StoryControl,
 
-            //Button1Animation,
-
             Max
         }
 
@@ -98,28 +96,27 @@ namespace Holograph
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 var msg = CreateMessage((byte)MessageID.AnimationHash);
+
                 msg.Write(animationHash);
                 msg.Write((int)type);
                 msg.Write(value);
 
-                // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+
         }
 
         public void SendHeadTransform(Vector3 position, Quaternion rotation)
         {
-            // If we are connected to a session, broadcast our head info
             if (serverConnection != null && serverConnection.IsConnected())
             {
-                // Create an outgoing network message to contain all the info we want to send
                 var msg = CreateMessage((byte)MessageID.HeadTransform);
 
                 AppendTransform(msg, position, rotation);
 
-                // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.UnreliableSequenced, MessageChannel.Avatar);
             }
+
         }
 
         public void SendMapRotation(Quaternion rotation)
@@ -127,6 +124,7 @@ namespace Holograph
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 var msg = CreateMessage((byte)MessageID.MapRotation);
+
                 msg.Write(rotation.x);
                 msg.Write(rotation.y);
                 msg.Write(rotation.z);
@@ -134,6 +132,7 @@ namespace Holograph
 
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+
         }
 
         public void SendMenuAnimationHash(int animationHash, AnimationTypes type, float value = -1)
@@ -141,13 +140,14 @@ namespace Holograph
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 var msg = CreateMessage((byte)MessageID.MenuAnimationHash);
+
                 msg.Write(animationHash);
                 msg.Write((int)type);
                 msg.Write(value);
 
-                // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+
         }
 
         public void SendPresenterId(long userId)
@@ -155,11 +155,12 @@ namespace Holograph
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 var msg = CreateMessage((byte)MessageID.PresenterId);
+
                 msg.Write(userId);
 
-                // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Avatar);
             }
+
         }
 
         public void SendRadialMenu(int nodeId)
@@ -167,10 +168,12 @@ namespace Holograph
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 var msg = CreateMessage((byte)MessageID.RadialMenu);
+
                 msg.Write(nodeId);
 
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+
         }
 
         public void SendRadialMenuClickIcon(string methodName)
@@ -178,6 +181,7 @@ namespace Holograph
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 var msg = CreateMessage((byte)MessageID.RadialMenuClickIcon);
+
                 msg.Write(methodName.Length);
                 foreach (char c in methodName)
                 {
@@ -186,6 +190,7 @@ namespace Holograph
 
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+
         }
 
         public void SendStoryControl(byte action, int[] args)
@@ -193,11 +198,13 @@ namespace Holograph
             if (serverConnection != null && serverConnection.IsConnected())
             {
                 var msg = CreateMessage((byte)MessageID.StoryControl);
+
                 msg.Write(action);
                 if (args == null)
                 {
                     msg.Write(0);
                 }
+
                 else
                 {
                     msg.Write(args.Length);
@@ -205,10 +212,12 @@ namespace Holograph
                     {
                         msg.Write(x);
                     }
+
                 }
 
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+
         }
 
         protected override void OnDestroy()
@@ -224,6 +233,7 @@ namespace Holograph
 
                 connectionAdapter.MessageReceivedCallback -= OnMessageReceived;
             }
+
         }
 
         private void AppendQuaternion(NetworkOutMessage msg, Quaternion rotation)
@@ -295,16 +305,13 @@ namespace Holograph
 
                 serverConnection.AddListener(index, connectionAdapter);
             }
+
         }
 
         private void OnMessageReceived(NetworkConnection connection, NetworkInMessage msg)
         {
             byte messageType = msg.ReadByte();
-            var messageHandler = MessageHandlers[(MessageID)messageType];
-            if (messageHandler != null)
-            {
-                messageHandler(msg);
-            }
+            MessageHandlers[(MessageID)messageType]?.Invoke(msg);
         }
 
         private void Start()
@@ -314,10 +321,14 @@ namespace Holograph
             {
                 Connected();
             }
+
             else
             {
                 SharingStage.Instance.SharingManagerConnected += Connected;
             }
+
         }
+
     }
+
 }

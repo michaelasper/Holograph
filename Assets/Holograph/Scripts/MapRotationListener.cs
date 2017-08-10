@@ -37,5 +37,7 @@ namespace Holograph
             long userId = msg.ReadInt64();
             targetRotation = new Quaternion(msg.ReadFloat(), msg.ReadFloat(), msg.ReadFloat(), msg.ReadFloat());
         }
+
     }
+
 }

@@ -34,12 +34,12 @@ namespace Holograph
             {
                 testTriggerId = Animator.StringToHash("TestTrigger");
             }
+
         }
 
         private void Start()
         {
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.AnimationHash] = UpdateAnimationHash;
-
             NetworkAnimator = GetComponent<Animator>();
         }
 
@@ -52,7 +52,6 @@ namespace Holograph
 
             if (NetworkAnimator != null)
             {
-                // && NetworkAnimator.gameObject.activeInHierarchy)
                 if (animatorHashes == null)
                 {
                     animatorHashes = NetworkAnimator.parameters;
@@ -78,9 +77,15 @@ namespace Holograph
                                 break;
                             default: break;
                         }
+
                     }
+
                 }
+
             }
+
         }
+
     }
+
 }

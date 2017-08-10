@@ -16,9 +16,6 @@ namespace Holograph
 
     using UnityEngine;
 
-    using Random = UnityEngine.Random;
-    using System.Collections;
-
     /// <summary>
     ///     The map manager.
     /// </summary>
@@ -66,7 +63,6 @@ namespace Holograph
         /// </summary>
         public StringPrefabPair[] NodePrefabs;
 
-
         public List<CaseObject> caseObjects;
 
         public Holograph.CaseList CaseListManager;
@@ -77,12 +73,10 @@ namespace Holograph
 
         private MenuBehavior hexialMenuBehavior;
 
-
         public CaseObject getCurrentCaseObject()
         {
             return caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
         }
-
 
         /// <summary>
         ///     Hides all the Nodes
@@ -112,21 +106,6 @@ namespace Holograph
         }
 
         /// <summary>
-        ///     Hides all the Nodes
-        /// </summary>
-        //[System.Obsolete]
-        //public void HideNodes()
-        //{
-        //    HexialMenu.transform.SetParent(transform.parent);
-        //    hexialMenuBehavior.TogglesMenu(false);
-        //    foreach (var t in NodeObject)
-        //    {
-        //        Destroy(t);
-        //    }
-        //}  
-
-
-        /// <summary>
         ///     Initializes the map
         /// </summary>
         /// <exception cref="FileNotFoundException">
@@ -140,9 +119,7 @@ namespace Holograph
             WWW results = new WWW("http://holographapi.azurewebsites.net/v1/cases");
 
             Debug.Log("Downloading...");
-            while (!results.isDone)
-            {
-            }
+            while (!results.isDone) ;
 
             caseObjects = new List<CaseObject>();
             string json = results.text;
@@ -186,22 +163,18 @@ namespace Holograph
                     { "Name", jNode.Name },
                     { "Type", jNode.Type }
                 };
-                //var nodeInfo = new NodeInfo(jNode.Name, jNode.Type, jNode.Data);
                 var nodePrefab = (from stringPrefabPair in NodePrefabs
                                   where targetCaseObject.Nodes[i].Type.Trim().StartsWith(stringPrefabPair.NodeType)
                                   select stringPrefabPair.NodePrefab).FirstOrDefault();
 
                 var node = Instantiate(nodePrefab, transform);
                 var nodeBehavior = node.GetComponent<NodeBehavior>();
-                //node.name = targetCaseObject.Nodes[i].Name;
-                //nodebehvaior.SetNodeInfo(nodeInfo);
                 nodeBehavior.NodeInfo = nodeInfo;
                 nodeBehavior.Index = i;
                 nodeBehavior._id = jNode._id;
                 targetCaseObject.NodeObject[i] = node;
                 node.SetActive(false);
             }
-
 
             for (var i = 0; i < targetCaseObject.Edges.Length; ++i)
             {
@@ -215,8 +188,8 @@ namespace Holograph
                 sourceNeighborhood.AddLast(target);
                 targetNeighborhood.AddLast(source);
             }
-            caseLoaded = true;
 
+            caseLoaded = true;
             targetCaseObject.Visible[0] = true;
             targetCaseObject.NodeObject[0].SetActive(true);
             Globe.GetComponent<GlobeBehavior>().firstNode = targetCaseObject.NodeObject[0];
@@ -234,6 +207,7 @@ namespace Holograph
             {
                 getCurrentCaseObject().NodeObject[i].GetComponent<NodeMovement>().moveTo(transform.TransformPoint(positions[i]));
             }
+
         }
 
         public void TogglesMenuWithNetworking(int clickedNodeIndex)
@@ -255,6 +229,7 @@ namespace Holograph
             {
                 hexialMenuBehavior.TogglesMenu();
             }
+
             else
             {
                 var currentCaseObject = getCurrentCaseObject();
@@ -301,13 +276,14 @@ namespace Holograph
             float dt = t / iterations;
             var pos = new Vector3[numNodes];
             pos[originNode] = Vector3.zero;
-            Random.InitState(123);
+            UnityEngine.Random.InitState(123);
             for (var i = 0; i < numNodes; ++i)
             {
                 if (i != originNode)
                 {
-                    pos[i] = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                    pos[i] = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
                 }
+
             }
 
             for (var iteration = 0; iteration < iterations; ++iteration)
@@ -333,6 +309,7 @@ namespace Holograph
                         var force = delta * (k * k / (dist * dist) - targetCaseObject.adjMatrix[i, j] * dist / k);
                         displacement[i] += force;
                     }
+
                 }
 
                 for (var i = 0; i < numNodes; ++i)
@@ -404,7 +381,7 @@ namespace Holograph
                     ///     The node type.
                     /// </summary>
                     public string Type { get; set; }
-                    
+
                     public Dictionary<String, String> Data { get; set; }
                 }
 
@@ -443,5 +420,7 @@ namespace Holograph
             /// </summary>
             public GameObject NodePrefab;
         }
+
     }
+
 }

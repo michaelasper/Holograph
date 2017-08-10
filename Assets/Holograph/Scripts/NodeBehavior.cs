@@ -25,18 +25,15 @@ namespace Holograph
 
         public Dictionary<string, string> NodeInfo { set; get; }
 
-        //private float _nodeRadius;
-
         private bool[] visible;
 
-        // public TextMesh TextMesh;
         public int Index { get; set; }
 
         public string _id { get; set; }
 
         public void OnInputDown(InputEventData eventData)
         {
-            // throw new NotImplementedException();
+            //it doesn't work
         }
 
         public void OnInputUp(InputEventData eventData)
@@ -49,13 +46,6 @@ namespace Holograph
             DrawLines();
         }
 
-        //[Obsolete]
-        //public void SetNodeInfo(NodeInfo info)
-        //{
-        //    NodeInfo = info;
-        //    ChangeName(info.GetProperty("name"));
-        //}
-
         private static void CreateLineMaterial()
         {
             if (_lineMaterial)
@@ -65,18 +55,13 @@ namespace Holograph
 
             var shader = Shader.Find("Hidden/Internal-Colored");
             _lineMaterial = new Material(shader)
-                                {
-                                    hideFlags = HideFlags.HideAndDontSave
-                                };
+            {
+                hideFlags = HideFlags.HideAndDontSave
+            };
             _lineMaterial.SetInt("_SrcBlend", (int)BlendMode.One);
             _lineMaterial.SetInt("_DstBlend", (int)BlendMode.One);
             _lineMaterial.SetInt("_Cull", (int)CullMode.Off);
             _lineMaterial.SetInt("_ZWrite", 0);
-        }
-
-        private void ChangeName(string text)
-        {
-            // TextMesh.text = text;
         }
 
         private void DrawLines()
@@ -93,31 +78,25 @@ namespace Holograph
                     var s = n.transform.position;
                     var t = transform.position;
                     var dir = (t - s).normalized;
-                    //s += dir * _nodeRadius;
-                    //t -= dir * _nodeRadius;
                     GL.Vertex(s);
                     GL.Vertex(t);
                 }
+
             }
 
             GL.End();
             GL.PopMatrix();
         }
 
-        // Use this for initialization
         private void Start()
         {
             MapManager = transform.parent.GetComponent<MapManager>();
-            //_nodeRadius = 0f; // .0005f / transform.localScale.x;
             CreateLineMaterial();
             int currentCase = MapManager.currentCase;
             CaseObject targetCaseObject = MapManager.caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
             visible = targetCaseObject.Visible;
         }
 
-        // Update is called once per frame
-        private void Update()
-        {
-        }
     }
+
 }

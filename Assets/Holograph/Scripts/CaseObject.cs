@@ -42,31 +42,6 @@ namespace Holograph
             this.Visible = new bool[numNodes];
         }
 
-        //public void SetUp(MapManager.CaseList.Case jsonGraph, MapManager.StringPrefabPair[] nodePrefabs)
-        //{
-        //    Debug.Log("Setting up: " + this.Name);
-        //    this.Nodes = (MapManager.CaseList.Case.Node[])jsonGraph.Nodes.Clone();
-        //    Debug.Log(this.Nodes);
-        //    this.Edges = (MapManager.CaseList.Case.Edge[])jsonGraph.Edges.Clone();
-        //    Debug.Log(this.Edges);
-
-        //    for (var i = 0; i < this.numNodes; i++)
-        //    {
-        //        this.nodeIndex.Add(this.Nodes[i]._id, i);
-               
-        //    }
-
-
-        //    for (var i = 0; i < this.Edges.Length; ++i)
-        //    {
-        //        int sourceId = this.nodeIndex[this.Edges[i].Source];
-        //        int targetId = this.nodeIndex[this.Edges[i].Target];
-        //        this.adjMatrix[sourceId, targetId] = 1;
-        //        this.adjMatrix[targetId, sourceId] = 1;
-                
-        //    }
-        //}
-
         public void SetUp(JSONObject jsonGraph)
         {
             this.Nodes = Helper.JsonObjectToNodeArray(jsonGraph);

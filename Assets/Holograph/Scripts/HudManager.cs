@@ -46,10 +46,8 @@ namespace Holograph
                     this.ASCPanel.SetActive(false);
                     this.CasePanel.SetActive(!this.CasePanel.activeSelf);
                     this.SelectButton(clickedButton);
-                    ////storyManager.TriggerStory(StoryManager.StoryAction.EnterDefaultStory);
                     break;
                 case "USERS":
-                    //this.MainStoryManager.TriggerStory(StoryManager.StoryAction.TogglePanel, 0);
                     this.UserListSidePanel.SetActive(!this.UserListSidePanel.activeSelf);
                     this.SelectButton(clickedButton);
                     break;
@@ -66,6 +64,7 @@ namespace Holograph
                     break;
                 default: break;
             }
+
         }
 
         public void OnFocusEnter()
@@ -100,5 +99,7 @@ namespace Holograph
 
             transform.position = Vector3.Lerp(transform.position, this.moveTarget, this.MoveLerp);
         }
+
     }
+
 }

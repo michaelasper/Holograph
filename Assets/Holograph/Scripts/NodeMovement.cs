@@ -46,6 +46,9 @@ namespace Holograph
                 float speed = _moveMaxSpeed * SpeedPercentage;
                 transform.position = Vector3.MoveTowards(transform.position, _moveTarget, speed * Time.deltaTime);
             }
+
         }
+
     }
+
 }

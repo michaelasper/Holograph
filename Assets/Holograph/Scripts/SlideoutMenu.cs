@@ -12,6 +12,7 @@ namespace Holograph
 
     using UnityEngine;
     using UnityEngine.Rendering;
+
     [Obsolete]
     public class SlideoutMenu : MonoBehaviour, IInputHandler
     {
@@ -52,7 +53,7 @@ namespace Holograph
 
         void IInputHandler.OnInputDown(InputEventData eventData)
         {
-            // throw new NotImplementedException();
+            // doesn't work
         }
 
         void IInputHandler.OnInputUp(InputEventData eventData)
@@ -67,17 +68,17 @@ namespace Holograph
             {
                 var shader = Shader.Find("Hidden/Internal-Colored");
                 mat = new Material(shader)
-                          {
-                              hideFlags = HideFlags.HideAndDontSave
-                          };
+                {
+                    hideFlags = HideFlags.HideAndDontSave
+                };
                 mat.SetInt("_SrcBlend", (int)BlendMode.One);
                 mat.SetInt("_DstBlend", (int)BlendMode.One);
                 mat.SetInt("_Cull", (int)CullMode.Off);
                 mat.SetInt("_ZWrite", 0);
             }
+
         }
 
-        // Use this for initialization
         private void Start()
         {
             _slideoutAnimator = GetComponent<Animator>();
@@ -87,7 +88,6 @@ namespace Holograph
             CreateMaterial();
         }
 
-        // Update is called once per frame
         private void Update()
         {
             if (!(_t < 1f))
@@ -99,5 +99,7 @@ namespace Holograph
             CurrMenuLength = Mathf.Lerp(0f, MenuLength, _t);
             _t += speed * Time.deltaTime;
         }
+
     }
+
 }

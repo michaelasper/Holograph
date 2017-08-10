@@ -43,7 +43,7 @@ namespace Holograph
 
         private List<Vector3> pinPositions;
 
-        private Transform pushPin;
+        public Transform PushPinPrefab;
 
         public void DefaultStoryEntry(int caseId)
         {
@@ -142,7 +142,7 @@ namespace Holograph
                 {
                     if (hit.transform.name == "Globe")
                     {
-                        var newpin = Instantiate(pushPin, transform);
+                        var newpin = Instantiate(PushPinPrefab, transform);
                         newpin.position = hit.point;
                         pinPositions.Add(newpin.localPosition);
                     }

@@ -16,7 +16,6 @@ namespace Holograph
     {
         public Texture hoverTexture;
 
-        // public GlobeBehavior globe;
         public Texture idleTexture;
 
         public Texture selectedTexture;
@@ -73,10 +72,12 @@ namespace Holograph
             {
                 buttonMaterial.SetTexture(texturePropertyId, selectedTexture);
             }
+
             else
             {
                 buttonMaterial.SetTexture(texturePropertyId, isGazedAt ? hoverTexture : idleTexture);
             }
+
         }
 
         private void Start()
@@ -86,8 +87,6 @@ namespace Holograph
             hudManager = GetComponentInParent<HudManager>();
         }
 
-        private void Update()
-        {
-        }
     }
+
 }

@@ -4,147 +4,153 @@
 // *                                                       *
 // ********************************************************/
 
-using UnityEngine;
-using UnityEngine.Rendering;
-
-public class GlobeHexes : MonoBehaviour
+namespace Holograph
 {
-    private static Material mat;
+    using System;
 
-    public float fadeAmt;
+    using UnityEngine;
+    using UnityEngine.Rendering;
 
-    public int hexCount;
-
-    public float hexSize;
-
-    public float lifeSpanMax;
-
-    public float lifeSpanMin;
-
-    public float moveSpeed;
-
-    public int textCount;
-
-    public GameObject textPrefab;
-
-    private float[] age;
-
-    private Transform cam;
-
-    private Vector3[] hexPositions;
-
-    private string[] ips;
-
-    private float[] lifeSpan;
-
-    private Vector3[] points;
-
-    private Color scarletColor;
-
-    private GameObject[] textMeshes;
-
-    private int[] textPointIndices;
-
-    private static void CreateMaterial()
+    public class GlobeHexes : MonoBehaviour
     {
-        if (!mat)
-        {
-            var shader = Shader.Find("Hidden/Internal-Colored");
-            mat = new Material(shader);
-            mat.hideFlags = HideFlags.HideAndDontSave;
-            mat.SetInt("_SrcBlend", (int)BlendMode.One);
-            mat.SetInt("_DstBlend", (int)BlendMode.One);
-            mat.SetInt("_Cull", (int)CullMode.Off);
-            mat.SetInt("_ZWrite", 0);
-        }
-    }
+        private static Material mat;
 
-    private void OnRenderObject()
-    {
-        CreateMaterial();
-        GL.PushMatrix();
-        GL.MultMatrix(transform.localToWorldMatrix);
-        mat.SetPass(0);
-        for (var i = 0; i < hexCount; ++i)
+        public float fadeAmt;
+
+        public int hexCount;
+
+        public float hexSize;
+
+        public float lifeSpanMax;
+
+        public float lifeSpanMin;
+
+        public float moveSpeed;
+
+        public int textCount;
+
+        public GameObject textPrefab;
+
+        private float[] age;
+
+        private Transform cam;
+
+        private Vector3[] hexPositions;
+
+        private string[] ips;
+
+        private float[] lifeSpan;
+
+        private Vector3[] points;
+
+        private Color scarletColor;
+
+        private GameObject[] textMeshes;
+
+        private int[] textPointIndices;
+
+        private static void CreateMaterial()
         {
-            if (age[i] > lifeSpan[i])
+            if (!mat)
             {
-                age[i] = 0f;
-                points[i] = hexPositions[Random.Range(0, hexPositions.Length)];
+                var shader = Shader.Find("Hidden/Internal-Colored");
+                mat = new Material(shader);
+                mat.hideFlags = HideFlags.HideAndDontSave;
+                mat.SetInt("_SrcBlend", (int)BlendMode.One);
+                mat.SetInt("_DstBlend", (int)BlendMode.One);
+                mat.SetInt("_Cull", (int)CullMode.Off);
+                mat.SetInt("_ZWrite", 0);
             }
 
-            age[i] += Time.deltaTime;
-            float newHexSize = age[i] * hexSize;
-            float dToHalfLife = Mathf.Clamp(1f - Mathf.Abs(age[i] * 2f / lifeSpan[i] - 1f), 0f, 1f);
-            float newRadius = .5f + Mathf.Sqrt(dToHalfLife) * moveSpeed;
-            float opacity = age[i] * 2f < lifeSpan[i] ? 1f : dToHalfLife;
-            points[i] = points[i].normalized * newRadius;
-            var x = Vector3.Cross(points[i], new Vector3(0f, 1f, 0f)).normalized;
-            var y = Vector3.Cross(points[i], x).normalized;
-            var quad1 = new Vector3[4];
-            var quad2 = new Vector3[4];
-            quad1[0] = -y;
-            quad1[1] = .866f * x - .5f * y;
-            quad1[2] = .866f * x + .5f * y;
-            quad1[3] = y;
-            quad2[0] = y;
-            quad2[1] = -.866f * x + .5f * y;
-            quad2[2] = -.866f * x - .5f * y;
-            quad2[3] = -y;
-
-            GL.Begin(GL.QUADS);
-            GL.Color(scarletColor * opacity * fadeAmt);
-            for (var k = 0; k < 4; ++k)
-            {
-                GL.Vertex(newHexSize * quad1[k] + points[i]);
-            }
-
-            for (var k = 0; k < 4; ++k)
-            {
-                GL.Vertex(newHexSize * quad2[k] + points[i]);
-            }
-
-            GL.End();
-            GL.Begin(GL.LINES);
-            GL.Color(scarletColor * opacity * fadeAmt);
-            GL.Vertex3(0f, 0f, 0f);
-            GL.Vertex(points[i]);
-            GL.End();
         }
-        GL.PopMatrix();
 
-        for (var i = 0; i < textCount; ++i)
+        private void OnRenderObject()
         {
-            if (textMeshes[i] == null)
+            CreateMaterial();
+            GL.PushMatrix();
+            GL.MultMatrix(transform.localToWorldMatrix);
+            mat.SetPass(0);
+            for (var i = 0; i < hexCount; ++i)
             {
-                textMeshes[i] = Instantiate(textPrefab, transform);
-                textMeshes[i].GetComponent<TextMesh>().text = ips[textPointIndices[i]];
+                if (age[i] > lifeSpan[i])
+                {
+                    age[i] = 0f;
+                    points[i] = hexPositions[UnityEngine.Random.Range(0, hexPositions.Length)];
+                }
+
+                age[i] += Time.deltaTime;
+                float newHexSize = age[i] * hexSize;
+                float dToHalfLife = Mathf.Clamp(1f - Mathf.Abs(age[i] * 2f / lifeSpan[i] - 1f), 0f, 1f);
+                float newRadius = .5f + Mathf.Sqrt(dToHalfLife) * moveSpeed;
+                float opacity = age[i] * 2f < lifeSpan[i] ? 1f : dToHalfLife;
+                points[i] = points[i].normalized * newRadius;
+                var x = Vector3.Cross(points[i], new Vector3(0f, 1f, 0f)).normalized;
+                var y = Vector3.Cross(points[i], x).normalized;
+                var quad1 = new Vector3[4];
+                var quad2 = new Vector3[4];
+                quad1[0] = -y;
+                quad1[1] = .866f * x - .5f * y;
+                quad1[2] = .866f * x + .5f * y;
+                quad1[3] = y;
+                quad2[0] = y;
+                quad2[1] = -.866f * x + .5f * y;
+                quad2[2] = -.866f * x - .5f * y;
+                quad2[3] = -y;
+
+                GL.Begin(GL.QUADS);
+                GL.Color(scarletColor * opacity * fadeAmt);
+                for (var k = 0; k < 4; ++k)
+                {
+                    GL.Vertex(newHexSize * quad1[k] + points[i]);
+                }
+
+                for (var k = 0; k < 4; ++k)
+                {
+                    GL.Vertex(newHexSize * quad2[k] + points[i]);
+                }
+
+                GL.End();
+                GL.Begin(GL.LINES);
+                GL.Color(scarletColor * opacity * fadeAmt);
+                GL.Vertex3(0f, 0f, 0f);
+                GL.Vertex(points[i]);
+                GL.End();
             }
 
-            textMeshes[i].GetComponent<MeshRenderer>().material.color = scarletColor * fadeAmt;
-            var textTransform = textMeshes[i].transform;
-            textTransform.localPosition = points[textPointIndices[i]].normalized * 0.7f;
-            textTransform.LookAt(cam);
-            textTransform.Rotate(textTransform.up, 180f);
+            GL.PopMatrix();
+
+            for (var i = 0; i < textCount; ++i)
+            {
+                if (textMeshes[i] == null)
+                {
+                    textMeshes[i] = Instantiate(textPrefab, transform);
+                    textMeshes[i].GetComponent<TextMesh>().text = ips[textPointIndices[i]];
+                }
+
+                textMeshes[i].GetComponent<MeshRenderer>().material.color = scarletColor * fadeAmt;
+                var textTransform = textMeshes[i].transform;
+                textTransform.localPosition = points[textPointIndices[i]].normalized * 0.7f;
+                textTransform.LookAt(cam);
+                textTransform.Rotate(textTransform.up, 180f);
+            }
+
         }
 
-    }
-
-    private void Start()
-    {
-        if (textCount > hexCount)
+        private void Start()
         {
-            textCount = hexCount;
-        }
+            if (textCount > hexCount)
+            {
+                textCount = hexCount;
+            }
 
-        points = new Vector3[hexCount];
-        lifeSpan = new float[hexCount];
-        textPointIndices = new int[textCount];
-        age = new float[hexCount];
-        textMeshes = new GameObject[textCount];
-        cam = Camera.main.transform;
-        hexPositions = new[]
-                           {
+            points = new Vector3[hexCount];
+            lifeSpan = new float[hexCount];
+            textPointIndices = new int[textCount];
+            age = new float[hexCount];
+            textMeshes = new GameObject[textCount];
+            cam = Camera.main.transform;
+            hexPositions = new[]
+                               {
                                new Vector3(0.3426278f, -0.1164609f, 0.3450275f),
                                new Vector3(0.3653983f, -0.09772599f, 0.3270068f),
                                new Vector3(0.3847611f, -0.08917058f, 0.3066071f),
@@ -496,8 +502,8 @@ public class GlobeHexes : MonoBehaviour
                                new Vector3(0.3650692f, 0.04102463f, 0.3391782f),
                                new Vector3(0.4084884f, -0.2848579f, 0.04467157f)
                            };
-        ips = new[]
-                  {
+            ips = new[]
+                      {
                       "233.48.106.248",
                       "12.140.78.80",
                       "44.53.174.137",
@@ -599,25 +605,29 @@ public class GlobeHexes : MonoBehaviour
                       "219.96.94.57",
                       "137.250.132.17"
                   };
-        scarletColor = new Color(.91f, .322f, .322f, 1f);
-        for (var i = 0; i < hexCount; ++i)
-        {
-            points[i] = hexPositions[Random.Range(0, hexPositions.Length)];
-            lifeSpan[i] = Random.Range(lifeSpanMin, lifeSpanMax);
-            age[i] = Random.Range(0f, lifeSpan[i]);
+            scarletColor = new Color(.91f, .322f, .322f, 1f);
+            for (var i = 0; i < hexCount; ++i)
+            {
+                points[i] = hexPositions[UnityEngine.Random.Range(0, hexPositions.Length)];
+                lifeSpan[i] = UnityEngine.Random.Range(lifeSpanMin, lifeSpanMax);
+                age[i] = UnityEngine.Random.Range(0f, lifeSpan[i]);
+            }
+
+            for (var i = 0; i < textCount; ++i)
+            {
+                textPointIndices[i] = i;
+            }
+
+            for (var i = 0; i < textCount; ++i)
+            {
+                int j = UnityEngine.Random.Range(0, textCount);
+                int temp = textPointIndices[i];
+                textPointIndices[i] = textPointIndices[j];
+                textPointIndices[j] = temp;
+            }
+
         }
 
-        for (var i = 0; i < textCount; ++i)
-        {
-            textPointIndices[i] = i;
-        }
-
-        for (var i = 0; i < textCount; ++i)
-        {
-            int j = Random.Range(0, textCount);
-            int temp = textPointIndices[i];
-            textPointIndices[i] = textPointIndices[j];
-            textPointIndices[j] = temp;
-        }
     }
+
 }

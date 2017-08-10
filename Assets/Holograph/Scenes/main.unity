@@ -1380,6 +1380,12 @@ Prefab:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 184836096}
+    - target: {fileID: 114086306488347162, guid: 662323150571d6c48a3c09b6cdfaf1e5,
+        type: 2}
+      propertyPath: PushPinPrefab
+      value: 
+      objectReference: {fileID: 4621130737591784, guid: 1274e110470422a4cb5bdc9d6b4c3515,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 662323150571d6c48a3c09b6cdfaf1e5, type: 2}
   m_IsPrefabParent: 0
