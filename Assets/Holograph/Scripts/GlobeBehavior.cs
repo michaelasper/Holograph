@@ -86,7 +86,6 @@ namespace Holograph
                 {
                     firstNode.transform.position = hit.point;
                     var nodeMovementScript = firstNode.GetComponent<NodeMovement>();
-                    NetworkMessages.Instance.SendFirstNodeTransform();
                     nodeMovementScript.moveTo(target);
                 }
             }
@@ -110,19 +109,12 @@ namespace Holograph
             }
         }
 
-        private void FirstNodeTransform(NetworkInMessage msg)
-        {
-            // long userId = msg.ReadInt64();
-            //DefaultStoryEntry();
-        }
-
         private void Start()
         {
             pinPositions = new List<Vector3>();
             invisibleStateHash = Animator.StringToHash("Base Layer.Invisible");
             fadesOutHash = Animator.StringToHash("fadesOut");
             cam = Camera.main.transform;
-            NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.FirstNodeTransform] = FirstNodeTransform;
             globeAnimator = globe.GetComponent<Animator>();
         }
 

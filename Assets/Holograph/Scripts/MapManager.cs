@@ -138,10 +138,10 @@ namespace Holograph
         public void InitMap()
         {
             WWW results = new WWW("http://holographapi.azurewebsites.net/v1/cases");
-            
+
+            Debug.Log("Downloading...");
             while (!results.isDone)
             {
-                Debug.Log("Downloading...");
             }
 
             caseObjects = new List<CaseObject>();
@@ -181,9 +181,11 @@ namespace Holograph
             {
                 CaseList.Case.Node jNode = targetCaseObject.Nodes[i];
 
-                Dictionary<string, string> nodeInfo = new Dictionary<string, string>(jNode.Data);
-                nodeInfo.Add("Name", jNode.Name);
-                nodeInfo.Add("Type", jNode.Type);
+                Dictionary<string, string> nodeInfo = new Dictionary<string, string>(jNode.Data)
+                {
+                    { "Name", jNode.Name },
+                    { "Type", jNode.Type }
+                };
                 //var nodeInfo = new NodeInfo(jNode.Name, jNode.Type, jNode.Data);
                 var nodePrefab = (from stringPrefabPair in NodePrefabs
                                   where targetCaseObject.Nodes[i].Type.Trim().StartsWith(stringPrefabPair.NodeType)

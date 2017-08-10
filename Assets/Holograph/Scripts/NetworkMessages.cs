@@ -64,8 +64,6 @@ namespace Holograph
 
             RadialMenuClickIcon,
 
-            FirstNodeTransform,
-
             StoryControl,
 
             //Button1Animation,
@@ -105,18 +103,6 @@ namespace Holograph
                 msg.Write(value);
 
                 // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
-                serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
-            }
-        }
-
-        public void SendFirstNodeTransform()
-        {
-            // (Transform transform)
-            if (serverConnection != null && serverConnection.IsConnected())
-            {
-                var msg = CreateMessage((byte)MessageID.FirstNodeTransform);
-
-                // AppendTransform(msg, transform.position, transform.rotation);
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
         }
