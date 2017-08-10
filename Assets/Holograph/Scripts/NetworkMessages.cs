@@ -105,6 +105,8 @@ namespace Holograph
                 // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+
+            Debug.Log("SENDING: SendAnimationHash");
         }
 
         public void SendHeadTransform(Vector3 position, Quaternion rotation)
@@ -120,6 +122,7 @@ namespace Holograph
                 // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.UnreliableSequenced, MessageChannel.Avatar);
             }
+
         }
 
         public void SendMapRotation(Quaternion rotation)
@@ -134,6 +137,7 @@ namespace Holograph
 
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+            Debug.Log("SENDING: SendMapRotation");
         }
 
         public void SendMenuAnimationHash(int animationHash, AnimationTypes type, float value = -1)
@@ -148,6 +152,7 @@ namespace Holograph
                 // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+            Debug.Log("SENDING: SendMenuAnimationHash");
         }
 
         public void SendPresenterId(long userId)
@@ -160,6 +165,7 @@ namespace Holograph
                 // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Avatar);
             }
+            Debug.Log("SENDING: SendPresenterId");
         }
 
         public void SendRadialMenu(int nodeId)
@@ -171,6 +177,7 @@ namespace Holograph
 
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+            Debug.Log("SENDING: SendRadialMenu");
         }
 
         public void SendRadialMenuClickIcon(string methodName)
@@ -186,6 +193,7 @@ namespace Holograph
 
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+            Debug.Log("SENDING: SendRadialMenuClickIcon");
         }
 
         public void SendStoryControl(byte action, int[] args)
@@ -209,6 +217,7 @@ namespace Holograph
 
                 serverConnection.Broadcast(msg, MessagePriority.Immediate, MessageReliability.Unreliable, MessageChannel.Default);
             }
+            Debug.Log("SENDING: SendStoryControl");
         }
 
         protected override void OnDestroy()
