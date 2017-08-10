@@ -43,8 +43,8 @@ namespace Holograph
                 ++k;
                 Transform keyObject = propertyTransform.GetChild(0);
                 Transform valueObject = propertyTransform.GetChild(1);
-                keyObject.GetComponent<Text>().text = p.Key;
-                valueObject.GetComponent<Text>().text = p.Value;
+                keyObject.GetComponent<Text>().text = truncated(p.Key, 8);
+                valueObject.GetComponent<Text>().text = truncated(p.Value, 23);
             }
             Transform panel = this.transform.GetChild(0).GetChild(0);
             RectTransform panelRectTransform = panel.GetComponent<RectTransform>();
@@ -52,6 +52,11 @@ namespace Holograph
             Debug.Log("Changing " + panelRectTransform.offsetMin);
             panelRectTransform.offsetMin = new Vector2(panelRectTransform.offsetMin.x, 45f - 12f * k);
             Debug.Log("to " + panelRectTransform.offsetMin);
+        }
+
+        private string truncated(string s, int l)
+        {
+            return s.Length <= l ? s : s.Substring(0, l) + "...";
         }
     }
 }
