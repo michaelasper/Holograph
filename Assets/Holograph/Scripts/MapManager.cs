@@ -140,30 +140,9 @@ namespace Holograph
                 Debug.Log("Downloading...");
             }
 
-            //if (JsonFile == null)
-            //{
-            //    throw new FileNotFoundException("JSON not found");
-            //}
-
-            //Debug.Log(JsonFile);
-
-
             caseObjects = new List<CaseObject>();
-            string json = results.text; //JsonFile.text;
-            JSONObject caseListJson = new JSONObject(json);//JsonFile.ToString());
-            
-            
-            
-            //var caseList = JsonUtility.FromJson<CaseList>(json);
-
-            //for (var index = 0; index < caseList.Cases.Length; index++)
-            //{
-            //    var jsonGraph = caseList.Cases[index];
-            //    int numNodes = jsonGraph.Nodes.Length;
-            //    var caseObject = new CaseObject(jsonGraph.Name, index, numNodes);
-            //    caseObject.SetUp(jsonGraph, NodePrefabs);
-            //    caseObjects.Add(caseObject);
-            //}
+            string json = results.text;
+            JSONObject caseListJson = new JSONObject(json);
 
             for (int i = 0; i < caseListJson["Cases"].Count; i++)
             {
@@ -171,8 +150,6 @@ namespace Holograph
                 caseObject.SetUp(caseListJson["Cases"][i]);
                 caseObjects.Add(caseObject);
             }
-
-            Debug.Log("----> " + caseObjects.Count);
         }
 
         /// <summary>
