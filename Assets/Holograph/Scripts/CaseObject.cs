@@ -81,18 +81,29 @@ namespace Holograph
 
             for (var i = 0; i < this.Edges.Length; ++i)
             {
+                int sourceIndex, targetIndex;
                 try
                 {
-                    int sourceIndex = this.nodeIndex[this.Edges[i].Source];
-
-                int targetIndex = this.nodeIndex[this.Edges[i].Target];
-                this.adjMatrix[sourceIndex, targetIndex] = 1;
-                this.adjMatrix[targetIndex, sourceIndex] = 1;
+                    sourceIndex = this.nodeIndex[this.Edges[i].Source];
                 }
+
                 catch (KeyNotFoundException)
                 {
-                    Debug.Log(this.Edges[i].Source);
+                    throw new FormatException("Cannot find node " + this.Edges[i].Source);
                 }
+
+                try
+                {
+                    targetIndex = this.nodeIndex[this.Edges[i].Target];
+                }
+
+                catch (KeyNotFoundException)
+                {
+                    throw new FormatException("Cannot find node " + this.Edges[i].Target);
+                }
+
+                this.adjMatrix[sourceIndex, targetIndex] = 1;
+                this.adjMatrix[targetIndex, sourceIndex] = 1;
 
             }
         }

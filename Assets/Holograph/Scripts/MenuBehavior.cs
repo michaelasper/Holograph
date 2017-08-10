@@ -58,7 +58,7 @@ namespace Holograph
         /// </summary>
         public void Back()
         {
-            Debug.Log("Back");
+            Debug.Log("Back button pushed");
         }
 
         /// <summary>
@@ -164,7 +164,6 @@ namespace Holograph
 
             string json = this.JsonFileAsset.text;
             var nodeMenuItems = JsonUtility.FromJson<JNodeMenu>(json).NodeMenuItems;
-            Debug.Log("there are " + nodeMenuItems.Length + " menu items");
             for (var i = 0; i < nodeMenuItems.Length; ++i)
             {
                 transform.GetChild(i).GetComponent<ButtonBehavior>().initLayout(nodeMenuItems[i]);

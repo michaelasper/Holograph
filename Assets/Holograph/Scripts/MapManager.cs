@@ -277,7 +277,6 @@ namespace Holograph
         private void HandleMenuNetworkMessage(NetworkInMessage message)
         {
             message.ReadInt64();
-            Debug.Log("received toggles hexial menu message");
             int clickNodeIndex = message.ReadInt32();
             togglesMenu(clickNodeIndex);
         }

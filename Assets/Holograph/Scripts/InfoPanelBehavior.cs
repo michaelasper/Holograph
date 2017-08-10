@@ -52,10 +52,7 @@ namespace Holograph
 
             Transform panel = this.transform.GetChild(0).GetChild(0);
             RectTransform panelRectTransform = panel.GetComponent<RectTransform>();
-            Debug.Log("Looking at " + panel.name);
-            Debug.Log("Changing " + panelRectTransform.offsetMin);
             panelRectTransform.offsetMin = new Vector2(panelRectTransform.offsetMin.x, 45f - 12f * k);
-            Debug.Log("to " + panelRectTransform.offsetMin);
         }
 
         private string truncated(string s, int l)

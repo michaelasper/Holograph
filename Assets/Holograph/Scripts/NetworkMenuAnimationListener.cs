@@ -41,28 +41,14 @@ namespace Holograph
             NetworkMessages.Instance.MessageHandlers[NetworkMessages.MessageID.MenuAnimationHash] = UpdateAnimationHash;
 
             NetworkAnimator = GetComponent<Animator>();
-
-            Debug.Log("NetworkAnimator is null: " + NetworkAnimator == null);
         }
 
         private void UpdateAnimationHash(NetworkInMessage msg)
         {
-            Debug.Log("UpdateAnimationHash() is called");
-
-            // if (NetworkAnimator == null)
-            // {
-            // throw System.NullReferenceException("shit is null yo");
-            // }
             long userId = msg.ReadInt64();
             int animationHash = msg.ReadInt32();
             int animationType = msg.ReadInt32();
             float animationValue = msg.ReadFloat();
-
-            Debug.Log("Message recived:");
-            Debug.Log("    userId: " + userId);
-            Debug.Log("    animationHash: " + animationHash);
-            Debug.Log("    animationType: " + animationType);
-            Debug.Log("    animationValue: " + animationValue);
 
             if (NetworkAnimator != null)
             {

@@ -19,7 +19,6 @@ namespace Holograph
 
         public void OnFocusEnter()
         {
-            Debug.Log("test");
             this.listItemText.color = Color.blue;
         }
 
