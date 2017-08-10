@@ -33,7 +33,7 @@ namespace Holograph
 
         public CaseObject(string name, int caseId, int numNodes)
         {
-            this.Name = name;
+            this.Name = name.Replace("\"", "");
             this.CaseId = caseId;
             this.numNodes = numNodes;
             this.adjMatrix = new int[numNodes,numNodes];
