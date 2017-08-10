@@ -26,6 +26,7 @@ namespace Holograph
             {
                 PropertyList.GetChild(i).gameObject.SetActive(false);
             }
+
             int k = 0;
             foreach (KeyValuePair<string, string> p in nodeInfo)
             {
@@ -35,17 +36,20 @@ namespace Holograph
                     propertyTransform = PropertyList.GetChild(k);
                     propertyTransform.gameObject.SetActive(true);
                 }
+
                 else
                 {
                     propertyTransform = Instantiate(NodePropertyPrefab, PropertyList).transform;
                     propertyTransform.SetAsLastSibling();
                 }
+
                 ++k;
                 Transform keyObject = propertyTransform.GetChild(0);
                 Transform valueObject = propertyTransform.GetChild(1);
                 keyObject.GetComponent<Text>().text = truncated(p.Key, 8);
                 valueObject.GetComponent<Text>().text = truncated(p.Value, 23);
             }
+
             Transform panel = this.transform.GetChild(0).GetChild(0);
             RectTransform panelRectTransform = panel.GetComponent<RectTransform>();
             Debug.Log("Looking at " + panel.name);
@@ -58,5 +62,7 @@ namespace Holograph
         {
             return s.Length <= l ? s : s.Substring(0, l) + "...";
         }
+
     }
+
 }

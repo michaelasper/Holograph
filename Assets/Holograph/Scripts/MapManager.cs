@@ -114,16 +114,16 @@ namespace Holograph
         /// <summary>
         ///     Hides all the Nodes
         /// </summary>
-        [System.Obsolete]
-        public void HideNodes()
-        {
-            HexialMenu.transform.SetParent(transform.parent);
-            hexialMenuBehavior.TogglesMenu(false);
-            foreach (var t in NodeObject)
-            {
-                Destroy(t);
-            }
-        }  
+        //[System.Obsolete]
+        //public void HideNodes()
+        //{
+        //    HexialMenu.transform.SetParent(transform.parent);
+        //    hexialMenuBehavior.TogglesMenu(false);
+        //    foreach (var t in NodeObject)
+        //    {
+        //        Destroy(t);
+        //    }
+        //}  
 
 
         /// <summary>
@@ -275,6 +275,7 @@ namespace Holograph
         private void HandleMenuNetworkMessage(NetworkInMessage message)
         {
             message.ReadInt64();
+            Debug.Log("received toggles hexial menu message");
             int clickNodeIndex = message.ReadInt32();
             togglesMenu(clickNodeIndex);
         }
