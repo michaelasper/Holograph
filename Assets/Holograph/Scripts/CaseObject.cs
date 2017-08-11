@@ -8,10 +8,8 @@ namespace Holograph
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using UnityEngine;
-    using Assets.Holograph.Scripts;
 
     public class CaseObject
     {
@@ -44,8 +42,8 @@ namespace Holograph
 
         public void SetUp(JSONObject jsonGraph)
         {
-            this.Nodes = Helper.JsonObjectToNodeArray(jsonGraph);
-            this.Edges = Helper.JsonObjectToEdgeArray(jsonGraph);
+            this.Nodes = JsonHelper.JsonObjectToNodeArray(jsonGraph);
+            this.Edges = JsonHelper.JsonObjectToEdgeArray(jsonGraph);
 
             for (var i = 0; i < this.numNodes; i++)
             {
