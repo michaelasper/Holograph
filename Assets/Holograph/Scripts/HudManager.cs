@@ -43,7 +43,6 @@ namespace Holograph
             switch (clickedButton.name)
             {
                 case "CASES":
-                    this.ASCPanel.SetActive(false);
                     this.CasePanel.SetActive(!this.CasePanel.activeSelf);
                     this.SelectButton(clickedButton);
                     break;
@@ -51,8 +50,7 @@ namespace Holograph
                     this.UserListSidePanel.SetActive(!this.UserListSidePanel.activeSelf);
                     this.SelectButton(clickedButton);
                     break;
-                case "STATS":
-                    this.CasePanel.SetActive(false);
+                case "ASC":
                     this.ASCPanel.SetActive(!this.ASCPanel.activeSelf);
                     this.SelectButton(clickedButton);
                     break;

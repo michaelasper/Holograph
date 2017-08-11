@@ -5201,7 +5201,7 @@ GameObject:
   - component: {fileID: 1138343683}
   - component: {fileID: 1138343682}
   m_Layer: 0
-  m_Name: STATS
+  m_Name: ASC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
