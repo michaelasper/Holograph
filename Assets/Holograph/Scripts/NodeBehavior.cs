@@ -15,7 +15,7 @@ namespace Holograph
     using UnityEngine;
     using UnityEngine.Rendering;
 
-    public class NodeBehavior : MonoBehaviour, IInputHandler
+    public class NodeBehavior : MonoBehaviour, IInputHandler, IFocusable
     {
         private static Material _lineMaterial;
 
@@ -30,6 +30,8 @@ namespace Holograph
         public int Index { get; set; }
 
         public string _id { get; set; }
+
+        private TextMesh textLabel;
 
         public void OnInputDown(InputEventData eventData)
         {
@@ -95,8 +97,20 @@ namespace Holograph
             int currentCase = MapManager.currentCase;
             CaseObject targetCaseObject = MapManager.caseObjects.FirstOrDefault(caseObject => caseObject.CaseId == currentCase);
             visible = targetCaseObject.Visible;
+            textLabel = GetComponentInChildren<TextMesh>();
+            textLabel.gameObject.SetActive(false);
         }
 
+        public void OnFocusEnter()
+        {
+            textLabel.text = this.NodeInfo["Name"];
+            textLabel.gameObject.SetActive(true);
+        }
+
+        public void OnFocusExit()
+        {
+            textLabel.gameObject.SetActive(false);
+        }
     }
 
 }

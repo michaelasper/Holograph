@@ -2083,16 +2083,16 @@ MonoBehaviour:
   MenuOnSound: {fileID: 8300000, guid: cdb8eacd392b75c4b87031daa522a3c8, type: 3}
   NodeObject: []
   NodePrefabs:
-  - NodeType: alert
+  - NodeType: Alert
     NodePrefab: {fileID: 1478787344977326, guid: be702116d18f4cb4ba984a9c1a244f18,
       type: 2}
-  - NodeType: machine
+  - NodeType: Computer
     NodePrefab: {fileID: 1071941963697930, guid: 750afa97e3c87a841b01c064aeccedba,
       type: 2}
-  - NodeType: server
+  - NodeType: IpCommunication
     NodePrefab: {fileID: 1393008178202100, guid: 75e3b2ec4bda8de4596be367216f02d0,
       type: 2}
-  - NodeType: user
+  - NodeType: Subscription owner
     NodePrefab: {fileID: 1990329819373972, guid: 7038201a83d8519479ee825340d4eb1e,
       type: 2}
   CaseListManager: {fileID: 1129961769}
