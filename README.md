@@ -44,9 +44,9 @@ Ask Michael, Ming, or Camilo on ways to assist.
  - Rethink everything
  
  
- ## API Branch
+ ## API
  
- @camilo86 wrote the backend at camilo86/api.holograph
+ [camilo] wrote the [backend]
 
 License
 ----
@@ -65,6 +65,8 @@ Whatever Microsoft uses
    [Unity]: <https://unity3d.com/>
    [Blender]: <https://www.blender.org/>
    [Photoshop]: http://www.adobe.com/products/photoshop.html>
+   [camilo]: <https://github.com/camilo86>
+   [backend]: <https://github.com/camilo86/api.holograph>
 
 
 
