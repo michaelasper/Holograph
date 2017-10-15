@@ -12,7 +12,7 @@ on attacks to Microsoft's internal structure.
 
 ### Software
 
-Holograph uses a number of tools for it's development
+Holograph uses a number of tools for its development
 
 * [Holotoolkit-Unity] - Microsoft supported library for Unity
 * [Visual Studio 2017] - Recommended IDE for HoloLens development and deployment
